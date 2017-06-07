@@ -1,0 +1,784 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>招商信息大厅</title>
+    <meta charset="utf-8">
+    <script src="../js/common/tabs.js"></script>
+    <style>
+        .table_cp{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <script src="../js/sale/xs_zsxxdt.js"></script>
+</head>
+<body class="bei" style="width: 100%">
+    <div class="sc_cgd clearfix" style="margin-left: 30px;">
+        <input class="cmao_inplg sx-search-inpu"  type="text" style="width: 25%;border-color: #066FAF;">
+        <button class="btn btn-blue btn-w100 sx-search-btn" type="button">搜索</button>
+    </div>
+    <table style="width: 100%;height: 100%">
+        <tr>
+            <td>
+           <div class="container" style="margin-top: 30px;width: 78%;float: left;">
+			<ul class="nav nav-tabs">
+						<li class="active"><a href="#tab1" data-toggle="tab" style="color:black;">系统推荐贸易商</a></li>
+						<li ><a href="#tab2" data-toggle="tab" style="color:black;">贸易商自荐信息</a></li>
+			</ul>
+			<div class="tab-content">
+                    <div class="sc_cgd" style="border-bottom: 1px solid #dddddd">
+                        <table>
+                            <tr>
+                                <td>
+                                    <span>所在地区</span>
+                                </td>
+                                <td>
+                                    <a class="a_css" style="margin-left: 5%" href="javascript:void(0)">四川省</a>
+                                    <a class="a_css" style="margin-left: 5%" href="javascript:void(0)">湖南省</a>
+                                    <a class="a_css" style="margin-left: 5%" href="javascript:void(0)">云南省</a>
+                                    <a class="a_css" style="margin-left: 5%" href="javascript:void(0)">贵州省</a>
+                                    <a class="a_css" style="margin-left: 5%" href="javascript:void(0)">重庆市</a>
+                                    <a class="a_css" style="margin-left: 5%" href="javascript:void(0)">北京市</a>
+                                </td>
+                                <td align="center">
+                                    <a class="a_css" href="javascript:void(0)">更多+</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span>所属行业</span>
+                                </td>
+                                <td>
+                                    <a class="a_css" style="margin-left: 5%" href="javascript:void(0)">电子</a>
+                                    <a class="a_css" style="margin-left: 5%" href="javascript:void(0)">机械</a>
+                                    <a class="a_css" style="margin-left: 5%" href="javascript:void(0)">建筑装饰</a>
+                                    <a class="a_css" style="margin-left: 5%" href="javascript:void(0)">家用电器</a>
+                                    <a class="a_css" style="margin-left: 5%" href="javascript:void(0)">工程机械</a>
+                                    <a class="a_css" style="margin-left: 5%" href="javascript:void(0)">家具</a>
+                                </td>
+                                <td align="center">
+                                    <a class="a_css" href="javascript:void(0)">更多+</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span>注册资金</span>
+                                </td>
+                                <td>
+                                    <a class="a_css" style="margin-left: 5%" href="javascript:void(0)">0-50万元</a>
+                                    <a class="a_css" style="margin-left: 5%" href="javascript:void(0)">100万元以上</a>
+                                    <a class="a_css" style="margin-left: 5%" href="javascript:void(0)">500万元以上</a>
+                                    <a class="a_css" style="margin-left: 5%" href="javascript:void(0)">1000万元以上</a>
+                                    <a class="a_css" style="margin-left: 5%" href="javascript:void(0)">5000万元以上</a>
+                                </td>
+                                <td align="center">
+                                    <a class="a_css" href="javascript:void(0)">更多+</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span>年销售额</span>
+                                </td>
+                                <td>
+                                    <a class="a_css" style="margin-left: 5%" href="javascript:void(0)">0-50万元</a>
+                                    <a class="a_css" style="margin-left: 5%" href="javascript:void(0)">100万元以上</a>
+                                    <a class="a_css" style="margin-left: 5%" href="javascript:void(0)">500万元以上</a>
+                                    <a class="a_css" style="margin-left: 5%" href="javascript:void(0)">1000万元以上</a>
+                                    <a class="a_css" style="margin-left: 5%" href="javascript:void(0)">5000万元以上</a>
+                                </td>
+                                <td align="center">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span>主营产品</span>
+                                </td>
+                                <td>
+                                    <a class="a_css" style="margin-left: 5%" href="javascript:void(0)">空调</a>
+                                    <a class="a_css" style="margin-left: 5%" href="javascript:void(0)">冰箱</a>
+                                    <a class="a_css" style="margin-left: 5%" href="javascript:void(0)">洗衣机</a>
+                                    <a class="a_css" style="margin-left: 5%" href="javascript:void(0)">净水器</a>
+                                </td>
+                                <td align="center">
+                                    <a class="a_css" href="javascript:void(0)">更多+</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="qy_tab" style="height: auto;">
+                        <div class="tab-pane active" id="tab1">
+                            <div class="sc_tool" style="width: 100%;height: 600px;">
+                                <div class="row" >
+                                    <table>
+                                        <tr>
+                                            <td style="width: 50%">
+                                                <div style="width: 60%;float: left">
+                                                    <table class="thumbnail table_cp">
+                                                        <tr>
+                                                            <td rowspan="8" width="40%">
+                                                                <a href="javascript:void(0)"><img src="../images/20160418.png"/></a>
+                                                            </td>
+                                                            <td>所在地区：成都高新区</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>所属行业：电器业</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>从业年限：5年以上</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>注册资金：500万元以上</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>年销售额：1000万元以上</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>主营产品：空调、冰箱</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>联系人：张小三</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>联系电话：13512345657</td>
+                                                        </tr>
+                                                        <tr>
+                                                        	<td colspan="2">
+                                                                <a class="a_css" href="javascript:void(0)">成都天府贸易有限公司</a>
+                                                                <a class="a_css" href="javascript:void(0)" style="float: right;">查看详情>></a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2" align="center">
+                                                                <button  class="btn btn-sm btn-blue " type="button" >关注企业</button>
+                                                                <button  class="btn btn-sm btn-blue " type="button" >加入备选贸易商</button>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                                <div style="width: 36%;float: left">
+                                                    <table class="thumbnail table_cp">
+                                                        <tr>
+                                                            <td style="width: 20px">
+                                                                企业荣誉
+                                                            </td>
+                                                            <td>
+                                                                <a href="javascript:void(0)"><img src="../images/20160418.png"/></a>
+                                                            </td>
+                                                            <td>
+                                                                <a href="javascript:void(0)"><img src="../images/20160418.png"/></a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                企业展示
+                                                            </td>
+                                                            <td>
+                                                                <a href="javascript:void(0)"><img src="../images/20160418.png"/></a>
+                                                            </td>
+                                                            <td>
+                                                                <a href="javascript:void(0)"><img src="../images/20160418.png"/></a>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </td>
+                                            <td style="width: 50%">
+                                                <div style="width: 60%;float: left">
+                                                    <table class="thumbnail table_cp">
+                                                        <tr>
+                                                            <td rowspan="8" width="40%">
+                                                                <a href="javascript:void(0)"><img src="../images/20160418.png"/></a>
+                                                            </td>
+                                                            <td>所在地区：成都高新区</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>所属行业：电器业</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>从业年限：5年以上</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>注册资金：500万元以上</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>年销售额：1000万元以上</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>主营产品：空调、冰箱</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>联系人：张小三</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>联系电话：13512345657</td>
+                                                        </tr>
+                                                        <tr>
+                                                        	<td colspan="2">
+                                                                <a class="a_css" href="javascript:void(0)">成都天府贸易有限公司</a>
+                                                                <a class="a_css" href="javascript:void(0)" style="float: right;">查看详情>></a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2" align="center">
+                                                                <button  class="btn btn-sm btn-blue " type="button" >关注企业</button>
+                                                                <button  class="btn btn-sm btn-blue " type="button" >加入备选贸易商</button>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                                <div style="width: 36%;float: left">
+                                                    <table class="thumbnail table_cp">
+                                                        <tr>
+                                                            <td style="width: 20px">企业荣誉 </td>
+                                                            <td>
+                                                                <a href="javascript:void(0)"><img src="../images/20160418.png"/></a>
+                                                            </td>
+                                                            <td>
+                                                                <a href="javascript:void(0)"><img src="../images/20160418.png"/></a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>企业展示</td>
+                                                            <td>
+                                                                <a href="javascript:void(0)"><img src="../images/20160418.png"/></a>
+                                                            </td>
+                                                            <td>
+                                                                <a href="javascript:void(0)"><img src="../images/20160418.png"/></a>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 50%">
+                                                <div style="width: 60%;float: left">
+                                                    <table class="thumbnail table_cp">
+                                                        <tr>
+                                                            <td rowspan="8" width="40%">
+                                                                <a href="javascript:void(0)"><img src="../images/20160418.png"/></a>
+                                                            </td>
+                                                            <td>所在地区：成都高新区</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>所属行业：电器业</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>从业年限：5年以上</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>注册资金：500万元以上</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>年销售额：1000万元以上</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>主营产品：空调、冰箱</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>联系人：张小三</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>联系电话：13512345657</td>
+                                                        </tr>
+                                                        <tr>
+                                                        	<td colspan="2">
+                                                                <a class="a_css" href="javascript:void(0)">成都天府贸易有限公司</a>
+                                                                <a class="a_css" href="javascript:void(0)" style="float: right;">查看详情>></a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2" align="center">
+                                                                <button  class="btn btn-sm btn-blue " type="button" >关注企业</button>
+                                                                <button  class="btn btn-sm btn-blue " type="button" >加入备选贸易商</button>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                                <div style="width: 36%;float: left">
+                                                    <table class="thumbnail table_cp">
+                                                        <tr>
+                                                            <td style="width: 20px">
+                                                                企业荣誉
+                                                            </td>
+                                                            <td>
+                                                                <a href="javascript:void(0)"><img src="../images/20160418.png"/></a>
+                                                            </td>
+                                                            <td>
+                                                                <a href="javascript:void(0)"><img src="../images/20160418.png"/></a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                企业展示
+                                                            </td>
+                                                            <td>
+                                                                <a href="javascript:void(0)"><img src="../images/20160418.png"/></a>
+                                                            </td>
+                                                            <td>
+                                                                <a href="javascript:void(0)"><img src="../images/20160418.png"/></a>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </td>
+                                            <td style="width: 50%">
+                                                <div style="width: 60%;float: left">
+                                                    <table class="thumbnail table_cp">
+                                                        <tr>
+                                                            <td rowspan="8" width="40%">
+                                                                <a href="javascript:void(0)"><img src="../images/20160418.png"/></a>
+                                                            </td>
+                                                            <td>所在地区：成都高新区</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>所属行业：电器业</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>从业年限：5年以上</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>注册资金：500万元以上</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>年销售额：1000万元以上</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>主营产品：空调、冰箱</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>联系人：张小三</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>联系电话：13512345657</td>
+                                                        </tr>
+                                                        <tr>
+                                                        	<td colspan="2">
+                                                                <a class="a_css" href="javascript:void(0)">成都天府贸易有限公司</a>
+                                                                <a class="a_css" href="javascript:void(0)" style="float: right;">查看详情>></a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2" align="center">
+                                                                <button  class="btn btn-sm btn-blue " type="button" >关注企业</button>
+                                                                <button  class="btn btn-sm btn-blue " type="button" >加入备选贸易商</button>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                                <div style="width: 36%;float: left">
+                                                    <table class="thumbnail table_cp">
+                                                        <tr>
+                                                            <td style="width: 20px">企业荣誉</td>
+                                                            <td>
+                                                                <a href="javascript:void(0)"><img src="../images/20160418.png"/></a>
+                                                            </td>
+                                                            <td>
+                                                                <a href="javascript:void(0)"><img src="../images/20160418.png"/></a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>企业展示</td>
+                                                            <td>
+                                                                <a href="javascript:void(0)"><img src="../images/20160418.png"/></a>
+                                                            </td>
+                                                            <td>
+                                                                <a href="javascript:void(0)"><img src="../images/20160418.png"/></a>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="sc_gym"><img src="../images/fanye.jpg"></div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab2">
+                            <div class="sc_tool" style="width: 100%;height: 600px;padding: 2px 0 0 20px">
+                                <div class="row" >
+                                    <table style="width: 100%">
+                                        <tr>
+                                            <td style="width: 100%">
+                                                <div style="width: 100%">
+                                                    <table style="width: 100%" class="thumbnail table_cp">
+                                                        <tr>
+                                                            <td style="width: 45%">
+                                                                <div style="width: 100%;float: left">
+                                                                    <table >
+                                                                        <tr>
+                                                                            <td rowspan="9">
+                                                                                <a href="javascript:void(0)"><img src="../images/20160418.png"/></a>
+                                                                            </td>
+                                                                            <td>
+                                                                                所在地区：成都高新区
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                所属行业：电器业
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                从业年限：5年以上
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                注册资金：500万元以上
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                年销售额：1000万元以上
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                主营产品：空调、冰箱
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                联系人：张小三
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                联系电话：13512345657
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td align="right">
+                                                                                <a class="a_css" href="javascript:void(0)">查看详情>></a>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <a class="a_css" href="javascript:void(0)">成都天府贸易有限公司</a>
+                                                                            </td>
+                                                                            <td>
+                                                                                <button  class="btn btn-blue btn-w100" type="button" >关注企业</button>
+                                                                                <button  class="btn btn-blue btn-w120" type="button" >加入备选贸易商</button>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
+                                                            </td>
+                                                            <td style="width: 28%">
+                                                                <div style="width: 100%;float: left">
+                                                                    <table style="border-collapse: separate;border-spacing: 4px">
+                                                                        <tr>
+                                                                            <td rowspan="9" style="width: 20px;border: 1px solid #dddddd" align="center">
+                                                                                自荐信息
+                                                                            </td>
+                                                                            <td>
+                                                                                合作方式：代理/经销
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                销售方式：实体销售
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                销售产品：空调、冰箱、洗衣机
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                销售区域：四川省成都市
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                合作年限：3年
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                付款方式：货到付款
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                结算方式：按月结算
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                结算周期：每月
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                利酬结算：定期结算
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
+                                                            </td>
+                                                            <td style="">
+                                                                <div style="width: 65%;float: left">
+                                                                    <table >
+                                                                        <tr>
+                                                                            <td style="width: 20px">
+                                                                                企业荣誉
+                                                                            </td>
+                                                                            <td>
+                                                                                <a href="javascript:void(0)"><img src="../images/20160418.png"/></a>
+                                                                            </td>
+                                                                            <td>
+                                                                                <a href="javascript:void(0)"><img src="../images/20160418.png"/></a>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                企业展示
+                                                                            </td>
+                                                                            <td>
+                                                                                <a href="javascript:void(0)"><img src="../images/20160418.png"/></a>
+                                                                            </td>
+                                                                            <td>
+                                                                                <a href="javascript:void(0)"><img src="../images/20160418.png"/></a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 100%">
+                                                <div style="width: 100%">
+                                                    <table style="width: 100%" class="thumbnail table_cp">
+                                                        <tr>
+                                                            <td style="width: 45%">
+                                                                <div style="width: 100%;float: left">
+                                                                    <table >
+                                                                        <tr>
+                                                                            <td rowspan="9">
+                                                                                <a href="javascript:void(0)"><img src="../images/20160418.png"/></a>
+                                                                            </td>
+                                                                            <td>
+                                                                                所在地区：成都高新区
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                所属行业：电器业
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                从业年限：5年以上
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                注册资金：500万元以上
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                年销售额：1000万元以上
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                主营产品：空调、冰箱
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                联系人：张小三
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                联系电话：13512345657
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td align="right">
+                                                                                <a class="a_css" href="javascript:void(0)">查看详情>></a>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <a class="a_css" href="javascript:void(0)">成都天府贸易有限公司</a>
+                                                                            </td>
+                                                                            <td>
+                                                                                <button  class="btn btn-blue btn-w100" type="button" >关注企业</button>
+                                                                                <button  class="btn btn-blue btn-w120" type="button" >加入备选贸易商</button>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
+                                                            </td>
+                                                            <td style="width: 28%">
+                                                                <div style="width: 100%;float: left">
+                                                                    <table style="border-collapse: separate;border-spacing: 4px">
+                                                                        <tr>
+                                                                            <td rowspan="9" style="width: 20px;border: 1px solid #dddddd" align="center">
+                                                                                自荐信息
+                                                                            </td>
+                                                                            <td>
+                                                                                合作方式：代理/经销
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                销售方式：实体销售
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                销售产品：空调、冰箱、洗衣机
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                销售区域：四川省成都市
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                合作年限：3年
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                付款方式：货到付款
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                结算方式：按月结算
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                结算周期：每月
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                利酬结算：定期结算
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
+                                                            </td>
+                                                            <td style="">
+                                                                <div style="width: 65%;float: left">
+                                                                    <table >
+                                                                        <tr>
+                                                                            <td style="width: 20px">
+                                                                                企业荣誉
+                                                                            </td>
+                                                                            <td>
+                                                                                <a href="javascript:void(0)"><img src="../images/20160418.png"/></a>
+                                                                            </td>
+                                                                            <td>
+                                                                                <a href="javascript:void(0)"><img src="../images/20160418.png"/></a>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                企业展示
+                                                                            </td>
+                                                                            <td>
+                                                                                <a href="javascript:void(0)"><img src="../images/20160418.png"/></a>
+                                                                            </td>
+                                                                            <td>
+                                                                                <a href="javascript:void(0)"><img src="../images/20160418.png"/></a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="sc_gym"><img src="../images/fanye.jpg"></div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="introduce-box">
+                    <div class="introduce-box-top clearfix">
+                        <div class="introduce-box-logo"></div>
+                        <div class="introduce-welcome">
+	                        <span class="introduce-first">HI,下午好</span>
+	                        <span class="introduce-name">四川双龙沙发厂</span>
+                        </div>
+                    </div>
+                    <div class="introduce-info clearfix">
+                    	<div class="introduce-info-list">
+                    		<a href="javascript:;" class="infolist-box">12</a>
+                    		<a href="javascript:;" class="info-item">待处理申请</a>
+                    	</div>
+                    	<div class="introduce-info-list">
+                    		<a href="javascript:;" class="infolist-box">5</a>
+                    		<a href="javascript:;" class="info-item">待签协议</a>
+                    	</div>
+                    </div>
+                    <div class="info-detail">
+                        <table >
+                            <tr>
+                                <td><span class="ml27">诚信等级：<img alt="" src="../images/bz3.png"></span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="ml27">主营产品：</span>工程机械、钢材、钢板</td>
+                            </tr>
+                            <tr>
+                                <td><span class="ml27"> 企业性质：</span>民营企业</td>
+                            </tr>
+                            <tr>
+                                <td><span class="ml27">经营模式：</span>生产制造</td>
+                            </tr>
+                            <tr>
+                                <td><span class="ml27">认证类型：<img alt="" src="../images/bz4.png"></span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="ml27">所属地区：</span>成都市高新区</td>
+                            </tr>
+                            <tr>
+                                <td><span class="ml27">所属行业：</span>机械</td>
+                            </tr>
+                            <tr>
+                                <td><a class="a_css detil-more" href="#" >更多详情>></a></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button class="btn btn-blue btn-detail btn-w100" type="button" >已关注企业</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button class="btn btn-blue btn-detail btn-w100" type="button" >备选贸易商清单</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+<script>
+</script>
+</body>
+</html>

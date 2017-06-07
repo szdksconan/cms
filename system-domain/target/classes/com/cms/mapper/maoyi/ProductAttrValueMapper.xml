@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.maoyi.ProductAttrValueMapper">
+	<resultMap id="attrValueResultMap" type="com.cms.model.maoyi.CmsAttrVal">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="attrKeyId" property="attrKeyId" jdbcType="VARCHAR" />
+		<result column="attrValueCn" property="attrValueCn" jdbcType="VARCHAR" />
+		<result column="attrValueEn" property="attrValueEn" jdbcType="VARCHAR" />
+		<result column="attrValueCreator" property="attrValueCreator"
+			jdbcType="VARCHAR" />
+		<result column="attrValueCreateTime" property="attrValueCreateTime"
+			jdbcType="DATE" />
+		<association property="attr" javaType="com.cms.model.maoyi.CmsAttr">
+			<id column="id" property="id" jdbcType="VARCHAR" />
+			<result column="kindsId" property="kindsId" jdbcType="VARCHAR" />
+			<result column="attrNameCn" property="attrNameCn" jdbcType="VARCHAR" />
+			<result column="attrNameEn" property="attrNameEn" jdbcType="VARCHAR" />
+			<result column="attrCreator" property="attrCreator" jdbcType="VARCHAR" />
+			<result column="attrCreateTime" property="attrCreateTime"
+				jdbcType="DATE" />
+		</association>
+	</resultMap>
+	<select id="getAttrValByProductId" resultMap="attrValueResultMap"
+		parameterType="java.lang.String">
+		select *
+		from cms_product_t_product_attrval av
+		left join cms_product_t_attr_value v on av.attrValueId=v.id
+		left join cms_product_t_attr t on v.attrKeyId=t.id
+		where av.productId=#{productId}
+	</select>
+	<select id="getAttrValById" resultMap="attrValueResultMap"
+		parameterType="java.lang.String">
+		select v.*,t.attrNameCn from cms_product_t_attr_value v
+		left join cms_product_t_attr t on v.attrKeyId=t.id
+		where v.id = #{id}
+	</select>
+	<select id="getValById" resultMap="attrValueResultMap"
+		parameterType="java.lang.String">
+		select * from cms_product_t_attr_value where id=#{id}
+	</select>
+	<select id="getAttrValByAttrId" resultMap="attrValueResultMap"
+		parameterType="java.lang.String">
+		select * from cms_product_t_attr_value where
+		attrKeyId=#{attrKeyId}
+	</select>
+	<insert id="insert" parameterType="java.util.List">
+		insert into cms_product_t_attr_value(id, attrKeyId, attrValueCn
+		,attrValueEn,attrValueCreator, attrValueCreateTime) values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.id},#{item.attrKeyId},#{item.attrValueCn},#{item.attrValueEn},
+			#{item.attrValueCreator},#{item.attrValueCreateTime})
+		</foreach>
+	</insert>
+	<insert id="insertValP" parameterType="java.util.List">
+		insert into cms_product_t_product_attrval(id, attrValueId, productId
+		)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.id},#{item.attrValueId},#{item.productId})
+		</foreach>
+	</insert>
+	<select id="getAttrValByAttrIds" resultMap="attrValueResultMap"
+		parameterType="java.util.Map">
+		select * from cms_product_t_attr_value
+		where attrKeyId in
+		<foreach collection="attrKeyIds" index="index" item="item"
+			open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+</mapper>

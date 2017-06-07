@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.manager.baseInfo.lineMapper" >	
+	<sql id="LINE-PARAM">
+		    id,
+		    code,
+		    name,
+		    pid
+	</sql>
+	<select id="dataGrid" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.manager.lineBean">
+	    select a.id as id,a.code,a.name as name,b.name as pidname from t_sys_line  a,t_sys_province b where a.pid = b.id
+	      <if test="name!=null and name!=''">
+	          and a.name like concat('%',#{name},'%')
+	    </if>
+	    <if test="pid!=null and pid!=''">
+	          and a.pid = #{pid}
+	    </if>
+	    <if test="order!=null and order!=''">
+	        ${order}
+	    </if>
+	</select>
+	
+	<select id="dataGridCot" parameterType="com.alibaba.fastjson.JSONObject" resultType="int">
+	    select count(1) from t_sys_line  a,t_sys_province b where a.pid = b.id
+	      <if test="name!=null and name!=''">
+	          and a.name like concat('%',#{name},'%')
+	    </if>
+	    <if test="pid!=null and pid!=''">
+	          and a.pid = #{pid}
+	    </if>
+	</select>
+	
+			
+	<update id="edit" parameterType="com.cms.model.manager.lineBean">
+	    update t_sys_line set name=#{name},code=#{code},pid=#{pid}  where id=#{id}
+	</update>
+	
+	<insert id="add" parameterType="com.cms.model.manager.lineBean">
+	    insert into t_sys_line (code,name,pid) values (#{code},#{name},#{pid})
+	</insert>
+	
+	<delete id="delete" parameterType="com.alibaba.fastjson.JSONObject">
+	    delete from t_sys_line where id=#{id}
+	</delete>
+	
+	<select id="get" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.manager.lineBean">
+	    select <include refid="LINE-PARAM"/> from t_sys_line where id=#{id}
+	</select>
+	
+		<select id="selectLineJson" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.manager.lineBean">
+	    select id ,code,name,pid from t_sys_line where 1=1
+	      <if test="q!=null and q!=''">
+	          and name like concat('%',#{q},'%')
+	    </if>
+	    <if test="pid!=null and pid!=''">
+	          and pid = #{pid}
+	    </if>
+	    <if test="order!=null and order!=''">
+	        ${order}
+	    </if>
+	</select>
+</mapper>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper    
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cms.mapper.userCenter.com.AccountEnterpriseInfoMapper">
+
+	<resultMap id="enterpriseInfo" type="SysUserEnterpriseInfo">
+		<id property="eid" column="eid" />
+		<id property="uid" column="uid" />
+		<result property="companyName" column="company_name" />
+		<result property="companyLogo" column="company_logo" />
+		<result property="industryType" column="industry_type" />
+		<result property="businessScope" column="business_scope" />
+		<result property="registerCapital" column="register_capital" />
+		<result property="registerDate" column="register_date" />
+		<result property="memberType" column="member_type" />
+		<result property="isOem" column="is_oem" />
+	</resultMap>
+
+	<!-- 拿到企业信息 -->
+	<select id="getEnterpriseInfo" parameterType="java.lang.String"
+		resultMap="enterpriseInfo">
+		select * from sys_user_enterprise_info where uid=#{uid}
+	</select>
+
+	<!-- 新增企业信息 -->
+	<insert id="saveEnterpriseInfo" parameterType="SysUserEnterpriseInfo">
+		insert into sys_user_enterprise_info
+		(eid,uid,company_name,company_logo,industry_type,product,business_scope,register_capital,
+		register_date,member_type,is_oem)
+		values(#{eid},#{uid},#{companyName},#{companyLogo},#{industryType},#{product},#{businessScope},#{registerCapital},#{registerDate},#{memberType},#{isOem})
+	</insert>
+
+	<!-- 修改企业信息 -->
+	<update id="updateEnterpriseInfo" parameterType="SysUserEnterpriseInfo">
+		update sys_user_enterprise_info set
+		company_name=#{companyName},company_logo=#{companyLogo},industry_type=#{industryType},product=#{product},
+		business_scope=#{businessScope},register_capital=#{registerCapital},
+		register_date=#{registerDate},member_type=#{memberType},is_oem=#{isOem}
+		where eid=#{eid}
+	</update>
+</mapper> 

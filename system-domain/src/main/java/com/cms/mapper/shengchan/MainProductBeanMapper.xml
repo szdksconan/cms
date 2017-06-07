@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.cms.mapper.shengchan.MainProductBeanMapper">
+    <sql id="MAINPRODUCT">
+        id,
+        company_id as companyId,
+        brand_id as brandId,
+        brand_name as brandName,
+        product_set_id as productSetId,
+        product_set_name as productSetName,
+        product_name as productName,
+        set_introduce setIntroduce,
+		DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s') as createTime,
+		DATE_FORMAT(update_time,'%Y-%m-%d %H:%i:%s') as updateTime,
+		state,
+		product_type_id as productTypeId,
+		product_type_name as productTypeName,
+		product_style_id as productStyleId,
+		product_style_name as productStyleName
+    </sql>
+
+    <sql id="MAINPRODUCTDOC">
+        id,
+        main_product_id as pid,
+        file_url as fileUrl,
+        file_key as fileKey,
+        file_type as fileType,
+        is_main as isMain,
+        sort as sort,
+        DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s') as createTime
+    </sql>
+    
+    <sql id="PRODUCTDOC">
+        id,
+        product_id as pid,
+        file_url as fileUrl,
+        file_key as fileKey,
+        file_type as fileType,
+        is_main as isMain,
+        DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s') as createTime
+    </sql>
+
+    <select id="getMainProductList" parameterType="com.cms.model.shengchang.MainProductBean" resultType="com.cms.model.shengchang.MainProductBean">
+        select <include refid="MAINPRODUCT"/> from main_product where 1=1
+        <if test="state==null or state==''">
+            and state!=12
+        </if>
+        <if test="companyId!=null and companyId!=''">
+            and company_id = #{companyId}
+        </if>
+        <if test="id!=null and id!=''">
+            and id=#{id}
+        </if>
+        <if test="brandId!=null and brandId!=''">
+            and brand_id=#{brandId}
+        </if>
+        <if test="brandName!=null and brandName!=''">
+            and brand_name like concat('%',#{brandName},'%')
+        </if>
+        <if test="state!=null and state!=''">
+            and state=#{state}
+        </if>
+        <if test="productName!=null and productName!=''">
+            and product_name like concat('%',#{productName},'%')
+        </if>
+        <if test="orderStr!=null and orderStr!=''">
+            ${orderStr}
+        </if>
+    </select>
+
+    <select id="getMainProductCot" parameterType="com.cms.model.shengchang.MainProductBean" resultType="int">
+        select count(1) from main_product where 1=1
+        <if test="state==null or state==''">
+            and state!=12
+        </if>
+        <if test="companyId!=null and companyId!=''">
+            and company_id = #{companyId}
+        </if>
+        <if test="id!=null and id!=''">
+            and id=#{id}
+        </if>
+        <if test="brandId!=null and brandId!=''">
+            and brand_id=#{brandId}
+        </if>
+        <if test="brandName!=null and brandName!=''">
+            and brand_name like concat('%',#{brandName},'%')
+        </if>
+        <if test="state!=null and state!=''">
+            and state=#{state}
+        </if>
+        <if test="productName!=null and productName!=''">
+            and product_name like concat('%',#{productName},'%')
+        </if>
+    </select>
+		
+    <select id="getMainProductDocList" parameterType="com.cms.model.shengchang.MainProductBean"
+        resultType="com.cms.model.shengchang.MainDocBean">
+        select <include refid="MAINPRODUCTDOC"/> from main_product_doc where main_product_id = #{id}
+    </select>
+
+    <select id="getMainProductDocListByFilter" parameterType="com.alibaba.fastjson.JSONObject"
+        resultType="com.cms.model.shengchang.MainDocBean">
+        select <include refid="MAINPRODUCTDOC"/> from main_product_doc where main_product_id = #{mainProductId}
+        <if test="fileType!=null and fileType!=''">
+              and file_type  = #{fileType}
+        </if>
+        <if test="isMain!=null and isMain!=''">
+              and is_main  = #{isMain}
+        </if>
+    </select>
+
+    <select id="getProductDocListByFilter" parameterType="com.alibaba.fastjson.JSONObject"
+        resultType="com.cms.model.shengchang.ProductDocBean">
+        select <include refid="PRODUCTDOC"/> from
+        product_doc where product_id = #{productId}
+        <if test="fileType!=null and fileType!=''">
+              and file_type  = #{fileType}
+        </if>
+        <if test="isMain!=null and isMain!=''">
+              and is_main  = #{isMain}
+        </if>
+    </select>
+
+    <insert id="addMainProduct" parameterType="com.cms.model.shengchang.MainProductBean" >
+        replace into main_product(id,company_id,brand_id,brand_name,product_set_id,product_set_name,set_introduce,product_name,create_time,update_time,state,
+        product_type_id,product_type_name,product_style_id,product_style_name) values(#{id},#{companyId},#{brandId},#{brandName}, #{productSetId},#{productSetName},#{setIntroduce},#{productName},
+        #{createTime},#{updateTime},#{state},#{productTypeId},#{productTypeName},#{productStyleId},#{productStyleName})
+    </insert>
+
+    <update id="delMainProductById" parameterType="com.cms.model.shengchang.MainProductBean">
+        update main_product set state=#{statebak} where id=#{id}
+    </update>
+
+    <insert id="addMainProductDoc" parameterType="java.util.List">
+        replace into main_product_doc (id,main_product_id,file_url,file_key,file_type,is_main,sort,create_time) values
+        <foreach collection="list" item="doc" index="index" separator="," >
+            (#{doc.id},#{doc.pid},#{doc.fileUrl},#{doc.fileKey},#{doc.fileType},#{doc.isMain},#{doc.sort},#{doc.createTime})
+        </foreach>
+    </insert>
+
+    <update id="updateMainProduct" parameterType="com.cms.model.shengchang.MainProductBean">
+        update main_product set brand_id=brand_id
+        <if test="statebak!=null and statebak!=''">
+            ,state=#{statebak}
+        </if>
+        <where>
+            <if test="id!=null and id!=''">
+                id=#{id}
+            </if>
+        </where>
+    </update>
+
+    <delete id="delMainProductDoc" parameterType="java.util.List">
+        delete from main_product_doc
+        <where>
+            id in
+            <foreach collection="list" item="doc" index="index" open="(" separator="," close=")">
+                #{doc.id}
+            </foreach>
+        </where>
+    </delete>
+
+    <insert id="addBrand" parameterType="com.cms.model.shengchang.CompBrandBean">
+        insert into comp_brand(id,brand_name,company_id,create_time,logo_url) values(#{id},#{brandName},#{companyId},#{createTime},#{logoUrl})
+    </insert>
+
+    <update id="updateBrand" parameterType="com.alibaba.fastjson.JSONObject">
+        update comp_brand set brand_name=#{brandName} where id=#{id}
+    </update>
+
+    <delete id="delAllBrand" parameterType="Long">
+        delete from comp_brand where company_id=#{companyId}
+    </delete>
+
+    <select id="getBrandList" parameterType="Long" resultType="com.cms.model.shengchang.CompBrandBean">
+        select id as id ,brand_name as brandName,company_id as companyId,create_time as createTime,logo_url as logoUrl from comp_brand where company_id=#{companyId}
+    </select>
+
+     <delete id="delBrand" parameterType="com.cms.model.shengchang.CompBrandBean">
+        delete from comp_brand where id=#{id}
+    </delete>
+
+    <select id="getProductPricListByRuleId" parameterType="Long" resultType="java.util.Map">
+        select price,product_code as productCode,product_sell_rule_id  as productSellRuleId,product_id as productId from product_price where
+        product_sell_rule_id = #{ruleId}
+    </select>
+</mapper>

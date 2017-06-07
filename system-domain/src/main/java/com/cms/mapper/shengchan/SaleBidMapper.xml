@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cms.mapper.shengchan.SaleBidMapper">
+    <sql id="SALEBIDORDER">
+        id,
+        order_code as orderCode,
+        order_name as orderName,
+        DATE_FORMAT(create_time,'%Y-%m-%d') as createTime,
+        DATE_FORMAT(update_time,'%Y-%m-%d') as updateTime,
+        purchase_tender_id as purchaseTenderId,
+        company_id as companyId,
+        company_name as companyName,
+        company_address as companyAddress,
+        industry_id as industryId,
+        industry_name as industryName,
+        operation_model as operationModel,
+        link_man as linkMan,
+        link_tel as linkTel,
+        email,
+        fax_number as faxNumber,
+        DATE_FORMAT(price_expiry_time,'%Y-%m-%d') as priceExpiryTime,
+        other_description as otherDescription,
+        state,
+        DATE_FORMAT(end_time,'%Y-%m-%d') as endTime,
+        delete_flag as deleteFlag,
+        saved,
+        review_flag as reviewFlag
+    </sql>
+    <sql id="SALEBIDORDERDETAIL">
+        id,
+        sale_bid_order_id as saleBidOrderId,
+        purchase_tender_detail_id as purchaseTenderDetailId,
+        product_name as productName,
+        product_model_size as productModelSize,
+        count,
+        actually_count as actuallyCount,
+        unit_id as unitId,
+        unit_name as unitName,
+        offer_price as offerPrice,
+        offer_remark as offerRemark,
+        product_description as productDescription,
+        offer_amount as offerAmount,
+        offer_explain as offerExplain,
+        DATE_FORMAT(delivery_time,'%Y-%m-%d') as deliveryTime,
+        product_type_id as productTypeId,
+        product_type_name as productTypeName,
+        docs,
+        description,
+        saved,
+        purchase_tender_id as purchaseTenderId,
+        review_flag as reviewFlag
+    </sql>
+
+    <insert id="saveSaleBidOrder" parameterType="com.cms.model.shengchang.SaleBidOrder">
+        replace into sale_bid_order (id,order_code,order_name,create_time,purchase_tender_id,company_id,company_name,company_address,industry_id,
+        industry_name,operation_model,link_man,link_tel,fax_number,email,price_expiry_time,other_description,update_time,state,end_time) values (#{id},#{orderCode},#{orderName},
+        #{createTime},#{purchaseTenderId},#{companyId},#{companyName},#{companyAddress},#{industryId},#{industryName},#{operationModel},#{linkMan},#{linkTel},#{faxNumber},
+        #{email},#{priceExpiryTime},#{otherDescription},#{updateTime},#{state},#{endTime})
+    </insert>
+
+    <insert id="saveSaleBidOrderDetail" parameterType="java.util.List">
+        replace into sale_bid_order_detail (id,sale_bid_order_id,purchase_tender_detail_id,product_name,product_model_size,count,unit_id,unit_name,offer_price,
+        offer_remark,product_description,offer_amount,offer_explain,delivery_time,product_type_id,product_type_name,docs,description,actually_count,purchase_tender_id) values
+        <foreach collection="list" item="detail" index="index" separator="," >
+            (#{detail.id},#{detail.saleBidOrderId},#{detail.purchaseTenderDetailId},#{detail.productName},#{detail.productModelSize},#{detail.count},#{detail.unitId},#{detail.unitName},
+            #{detail.offerPrice},#{detail.offerRemark},#{detail.productDescription},#{detail.offerAmount},#{detail.offerExplain},#{detail.deliveryTime},
+            #{detail.productTypeId},#{detail.productTypeName},#{detail.docs},#{detail.description},#{detail.actuallyCount},#{detail.purchaseTenderId})
+        </foreach>
+    </insert>
+
+    <select id="getSaleBidOrder" parameterType="com.cms.model.shengchang.SaleBidOrder" resultType="com.cms.model.shengchang.SaleBidOrder">
+        select <include refid="SALEBIDORDER"/> from sale_bid_order where delete_flag!=true
+        <if test="id!=null and id!=''">
+            and id=#{id}
+        </if>
+    </select>
+
+    <select id="getSaleBidOrderDetail" parameterType="com.cms.model.shengchang.SaleBidOrder" resultType="com.cms.model.shengchang.SaleBidOrderDetail">
+        select <include refid="SALEBIDORDERDETAIL"/> from sale_bid_order_detail where 1=1
+        <if test="id!=null and id!=''">
+            and sale_bid_order_id=#{id}
+        </if>
+    </select>
+
+    <select id="getSaleBidOrderList" parameterType="com.cms.model.shengchang.SaleBidOrder" resultType="com.cms.model.shengchang.SaleBidOrder">
+        select <include refid="SALEBIDORDER"/> from sale_bid_order where delete_flag!=true
+        <if test="purchaseTenderId!=null and purchaseTenderId!=''">
+            and purchase_tender_id=#{purchaseTenderId}
+        </if>
+        <if test="orderCode!=null and orderCode!=''">
+            and order_code like concat('%',#{orderCode},'%')
+        </if>
+        <if test="orderName!=null and orderName!=''">
+            and order_name like concat('%',#{orderName},'%')
+        </if>
+        <if test="companyName!=null and companyName!=''">
+            and company_name like concat('%',#{companyName},'%')
+        </if>
+        <if test="state!=null and state!=0">
+            and state like concat('%',#{state},'%')
+        </if>
+        <if test="orderStr!=null and orderStr!=''">
+            ${orderStr}
+        </if>
+    </select>
+
+    <select id="getSaleBidOrderListCot" parameterType="com.cms.model.shengchang.SaleBidOrder" resultType="int">
+        select count(*) from sale_bid_order where delete_flag!=true
+        <if test="purchaseTenderId!=null and purchaseTenderId!=''">
+            and purchase_tender_id=#{purchaseTenderId}
+        </if>
+        <if test="orderCode!=null and orderCode!=''">
+            and order_code like concat('%',#{orderCode},'%')
+        </if>
+        <if test="orderName!=null and orderName!=''">
+            and order_name like concat('%',#{orderName},'%')
+        </if>
+        <if test="companyName!=null and companyName!=''">
+            and company_name like concat('%',#{companyName},'%')
+        </if>
+        <if test="state!=null and state!=0">
+            and state like concat('%',#{state},'%')
+        </if>
+    </select>
+
+    <delete id="delSaleBidOrderDetailList" parameterType="java.util.List">
+        delete from sale_bid_order_detail
+        <where>
+            id in
+            <foreach collection="list" item="detail" index="index" open="(" separator="," close=")">
+                #{detail.id}
+            </foreach>
+        </where>
+    </delete>
+
+    <update id="delSaleBid" parameterType="com.cms.model.shengchang.SaleBidOrder">
+        update sale_bid_order set delete_flag=true where id=#{id}
+    </update>
+
+    <update id="saveReviewOrder" parameterType="com.cms.model.shengchang.SaleBidOrder">
+        update sale_bid_order set saved=#{saved}
+        <if test="reviewFlag!=null and reviewFlag!=false">
+            ,review_flag=#{reviewFlag}
+        </if>
+         where id=#{id}
+    </update>
+
+    <update id="saveReviewDetail" parameterType="com.cms.model.shengchang.SaleBidOrderDetail">
+        update  sale_bid_order_detail set saved=#{saved}
+        <if test="reviewFlag!=null and reviewFlag!=false">
+            ,review_flag=#{reviewFlag}
+        </if>
+        <if test="actuallyCount!=null and actuallyCount!=''">
+            ,actually_count=#{actuallyCount}
+        </if>
+        where id=#{id}
+    </update>
+
+    <update id="saveReviewDetailByOrder" parameterType="com.cms.model.shengchang.SaleBidOrder">
+        update sale_bid_order_detail set saved=#{saved} where sale_bid_order_id=#{id}
+    </update>
+</mapper>

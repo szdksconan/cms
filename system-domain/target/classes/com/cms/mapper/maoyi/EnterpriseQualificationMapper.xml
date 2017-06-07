@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.maoyi.EnterpriseQualificationMapper" >
+  <resultMap id="BaseResultMap" type="com.cms.model.maoyi.EnterpriseQualification"  >
+    <id column="e_id" property="id" jdbcType="DECIMAL" />
+    <result column="enterprise_id" property="enterpriseId" jdbcType="DECIMAL" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="image_type" property="imageType" jdbcType="INTEGER" />
+    <result column="number" property="number" jdbcType="VARCHAR" />
+    <result column="valid_time" property="validTime" jdbcType="VARCHAR" />
+    <result column="lice_agency" property="liceAgency" jdbcType="VARCHAR" />
+     <collection property="images" ofType="com.cms.model.maoyi.TradeImage" >
+     	<id column="t_id" property="id" jdbcType="DECIMAL" />
+	    <result column="path" property="path" jdbcType="VARCHAR" />
+     </collection>
+  </resultMap> 
+  <select id="getAllQualif" resultMap="BaseResultMap" parameterType="long" >
+      select 
+         e.id as e_id,e.enterprise_id,e.name,e.number,e.image_type,e.valid_time,e.lice_agency,t.id as t_id,t.path
+    from enterprise_qualification  e  JOIN trade_image t on 
+e.id=t.qulifa_id and e.image_type in (2,3,4,5) where e.enterprise_id=#{id}
+  </select>
+  
+<!--   拿到对于id的资质信息 -->
+  <select id="getQulif" resultMap="BaseResultMap" parameterType="long">
+    select 
+        e.id as e_id,e.enterprise_id,e.name,e.number,e.image_type,e.valid_time,e.lice_agency,t.id as t_id,t.path
+        from enterprise_qualification  e  JOIN trade_image t on 
+         e.id=t.qulifa_id where e.id=#{id}
+  </select>
+  
+<!--  添加资质信息  addQualif -->
+	<insert id="addQualif" parameterType="com.cms.model.maoyi.EnterpriseQualification" >
+	    insert into enterprise_qualification (id, enterprise_id, name, 
+	      image_type, number, valid_time, 
+	      lice_agency)
+	    values (#{id}, #{enterpriseId}, #{name}, 
+	      #{imageType}, #{number}, #{validTime}, 
+	      #{liceAgency})
+	  </insert>
+<!-- 修改资质信息 updateQualif -->
+     <update id="updateQualif" parameterType="com.cms.model.maoyi.EnterpriseQualification" >
+    update enterprise_qualification
+    <set >
+      <if test="enterpriseId != null" >
+        enterprise_id = #{enterpriseId,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="imageType != null" >
+        image_type = #{imageType,jdbcType=INTEGER},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="validTime != null" >
+        valid_time = #{validTime,jdbcType=VARCHAR},
+      </if>
+      <if test="liceAgency != null" >
+        lice_agency = #{liceAgency,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=DECIMAL}
+  </update>
+<!--   删除资质信息deleteQualif -->
+   <delete id="deleteQualif" parameterType="long">
+    delete from enterprise_qualification
+    where id = #{id}
+   </delete>
+</mapper>

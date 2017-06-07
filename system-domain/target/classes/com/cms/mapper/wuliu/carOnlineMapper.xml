@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.wuliu.CarOnlineMapper">
+	<sql id="CARONLINE">
+		a.id as id,
+		a.car_no as carNo,
+		a.car_owner as carOwner,
+		a.car_tel as carTel,
+		a.car_length as carLength,
+		a.car_weigth as carWeigth,
+		a.car_volume as carVolume,
+		a.car_pic_url as carPicUrl,
+		a.car_address as carAddress,
+		a.car_location_tag as carLocationTag,
+		a.car_longitude as carLongitude,
+		a.car_latitude as carLatitude
+	</sql>
+
+	<select id="searchMap" parameterType="com.alibaba.fastjson.JSONObject"
+		resultType="com.cms.model.wuliu.CarOnlineBean">
+		select
+		<include refid="CARONLINE" />
+		from t_sys_car where 1=1 and car_location_tag = '1'
+		<if test="minLng!=null and minLng!=''">
+			and car_longitude &gt;=#{minLng}
+		</if>
+		<if test="maxLng!=null and maxLng!=''">
+			and car_longitude &lt;=#{maxLng}
+		</if>
+		<if test="minLat!=null and minLat!=''">
+			and car_latitude &gt;=#{minLat}
+		</if>
+		<if test="maxLat!=null and maxLat!=''">
+			and car_latitude &lt;=#{maxLat}
+		</if>
+		<if test="num!=null and num!=''">
+			order by id limit 0,#{num}
+		</if>
+	</select>
+	<insert id="changeFocus"  parameterType="com.alibaba.fastjson.JSONObject">
+			insert into t_sys_car_user_focus(car,login) 
+			values(#{car},#{login})
+	</insert>
+	<delete id="changeFocus2"  parameterType="com.alibaba.fastjson.JSONObject">
+			delete from t_sys_car_user_focus where car=#{car} and login=#{login}
+	</delete>
+	
+	<select id="getMsgListByPh" parameterType="com.alibaba.fastjson.JSONObject"
+		resultType="com.cms.model.wuliu.CarOnlineBean">
+		select id,login,car_no as carNo,message_desc  as msgDesc ,date_format(create_date,'%Y-%m-%d') as createDate from t_sys_message_log
+		where 1=1
+		
+		<if test="login!=null and login!=''">
+			 and login = #{login}
+		</if>	
+		<if test="createDate!=null and createDate!=''">
+			and create_date &lt;= str_to_date(#{createDate},'%Y-%m-%d')
+		</if>	
+		<if test="carNo!=null and carNo!=''">
+			 and car_no like concat('%',#{carNo},'%')
+		</if>	
+		<if test="order!=null and order!=''">
+			${order}
+		</if>
+	</select>
+	<select id="getMsgListCount" parameterType="com.alibaba.fastjson.JSONObject"
+		resultType="int">
+		select count(1) from t_sys_message_log
+		where 1=1
+		<if test="login!=null and login!=''">
+			 and login = #{login}
+		</if>	
+		<if test="createDate!=null and createDate!=''">
+			and create_date &lt;= str_to_date(#{createDate},'%Y-%m-%d')
+		</if>	
+		<if test="carNo!=null and carNo!=''">
+			 and car_no like concat('%',#{carNo},'%')
+		</if>	
+	</select> 
+	<delete id="delMsg" parameterType="long">
+		delete from t_sys_message_log where id=#{id}
+	</delete>
+	<select id="getListByPhMycar" parameterType="com.alibaba.fastjson.JSONObject"
+		resultType="com.cms.model.wuliu.MyCarBean">
+		select a.id as id
+ 		from t_sys_car a,t_sys_car_user_relative b 
+		where a.id = b.car and login=#{login} and a.car_location_tag ='1'
+		
+		<if test="carNo!=null and carNo!=''">
+			 and a.car_No like concat('%',#{carNo},'%')
+		</if>	
+		<if test="order!=null and order!=''">
+			${order}
+		</if>
+	</select>
+	<select id="getListCountMycar" parameterType="com.alibaba.fastjson.JSONObject"
+		resultType="int">
+		select count(1) 	from t_sys_car a,t_sys_car_user_relative b 
+		where a.id = b.car  and login=#{login} and a.car_location_tag ='1'
+		<if test="carNo!=null and carNo!=''">
+			and a.car_No like concat('%',#{carNo},'%')
+		</if>	
+	</select>
+	<select id="getListByPhMyfocus" parameterType="com.alibaba.fastjson.JSONObject"
+		resultType="com.cms.model.wuliu.MyCarBean">
+		select a.id as id
+ 		from t_sys_car a,t_sys_car_user_focus b 
+		where a.id = b.car and login=#{login} and a.car_location_tag ='1'
+		<if test="carNo!=null and carNo!=''">
+			 and a.car_No like concat('%',#{carNo},'%')
+		</if>	
+		<if test="order!=null and order!=''">
+			${order}
+		</if>
+	</select>
+	<select id="getListCountMyfocus" parameterType="com.alibaba.fastjson.JSONObject"
+		resultType="int">
+		select count(1) 	from t_sys_car a,t_sys_car_user_focus b 
+		where a.id = b.car  and login=#{login} and a.car_location_tag ='1'
+		<if test="carNo!=null and carNo!=''">
+			and a.car_No like concat('%',#{carNo},'%')
+		</if>	
+	</select>		
+	
+	<select id="getListByPhAllcar" parameterType="com.alibaba.fastjson.JSONObject"
+		resultType="com.cms.model.wuliu.MyCarBean">
+		select a.id as id
+ 		from t_sys_car a where id  not in(
+		select car from t_sys_car_user_relative where login=#{login}
+		union all
+		select car from t_sys_car_user_focus where login=#{login}
+		) and a.car_location_tag ='1'
+		<if test="carNo!=null and carNo!=''">
+			 and a.car_No like concat('%',#{carNo},'%')
+		</if>	
+		<if test="city!=null and city!=''">
+			 and a.car_address = #{city}
+		</if>	
+		<if test="order!=null and order!=''">
+			${order}
+		</if>
+	</select>
+	<select id="getListCountAllcar" parameterType="com.alibaba.fastjson.JSONObject"
+		resultType="int">
+		select count(1) 		
+		from t_sys_car a where id  not in(
+		select car from t_sys_car_user_relative where login=#{login}
+		union all
+		select car from t_sys_car_user_focus where login=#{login}
+		) and a.car_location_tag ='1'
+		<if test="carNo!=null and carNo!=''">
+			and a.car_No like concat('%',#{carNo},'%')
+		</if>	
+		<if test="city!=null and city!=''">
+			 and a.car_address = #{city}
+		</if>
+	</select>
+	<update id="updateCarCondition" parameterType="com.alibaba.fastjson.JSONObject">
+		update t_sys_car set  
+		<if test="tag == 0">
+			car_condition = '待装'
+		</if>
+		<if test="tag == 1">
+			car_condition = '在途'
+		</if>	
+		where  id = #{id}
+		
+	</update>
+	<insert id="addMSg" parameterType="com.alibaba.fastjson.JSONObject">
+		insert into t_sys_message_log(id,login,tel,car_no,message_desc,create_date)
+		values(#{id},#{login},#{sendtel},#{sendcarno},#{msginfo},now())	
+	</insert>
+	<select id="getListByMapAllcar" parameterType="com.alibaba.fastjson.JSONObject"
+		resultType="com.cms.model.wuliu.MyCarBean">
+		select a.id as id 
+ 		from t_sys_car a where id  not in(
+		select car from t_sys_car_user_relative where login=#{login}
+		union all
+		select car from t_sys_car_user_focus where login=#{login}
+		) and a.car_location_tag ='1'
+		<if test="carNo!=null and carNo!=''">
+			 and a.car_No like concat('%',#{carNo},'%')
+		</if>	
+		<if test="city!=null and city!=''">
+			 and a.car_address = #{city}
+		</if>
+		limit 0,100
+	</select>
+	<select id="getListByMapMycar" parameterType="com.alibaba.fastjson.JSONObject"
+		resultType="com.cms.model.wuliu.MyCarBean">
+		select a.id as id
+ 		from t_sys_car a,t_sys_car_user_relative b 
+		where a.id = b.car and login=#{login} and a.car_location_tag ='1' 
+		<if test="carNo!=null and carNo!=''">
+			 and a.car_No like concat('%',#{carNo},'%')
+		</if>	
+		limit 0,100
+	</select>
+		<select id="getListByMapMyfocus" parameterType="com.alibaba.fastjson.JSONObject"
+		resultType="com.cms.model.wuliu.MyCarBean">
+		select a.id as id
+ 		from t_sys_car a,t_sys_car_user_focus b 
+		where a.id = b.car and login=#{login} and a.car_location_tag ='1'
+		<if test="carNo!=null and carNo!=''">
+			 and a.car_No like concat('%',#{carNo},'%')
+		</if>	
+		limit 0,100
+	</select>
+</mapper>

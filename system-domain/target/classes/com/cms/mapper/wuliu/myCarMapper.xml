@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.wuliu.MyCarMapper">
+
+	<select id="getMyCarListByPh" parameterType="com.alibaba.fastjson.JSONObject"
+		resultType="com.cms.model.wuliu.MyCarBean">
+		select a.id as id,b.id as carId, b.car_no as carNo,b.car_line_desc as carLineDesc,b.car_owner as carOwner,
+		b.car_type  as carType,  b.car_address  as carAddress, 
+		case  when date_format(car_location_time,'%Y-%m-%d')
+		is not null then date_format(car_location_time,'%Y-%m-%d') else '无' end
+		as carLocationTime,
+		case when b.car_location_city is not null then b.car_location_city else '无' end as carLocationCity,
+		b.car_type_name as carTypeName
+	    from t_sys_car_user_relative a inner join  t_sys_car b on a.car = b.id  
+	    where 1=1
+		<if test="login!=null and login!=''">
+			 and a.login = #{login}
+		</if>	
+		<if test="carNo!=null and carNo!=''">
+			 and b.car_no like concat('%',#{carNo},'%')
+		</if>
+		<if test="city!=null and city!=''">
+			 and b.car_location_city like concat('%',#{city},'%')
+		</if>	
+		<if test="order!=null and order!=''">
+			${order}
+		</if>
+	</select>
+	<select id="getMyCarListCount" parameterType="com.alibaba.fastjson.JSONObject"
+		resultType="int">
+		select count(1)
+ 		from t_sys_car_user_relative a inner join  t_sys_car b on a.car = b.id  where 1=1
+		<if test="login!=null and login!=''">
+			 and a.login = #{login}
+		</if>	
+		<if test="carNo!=null and carNo!=''">
+			 and b.car_no like concat('%',#{carNo},'%')
+		</if>
+		<if test="city!=null and city!=''">
+			 and b.car_location_city like concat('%',#{city},'%')
+		</if>		
+	</select> 
+	<insert id="addCar" parameterType="com.cms.model.wuliu.MyCarBean"     
+        useGeneratedKeys="true" keyProperty="id">    
+        insert into t_sys_car(id,car_No,car_Line_Desc,car_Owner,car_Type,car_Axle,car_Container,
+        
+        car_Length,car_Traffic_Type,car_Weigth,car_Volume,car_Tel,car_Tel2,car_Card,car_Card2,car_Card3,
+        
+        car_Card4,car_pic_url,car_card_url,car_card2_url,car_card3_url,
+        car_card4_url,car_type_name,car_address,car_longitude,car_latitude,car_location_tag
+        ,CAR_TRAFFIC_TYPE_NAME,CAR_CONTAINER_NAME,CAR_AXLE_NAME) values(#{id},#{carNo},#{carLineDesc},#{carOwner},#{carType},#{carAxle},#{carContainer},
+        
+        #{carLength},#{carTrafficType},#{carWeigth},#{carVolume},#{carTel},#{carTel2},#{carCard},
+        
+        #{carCard2},#{carCard3},
+        
+        #{carCard4},#{carNoUrl},#{carCardUrl},#{carCard2Url},#{carCard3Url},#{carCard4Url},#{carTypeName},
+        #{carAddress},#{carLongitude},#{carLatitude},#{carLocationTag},#{carTrafficTypeName},#{carContainerName},#{carAxleName})
+  
+	</insert> 
+	<insert id="addRelative"  parameterType="com.alibaba.fastjson.JSONObject">    
+        insert into t_sys_car_user_relative(id,car,login,company) values(#{id},#{car},#{login},#{company})
+  
+	</insert> 
+	<select id="getCarDic" parameterType="long" resultType="com.cms.model.wuliu.MyCarBean">
+			select id,code,name from t_sys_car_dic where pid=#{pid};
+	</select>
+	<select id="getCarCount" parameterType="com.alibaba.fastjson.JSONObject"    resultType="int" >
+			select count(1) from t_sys_car_user_relative where login=#{login} and 
+		car in (select id from t_sys_car where car_no=#{carNo})
+	</select>
+	<delete id="delCarAndRelative" parameterType="com.alibaba.fastjson.JSONObject">
+		delete from t_sys_car_user_relative where id=#{id} 
+	</delete>
+	<delete id="delCar" parameterType="com.alibaba.fastjson.JSONObject">
+		delete from t_sys_car where id=#{carId} 
+	</delete>
+	<select id="getId" parameterType="com.alibaba.fastjson.JSONObject"  resultType="com.cms.model.wuliu.MyCarBean">
+	 select a.id id,a.car_no  carNo,a.car_line_desc carLineDesc,a.car_owner carOwner,a.car_type carType,a.car_axle carAxle,
+		a.car_container carContainer,a.car_length carLength,a.car_traffic_type carTrafficType,a.car_weigth carWeigth,a.car_volume carVolume,
+		a.car_tel carTel,a.car_tel2 carTel2,a.car_card carCard,a.car_card2 carCard2,a.car_card3 carCard3,a.car_card4 carCard4,
+		a.car_card4_url carCard4Url,a.car_card3_url carCard3Url,a.car_card2_url carCard2Url,a.car_card_url carCardUrl,
+		a.car_pic_url carNoUrl,b.name as name,c.name carTrafficTypeName,a.car_type_name as carTypeName from t_sys_car a,t_sys_car_dic b,t_sys_car_dic c,
+		t_sys_car_dic d where a.car_container = b.id 
+		and c.id=a.car_traffic_type  and a.id = #{id}
+	</select>
+	<select id="getDicById" parameterType="String" resultType="com.cms.model.manager.carDicBean">
+		select id,name,code,pid,status from t_sys_car_dic where status='1' and id=#{id}
+	</select>
+</mapper>

@@ -1,0 +1,1631 @@
+﻿@charset "utf-8";
+.container-fluid.tops {
+    padding-top: 20px;
+    padding-bottom: 240px;
+}
+
+.themes-bg {
+    background-color: #fff;
+}
+
+.themes-record {
+    width: 100%;
+    min-width: 100%
+}
+
+.themes-record .themes-center {
+    position: relative;
+    height: 600px;
+    overflow: hidden;
+    margin: 0 auto;
+    z-index: 1
+}
+
+.themes-record .themes-center.themes-fluid {
+    position: static;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: auto;
+    margin: 0 auto
+}
+
+.themes-record .themes-list > li {
+    float: left;
+    width: 270px;
+    height: 600px;
+    position: relative;
+    padding: 20px 37px
+}
+
+.themes-record .themes-list > li .used {
+    display: block;
+    width: 64px;
+    height: 64px;
+    position: absolute;
+    text-align: center;
+    line-height: 64px;
+    color: #fff;
+    z-index: 10000;
+    background-image: url("../images/themes/used.png");
+    left: 15px;
+    top: 0
+}
+
+.themes-record .themes-list > li .news {
+    display: block;
+    width: 64px;
+    height: 64px;
+    position: absolute;
+    text-align: center;
+    line-height: 64px;
+    color: #fff;
+    z-index: 10000;
+    background-image: url("../images/themes/news.png");
+    left: 15px;
+    top: 0
+}
+
+.themes-record .themes-list > li > div.themes-hover {
+    display: inline-block;
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    z-index: 888;
+    width: 270px;
+    height: 510px;
+    background-image: url("../images/themes/phone_w.png");
+    background-repeat: no-repeat
+}
+
+.themes-record .themes-list > li .themes-tip {
+    -webkit-transition: all .3s linear;
+    -moz-transition: all .3s linear;
+    transition: all .3s linear;
+    filter: alpha(opacity=0);
+    -moz-opacity: 0;
+    -khtml-opacity: 0;
+    opacity: 0;
+    display: inline-block;
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    z-index: 999;
+    width: 264px;
+    height: 508px;
+    background-image: url("../images/themes/phone_sel.png");
+    background-repeat: no-repeat
+}
+
+.themes-record .themes-list > li:hover .themes-tip {
+    display: inline-block;
+    filter: alpha(opacity=100);
+    -moz-opacity: 1;
+    -khtml-opacity: 1;
+    opacity: 1;
+}
+
+.themes-record .themes-list > li .themes-tip .themes-options {
+    margin-top: 180px
+}
+
+.themes-record .themes-list > li .themes-tip .themes-options p {
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 20px
+}
+
+.themes-record .themes-list > li .themes-name {
+    width: 240px;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    padding: 0 0 60px 0;
+    font-size: 14px;
+    color: #5f636d
+}
+
+.themes-record .themes-list > li .themes-name span {
+    display: inline-block;
+    width: 100px;
+    height: 30px;
+    line-height: 30px
+}
+
+.themes-record .themes-list > li .themes-name span.customer {
+    display: inline-block;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    color: #fff;
+    background-image: url("../images/themes/customer.png")
+}
+
+.themes-record .themes-list {
+    padding-left: 50px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 777
+}
+
+.themes-record .themes-center.themes-fluid .themes-list {
+    position: static
+}
+
+.themes-record .themes-list > li > div.themes-hover .themes-content {
+    width: 236px;
+    height: 382px;
+    margin: 78px 0 0 14px;
+    background-color: #fff;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.container-fluid-headers {
+    padding: 0 20px;
+}
+
+.make-money-themes .themes-list > li.used-module .themes-tip {
+    display: none;
+}
+
+.make-money-themes .themes-list > li > div.themes-hover .themes-content {
+    margin-top: 38px;
+}
+
+.make-money-themes .themes-list > li .themes-tip .themes-options {
+    margin-top: 220px;
+}
+
+/*底部导航*/
+.themes-footer {
+    position: absolute;
+    bottom: 48px;
+    left: 14px;
+    width: 236px;
+    height: 40px;
+    background-color: #fff;
+    border-radius: 0 0 2px 2px;
+}
+
+.themes-footer > div {
+    display: inline-block;
+    width: 33.3333333333333333%;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 0.9375em;
+    color: #22292c;
+}
+
+.themes-footer > div:hover {
+    cursor: pointer
+}
+
+.themes-content::-webkit-scrollbar {
+    width: 1px;
+    height: 1px;
+}
+
+.themes-content::-webkit-scrollbar-button {
+    display: none;
+}
+
+.themes-content::-webkit-scrollbar-track {
+    background: #000;
+    padding: 0 5px
+}
+
+.themes-content::-webkit-scrollbar-thumb {
+    background: #000;;
+    border-radius: 10px;
+}
+
+.themes-content::-webkit-scrollbar-corner {
+    background: #000;
+}
+
+.themes-content::-webkit-scrollbar-resizer {
+    background: #000;
+}
+
+.themes-center .themes-prev, .themes-center .themes-next {
+    position: absolute;
+    height: 500px;
+    line-height: 380px;
+    width: 50px;
+    z-index: 999;
+    top: 0;
+    font-size: 64px;
+    color: #c5c7c6
+}
+
+.themes-center .themes-prev {
+    left: -50px;
+    text-align: left
+}
+
+.themes-center .themes-next {
+    right: -50px;
+    text-align: right
+}
+
+.themes-center .themes-prev:hover, .themes-center .themes-next:hover {
+    color: #15a84f;
+    cursor: pointer
+}
+
+.themes-record .color-red, .themes-edit .color-red {
+    color: #E53A24
+}
+
+.themes-record .color-red:link, .themes-edit .color-red:link, .themes-edit .color-red:visited.table .color-red:visited {
+    color: #E53A24
+}
+
+.themes-record .color-red:hover, .themes-edit .color-red:hover, .table .color-red:active, .themes-edit .color-red:active {
+    color: #E53A24;
+    text-decoration: underline
+}
+
+.themes-record .color-green, .themes-edit .color-green {
+    color: #ffffff
+}
+
+.themes-record .color-green:link, .themes-edit .color-green:link, .table .color-red:visited, .themes-edit .color-green:visited {
+    color: #ffffff
+}
+
+.themes-record .color-green:hover, .themes-edit .color-green:hover, .table .color-red:active, .themes-edit .color-green:active {
+    color: #ffffff;
+    text-decoration: underline
+}
+
+.themes-page-headers {
+    height: 37px;
+    padding-left: 40px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #c9d1d1;
+    color: #5F636D;
+    font-size: 23px;
+    line-height: 33px;
+    font-weight: normal;
+    position: relative
+}
+
+.themes-choice {
+    border: 2px solid #e4e7e8;
+    background-color: #fff;
+    padding-top: 30px
+}
+
+/*样式覆盖*/
+.themes-choice .themes-record .themes-center {
+    height: 500px;
+}
+
+.themes-choice .themes-record .themes-list > li {
+    width: 204px;
+    height: 450px;
+    position: relative;
+    padding: 20px 30px
+}
+
+.themes-choice .themes-record .themes-list > li a.themes-hover {
+    width: 204px;
+    height: 399px;
+    background-image: url("../images/themes/phone_s.png");
+}
+
+.themes-choice .themes-record .themes-list > li:hover .themes-tip .themes-options {
+    margin-top: 145px
+}
+
+.themes-choice .themes-record .themes-list > li .themes-tip {
+    width: 210px;
+    height: 399px;
+    background-image: url("../images/themes/phone_ss.png");
+}
+
+.themes-choice .themes-record .themes-list {
+    padding-left: 30px;
+}
+
+.themes-choice .themes-record .themes-list > li .themes-name {
+    width: 210px;
+    padding: 30px 0 30px 0
+}
+
+.themes-choice .themes-record .themes-center.themes-fluid {
+    position: static;
+    overflow: hidden;
+    height: auto;
+    margin: 0 auto
+}
+
+/*首页模板一*/
+.theme-1 {
+    width: 100%;
+    padding-bottom: 20px;
+    background-color: #0f040f;
+}
+
+.carousel {
+    width: 100%;
+    position: relative;
+    margin: 0;
+    padding: 0
+}
+
+.carousel .wipe-list {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel .wipe-list .wipe-list-ul {
+    width: 10000px;
+    position: relative;
+}
+
+.carousel .wipe-list .wipe-list-ul li {
+    float: left;
+    position: relative;
+}
+
+.carousel .wipe-list .wipe-list-ul li img {
+    width: 100%
+}
+
+.carousel .gcdt-list-cur {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    margin-left: -37px;
+    z-index: 3;
+    overflow: hidden;
+}
+
+.carousel .gcdt-list-cur div {
+    float: left;
+    margin-left: 5px;
+    background: rgba(0, 0, 0, 0.8);
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+}
+
+.carousel .gcdt-list-cur div.cur {
+    background: rgba(255, 255, 255, 1);
+    border-color: rgba(255, 255, 255, 1);
+}
+
+.theme-1 .nav {
+    padding: 8px 8px 40px 8px;
+    border: 2px solid transparent
+}
+
+.theme-1 .nav .nav-items {
+    display: inline-block;
+    width: 100%;
+    background-color: #613a30;
+    margin-bottom: 4px;
+    position: relative;
+}
+
+.theme-1 .nav .nav-items .nav-img {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.theme-1 .nav .nav-items .nav-img img {
+    width: 100%;
+    height: 100%;
+}
+
+.theme-1 .nav .nav-items .nav-img-left {
+    width: 66.6666666666%;
+    border-right: 4px solid #0f040f;
+    float: left;
+}
+
+.theme-1 .nav .nav-items .nav-name-right {
+    float: right;
+    width: 33.333333333%;
+}
+
+.theme-1 .nav .nav-items .nav-img-right {
+    width: 66.6666666666%;
+    border-left: 4px solid #0f040f;
+    float: right;
+}
+
+.theme-1 .nav .nav-items .nav-name-left {
+    float: left;
+    width: 33.33333333333%;
+}
+
+.theme-1 .nav .nav-name {
+    position: relative;
+}
+
+.theme-1 .nav .nav-name h1 {
+    position: absolute;
+    top: 15px;
+    font-size: 1.1875em;
+    color: #fdf3b9;
+}
+
+.theme-1 .nav .nav-name h2 {
+    position: absolute;
+    top: 33px;
+    font-size: 0.6875em;
+    font-weight: normal;
+    color: rgba(253, 243, 185, .3);
+}
+
+.theme-1 .nav .nav-items .nav-name-arrow {
+    position: absolute;
+    bottom: 8px;
+    left: 0px;
+    width: 11px;
+    height: 11px;
+    border-top: 1px solid rgba(253, 243, 185, .5);
+    border-left: 1px solid rgba(253, 243, 185, .5);
+    -webkit-transform: rotate(135deg);
+}
+
+.theme-1 .nav .nav-items .right-side {
+    position: absolute;
+    bottom: 8px;
+    right: 10px;
+    width: 11px;
+    height: 11px;
+    border-top: 1px solid rgba(253, 243, 185, .5);
+    border-left: 1px solid rgba(253, 243, 185, .5);
+    -webkit-transform: rotate(135deg);
+}
+
+.theme-1 .nav .nav-name-left h1, .theme-1 .nav .nav-name-left h2, .theme-1 .nav .nav-name-left span {
+    left: 9px;
+}
+
+.theme-1 .nav .nav-name-right h1, .theme-1 .nav .nav-name-right h2, .theme-1 .nav .nav-name-right span {
+    right: 9px;
+}
+
+.theme-1 .nav .nav-img span img {
+    width: 100%;
+}
+
+/**手机页面样式覆盖*/
+.theme-1 .nav .nav-name h1, .theme-1 .nav .nav-name h2 {
+    font-size: small;
+    font-weight: normal
+}
+
+.theme-1 .nav .nav-name h1 {
+    top: 5px;
+}
+
+.theme-1 .nav .nav-name h2 {
+    top: 23px;
+}
+
+.themes-add-btn {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 0;
+    border: none;
+    outline: 0;
+    line-height: 29px;
+    margin-top: 6px;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #fff;
+    color: #000;
+    background-image: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    border-top: 2px solid transparent;
+    -webkit-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.themes-add-btn span {
+    display: inline-block;
+    width: 37px;
+    height: 37px;
+    color: #757881;
+    font-weight: bold;
+    font-size: 24px;
+    position: relative;
+    left: 3px;
+    top: 2px;
+}
+
+/*编辑主题一*/
+.themes-edit {
+    height: 100%;
+    background-color: #fff
+}
+
+.themes-edit .themes-left-edit {
+    position: relative;
+    min-height: 510px;
+    margin-top: 40px
+}
+
+.themes-edit .themes-left-edit .themes-left-edit-phone {
+    position: relative;
+    overflow: hidden;
+    width: 264px;
+    height: 508px;
+    margin: 0 auto;
+    background-image: url("../images/themes/phone_g.png")
+}
+
+.themes-edit .themes-left-edit .themes-left-edit-phone .themes-content {
+    width: 236px;
+    height: 380px;
+    margin: 78px 0 0 14px;
+    background-color: #fff;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.themes-edit .themes-left-edit .themes-left-edit-phone.themes-welcome-edit-phone .welcome-img {
+    width: 236px;
+    height: 380px;
+    margin: 82px auto;
+    background-color: #fff;
+}
+
+.themes-edit .themes-left-edit .themes-left-edit-phone.themes-welcome-edit-phone .welcome-img img {
+    width: 100%;
+    height: 100%;
+}
+
+.themes-edit.music-set .themes-left-edit .themes-left-edit-phone.themes-welcome-edit-phone .welcome-img {
+    height: 426px;
+    margin-top: 37px;
+}
+
+.themes-edit .themes-left-edit .hover-parent .carousel-option {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 98.5%;
+    height: 96%;
+    border: 2px solid transparent;
+    background-color: transparent;
+    z-index: 1020
+}
+
+.themes-edit .themes-left-edit .hover-parent.themes-delete:hover .carousel-option em {
+    background: url("../images/themes/delete-remove.png") no-repeat;
+}
+
+.themes-edit .themes-left-edit .hover-parent:hover .carousel-option {
+    border-color: #16ab4f;
+    background-color: rgba(255, 255, 255, .3);
+}
+
+.themes-edit .themes-left-edit .themes-button {
+    width: 234px;
+    left: 50%;
+    bottom: -82px;
+    margin-left: -117px;
+}
+
+.themes-edit .themes-left-edit .hover-parent-click .carousel-option {
+    border: 2px solid #16ab4f;
+}
+
+.themes-edit .themes-left-edit .hover-parent-click .carousel-option em {
+    display: none
+}
+
+.themes-edit .themes-left-edit .hover-parent-click:hover .carousel-option {
+    background-color: transparent;
+}
+
+.themes-edit .themes-left-edit .hover-parent .carousel-option > em {
+    font-size: small;
+    font-weight: normal;
+    width: 16px;
+    height: 16px;
+    background: none;
+    color: #fff;
+    border-radius: 15px;
+    position: absolute;
+    right: 5%;
+    top: 10px;
+}
+
+.themes-edit .themes-left-edit .hover-parent .carousel-option > em:hover {
+    cursor: pointer
+}
+
+.themes-edit .themes-left-edit .themes-footer {
+    bottom: 46px;
+}
+
+.themes-edit .themes-right-edit {
+    height: 100%;
+    min-height: 510px;
+    margin-top: 40px
+}
+
+.themes-button {
+    position: absolute;
+    right: 0;
+    bottom: 5px;
+}
+
+.themes-input {
+    position: absolute;
+    right: 150px;
+    bottom: 5px;
+    font-size: 13px;
+}
+
+.themesTab {
+    width: 100%;
+    min-height: 470px;
+    display: none
+}
+
+.themesTab.show {
+    display: block
+}
+
+.themesTab > h2 {
+    font-size: 14px;
+}
+
+.themesTab .themes-option-group {
+    margin-bottom: 30px;
+}
+
+.themesTab .themes-option-group .themes-options-type {
+    display: block;
+    height: 36px;
+    line-height: 36px;
+    float: left;
+    font-weight: bold;
+    font-size: 14px;
+    color: #3f404f
+}
+
+.themesTab .themes-option-group.nav-color-set .themes-options-type {
+    display: inline-block;
+    float: none;
+    width: 98px;
+    vertical-align: middle;
+}
+
+.themesTab .themes-option-group.nav-color-set .color-box {
+    vertical-align: middle;
+    margin-right: 60px;
+}
+
+.themesTab .themes-option-group .normal-gray {
+    font-weight: normal;
+    color: #8a898f
+}
+
+.themesTab .themes-option-group .themes-color {
+    display: block;
+    float: left
+}
+
+.themesTab .themes-option-group.nav-con-edit {
+    position: relative;
+    width: 470px;
+    margin-top: 30px;
+}
+
+.themesTab .themes-option-group.nav-con-edit input {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.themesTab .themes-option-group.nav-con-edit .themes-options-type {
+    height: 40px;
+    line-height: 40px;
+}
+
+.themesTab .themes-option-group.nav-con-edit .stat {
+    position: absolute;
+    top: 10px;
+    color: #9fa7ac;
+}
+
+.themesTab .themes-option-group.nav-con-edit .stat.stat-one {
+    right: 268px;
+}
+
+.themesTab .themes-option-group.nav-con-edit .stat.stat-two {
+    right: 144px;
+}
+
+.themesTab .themes-option-group.nav-con-edit .stat.stat-three {
+    right: 20px;
+}
+
+.themesTab.themes-banner-edit .themes-banner-box {
+    margin-top: 15px;
+    position: relative
+}
+
+.themesTab.themes-banner-edit .themes-banner-box .themes-banner-show img {
+    width: 100%;
+    height: 100%
+}
+
+.themesTab.themes-banner-edit .themes-banner-box .themes-banner-show {
+    width: 262px;
+    height: 130px;
+    float: left;
+    margin-right: 10px;
+    position: relative;
+    margin-bottom: 50px;
+}
+
+.themesTab.themes-banner-edit .themes-banner-box .themes-banner-show-hover {
+    -webkit-transition: all .3s linear;
+    -moz-transition: all .3s linear;
+    transition: all .3s linear;
+    filter: alpha(opacity=0);
+    -moz-opacity: 0;
+    -khtml-opacity: 0;
+    opacity: 0;
+    display: block;
+    width: 261px;
+    height: 130px;
+    border: 1px solid #16AB4F;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, .9);
+    text-align: center;
+    line-height: 130px;
+}
+
+.themesTab.themes-banner-edit .themes-banner-box .themes-banner-show:hover .themes-banner-show-hover {
+    filter: alpha(opacity=100);
+    -moz-opacity: 1;
+    -khtml-opacity: 1;
+    opacity: 1;
+}
+
+.themes-banner-show-hover a {
+    padding: 0 8px;
+    font-size: 14px;
+    color: #bec3c7
+}
+
+.themes-banner-box .themes-banner-show-hover a:last-child {
+    border: none
+}
+
+.themesTab .banner-href {
+    width: 263px;
+    height: 40px;
+}
+
+.themesTab .themes-banner-box .banner-href {
+    position: relative;
+    z-index: 1;
+}
+
+.themesTab .banner-href-down {
+    width: 261px;
+    padding-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid #c3c7c8;
+    display: none;
+    position: relative;
+    z-index: 1040;
+    max-height: 200px;
+    overflow: hidden;
+    overflow-y: auto
+}
+
+.themesTab .banner-href-down li {
+    width: 261px;
+    height: 40px;
+    text-indent: 20px;
+    line-height: 40px;
+}
+
+.themesTab .banner-href-down li:hover {
+    background-color: #16AB4F;
+    color: #fff;
+    cursor: pointer
+}
+
+.themesTab .themes-default-text {
+    height: 20px;
+    line-height: 20px;
+    font-size: 18px;
+    color: #5f636d;
+    margin-top: 230px;
+}
+
+.themesTab .themes-default-text img {
+    vertical-align: middle;
+    float: left;
+    margin-right: 5px;
+    margin-top: 2px;
+}
+
+.themesTab.themes-menus-edit h2 {
+    font-size: 14px;
+    font-weight: bold;
+    color: #3f404f;
+}
+
+.themesTab.themes-menus-edit h2 span {
+    font-weight: normal;
+    color: #8a898f;
+}
+
+.themesTab .themes-menus-name {
+    margin: 10px 0 25px;
+}
+
+.themesTab .themes-menus-name input {
+    width: 220px;
+    height: 40px;
+}
+
+.themesTab .themes-menus-style {
+    margin: 10px 0 23px;
+}
+
+.themesTab .themes-menus-style .themes-menus-style-set {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 14px;
+    color: #3f404f;
+}
+
+.themesTab .themes-menus-style .color-box {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 45px;
+}
+
+.themesTab.themes-menus-edit .button, .themesTab.themes-logo-edit button, .themesTab.themes-bg-edit button {
+    margin: 15px 0 25px;
+}
+
+.themesTab.themes-menus-edit .banner-href {
+    width: 452px;
+    margin-top: 6px;
+}
+
+.themesTab.themes-menus-edit .banner-href-down {
+    width: 450px;
+}
+
+.themesTab.themes-menus-edit .banner-href-down li {
+    width: 100%;
+}
+
+.themesTab.themes-menus-edit {
+    position: relative;
+}
+
+.themesTab.themes-menus-edit .tab-head {
+    margin-bottom: 5px;
+}
+
+.themesTab.themes-menus-edit .tab-head span {
+    display: inline-block;
+    vertical-align: middle;
+    color: #3f404f;
+    font-weight: bold;
+}
+
+.themesTab.themes-menus-edit .input-link {
+    margin-top: 15px;
+}
+
+.themesTab.themes-menus-edit .input-link input {
+    width: 480px;
+    height: 40px;
+}
+
+.themesTab.themes-menus-edit .hint-con {
+    margin-bottom: 20px;
+    position: relative;
+    left: -5px;
+}
+
+.themesTab.themes-menus-edit .welcome-img-show, .themesTab.themes-bg-edit .bg-img-show {
+    width: 182px;
+    height: 318px;
+    position: relative;
+    border: 1px solid transparent;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.themesTab.themes-menus-edit .welcome-img-show img, .themesTab.themes-logo-edit .logo-img-show img, .themesTab.themes-bg-edit .bg-img-show img {
+    width: 100%;
+    height: 100%;
+}
+
+.themesTab.themes-menus-edit .welcome-img-show .themes-banner-show-hover, .themesTab.themes-logo-edit .logo-img-show .themes-logo-show-hover, .themesTab.themes-bg-edit .bg-img-show .themes-bg-show-hover {
+    -webkit-transition: all .3s linear;
+    -moz-transition: all .3s linear;
+    transition: all .3s linear;
+    filter: alpha(opacity=0);
+    -moz-opacity: 0;
+    -khtml-opacity: 0;
+    opacity: 0;
+    display: block;
+    width: 182px;
+    height: 318px;
+    border: 1px solid #16AB4F;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, .9);
+    text-align: center;
+    line-height: 318px;
+}
+
+.themesTab.themes-menus-edit .welcome-img-show:hover .themes-banner-show-hover, .themesTab.themes-logo-edit .logo-img-show:hover .themes-logo-show-hover, .themesTab.themes-bg-edit .bg-img-show:hover .themes-bg-show-hover {
+    filter: alpha(opacity=100);
+    -moz-opacity: 1;
+    -khtml-opacity: 1;
+    opacity: 1;
+}
+
+.themes-banner-show-hover a, .themes-log-show-hover a, .themes-bg-show-hover a {
+    padding: 0 3px;
+    font-size: 14px;
+    color: #bec3c7
+}
+
+.themes-banner-show-hover a:last-child, .themes-logo-show-hover a:last-child, .themes-bg-show-hover a:last-child {
+    border: none
+}
+
+.themesTab.themes-menus-edit .tab-last {
+    position: absolute;
+    bottom: -45px;
+}
+
+.themesTab.themes-menus-edit .tab-last button {
+    margin-right: 5px;
+}
+
+.themesTab.themes-logo-edit h2 span {
+    font-weight: normal;
+    color: #8a898f
+}
+
+.themesTab.themes-logo-edit .logo-img-show {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    border: 1px solid transparent;
+    margin-top: 5px;
+}
+
+.themesTab.themes-logo-edit .logo-img-show .themes-logo-show-hover {
+    width: 150px;
+    height: 150px;
+    line-height: 150px;
+}
+
+.themesTab.themes-bg-edit h2 span {
+    font-weight: normal;
+    color: #8a898f;
+}
+
+.themesTab .logo-tip {
+    padding: 20px;
+    width: 480px;
+    background-color: #ebf6f0
+}
+
+/*首页模板二*/
+.theme-2 {
+    width: 100%;
+    padding-bottom: 50px;
+    background-color: #232b2b;
+}
+
+.theme-2 .head-img, .theme-2 .head-img img, .theme-2 .nav img {
+    width: 100%;
+}
+
+.theme-2 .nav {
+    width: 100%;
+    margin-top: 1px;
+}
+
+.theme-2 .nav .nav-module {
+    position: relative;
+    margin-bottom: 1px;
+    display: block;
+}
+
+.theme-2 .nav .nav-module .bg-img {
+    width: 100%;
+}
+
+.theme-2 .nav .nav-module .nav-name {
+    position: absolute;
+    width: 130px;
+    height: 30px;
+    left: 10px;
+    top: 0;
+    background-color: #264a9e;
+    font-size: 1em;
+    color: #eaeaeb;
+    text-align: center;
+    line-height: 30px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+/*上传图片弹出层*/
+.upload-img-btn {
+    margin: 13px 0;
+    font-size: 14px;
+}
+
+.upload-img-btn .button {
+    margin-left: 0;
+    color: #757881;
+}
+
+.upload-img-btn span {
+    display: inline-block;
+    vertical-align: bottom;
+    margin-left: 10px;
+}
+
+.previewImgArea .limgbox {
+    width: 300px;
+}
+
+.previewImgArea .limgbox .bigimg {
+    width: 300px;
+    height: 200px;
+    border: 1px solid #cacfd2;
+    background-color: #f7f7f7;
+}
+
+.previewImgArea .limgbox .tips, .previewImgArea .rimgbox .tips {
+    margin-bottom: 10px;
+}
+
+.previewImgArea .rimgbox {
+    width: 200px;
+}
+
+.previewImgArea .rimgbox .bigimg {
+    width: 200px;
+    height: 100px;
+    border: 1px solid #cacfd2;
+    background-color: #f7f7f7;
+    margin-bottom: 19px;
+}
+
+.previewImgArea .rimgbox .litimg {
+    width: 100px;
+    height: 50px;
+    border: 1px solid #cacfd2;
+    background-color: #f7f7f7;
+}
+
+/*首页模板三*/
+@font-face {
+    font-family: 'iconfont';
+    src: url('../fonts/icomoon.eot'); /* IE9*/
+    src: url('../fonts/icomoon.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('../fonts/icomoon.woff') format('woff'), /* chrome、firefox */ url('../fonts/icomoon.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/ url('../fonts/icomoon.svg#uxiconfont') format('svg'); /* iOS 4.1- */
+}
+
+.theme-3 {
+    width: 100%;
+    padding-bottom: 80px;
+    display: inline-block;
+    background: url("../images/themes/theme-3-img01.png") no-repeat 0 0;
+    background-size: 100% 100%;
+}
+
+.theme-3 .logo {
+    width: 46.875%;
+    margin: 6px auto;
+    position: relative;
+}
+
+.theme-3 .logo img {
+    width: 100%;
+}
+
+.theme-3 .nav {
+    width: 225px;
+    height: 102px;
+    margin: 0 auto;
+}
+
+.theme-3 .nav .nav-module {
+    display: block;
+    position: relative;
+    width: 95px;
+    height: 110px;
+}
+
+.theme-3 .nav.nav-center, .theme-3 .nav.nav-bottom {
+    margin-top: -8px;
+}
+
+.theme-3 .nav.nav-top .nav-module, .theme-3 .nav.nav-bottom .nav-module {
+    margin: 0 auto;
+}
+
+.theme-3 .nav .nav-module .nav-shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 95px;
+    height: 110px;
+    background: url("../images/themes/theme-3-bg.png") no-repeat 0 0;
+    background-size: 100% 100%;
+}
+
+.theme-3 .nav .nav-module .iconfont {
+    position: absolute;
+    left: -5px;
+    top: 3px;
+    font-family: "iconfont";
+    font-size: 105px;
+    color: #0e1326;
+    font-style: normal;
+    line-height: 105px;
+}
+
+.theme-3 .nav .nav-module .nav-shadow .nav-name {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 39px;
+    font-size: 0.8125em;
+    color: rgba(223, 201, 153, 1);
+}
+
+.theme-3 .nav .nav-module .nav-shadow .nav-eng-name {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 55px;
+    font-size: 0.75em;
+    font-weight: bold;
+    color: rgba(223, 201, 153, .3);
+}
+
+.theme-3 .nav .nav-module .nav-shadow .nav-eng-name strong {
+    font-size: 1.5em;
+}
+
+.themes-edit .themes-left-edit .theme-3 .nav-module.hover-parent:hover .remove {
+    border: none;
+    background: url("../images/themes/bg_pre_hover.png") no-repeat 0 0;
+    background-size: 100% 100%;
+}
+
+.themes-edit .themes-left-edit .theme-3 .nav-module.hover-parent-click .remove {
+    border: none;
+    background: url("../images/themes/bg_pre_click.png") no-repeat 0 0;
+    background-size: 100% 100%;
+}
+
+.themes-edit .themes-left-edit .theme-3 .nav-module.hover-parent-click:hover .remove {
+    border: none;
+    background: url("../images/themes/bg_pre_click.png") no-repeat 0 0;
+    background-size: 100% 100%;
+}
+
+.themes-edit .themes-left-edit .theme-3 .nav-module.themes-delete .carousel-option > em {
+    right: 0;
+    top: 25px;
+}
+
+.theme-3 .nav .nav-module.add-before .iconfont {
+    color: #fff;
+}
+
+.theme-3 .nav .nav-module.add-before:hover {
+    cursor: pointer;
+}
+
+.theme-3 .nav .nav-module.add-before .nav-shadow .nav-name {
+    color: #737a80;
+    font-size: 26px;
+    line-height: 15px;
+    font-weight: bold;
+    top: 34px;
+}
+
+.theme-3 .nav .nav-module.add-before .nav-shadow .nav-eng-name {
+    color: #737a80;
+    font-size: 0.8125em;
+    font-weight: normal;
+}
+
+/*首页模板四*/
+.theme-4 {
+    width: 236px;
+    height: 420px;
+    background: url("../images/themes/theme4-bg.jpg") no-repeat 0 0;
+    background-size: 100% 100%;
+}
+
+.theme-4 .logo {
+    width: 92px;
+    height: 42px;
+    margin: 13px 0 0 5px;
+    padding: 2px;
+    float: left;
+    position: relative
+}
+
+.theme-4 .right-menu {
+    width: 130px;
+    float: right;
+    margin-top: 21px;
+}
+
+.theme-4 .right-menu > ul > li {
+    width: 100%;
+    height: 38px;
+    margin-bottom: 14px;
+    position: relative
+}
+
+.theme-4 .right-menu > ul > li > a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden
+}
+
+.theme-4 .right-menu > ul > li > a > .menu-ico {
+    float: left;
+    background-color: rgba(153, 134, 103, .5);
+    padding: 4px;
+    border-radius: 45px;
+    margin-right: 12px;
+}
+
+.theme-4 .right-menu > ul > li > a .menu-title {
+    font-size: 14px;
+    color: #d3b989;
+    margin: 5px 0 0 5px;
+    font-family: "microsoft yahei";
+    float: left;
+    min-width: 60px;
+    min-height: 22px;
+    display: block;
+    width: 75px;
+}
+
+.theme-4 .right-menu > ul > li > a .menu-english {
+    font-size: 7px;
+    color: #d3b989;
+    font-family: Helvetica Neue;
+    float: left;
+    margin-top: -5px;
+    display: block;
+    width: 75px;
+}
+
+.theme-4 .right-menu > ul > li.menu-1 {
+    margin-left: 5px
+}
+
+.theme-4 .right-menu > ul > li.menu-2 {
+    margin-left: -10px
+}
+
+.theme-4 .right-menu > ul > li.menu-3 {
+    margin-left: -25px
+}
+
+.theme-4 .right-menu > ul > li.menu-4 {
+    margin-left: -40px
+}
+
+.theme-4 .right-menu > ul > li.menu-5 {
+    margin-left: -55px
+}
+
+.theme-4 .right-menu > ul > li.menu-6 {
+    margin-left: -70px
+}
+
+.theme-4 .right-menu > ul > li.menu-7 {
+    margin-left: -85px
+}
+
+.theme-4 .bg-borderd {
+    width: 236px;
+    height: 382px;
+    border: 2px solid #16ab4f;
+    position: absolute;
+    left: 12px;
+    top: 78px;
+}
+
+.theme-4 .theme4-add > a {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    background: url("../images/themes/theme-4-add.png") no-repeat 0 0;
+}
+
+.themes-edit .themes-icon-set {
+    float: left;
+    padding: 15px 0 15px 0
+}
+
+.themes-edit .ico-list {
+    width: 248px;
+    float: left;
+    position: absolute;
+    top: 65px;
+    left: 65px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #16AB4F;
+    display: none
+}
+
+.themes-edit .ico-list:before {
+    content: "";
+    display: block;
+    width: 68px;
+    height: 15px;
+    background: url("../images/xk-toparrow.png") no-repeat 0 0;
+    position: absolute;
+    top: -11px;
+}
+
+.themes-edit .ico-list > ul {
+    width: 100%;
+    height: 100%;
+    background-color: #2b2c29;
+}
+
+.themes-edit .ico-list > ul > li {
+    width: 40px;
+    height: 40px;
+    float: left;
+    padding: 10px;
+    border-right: 2px solid #41423f;
+    border-bottom: 2px solid #41423f;
+}
+
+.themes-edit .ico-list > ul > li:hover {
+    cursor: pointer
+}
+
+.themes-edit .ico-list > ul > li > img {
+    width: 40px;
+    height: 40px;
+}
+
+.themes-edit .ico-list > img {
+    float: left;
+}
+
+.themes-edit .ico-select {
+    width: 52px;
+    height: 52px;
+    float: left;
+    background-color: #2b2c29;
+    margin-left: 5px;
+    border: 2px solid #11120f
+}
+
+.themes-edit .ico-select:hover {
+    cursor: pointer
+}
+
+.themes-edit .ico-select:hover .ico-list {
+    display: block
+}
+
+/**首页模板五*/
+.theme-5 {
+    background: url("../images/themes/theme5-bg.jpg") no-repeat 0 0;
+    background-size: 100% 100%;
+    padding: 10px
+}
+
+.theme-5 .carousel {
+    width: 235px;
+    margin: 0 auto;
+}
+
+.theme-5 .carousel .fl.show-img {
+    width: 138px;
+    height: 320px;
+    border: 2px solid #b0945a;
+    position: static;
+    left: 0;
+    top: 0;
+    position: relative
+}
+
+.theme-5 .carousel .fl.show-img.hover-parent .carousel-option {
+    height: 99%
+}
+
+.theme-5 .carousel .show-img img {
+    width: 100%;
+    height: 100%;
+}
+
+.theme-5 .carousel .right-menu {
+    width: 92px;
+    height: 320px;
+}
+
+.theme-5 .carousel .right-menu .logo {
+    width: 80px;
+    height: 80px;
+    margin-top: -8px;
+    position: relative
+}
+
+.theme-5 .carousel .right-menu .logo img {
+    width: 100%;
+    height: 100%;
+}
+
+.theme-5 .carousel .right-menu ul li {
+    width: 100%;
+    height: 67px;
+}
+
+.theme-5 .carousel .right-menu ul li:last-child {
+    height: 65px;
+}
+
+.theme-5 .carousel .right-menu ul li > a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative
+}
+
+.theme-5 .carousel .right-menu ul li > a .carousel-option {
+    width: 94.5%;
+    top: -7px
+}
+
+.theme-5 .carousel .right-menu ul li > a .carousel-option > em {
+    right: 2%;
+    top: 2px
+}
+
+.theme-5 .carousel .right-menu ul li > a > div {
+    width: 100%;
+    height: 44px;
+    text-align: center;
+    padding-bottom: 4px;
+}
+
+.theme-5 .carousel .right-menu ul li > a > p {
+    font-size: 0.8125em;
+    color: #f4d27e;
+    text-align: center;
+}
+
+.theme-5 .menu-container {
+    height: 249px;
+    overflow-y: auto;
+    width: 83px;
+    padding-top: 10px
+}
+
+.themes-5-upload {
+    margin-bottom: 15px !important;
+}
+
+.themes-5-margin {
+    margin-top: 50px;
+}
+
+.themes-5-edit .banner-href {
+    width: 480px;
+}
+
+.themes-5-edit .banner-href-down {
+    width: 477px;
+}
+
+.themes-5-edit .banner-href-down li {
+    width: 100%
+}
+
+/*底部导航*/
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.themes-edit .footer-nav {
+    width: 89.2%;
+    bottom: 46px;
+    background-color: #21292c;
+    border-top: 1px solid #171d1f;
+}
+
+.footer-nav a {
+    position: relative;
+    width: 33.33333333333%;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 0.9375em;
+    color: #fff;
+    border-left: 1px solid #171d1f;
+    margin-left: -1px;
+    background-color: #21292c;
+}
+
+.footer-nav a:first-child {
+    border-left: none;
+    margin-left: 0;
+}
+
+.footer-nav a > span {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: transparent;
+}
+
+.footer-nav a:first-child > span {
+    background-color: #fff;
+}
+
+.footer-nav {
+    position: absolute;
+    width: 87.3%;
+    height: 40px;
+    bottom: 48px;
+    z-index: 1030;
+}
+
+.theme-5 .footer-nav {
+    margin-left: 0;
+}
+
+.themes-edit .theme-5 .footer-nav {
+    margin-left: 1px;
+}

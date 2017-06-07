@@ -1,0 +1,61 @@
+
+.box_bg {
+	Z-INDEX: 1000; POSITION: absolute; MARGIN: 11px 5px 5px; WIDTH: 376px; BACKGROUND: #f1f1f1; HEIGHT: 195px;
+}
+.box_con {
+	Z-INDEX: 1002; BORDER-BOTTOM: #d6d6d6 1px solid; POSITION: absolute; BORDER-LEFT: #d6d6d6 1px solid; MARGIN-TOP: 6px; WIDTH: 375px; BACKGROUND: #fff; HEIGHT: 195px; BORDER-TOP: #d6d6d6 1px solid; BORDER-RIGHT: #d6d6d6 1px solid;
+}
+.box_top {
+	Z-INDEX: 1003; POSITION: absolute; WIDTH: 58px;BACKGROUND: url("images/reg_ico.gif"/*tpa=http://www.fala56.com/UserControl/images/reg_ico.gif*/) no-repeat -46px -31px; HEIGHT: 7px; FONT-SIZE: 1px; margin-left:50px;
+}
+.close_bar {
+	TEXT-ALIGN: right; WIDTH: 375px;
+}
+BUTTON.close {
+	BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 3px 3px 0px 0px; PADDING-LEFT: 0px; WIDTH: 13px; PADDING-RIGHT: 0px; BACKGROUND: url("images/close_11.gif"/*tpa=http://www.fala56.com/UserControl/images/close_11.gif*/) no-repeat 0px 0px; HEIGHT: 11px; BORDER-TOP: 0px; CURSOR: pointer; BORDER-RIGHT: 0px; PADDING-TOP: 0px;
+}
+.c_link 
+{
+FONT-SIZE: 9pt;
+FONT-FAMILY: "宋体"; 
+TEXT-DECORATION: none;
+float:left;
+padding:3px;
+text-align:center;
+width:18%;
+line-height:1.5em;
+}
+.selecthref{ COLOR:#707070; TEXT-DECORATION: none; }
+.selecthref:hover{COLOR: #339900; TEXT-DECORATION:none;}
+.buttonhref {COLOR:blue; FONT-SIZE: 9pt; FONT-FAMILY: "宋体"; TEXT-DECORATION: none;}
+.buttonhref:hover {FONT-SIZE: 12px; LEFT: 1px; COLOR: #339900; FONT-FAMILY: "宋体"; POSITION: relative; TOP: 1px;}
+.provTitle{ background-image:url("images/tiltebg.jpg"/*tpa=http://www.fala56.com/UserControl/images/tiltebg.jpg*/);}
+.c_link1 
+{
+FONT-SIZE: 9pt;
+FONT-FAMILY: "宋体";
+TEXT-DECORATION: none;
+float:left;
+height:70px;
+text-align:center;
+vertical-align:middle;
+width:70px;
+line-height:1.3em;
+}
+.clearplace
+{
+	float:right;
+	text-align:center;
+	height:18px;
+	line-height:18px;
+	width:40px;
+	border:solid 1px #CCC;
+	COLOR:#707070; 
+	FONT-SIZE: 9pt; 
+	FONT-FAMILY: "宋体";
+	TEXT-DECORATION: none;
+	font-weight:bold;
+	margin-right:22px;
+}
+.clearplace:hover{COLOR: #339900; TEXT-DECORATION:none;}
+

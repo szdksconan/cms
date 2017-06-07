@@ -1,0 +1,401 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<html>
+<head>
+	<meta charset="utf-8"/>
+</head>
+ 	<body>
+		<div style="margin-top: 15px;margin-left: 20px;">
+			<div style="margin-top: 5px;">
+				<span>单选框</span>
+				<select id="wzlb_1">	</select>
+                <select id="wzlb_2">	</select>
+                <select id="wzlb_3">	</select>
+                <select id="hyfl">	</select>
+				<button type="button" id="comboclick" class="btn btn-primary" >获取选中选中值</button>
+				<button type="button" id="comboclean" class="btn btn-primary" >清空选中值</button>
+				<button type="button" id="comboblock" class="btn btn-primary" >锁定</button>
+				<button type="button" id="combodblock" class="btn btn-primary" >解锁</button>
+			</div>
+			<div style="margin-top: 5px;">
+				<span>复选框</span>
+				<select id="combomulti" multiple="multiple"></select>
+				<button type="button" id="combomulticlick" class="btn btn-primary" >获取选中选中值</button>
+				<button type="button" id="clean" class="btn btn-primary" >全部清空</button>
+				<button type="button" id="combomultiallselect" class="btn btn-primary" >全选</button>
+			</div>
+            <button id="btn_tanchu" class="btn btn-red btn-w100" type="button" >弹出层按钮</button>
+            <button id="button_1" class="btn btn-red btn-w100" >alert测试</button>
+            <button id="button_2" class="btn btn-red btn-w100" >confirm测试</button>
+			<div style="margin-top: 5px;">
+ 		 <form id="myform" method="post" action="">
+            <p>
+                <label for="myname">用户名：</label>
+                <!-- id和name最好同时写上 -->
+                <input id="myname" name="myname" required="true"  />
+            </p>
+    		<p>
+                <label for="myname">email：</label>
+                <!-- id和name最好同时写上 -->
+                <input id="email" name="email" email="true" required="true"  />
+            </p>
+            <p>
+                <label for="myname">number：</label>
+                <!-- id和name最好同时写上 -->
+                <input id="number" name="number" number="true"  />
+            </p>
+             <p>
+                <label for="myname">digits：</label>
+                <!-- id和name最好同时写上 -->
+                <input id="digits" name="digits" digits="true"  />
+            </p>
+              <p>
+                <label for="myname">date：</label>
+                <!-- id和name最好同时写上 -->
+                <input id="date" name="date" date="true"  />
+            </p>
+            <p>
+                <label for="myname">minlength：</label>
+                <!-- id和name最好同时写上 -->
+                <input id="length" name="length" minlength="5" maxlength="10"  />
+            </p>
+             <p>
+                <label for="myname">rangelength：</label>
+                <!-- id和name最好同时写上 -->
+                <input id="rangelength" name="rangelength" rangelength="2,7" />
+            </p>
+  			    <p>
+                <label for="myname">range：</label>
+                <!-- id和name最好同时写上 -->
+                <input id="range" name="range" range="2,7" />
+            </p>
+              </p>
+  			    <p>
+                <label for="myname">min-max</label>
+                <!-- id和name最好同时写上 -->
+                <input id="min" name="min" min="10" max="15" />
+            </p>
+           <p>
+                <label for="myname">equalTo last</label>
+                <!-- id和name最好同时写上 -->
+                 <input id="last" name="last"  required="true"/>
+                <input id="equalTo" name="equalTo"  equalTo="#last" />
+            </p>
+            <p>
+                <input class="submit" type="submit" value="立即注册" />
+            </p>
+        </form>
+ 			</div>
+		</div>
+        <div id="toolbar">
+            <input type="button" value="tabel工具栏"/>
+        </div>
+        <table id="table" >
+        </table>
+ 	</body>
+</html>
+<script type="text/javascript">
+    //http://layer.layui.com/ layer官网
+
+    layer.config({
+        extend: ['skin/myskin.css']//加载新皮肤
+    });
+
+    $('#btn_tanchu').click(function(){
+        layer.open({
+            title:['弹出层测试','font-size:18pt;text-align:center'],
+            skin: 'layui-layer-cms',
+            closeBtn:2,
+            offset: 'center', //右下角弹出
+            type: 2,
+            area: ['65%'],//[width,height]
+            content: 'index/header',
+            btn:['提交'],
+            yes:function(index,layero){
+                layer.close(index);
+            }
+        });
+    });
+
+
+$(function(){
+    $("#myform").validate();
+    $('#button_1').click(function(){
+        layer.alert('墨绿风格，点击确认看深蓝', {
+            skin: 'layui-layer-molv' //样式类名
+            ,closeBtn: 0
+        }, function(){
+            layer.msg('玩命提示中');
+        });
+    });
+    $('#button_2').click(function(){
+        layer.confirm('您是如何看待前端开发？', {
+            btn: ['重要','奇葩'] //按钮
+        }, function(){
+            layer.msg('的确很重要', {icon: 1});
+        }, function(){
+            layer.msg('也可以这样', {
+                time: 20000, //20s后自动关闭
+                btn: ['明白了', '知道了']
+            });
+        });
+    });
+
+
+    var options = [
+        {label: '请选择', title: '请选择', value: '0'},           
+        {label: '生产',  value: '2'},
+        {label: '贸易',  value: '1'},
+        {label: '物流',  value: '3'},
+     
+        {label: '消费',  value: '6', disabled: true}
+    ];
+    var optionsmulti = [   
+                   {label: '方博', title: '方博', value: '1'},
+                   {label: '韦天宇', title: '韦天宇', value: '2'},
+                   {label: '刘鑫', title: '刘鑫', value: '3'},
+                   {label: '唐平', title: '唐平', value: '4'},
+                   {label: '魏波', title: '魏波', value: '5'},
+                   {label: '邓安玲', title: '邓安玲', value: '6', disabled: true}
+               ];
+    
+    $('#wzlb_1').multiselect({
+        nonSelectedText:'请选择',
+        onChange : function(option, checked) {
+            $('#wzlb_2').multiselect('url',{url:'common/getBaseProductList',data:{
+                superid:$('#wzlb_1').val()
+            },cache:true});
+        },
+        onLoadSuccess:function(option, checked){
+            $('#wzlb_2').multiselect('url',{url:'common/getBaseProductList',data:{
+                superid:$('#wzlb_1').val()
+            },cache:true
+            });
+        }
+    });
+    $('#hyfl').multiselect({
+        maxHeight:'500'
+    });
+    $('#hyfl').multiselect('url',{url:'common/getBaseIndustryList',cache:true});
+
+    $('#wzlb_1').multiselect('url',{url:'common/getBaseProductList',data:{
+        level:1
+    },cache:true});
+
+    $('#wzlb_2').multiselect({
+        nonSelectedText:'请选择',
+        maxHeight:'300',
+        onChange : function(option, checked) {
+            $('#wzlb_3').multiselect('url',{url:'common/getBaseProductList',data:{
+                superid:$('#wzlb_2').val()
+            },cache:true});
+        },
+        onLoadSuccess:function(option, checked){
+            $('#wzlb_3').multiselect('url',{url:'common/getBaseProductList',data:{
+                superid:$('#wzlb_2').val()
+            },cache:true});
+        }
+    });
+
+    $('#wzlb_3').multiselect({
+        nonSelectedText:'请选择',
+        maxHeight:'300'
+    });
+
+    $('#combomulti').multiselect({
+    	nonSelectedText:'请选择',
+//     	buttonWidth: '168px',
+    	enableFiltering:false
+    });
+  //  $('#combomulti').multiselect('dataprovider', optionsmulti);
+  	//url调用
+    $('#combomulti').multiselect('url', 'index/demo');
+  	
+    $("#comboclick").click(function() {
+    	var select = $('#combo').val();
+    	alert(select);
+    });
+    $("#comboclean").click(function() {
+    	var select = $('#combo').val();
+   		$('#combo').multiselect('deselect',select);
+    });
+    $("#comboblock").click(function() {
+   		$('#combo').multiselect('disable');
+    });
+    $("#combodblock").click(function() {
+   		$('#combo').multiselect('enable');
+    });
+    $("#combomulticlick").click(function() {
+    	alert($('#combomulti').val());
+    });
+    $("#combomulticlean").click(function() {
+   	  $('#combomulti').multiselect('deselectAll', false);
+      $('#combomulti').multiselect('updateButtonText');
+    
+    });
+    $("#combomultiallselect").click(function() {
+     	  $('#combomulti').multiselect('selectAll', false);
+        $('#combomulti').multiselect('updateButtonText');
+      
+      });
+
+    $('#table').bootstrapTable({
+//        url:'purchase/test',//请求后台的URL（*）
+        editable:true,//开启编辑模式
+        clickToSelect: true,
+        data:[//json数据
+            {
+                "id":1,
+                "companyName": "1",
+                "startWay": "1",
+                "endWay": "1",
+                "offer": "1"
+            },
+            {
+                "id":2,
+                "companyName": "2",
+                "startWay": "2",
+                "endWay": "2",
+                "offer": "2"
+            },
+            {
+                "id":3,
+                "companyName": "3",
+                "startWay": "3",
+                "endWay": "3",
+                "offer": "3"
+            },
+            {
+                "id":4,
+                "companyName": "4",
+                "startWay": "4",
+                "endWay": "4",
+                "offer": "4"
+            },
+            {
+                "id":5,
+                "companyName": "5",
+                "startWay": "5",
+                "endWay": "5",
+                "offer": "5"
+            },
+            {
+                "id":6,
+                "companyName": "6",
+                "startWay": "6",
+                "endWay": "6",
+                "offer": "6"
+            },
+            {
+                "id":7,
+                "companyName": "7",
+                "startWay": "7",
+                "endWay": "7",
+                "offer": "7"
+            },
+            {
+                "id":8,
+                "companyName": "8",
+                "startWay": "8",
+                "endWay": "8",
+                "offer": "8"
+            },
+            {
+                "id":9,
+                "companyName": "9",
+                "startWay": "9",
+                "endWay": "9",
+                "offer": "9"
+            },
+            {
+                "id":10,
+                "companyName": "10",
+                "startWay": "10",
+                "endWay": "10",
+                "offer": "10"
+            },
+            {
+                "id":11,
+                "companyName": "11",
+                "startWay": "11",
+                "endWay": "11",
+                "offer": "11"
+            },
+            {
+                "id":12,
+                "companyName": "12",
+                "startWay": "12",
+                "endWay": "12",
+                "offer": "12"
+            }
+        ],
+        method: 'post',//请求方式（*）
+        toolbar: '#toolbar',//工具栏所在div id
+        striped: true, //是否显示行间隔色
+        cache:false, //是否使用缓存
+        pagination: true,//是否显示分页
+        queryParamsType:'',//传递参数
+        sortable: true,//是否启用排序
+        sortOrder: "asc",//排序方式
+        sidePagination: "client",//分页方式：client客户端分页，server服务端分页
+        pageNumber:1,//初始化加载第一页，默认第一页
+        pageSize: 10, //每页的记录行数
+        pageList: [10, 20, 40, 100],//可供选择的每页的行数
+        search: false,//是否显示表格搜索，此搜索是客户端搜索，不会进服务端
+        showColumns: false,//是否显示所有的列
+        showRefresh: false,//是否显示刷新按钮
+        minimumCountColumns: 2,//最少允许的列数
+        clickToSelect: true,//是否启用点击选中行
+        height: 500,//行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+        uniqueId: "id",//每一行的唯一标识，一般为主键列
+        showToggle:false,//是否显示详细视图和列表视图的切换按钮
+        cardView: false,//是否显示详细视图
+        detailView: false,//是否显示父子表
+        paginationHAlign:'right',//分页组件显示位置
+        paginationVAlign:'bottom',//分页信息显示位置
+        paginationDetailHAlign: 'left', //right, left
+        columns: [
+//            {
+//            checkbox: false//多选框
+//        },
+//            {
+//                edit:false,
+//                field: 'Number',
+//                title: '行号',
+//                formatter: function (value, row, index) {
+//                    return index+1;
+//                }
+//            },
+            {
+            title : '货主',
+            field : 'companyName',
+            sortable : true
+        },{
+            title : '起始地',
+            edit:false,
+            field : 'startWay',
+            sortable : true
+        },{
+            title : '目的地',
+            field : 'endWay',
+            sortable : true
+        },{
+            title : '报价',
+            field : 'offer',
+            sortable : true
+        },{
+                title : '操作',
+                edit:false,
+                field : 'action',
+                formatter: function (value, row, index) {
+                    return '<a href="javascript:void(0)" onclick="del(\''+row.id+'\')">删除</a>';
+                }
+            }
+        ]
+    });
+});
+    function del(rowid){
+        alert(rowid);
+    }
+</script>

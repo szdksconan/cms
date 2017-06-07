@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.wuliu.InfoHallMapper" >
+	<sql id="CHEYUAN">
+		CONVERT(cy.id,char) id,
+		cy.user_id as userId,
+		cy.car_id as carId,
+		cy.info,
+		DATE_FORMAT(cy.create_time,'%Y-%m-%d %H:%i:%s') as createTime,
+		DATE_FORMAT(cy.invalid_time,'%Y-%m-%d %H:%i:%s') as invalidTime,
+		cy.state,
+		cy.create_user as createUser,
+		cy.tel,
+		cy.tel1,
+		cy.tel2,
+		cy.link_man linkMan,
+		cy.company_name companyName,
+		CONCAT(
+			cy.`begin_province_name`,
+			cy.`begin_area_name`,
+			cy.`begin_city_name`
+		) startWay,
+		CONCAT(
+			cy.`end_province_name`,
+			cy.`end_area_name`,
+			cy.`end_city_name`
+		) endWay,
+		CONCAT(
+			cy.`begin_province_name`,
+			cy.`begin_area_name`,
+			cy.`begin_city_name`,
+			' 至  ',
+			cy.`end_province_name`,
+			cy.`end_area_name`,
+			cy.`end_city_name`
+		) way,
+		cy.car_no carNo,
+		cy.car_img carImg,
+		cy.car_owner carOwner,
+		cy.length,
+		cy.weight,
+		cy.volume,
+		cy.car_axle_name,
+		cy.car_axle_id,
+		cy.car_container_name,
+		cy.car_container_id,
+		IFNULL(cy.offer,0) offer,
+		if(ifnull(cy.traffic_type,1)=1,'零担','整车') trafficTypeName
+	</sql>
+	
+	<sql id="HUOYUAN">
+        CONVERT(hy.id,char) id,
+		hy.goods_name as goodsName,
+		hy.goods_type goodsType, 
+		hy.user_id userId, 
+		hy.begin_province_id beginProvinceId, 
+		hy.begin_city_id beginCityId, 
+		hy.begin_area_id beginAreaId, 
+    	hy.end_province_id endProvinceId, 
+    	hy.end_city_id endCityId, 
+    	hy.end_area_id endAreaId, 
+    	hy.company_name companyName, 
+    	hy.weight, 
+    	hy.volume, 
+    	DATE_FORMAT(hy.create_time,'%Y-%m-%d %H:%i:%s') createTime, 
+    	DATE_FORMAT(hy.invalid_time,'%Y-%m-%d %H:%i:%s') invalidTime, 
+    	hy.state, hy.tel, hy.tel1, hy.tel2, 
+    	hy.goods_img goodsImg,
+    	hy.link_man linkMan,
+    	hy.info,
+    	hy.garden,
+    	CONCAT(
+			hy.`begin_province_name`,
+			hy.`begin_area_name`,
+			hy.`begin_city_name`
+		) startWay,
+		CONCAT(
+			hy.`end_province_name`,
+			hy.`end_area_name`,
+			hy.`end_city_name`
+		) endWay,
+    	CONCAT(
+			hy.`begin_province_name`,
+			hy.`begin_area_name`,
+			hy.`begin_city_name`,
+			' 至  ',
+			hy.`end_province_name`,
+			hy.`end_area_name`,
+			hy.`end_city_name`
+		) way,
+		hy.package_type packageType,
+		IFNULL(hy.offer,0) offer
+	</sql>
+
+	<select id="cheyuanList" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.wuliu.CheyuanBean">
+		<!--select <include refid="CHEYUAN"/>,2 listType from chppweb_cheyuan cy where 1=1 and state=1-->
+        select CONVERT(cy.id,char) id,
+        if(ifnull(cy.traffic_type,1)=1,'零担','整车') trafficTypeName,
+        cy.company_name companyName,
+        DATE_FORMAT(cy.create_time,'%Y-%m-%d %H:%i:%s') as createTime,
+        DATE_FORMAT(cy.invalid_time,'%Y-%m-%d %H:%i:%s') as invalidTime,
+        CONCAT(
+        cy.`begin_province_name`,
+        cy.`begin_area_name`,
+        cy.`begin_city_name`
+        ) startWay,
+        CONCAT(
+        cy.`end_province_name`,
+        cy.`end_area_name`,
+        cy.`end_city_name`
+        ) endWay,
+        CONCAT(
+        cy.`begin_province_name`,
+        cy.`begin_area_name`,
+        cy.`begin_city_name`,
+        ' 至  ',
+        cy.`end_province_name`,
+        cy.`end_area_name`,
+        cy.`end_city_name`
+        ) way,
+        2 listType from chppweb_cheyuan cy where 1=1 and state=1
+        <!---->
+        and cy.create_time &gt;=DATE_SUB(NOW(),INTERVAL 100 DAY)
+        <!---->
+		<if test="beginProvinceId!=null and beginProvinceId!=''">
+			and begin_province_id=#{beginProvinceId}
+		</if>
+		<if test="beginAreaId!=null and beginAreaId!=''">
+			and begin_area_id=#{beginAreaId}
+		</if>
+		<if test="endProvinceId!=null and endProvinceId!=''">
+			and end_province_id=#{endProvinceId}
+		</if>
+		<if test="endAreaId!=null and endAreaId!=''">
+			and end_area_id=#{endAreaId}
+		</if>
+		<if test="weight!=null and weight!=''">
+			and weight &gt;=#{weight}
+		</if>
+        <if test="userId!=null and userId!=''">
+            <if test="!isHall">
+                and user_id!=#{userId}
+            </if>
+        </if>
+        <if test="provinceAreaId!=null and provinceAreaId!=''">
+            and province_area_id=#{provinceAreaId}
+        </if>
+        <if test="quoteRegionId!=null and quoteRegionId!=0">
+            and quote_region_id=#{quoteRegionId}
+        </if>
+        <if test="weightRegionId!=null and weightRegionId!=0">
+            and weight_region_id=#{weightRegionId}
+        </if>
+        <if test="car_axle_id!=null and car_axle_id!=0">
+            and car_axle_id=#{car_axle_id}
+        </if>
+        <if test="car_container_id!=null and car_container_id!=0">
+            and car_container_id=#{car_container_id}
+        </if>
+        <if test="carTrafficTypeId!=null and carTrafficTypeId!=0">
+            and car_traffic_type_id=#{carTrafficTypeId}
+        </if>
+        <if test="carTypeId!=null and carTypeId!=0">
+            and car_type_id=#{carTypeId}
+        </if>
+        <if test="trafficType!=null and trafficType!=0">
+            and traffic_type=#{trafficType}
+        </if>
+		<if test="order!=null and order!=''">
+			${order}
+		</if>
+	</select>
+	
+	<select id="huoyuanList" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.wuliu.HuoyuanBean">
+		<!--select <include refid="HUOYUAN"/>,2 listType,dic.name packageTypeName from chppweb_huoyuan hy-->
+        select CONVERT(hy.id,char) id,
+        DATE_FORMAT(hy.create_time,'%Y-%m-%d %H:%i:%s') createTime,
+        DATE_FORMAT(hy.invalid_time,'%Y-%m-%d %H:%i:%s') invalidTime,
+        CONCAT(
+        hy.`begin_province_name`,
+        hy.`begin_area_name`,
+        hy.`begin_city_name`
+        ) startWay,
+        CONCAT(
+        hy.`end_province_name`,
+        hy.`end_area_name`,
+        hy.`end_city_name`
+        ) endWay,
+        CONCAT(
+        hy.`begin_province_name`,
+        hy.`begin_area_name`,
+        hy.`begin_city_name`,
+        ' 至  ',
+        hy.`end_province_name`,
+        hy.`end_area_name`,
+        hy.`end_city_name`
+        ) way,
+        2 listType,dic.name packageTypeName from chppweb_huoyuan hy
+        LEFT JOIN t_sys_order_dic dic on hy.package_type=dic.id  where 1=1 and state=1
+        <!---->
+        and hy.create_time &gt;=DATE_SUB(NOW(),INTERVAL 100 DAY)
+        <!---->
+		<if test="beginProvinceId!=null and beginProvinceId!=''">
+			and hy.begin_province_id=#{beginProvinceId}
+		</if>
+		<if test="beginAreaId!=null and beginAreaId!=''">
+			and hy.begin_area_id=#{beginAreaId}
+		</if>
+		<if test="endProvinceId!=null and endProvinceId!=''">
+			and hy.end_province_id=#{endProvinceId}
+		</if>
+		<if test="endAreaId!=null and endAreaId!=''">
+			and hy.end_area_id=#{endAreaId}
+		</if>
+		<if test="weight!=null and weight!=''">
+			and weight &lt;=#{weight}
+		</if>
+        <if test="userId!=null and userId!=''">
+            <if test="!isHall">
+                and user_id!=#{userId}
+            </if>
+        </if>
+        <if test="provinceAreaId!=null and provinceAreaId!=''">
+            and province_area_id=#{provinceAreaId}
+        </if>
+        <if test="packageType!=null and packageType!=0">
+            and package_type=#{packageType}
+        </if>
+        <if test="quoteRegionId!=null and quoteRegionId!=0">
+            and quote_region_id=#{quoteRegionId}
+        </if>
+        <if test="weightRegionId!=null and weightRegionId!=0">
+            and weight_region_id=#{weightRegionId}
+        </if>
+		<if test="order!=null and order!=''">
+			${order}
+		</if>
+	</select>
+	
+	<select id="cheyuanListCot" parameterType="com.alibaba.fastjson.JSONObject" resultType="Integer">
+		select count(*) from chppweb_cheyuan cy where 1=1 and state=1
+        <if test="beginProvinceId!=null and beginProvinceId!=''">
+            and begin_province_id=#{beginProvinceId}
+        </if>
+        <if test="beginAreaId!=null and beginAreaId!=''">
+            and begin_area_id=#{beginAreaId}
+        </if>
+        <if test="endProvinceId!=null and endProvinceId!=''">
+            and end_province_id=#{endProvinceId}
+        </if>
+        <if test="endAreaId!=null and endAreaId!=''">
+            and end_area_id=#{endAreaId}
+        </if>
+        <if test="weight!=null and weight!=''">
+            and weight &gt;=#{weight}
+        </if>
+        <if test="userId!=null and userId!=''">
+            <if test="!isHall">
+                and user_id!=#{userId}
+            </if>
+        </if>
+        <if test="provinceAreaId!=null and provinceAreaId!=''">
+            and province_area_id=#{provinceAreaId}
+        </if>
+        <if test="quoteRegionId!=null and quoteRegionId!=0">
+            and quote_region_id=#{quoteRegionId}
+        </if>
+        <if test="weightRegionId!=null and weightRegionId!=0">
+            and weight_region_id=#{weightRegionId}
+        </if>
+        <if test="car_axle_id!=null and car_axle_id!=0">
+            and car_axle_id=#{car_axle_id}
+        </if>
+        <if test="car_container_id!=null and car_container_id!=0">
+            and car_container_id=#{car_container_id}
+        </if>
+        <if test="carTrafficTypeId!=null and carTrafficTypeId!=0">
+            and car_traffic_type_id=#{carTrafficTypeId}
+        </if>
+        <if test="carTypeId!=null and carTypeId!=0">
+            and car_type_id=#{carTypeId}
+        </if>
+        <if test="trafficType!=null and trafficType!=0">
+            and traffic_type=#{trafficType}
+        </if>
+	</select>
+	
+	<select id="huoyuanListCot" parameterType="com.alibaba.fastjson.JSONObject" resultType="Integer">
+		select count(*) from chppweb_huoyuan hy where 1=1 and state=1
+        <if test="beginProvinceId!=null and beginProvinceId!=''">
+            and hy.begin_province_id=#{beginProvinceId}
+        </if>
+        <if test="beginAreaId!=null and beginAreaId!=''">
+            and hy.begin_area_id=#{beginAreaId}
+        </if>
+        <if test="endProvinceId!=null and endProvinceId!=''">
+            and hy.end_province_id=#{endProvinceId}
+        </if>
+        <if test="endAreaId!=null and endAreaId!=''">
+            and hy.end_area_id=#{endAreaId}
+        </if>
+        <if test="weight!=null and weight!=''">
+            and weight &lt;=#{weight}
+        </if>
+        <if test="userId!=null and userId!=''">
+            <if test="!isHall">
+                and user_id!=#{userId}
+            </if>
+        </if>
+        <if test="provinceAreaId!=null and provinceAreaId!=''">
+            and province_area_id=#{provinceAreaId}
+        </if>
+        <if test="packageType!=null and packageType!=0">
+            and package_type=#{packageType}
+        </if>
+        <if test="quoteRegionId!=null and quoteRegionId!=0">
+            and quote_region_id=#{quoteRegionId}
+        </if>
+        <if test="weightRegionId!=null and weightRegionId!=0">
+            and weight_region_id=#{weightRegionId}
+        </if>
+	</select>
+
+    <select id="getHuoyuanRecommond_cheyuanList" resultType="com.cms.model.wuliu.CheyuanBean" parameterType="com.alibaba.fastjson.JSONObject">
+        select <include refid="CHEYUAN"/> from chppweb_cheyuan cy where cy.user_id=#{userId} and cy.state=1
+    </select>
+
+    <select id="getRecommond_vaseId" parameterType="com.alibaba.fastjson.JSONObject" resultType="long">
+        select vh.vaServiceID from vaservicepurchasehistory vh INNER JOIN vaservice va on vh.vaServiceID=va.id and va.vaServiceType=8001
+        where vh.subscriberID = #{userId}
+    </select>
+	
+	<select id="getHuoyuanRecommondList" resultType="com.cms.model.wuliu.HuoyuanBean" parameterType="com.alibaba.fastjson.JSONObject">
+		<!--select DISTINCT <include refid="HUOYUAN"/>,-->
+        select CONVERT(hy.id,char) id,hy.user_id as userId,
+        <!--vh.vaServiceID,-->
+        1 listType,dic.name packageTypeName,
+        DATE_FORMAT(hy.create_time,'%Y-%m-%d %H:%i:%s') as createTime
+        from chppweb_huoyuan hy
+        LEFT JOIN t_sys_order_dic dic on hy.package_type=dic.id
+        <!--INNER JOIN chppweb_cheyuan cy on-->
+        <!--IFNULL(cy.begin_province_id,0)=ifnull(hy.begin_province_id,0)-->
+        <!--and ifnull(cy.begin_area_id,0)=ifnull(hy.begin_area_id,0)-->
+		<!--and ifnull(cy.end_province_id,0)=ifnull(hy.end_province_id,0)-->
+        <!--and ifnull(cy.end_area_id,0)=ifnull(hy.end_area_id,0)-->
+		<!--and hy.weight &lt;=cy.weight-->
+        <!--LEFT JOIN vaservicepurchasehistory vh on hy.user_id=vh.subscriberID-->
+        <!--INNER JOIN vaservice va on vh.vaServiceID=va.id and va.vaServiceType=8001-->
+        where hy.user_id!=#{userId}
+        <!--and cy.user_id=#{userId} and cy.state=1-->
+        and hy.state=1
+        <if test="provinceAreaId!=null and provinceAreaId!=''">
+            and hy.province_area_id=#{provinceAreaId}
+        </if>
+        <if test="beginProvinceId!=null and beginProvinceId!=''">
+            and hy.begin_province_id=#{beginProvinceId}
+        </if>
+        <if test="beginAreaId!=null and beginAreaId!=''">
+            and hy.begin_area_id=#{beginAreaId}
+        </if>
+        <if test="endProvinceId!=null and endProvinceId!=''">
+            and hy.end_province_id=#{endProvinceId}
+        </if>
+        <if test="endAreaId!=null and endAreaId!=''">
+            and hy.end_area_id=#{endAreaId}
+        </if>
+        <if test="packageType!=null and packageType!=0">
+            and hy.package_type=#{packageType}
+        </if>
+        <if test="quoteRegionId!=null and quoteRegionId!=0">
+            and hy.quote_region_id=#{quoteRegionId}
+        </if>
+        <if test="weightRegionId!=null and weightRegionId!=0">
+            and hy.weight_region_id=#{weightRegionId}
+        </if>
+		order by
+        <!--vh.vaServiceID asc,
+        createTime desc limit 0,10-->
+        createTime desc limit 0,10
+	</select>
+
+    <select id="getCheyuanRecommond_huoyuanList" resultType="com.cms.model.wuliu.HuoyuanBean" parameterType="com.alibaba.fastjson.JSONObject">
+        select <include refid="HUOYUAN"/> from chppweb_huoyuan hy where hy.user_id=#{userId} and hy.state=1
+    </select>
+
+	<select id="getCheyuanRecommondList" resultType="com.cms.model.wuliu.CheyuanBean" parameterType="com.alibaba.fastjson.JSONObject">
+		<!--select DISTINCT <include refid="CHEYUAN"/>,-->
+        select CONVERT(cy.id,char) id,cy.user_id as userId,
+        DATE_FORMAT(cy.create_time,'%Y-%m-%d %H:%i:%s') as createTime,
+        <!--vh.vaServiceID,-->
+        1 listType from chppweb_cheyuan cy
+        <!--INNER JOIN chppweb_huoyuan hy on-->
+        <!--ifnull(cy.begin_province_id,0)=ifnull(hy.begin_province_id,0)-->
+        <!--and ifnull(cy.begin_area_id,0)=ifnull(hy.begin_area_id,0)-->
+		<!--and ifnull(cy.end_province_id,0)=ifnull(hy.end_province_id,0)-->
+        <!--and ifnull(cy.end_area_id,0)=ifnull(hy.end_area_id,0)-->
+		<!--&lt;!&ndash;and cy.weight &gt;=hy.weight&ndash;&gt;-->
+        <!--LEFT JOIN vaservicepurchasehistory vh on cy.user_id=vh.subscriberID-->
+        <!--INNER JOIN vaservice va on vh.vaServiceID=va.id and va.vaServiceType=8001-->
+		where cy.user_id!=#{userId}
+        <!--and hy.user_id=#{userId} and hy.state=1-->
+        and cy.state=1
+        <if test="provinceAreaId!=null and provinceAreaId!=''">
+            and cy.province_area_id=#{provinceAreaId}
+        </if>
+        <if test="beginProvinceId!=null and beginProvinceId!=''">
+            and cy.begin_province_id=#{beginProvinceId}
+        </if>
+        <if test="beginAreaId!=null and beginAreaId!=''">
+            and cy.begin_area_id=#{beginAreaId}
+        </if>
+        <if test="endProvinceId!=null and endProvinceId!=''">
+            and cy.end_province_id=#{endProvinceId}
+        </if>
+        <if test="endAreaId!=null and endAreaId!=''">
+            and cy.end_area_id=#{endAreaId}
+        </if>
+        <if test="quoteRegionId!=null and quoteRegionId!=0">
+            and cy.quote_region_id=#{quoteRegionId}
+        </if>
+        <if test="weightRegionId!=null and weightRegionId!=0">
+            and cy.weight_region_id=#{weightRegionId}
+        </if>
+        <if test="car_axle_id!=null and car_axle_id!=0">
+            and cy.car_axle_id=#{car_axle_id}
+        </if>
+        <if test="car_container_id!=null and car_container_id!=0">
+            and cy.car_container_id=#{car_container_id}
+        </if>
+        <if test="carTrafficTypeId!=null and carTrafficTypeId!=0">
+            and cy.car_traffic_type_id=#{carTrafficTypeId}
+        </if>
+        <if test="carTypeId!=null and carTypeId!=0">
+            and cy.car_type_id=#{carTypeId}
+        </if>
+        <if test="trafficType!=null and trafficType!=0">
+            and cy.traffic_type=#{trafficType}
+        </if>
+        order by
+        <!--vh.vaServiceID asc,
+        createTime desc limit 0,10-->
+        createTime desc limit 0,10
+	</select>
+
+    <select id="getHuoyuanInfo" parameterType="map" resultType="com.cms.model.wuliu.HuoyuanBean">
+        select <include refid="HUOYUAN"/>,dic.name packageTypeName from chppweb_huoyuan hy
+        LEFT JOIN t_sys_order_dic dic on hy.package_type=dic.id
+        where 1=1
+        <if test="id!=null and id!=''">
+            and hy.id=#{id}
+        </if>
+        <if test="provinceAreaId!=null and provinceAreaId!=''">
+            and hy.province_area_id=#{provinceAreaId}
+        </if>
+    </select>
+
+    <select id="getCheyuanInfo" parameterType="map" resultType="com.cms.model.wuliu.CheyuanBean">
+        select <include refid="CHEYUAN"/> from chppweb_cheyuan cy where 1=1
+        <if test="id!=null and id!=''">
+            and cy.id=#{id}
+        </if>
+        <if test="provinceAreaId!=null and provinceAreaId!=''">
+            and cy.province_area_id=#{provinceAreaId}
+        </if>
+    </select>
+
+    <select id="getMarryCheyuanList" parameterType="map" resultType="com.cms.model.wuliu.HuoyuanBean">
+        select <include refid="HUOYUAN"/>
+        <!--,vh.vaServiceID -->
+        from chppweb_huoyuan hy
+        <!--LEFT JOIN vaservicepurchasehistory vh on hy.user_id=vh.subscriberID-->
+        <!--INNER JOIN vaservice va on vh.vaServiceID=va.id and va.vaServiceType=8001-->
+        where hy.state=1 and hy.user_id=#{userId}
+        <if test="provinceAreaId!=null and provinceAreaId!=''">
+            and hy.province_area_id=#{provinceAreaId}
+        </if>
+        <!--order by vh.vaServiceID-->
+    </select>
+
+    <select id="getMarryHuoyuanList" parameterType="map" resultType="com.cms.model.wuliu.CheyuanBean">
+        select <include refid="CHEYUAN"/>
+        <!--,vh.vaServiceID -->
+        from chppweb_cheyuan cy
+        <!--LEFT JOIN vaservicepurchasehistory vh on cy.user_id=vh.subscriberID-->
+        <!--INNER JOIN vaservice va on vh.vaServiceID=va.id and va.vaServiceType=8001-->
+        where cy.state=1 and cy.user_id=#{userId}
+        <if test="provinceAreaId!=null and provinceAreaId!=''">
+            and cy.province_area_id=#{provinceAreaId}
+        </if>
+        <!--order by vh.vaServiceID-->
+    </select>
+
+    <select id="marryListForHuoyuan" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.wuliu.CheyuanBean">
+        select <include refid="CHEYUAN"/>
+        <!--,vh.vaServiceID -->
+        from chppweb_cheyuan cy
+        <!--LEFT JOIN vaservicepurchasehistory vh on cy.user_id=vh.subscriberID -->
+        <!--INNER JOIN vaservice va on vh.vaServiceID=va.id and va.vaServiceType=8001-->
+        where 1=1 and state=1
+        <if test="beginProvinceId!=null and beginProvinceId!=''">
+            and begin_province_id=#{beginProvinceId}
+        </if>
+        <if test="beginAreaId!=null and beginAreaId!=''">
+            and begin_area_id=#{beginAreaId}
+        </if>
+        <if test="endProvinceId!=null and endProvinceId!=''">
+            and end_province_id=#{endProvinceId}
+        </if>
+        <if test="endAreaId!=null and endAreaId!=''">
+            and end_area_id=#{endAreaId}
+        </if>
+        <if test="weight!=null and weight!=''">
+            and weight &gt;=#{weight}
+        </if>
+        <if test="userId!=null and userId!=''">
+            <if test="!isHall">
+                and user_id!=#{userId}
+            </if>
+        </if>
+        <if test="provinceAreaId!=null and provinceAreaId!=''">
+            and province_area_id=#{provinceAreaId}
+        </if>
+        <if test="order!=null and order!=''">
+            ${order}
+        </if>
+        <!--order by vh.vaServiceID-->
+    </select>
+
+    <select id="marryListForCheyuan" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.wuliu.HuoyuanBean">
+        select <include refid="HUOYUAN"/>
+        <!--,vh.vaServiceID-->
+        from chppweb_huoyuan hy
+        <!--LEFT JOIN vaservicepurchasehistory vh on hy.user_id=vh.subscriberID -->
+        <!--INNER JOIN vaservice va on vh.vaServiceID=va.id and va.vaServiceType=8001-->
+        where 1=1 and state=1
+        <if test="beginProvinceId!=null and beginProvinceId!=''">
+            and hy.begin_province_id=#{beginProvinceId}
+        </if>
+        <if test="beginAreaId!=null and beginAreaId!=''">
+            and hy.begin_area_id=#{beginAreaId}
+        </if>
+        <if test="endProvinceId!=null and endProvinceId!=''">
+            and hy.end_province_id=#{endProvinceId}
+        </if>
+        <if test="endAreaId!=null and endAreaId!=''">
+            and hy.end_area_id=#{endAreaId}
+        </if>
+        <if test="weight!=null and weight!=''">
+            and weight &lt;=#{weight}
+        </if>
+        <if test="userId!=null and userId!=''">
+            <if test="!isHall">
+                and user_id!=#{userId}
+            </if>
+        </if>
+        <if test="provinceAreaId!=null and provinceAreaId!=''">
+            and province_area_id=#{provinceAreaId}
+        </if>
+        <if test="order!=null and order!=''">
+            ${order}
+        </if>
+        <!--order by vh.vaServiceID-->
+    </select>
+
+</mapper>

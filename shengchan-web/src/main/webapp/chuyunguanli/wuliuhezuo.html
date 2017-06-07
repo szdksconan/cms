@@ -1,0 +1,325 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>物流合作申请管理</title>
+
+<link rel="stylesheet" type="text/css" href="../css/common/chuyunguanli.css" />
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$(".item span").click(function(){
+				if($(this).attr('class')=='selected' || $(this).attr('class')=='selected seach'){
+					$(this).removeClass("selected").removeClass('seach');
+				}else{
+					$(this).addClass("selected").addClass('seach');
+					console.debug($(this));
+				}
+			});
+			$("#btn-ret").click(function(){
+				$(".item span").removeClass("selected").removeClass('seach');
+			});
+		});
+	</script>
+</head>
+<body>
+<div class="container">
+	<div class="lside">
+		<div class="seach-conds">
+			<div class="main-area">
+				<div class="dt">主营区域：</div>
+				<div class="dd">
+					<div class="item">
+						<span>四川省</span>
+					</div>
+					<div class="item">
+						<span>湖南省</span>
+					</div>
+					<div class="item">
+						<span>广东省</span>
+					</div>
+					<div class="item">
+						<span>江西省</span>
+					</div>
+					<div class="item">
+						<span>贵州省</span>
+					</div>
+					<div class="item">
+						<span>重庆市</span>
+					</div>
+					<div class="item">
+						<span>北京市</span>
+					</div>
+					<div class="item">
+						<span>天津市</span>
+					</div>
+					
+				</div>
+			</div>
+			<div class="area-button">
+				<div class="b-left">
+				
+				</div>
+				<div class="b-right">
+					<span  class="b-right-button">
+					<button class="btn btn-blue btn-w100 ml26" type="button">查询</button>
+					<button id="btn-ret" class="btn btn-gray btn-w100 ml26" type="button">清空</button></span>
+				</div>
+				
+			</div>
+		</div>
+		<div class="comt-head">
+			<ul>
+				<li class="col11">企业基本信息</li>
+				<li class="col12">运输能力信息</li>
+				<li class="col13">操作</li>
+			</ul>
+		</div>
+		<div class="content">
+			<ul>
+				<li>
+					<div style="">
+						<div class="top-title">
+							<span class="ml-5">中国物资储运总公司</span><label class="ml-5">申请时间：</label><span>2016/03/30</span>
+						</div>
+						<div>
+							<div class="left">
+							
+							<div class="left-l">
+								<a target="_blank" href="viewVCourse.action?courseCode=10635V007">
+		    						<img width="134" height="132" alt="" src="http://dynamic3.icourses.cn/video/vcourseimg/videoPic/201511/33c151ea812910c30211eaef27f4a95d.png">
+		    					</a>
+							</div>
+							<div class="left-r">
+								<div>
+									<label>企业性质：</label><span>私营企业</span>
+								</div>
+								<div>
+									<label>成立年份：</label><span>2010年</span>
+								</div>
+								<div>
+									<label>注册资金：</label><span>100万元</span>
+								</div>
+								<div>
+									<label>年营业额：</label><span>约500万元</span>
+								</div>
+								<div>
+									<label>&emsp;联系人：</label><span>张三</span>
+									
+								</div>
+								<div>
+									<label>联系电话：</label><span>13500000000</span>
+								</div>
+							</div>
+							
+						</div>
+						<div class="center">
+							<div>
+								<div>
+									<label>主营区域：</label><span>华东地区；四川省；辽宁省；青海省</span>
+								</div>
+								<div>
+									<label>网点分布：</label><span>全国10个省份，30个网点</span>
+								</div>
+								<div>
+									<label>运力介绍：</label><span>50吨拖挂车10台</span>
+								</div>
+								<div>
+									<label>服务评价：</label><span class="s-star sa55"></span>
+								</div>
+								<div>
+									<label>运输方式：</label><span>公路、铁路、航空</span>
+								</div>
+								<div>
+									<label>服务内容：</label><span>整车运输、零担运输、专线运输、大件运输、仓储</span>
+								</div>
+								
+							</div>
+						</div>
+						<div class="wlyunshu-right">
+							<div>
+								
+							</div>
+							<div>
+								<a href="javascript:void(0)" style="">查看</a>
+							</div>
+							<div>
+								<a href="javascript:void(0)">忽略</a>
+							</div>
+							<div>
+								<a href="javascript:void(0)">加入客户名录</a>
+							</div>
+						</div>
+						
+					</div>
+				
+				
+				</div>
+			</li>
+			<li>
+					<div style="">
+						<div class="top-title">
+							<span class="ml-5">中国物资储运总公司</span><label class="ml-5">申请时间：</label><span>2016/03/30</span>
+						</div>
+						<div>
+							<div class="left">
+							
+							<div class="left-l">
+								<a target="_blank" href="viewVCourse.action?courseCode=10635V007">
+		    						<img width="134" height="132" alt="" src="http://dynamic3.icourses.cn/video/vcourseimg/videoPic/201511/33c151ea812910c30211eaef27f4a95d.png">
+		    					</a>
+							</div>
+							<div class="left-r">
+								<div>
+									<label>企业性质：</label><span>私营企业</span>
+								</div>
+								<div>
+									<label>成立年份：</label><span>2010年</span>
+								</div>
+								<div>
+									<label>注册资金：</label><span>100万元</span>
+								</div>
+								<div>
+									<label>年营业额：</label><span>约500万元</span>
+								</div>
+								<div>
+									<label>&emsp;联系人：</label><span>张三</span>
+									
+								</div>
+								<div>
+									<label>联系电话：</label><span>13500000000</span>
+								</div>
+							</div>
+							
+						</div>
+						<div class="center">
+							<div>
+								<div>
+									<label>主营区域：</label><span>华东地区；四川省；辽宁省；青海省</span>
+								</div>
+								<div>
+									<label>网点分布：</label><span>全国10个省份，30个网点</span>
+								</div>
+								<div>
+									<label>运力介绍：</label><span>50吨拖挂车10台</span>
+								</div>
+								<div>
+									<label>服务评价：</label><span class="s-star sa55"></span>
+								</div>
+								<div>
+									<label>运输方式：</label><span>公路、铁路、航空</span>
+								</div>
+								<div>
+									<label>服务内容：</label><span>整车运输、零担运输、专线运输、大件运输、仓储</span>
+								</div>
+								
+							</div>
+						</div>
+						<div class="wlyunshu-right">
+							<div>
+								
+							</div>
+							<div>
+								<a href="javascript:void(0)" style="">查看</a>
+							</div>
+							<div>
+								<a href="javascript:void(0)">忽略</a>
+							</div>
+							<div>
+								<a href="javascript:void(0)">加入客户名录</a>
+							</div>
+						</div>
+						
+					</div>
+				
+				
+				</div>
+			</li>
+			<li>
+					<div style="">
+						<div class="top-title">
+							<span class="ml-5">中国物资储运总公司</span><label class="ml-5">申请时间：</label><span>2016/03/30</span>
+						</div>
+						<div>
+							<div class="left">
+							
+							<div class="left-l">
+								<a target="_blank" href="viewVCourse.action?courseCode=10635V007">
+		    						<img width="134" height="132" alt="" src="http://dynamic3.icourses.cn/video/vcourseimg/videoPic/201511/33c151ea812910c30211eaef27f4a95d.png">
+		    					</a>
+							</div>
+							<div class="left-r">
+								<div>
+									<label>企业性质：</label><span>私营企业</span>
+								</div>
+								<div>
+									<label>成立年份：</label><span>2010年</span>
+								</div>
+								<div>
+									<label>注册资金：</label><span>100万元</span>
+								</div>
+								<div>
+									<label>年营业额：</label><span>约500万元</span>
+								</div>
+								<div>
+									<label>&emsp;联系人：</label><span>张三</span>
+									
+								</div>
+								<div>
+									<label>联系电话：</label><span>13500000000</span>
+								</div>
+							</div>
+							
+						</div>
+						<div class="center">
+							<div>
+								<div>
+									<label>主营区域：</label><span>华东地区；四川省；辽宁省；青海省</span>
+								</div>
+								<div>
+									<label>网点分布：</label><span>全国10个省份，30个网点</span>
+								</div>
+								<div>
+									<label>运力介绍：</label><span>50吨拖挂车10台</span>
+								</div>
+								<div>
+									<label>服务评价：</label><span class="s-star sa55"></span>
+								</div>
+								<div>
+									<label>运输方式：</label><span>公路、铁路、航空</span>
+								</div>
+								<div>
+									<label>服务内容：</label><span>整车运输、零担运输、专线运输、大件运输、仓储</span>
+								</div>
+								
+							</div>
+						</div>
+						<div class="wlyunshu-right">
+							<div>
+								
+							</div>
+							<div>
+								<a href="javascript:void(0)" style="">查看</a>
+							</div>
+							<div>
+								<a href="javascript:void(0)">忽略</a>
+							</div>
+							<div>
+								<a href="javascript:void(0)">加入客户名录</a>
+							</div>
+						</div>
+						
+					</div>
+				
+				
+				</div>
+			</li>
+		</ul>
+		</div>
+		
+	</div>
+	<div class="rside">
+	
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>代工申请单明细</title>
+    <meta charset="utf-8">
+    <script src="../js/common/tabs.js"></script>
+</head>
+<div class="cfw_x" style="width: 75%">
+    <div style="margin-top: 5px;border-bottom: 1px solid #dddddd">
+        <ul class="nav nav-tabs" role="tablist" id="tab-list">
+            <li ><a href="#" >售后单详情</a></li>
+        </ul>
+    </div>
+
+    <div class="sc_cgd">
+        售后单号：
+        <input style="width: 15%" type="text" class="cmao_inplg" value="SH-0043-SFJSKLFWO" disabled/>
+        申请日期：
+        <input type="text" class="cmao_inplg" value="2016-04-23" disabled/>
+    </div>
+
+    <div class="sc_cgd">
+        申请用户：
+        <input style="width: 15%" type="text" class="cmao_inplg" value="四川铁路建设承包3公司" disabled/>
+        售后申请类型：
+        <input type="text" class="cmao_inplg" value="退货" disabled/>
+        订单号：
+        <input type="text" class="cmao_inplg" value="DD-0000212R" disabled/>
+        <a class="a_css" href="javascript:void(0)">查看详情</a>
+    </div>
+    </div>
+		<div class="container" style="margin-top: 20px;">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#tab4" data-toggle="tab"
+						style="color: black;">售后申请产品清单</a></li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="tab1" style="margin-top: 20px;">
+        	 <table id="table1">
+                </table>
+                <div class="sc_daig" style="margin: 10px 0 0 10px">
+                    <span  >问题描述：</span>
+                    <textarea  class="sc_text2"  placeholder="" disabled></textarea>
+                </div>
+                <div class="sc_cgd">
+                    <span  >文件附件：</span>
+                    <a class="a_css" href="javascript:void(0)">质检报告1</a>
+                    <a class="a_css" href="javascript:void(0)">照片1</a>
+                </div>
+                <div class="sc_cgd">
+                    <span>处理方式：</span>
+                    <select id="clfs"></select>
+                </div>
+                <div class="sc_daig" style="margin: 10px 0 0 10px">
+                    <span  >补充说明：</span>
+                    <textarea  class="sc_text2"  placeholder="">同意退货</textarea>
+                </div>
+                <div class="sc_cgd" style="text-align: right">
+                    <button  class="btn btn-blue btn-w100" type="button" >保存</button>
+                    <button  class="btn btn-darkgray btn-w100" type="button" >取消</button>
+                </div>
+        </div>
+    </div>
+	</div>
+			<div class="container" style="margin-top: 20px;">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#tab4" data-toggle="tab"
+						style="color: black;">售后处理记录</a></li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="tab1" style="margin-top: 20px;">
+        	  <table id="table2">
+                </table>
+        </div>
+    </div>
+	</div>
+<script>
+    var options=[
+        {label:'同意退货',value:1},
+        {label:'不同意',value:2}
+    ];
+    $('#clfs').multiselect('dataprovider', options);
+
+    $('#table1').bootstrapTable({
+        data:[{
+            "productBrand":"开山牌",
+            "productName": "开山牌-重型挖掘机系列",
+            "count": "2",
+            "amount": "150万"
+        },{
+            "productBrand":"开山牌",
+            "productName": "开山牌-重型挖掘机系列",
+            "count": "1",
+            "amount": "100万"
+        }],
+        pagination: true,//是否显示分页
+        queryParamsType:'',//传递参数
+        sidePagination: "client",//分页方式：client客户端分页，server服务端分页
+        uniqueId: "id",//每一行的唯一标识，一般为主键列
+        columns: [{
+            title : '品牌',
+            field : 'productBrand'
+        },{
+            title : '产品名称',
+            field : 'productName'
+        },{
+            title : '数量',
+            field : 'count'
+        },{
+            title : '总价',
+            field : 'amount'
+        }]
+    });
+
+    $('#table2').bootstrapTable({
+        data:[{
+            "attention":"张三",
+            "actionTime": "2016-01-23",
+            "actionType": "同意退货",
+            "records": "同意退货"
+        },{
+            "attention":"李四",
+            "actionTime": "2016-01-23",
+            "actionType": "收到退货物品",
+            "records": "收到退货物品"
+        },{
+            "attention":"王五",
+            "actionTime": "2016-01-23",
+            "actionType": "入库",
+            "records": "入库"
+        },{
+            "attention":"赵六",
+            "actionTime": "2016-01-23",
+            "actionType": "退货处理",
+            "records": "退货处理"
+        }],
+        pagination: true,//是否显示分页
+        queryParamsType:'',//传递参数
+        sidePagination: "client",//分页方式：client客户端分页，server服务端分页
+        uniqueId: "id",//每一行的唯一标识，一般为主键列
+        columns: [{
+            title : '售后经办人',
+            field : 'attention'
+        },{
+            title : '处理时间',
+            field : 'actionTime'
+        },{
+            title : '处理方式',
+            field : 'actionType'
+        },{
+            title : '补充记录',
+            field : 'records'
+        }]
+    });
+</script>
+</div>
+</html>

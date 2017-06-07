@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.wuliu.CommonMapper" >
+	<select id="getProvince" parameterType="map" resultType="map">
+		select id,name,province_area_id provinceAreaId from t_sys_province  where 1=1
+	</select>
+	<select id="getArea" parameterType="map" resultType="map">
+		select GROUP_CONCAT(id) ids,GROUP_CONCAT(name) names,pid from t_sys_area group by pid
+	</select>
+	<select id="getCity" parameterType="map" resultType="map">
+		select GROUP_CONCAT(id) ids,GROUP_CONCAT(name) names,aid pid from t_sys_city group by aid
+	</select>
+	
+	<select id="getGoodsDicInfoList" parameterType="string" resultType="com.cms.model.wuliu.DicBean">
+		select * from t_sys_order_dic where pid=#{pid}
+	</select>
+	
+	<select id="getCarList" parameterType="map" resultType="map">
+		select CONVERT (tc.id, CHAR) id,
+        tc.CAR_TRAFFIC_TYPE_NAME carTrafficTypeName,
+        tc.car_type,
+        tc.car_type_name carTypeName,
+        tc.car_weigth,
+        tc.car_owner,
+        tc.car_pic_url,
+        tc.car_no,
+        tc.car_owner,
+        tc.car_container,
+        tc.car_axle,
+        tc.car_container_name,
+        tc.car_traffic_type,
+        com.company_name companyName
+        from t_sys_car tc
+        inner join t_sys_car_user_relative tcr on tc.id=tcr.car
+        LEFT JOIN t_sys_company com on tcr.company=com.id
+        where 1=1
+		<if test="companyId!=null and companyId!=''">
+			and tcr.company=#{companyId}
+		</if>
+	</select>
+
+    <update id="update_taskcheyuan">
+        update chppweb_cheyuan set state=2 where TIMESTAMPDIFF(SECOND,NOW(),invalid_time) &lt;=0 and state=1
+    </update>
+
+    <update id="update_taskhuoyuan">
+        update chppweb_huoyuan set state=2 where TIMESTAMPDIFF(SECOND,NOW(),invalid_time) &lt;=0 and state=1
+    </update>
+
+    <select id="getQuoteList" resultType="map">
+        select id,if(min&lt;&gt;0 and max=0,CONCAT(min,unit,'以上'),CONCAT(min,'-',max,'元')) quote,min,max from chppweb_quoteregion
+    </select>
+    <select id="getWeightList" resultType="map">
+        select id,if(min&lt;&gt;0 and max=0,CONCAT(min,unit,'以上'),CONCAT(min,'-',max,'吨')) weight,min,max from chppweb_weightregion
+    </select>
+</mapper>

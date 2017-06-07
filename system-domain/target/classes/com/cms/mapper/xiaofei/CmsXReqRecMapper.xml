@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.xiaofei.CmsXReqRecMapper" >
+  <resultMap id="BaseResultMap" type="com.cms.model.xiaofei.CmsXReqRec" >
+    <id column="CUSTOM_ID" property="customId" jdbcType="VARCHAR" />
+    <result column="REQ_TITLE" property="reqTitle" jdbcType="VARCHAR" />
+    <result column="BUSI_CODE" property="busiCode" jdbcType="VARCHAR" />
+    <result column="LOCL_CODE" property="loclCode" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="REAL_NAME" property="realName" jdbcType="VARCHAR" />
+    <result column="TEL" property="tel" jdbcType="VARCHAR" />
+    <result column="REQ_TYPE" property="reqType" jdbcType="VARCHAR" />
+    <result column="CASH" property="cash" jdbcType="VARCHAR" />
+    <result column="ATT_YN" property="attYn" jdbcType="VARCHAR" />
+    <result column="SRC_CODE" property="srcCode" jdbcType="VARCHAR" />
+    <result column="OP_TIME" property="opTime" jdbcType="VARCHAR" />
+    <result column="VIEW_NUM" property="viewNum" jdbcType="VARCHAR" />
+    <result column="REQ_BRIEF" property="reqBrief" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <!-- 添加用户发布的创新定制信息 -->
+  <insert id="addUserReleaseAndInnovationCustomGetInfo" parameterType="com.cms.model.xiaofei.CmsXReqRec" >
+    insert into cms_x_req_rec
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="customId != null" >
+        CUSTOM_ID,
+      </if>
+      <if test="reqTitle != null" >
+        REQ_TITLE,
+      </if>
+      <if test="busiCode != null" >
+        BUSI_CODE,
+      </if>
+      <if test="loclCode != null" >
+        LOCL_CODE,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="realName != null" >
+        REAL_NAME,
+      </if>
+      <if test="tel != null" >
+        TEL,
+      </if>
+      <if test="reqType != null" >
+        REQ_TYPE,
+      </if>
+      <if test="cash != null" >
+        CASH,
+      </if>
+      <if test="attYn != null" >
+        ATT_YN,
+      </if>
+      <if test="srcCode != null" >
+        SRC_CODE,
+      </if>
+      <if test="opTime != null" >
+        OP_TIME,
+      </if>
+      <if test="viewNum != null" >
+        VIEW_NUM,
+      </if>
+      <if test="reqBrief != null" >
+        REQ_BRIEF,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="customId != null" >
+        #{customId,jdbcType=VARCHAR},
+      </if>
+      <if test="reqTitle != null" >
+        #{reqTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="busiCode != null" >
+        #{busiCode,jdbcType=VARCHAR},
+      </if>
+      <if test="loclCode != null" >
+        #{loclCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="reqType != null" >
+        #{reqType,jdbcType=VARCHAR},
+      </if>
+      <if test="cash != null" >
+        #{cash,jdbcType=VARCHAR},
+      </if>
+      <if test="attYn != null" >
+        #{attYn,jdbcType=VARCHAR},
+      </if>
+      <if test="srcCode != null" >
+        #{srcCode,jdbcType=VARCHAR},
+      </if>
+      <if test="opTime != null" >
+        #{opTime,jdbcType=VARCHAR},
+      </if>
+      <if test="viewNum != null" >
+        #{viewNum,jdbcType=VARCHAR},
+      </if>
+      <if test="reqBrief != null" >
+        #{reqBrief,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <!-- 查看全部创新定制信息 -->
+  <select id="selectAllCmsXReqRecGetInfo" resultMap="BaseResultMap">
+  	<!-- SELECT a.CUSTOM_ID,a.REQ_TITLE,a.REQ_BRIEF,a.CASH,a.OP_TIME,b.LOCAL_STR,
+	c.ATT_LOC,c.ATT_NAME
+	FROM cms_x_req_rec a LEFT JOIN
+	cms_x_local_dict b ON a.LOCL_CODE=b.LOCL_CODE LEFT JOIN
+	cms_x_attachment c ON a.CUSTOM_ID=c.BUSI_CODE WHERE c.ATT_IMG_CODE=0; -->
+	SELECT * FROM cms_x_req_rec a WHERE a.LOCL_CODE=#{0} AND a.BUSI_CODE=#{1} LIMIT #{2},#{3};
+  </select>
+</mapper>

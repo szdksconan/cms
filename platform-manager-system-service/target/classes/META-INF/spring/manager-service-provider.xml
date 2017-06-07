@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+  
+  
+   <dubbo:application name="${dubbo.application.name}" owner="${dubbo.application.owner}" organization="cms"/>
+    
+   <dubbo:registry address="${dubbo.registry.address}"/>
+  
+   <dubbo:protocol name="${dubbo.protocol.name}"   serialization="kryo" optimizer="com.cms.optimizer.SerializationOptimizerImpl"/>
+    <!--
+    <dubbo:registry id="registry" address="10.20.141.150:9090" username="admin" password="hello1234" />
+     -->
+
+    <!--
+   if  have two network-adapter 
+    <dubbo:protocol host="10.1.22.2" name="dubbo" port="20881" />
+     -->
+<!--  -->
+
+	
+	<dubbo:service interface="com.cms.iservice.manager.baseInfo.areaService" ref="areaService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="areaService" class="com.cms.service.manager.baseInfo.areaServiceImpl"/>
+    
+  <!--    <dubbo:service interface="com.cms.iservice.manager.baseInfo.carService" ref="carService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="carService" class="com.cms.service.manager.baseInfo.carServiceImpl"/>
+    
+    <dubbo:service interface="com.cms.iservice.manager.baseInfo.carStyleService" ref="carStyleService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="carStyleService" class="com.cms.service.manager.baseInfo.carStyleServiceImpl"/>
+    
+    <dubbo:service interface="com.cms.iservice.manager.baseInfo.cityService" ref="cityService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="cityService" class="com.cms.service.manager.baseInfo.cityServiceImpl"/>
+    
+    <dubbo:service interface="com.cms.iservice.manager.baseInfo.comboService" ref="comboService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="comboService" class="com.cms.service.manager.baseInfo.comboServiceImpl"/>
+    
+    <dubbo:service interface="com.cms.iservice.manager.baseInfo.lineService" ref="lineService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="lineService" class="com.cms.service.manager.baseInfo.lineServiceImpl"/>
+    
+    <dubbo:service interface="com.cms.iservice.manager.baseInfo.menuService" ref="menuService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="menuService" class="com.cms.service.manager.baseInfo.menuServiceImpl"/>
+    
+    <dubbo:service interface="com.cms.iservice.manager.baseInfo.messageLogService" ref="messageLogService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="messageLogService" class="com.cms.service.manager.baseInfo.messageLogServiceImpl"/>
+    
+    <dubbo:service interface="com.cms.iservice.manager.baseInfo.premiumService" ref="premiumService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="premiumService" class="com.cms.service.manager.baseInfo.premiumServiceImpl"/>
+    
+    <dubbo:service interface="com.cms.iservice.manager.baseInfo.quoteService" ref="quoteService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="quoteService" class="com.cms.service.manager.baseInfo.quoteServiceImpl"/>
+    
+    <dubbo:service interface="com.cms.iservice.manager.baseInfo.webRoleService" ref="webRoleService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="webRoleService" class="com.cms.service.manager.baseInfo.webRoleServiceImpl"/>
+-->
+ 	<dubbo:service interface="com.cms.iservice.manager.cargoods.accountService" ref="accountService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="accountService" class="com.cms.service.manager.cargoods.accountServiceImpl"/>
+    
+    <dubbo:service interface="com.cms.iservice.manager.cargoods.loginUserService" ref="loginUserService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="loginUserService" class="com.cms.service.manager.cargoods.loginUserServiceImpl"/>
+    
+    <dubbo:service interface="com.cms.iservice.manager.company.companyService" ref="companyService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="companyService" class="com.cms.service.manager.company.companyServiceImpl"/>
+    
+    <dubbo:service interface="com.cms.iservice.manager.company.subCompanyService" ref="subCompanyService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="subCompanyService" class="com.cms.service.manager.company.subCompanyServiceImpl"/>
+    
+    <dubbo:service interface="com.cms.iservice.manager.department.departmentService" ref="departmentService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="departmentService" class="com.cms.service.manager.department.departmentServiceImpl"/>
+    
+    <dubbo:service interface="com.cms.iservice.manager.driver.driverService" ref="driverService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="driverService" class="com.cms.service.manager.driver.driverServiceImpl"/>
+    
+    <dubbo:service interface="com.cms.iservice.manager.login.loginService" ref="loginService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="loginService" class="com.cms.service.manager.login.loginServiceImpl"/>
+    
+
+    
+    <dubbo:service interface="com.cms.iservice.manager.orderDic.orderDicService" ref="orderDicService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="orderDicService" class="com.cms.service.manager.orderDic.orderDicServiceImpl"/>
+    
+    <dubbo:service interface="com.cms.iservice.manager.province.provinceService" ref="provinceService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="provinceService" class="com.cms.service.manager.province.provinceServiceImpl"/>
+    
+    <dubbo:service interface="com.cms.iservice.manager.role.accessService" ref="accessService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="accessService" class="com.cms.service.manager.role.accessServiceImpl"/>
+    
+
+    
+
+    
+    <dubbo:service interface="com.cms.iservice.manager.station.stationService" ref="stationService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="stationService" class="com.cms.service.manager.station.stationServiceImpl"/>
+    
+    <dubbo:service interface="com.cms.iservice.manager.user.userGradeService" ref="userGradeService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="userGradeService" class="com.cms.service.manager.user.userGradeServiceImpl"/>
+    
+<!--   
+  <dubbo:service interface="com.cms.iservice.manager.user.userService" ref="userService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="userService" class="com.cms.service.manager.user.userServiceImpl"/>
+    
+        <dubbo:service interface="com.cms.iservice.manager.role.roleService" ref="roleService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="roleService" class="com.cms.service.manager.role.roleServiceImpl"/>
+    
+        <dubbo:service interface="com.cms.iservice.manager.role.dataRoleService" ref="dataRoleService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="dataRoleService" class="com.cms.service.manager.role.dataRoleServiceImpl"/>
+    
+        <dubbo:service interface="com.cms.iservice.manager.login.userShortcutMenuService" ref="userShortcutMenuService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="userShortcutMenuService" class="com.cms.service.manager.login.userShortcutMenuServiceImpl"/>
+
+    
+    <dubbo:service interface="com.cms.iservice.manager.baseInfo.mileageService" ref="mileageService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="mileageService" class="com.cms.service.manager.baseInfo.mileageServiceImpl"/>
+ 	
+ 	
+ 	<dubbo:service interface="com.cms.iservice.manager.baseInfo.baseDicService" ref="baseDicService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="baseDicService" class="com.cms.service.manager.baseInfo.baseDicServiceImpl"/>
+        --> 
+        
+    <!-- 基础信息接口 start-->
+    <dubbo:service interface="com.cms.iservice.basicinfo.IndustryService" ref="industryService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="industryService" class="com.cms.service.manager.basicinfo.IndustryServiceImp"/>
+
+    <dubbo:service interface="com.cms.iservice.basicinfo.ProductService" ref="productService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="productService" class="com.cms.service.manager.basicinfo.ProductServiceImp"/>
+    
+    <dubbo:service interface="com.cms.iservice.basicinfo.UnitService" ref="unitService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="unitService" class="com.cms.service.manager.basicinfo.UnitServiceImp"/>        
+    
+    <!-- 基础信息接口 end-->
+</beans>

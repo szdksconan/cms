@@ -1,0 +1,113 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>生产应用平台</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="../css/canmaosongptai.css">
+    <link rel="stylesheet" type="text/css" href="../css/shenchan.css">
+    <link rel="stylesheet" type="text/css" href="../css/common/tabs.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/common/bootstrap-table.css">
+    <link rel="stylesheet" type="text/css" href="../css/common/bootstrap-multiselect.css">
+   	<link rel="stylesheet" type="text/css" href="../city/city.css">
+   	<link rel="stylesheet" href="../css/common/swiper-3.3.1.min.css" />
+   	<link rel="stylesheet" type="text/css" href="../css/cmcommon.css">
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=67jMQ5DmYTe1TLMBKFUTcZAR"></script>
+    <script src="../js/common/jquery.js"></script>
+    <script src="../js/common/jquery-form.js"></script>
+    <script src="../js/common/bootstrap.min.js"></script>
+    <script src="../js/common/control.js"></script>
+    <script src="../css/laydate/laydate.js"></script>
+    <script src="../js/common/common.js"></script>
+    <script src="../js/common/bootstrap-select.js"></script>
+    <script src="../js/common/bootstrap-multiselect.js"></script>
+    <script src="../js/common/bootstrap-table.js"></script>
+    <script charset="utf-8" src="../js/common/bootstrap-table-zh-CN.js"></script>
+    <script src="../js/common/bootstrap-table-edit.js"></script>
+    <script type="text/javascript" src="../js/qiyezhongxin/swiper-3.3.1.jquery.min.js"></script>
+    <script src='../layer/layer.js'></script>
+  	<script src="../city/cityJson.js"></script>
+    <script src="../city/citySet.js"></script>
+    <script src="../city/Popt.js"></script>
+    <script charset="utf-8" src="../js/common/changeMenu.js"></script>
+    <script charset="utf-8" src="../js/common/baseProduct.js"></script>
+    <script charset="utf-8" src="../js/common/enumJson.js"></script>
+	<script charset="utf-8" type="text/javascript" src="../js/qiyezhongxin/file.js"></script>
+	<script type="text/javascript" src="../js/common/jquery.cxselect.js" ></script>
+	<script type="text/javascript" src="../js/common/jqPaginator.js" ></script>
+	<script type="text/javascript" src="../js/caogou/goodList.js" ></script>
+	<script>
+		layer.config({
+            extend: ['skin/myskin.css']//加载新皮肤
+        });
+	</script>
+</head>
+<body >
+<div class="window_css" style="width: 100%">
+    <script charset="utf-8" src="headsc.js"></script>
+</div>
+<div class="cmaosc_caidan window_css">
+    <div>
+      	戴尔(中国)有限公司
+    </div>
+    <div>
+      <ul id="ul_header">
+          <a href="javascript:void(0)" onclick="changeMenu2('1',this)"> <li class="active">企业中心</li></a>
+          <a href="javascript:void(0)" onclick="changeMenu2('2',this)"><li >物资采购</li></a>
+          <a href="javascript:void(0)" onclick="changeMenu2('3',this)"><li >产品销售</li></a>
+          <a href="javascript:void(0)" onclick="changeMenu2('4',this)"> <li >储运管理</li></a>
+          <a href="http://192.168.2.211:7080/"> <li >财务管理</li></a>
+      </ul>
+    </div>
+</div>
+<div class="cmao_cont window_css">
+    <!--主要菜单及对应选项-->
+    <div class="cmao_daohang">
+        <div class="cmao_daoleft">
+	      <div class="subNavBox" id="left">
+	      </div>
+	     </div>
+        <div class="cmao_daoright">
+         <div class="camo_rightbar" id="right">
+         </div>
+        </div>
+    </div>
+</div>
+<div align="center" id="footer" class="window_css" style="width: 100%">
+    <script src="index_foot.js"></script>
+</div>
+ <script type="text/javascript">
+    $(function() {
+    	changeMenu(qyzxmenu,'right','left');
+    	$('#right').load('../qiyezhongxin/qiyeguan.html');
+    });
+    function changeMenu2(type,_this){
+        switch (type){
+            case "1":
+                changeMenu(qyzxmenu,'right','left');
+                $('#right').load('../qiyezhongxin/qiyeguanlibak.html');
+                break;
+            case "2":
+                changeMenu(caigoumenu,'right','left');
+                $('#right').load('../caigou/c_wuzidating.html');
+                break;
+            case "3":
+                changeMenu(xiaoshoumenu,'right','left');
+                $('#right').load('../xiaoshou/xs_cpxsdt.html');
+                break;
+            case "4":
+                changeMenu(cyglmenu,'right','left');
+                $('#right').load('../chuyunguanli/yunshutiqi.html');
+                break;
+            case "5":
+                changeMenu(cwgl,'right','left');
+                $('#right').load('../caiwuguanli/sc_cwgl_blank.html');
+                break;
+        }
+	    $('#ul_header li.active').removeClass('active');
+        $(_this).children('li').addClass('active');
+    }
+    </script>
+</body>
+</html>

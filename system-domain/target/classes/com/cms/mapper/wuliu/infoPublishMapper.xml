@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.wuliu.InfoPublishMapper" >
+
+	<insert id="addHuoyuan" parameterType="com.cms.model.wuliu.HuoyuanBean">
+		insert into chppweb_huoyuan (id,goods_name,package_type,user_id,begin_province_id,begin_city_id,begin_area_id,end_province_id,end_city_id,end_area_id,
+		company_name,weight,offer,volume,info,create_time,invalid_time,state,tel,tel1,tel2,goods_img,link_man,begin_province_name,begin_city_name,begin_area_name,end_province_name,end_city_name,
+		end_area_name,garden,invalid_num,province_area_id,quote_region_id,weight_region_id,consignee_man,consignee_add,consignee_tel,consignee_tel1,consignee_tel2,goods_type_name,numbers) values (#{id},#{goodsName},#{packageType},#{userId},#{beginProvinceId},#{beginCityId},
+		#{beginAreaId},#{endProvinceId},#{endCityId},#{endAreaId},#{companyName},#{weight},#{offer},#{volume},#{info},#{createTime},DATE_ADD(now(),INTERVAL #{invalidNum} DAY),1,#{telCipher},#{tel1Cipher},#{tel2Cipher},
+		#{goodsImg},#{linkManCipher},#{beginProvinceName},#{beginCityName},#{beginAreaName},#{endProvinceName},#{endCityName},#{endAreaName},#{garden},#{invalidNum},#{provinceAreaId},#{quoteRegionId}
+		,#{weightRegionId},#{consigneeManCipher},#{consigneeAddCipher},#{consigneeTelCipher},#{consigneeTel1Cipher},#{consigneeTel2Cipher},#{goodsTypeName},#{numbers})
+	</insert>
+	
+	<insert id="addCheyuan" parameterType="com.cms.model.wuliu.CheyuanBean">
+		insert into chppweb_cheyuan (id,user_id,car_id,info,create_time,invalid_time,state,create_user,tel,tel1,tel2,car_img,link_man,
+		begin_province_id,begin_area_id,begin_city_id,end_province_id,end_area_id,end_city_id,begin_province_name,begin_city_name,begin_area_name,end_province_name,end_city_name,
+		end_area_name,car_no,car_owner,length,weight,volume,offer,invalid_num,car_axle_id,car_container_id,car_axle_name,car_container_name,province_area_id,quote_region_id,weight_region_id,
+		car_traffic_type_id,car_traffic_type_name,traffic_type,car_type_id,car_type_name) values (#{id},
+		#{userId},#{carId},#{info},#{createTime},DATE_ADD(now(),INTERVAL #{invalidNum} DAY),1,#{createUser},#{telCipher},#{tel1Cipher},#{tel2Cipher},
+		#{carImg},#{linkManCipher},#{beginProvinceId},#{beginAreaId},#{beginCityId},#{endProvinceId},#{endAreaId},#{endCityId},#{beginProvinceName},#{beginCityName}
+		,#{beginAreaName},#{endProvinceName},#{endCityName},#{endAreaName},#{carNo},#{carOwner},#{length},#{weight},#{volume},#{offer},#{invalidNum},#{car_axle_id},
+		#{car_container_id},#{car_axle_name},#{car_container_name},#{provinceAreaId},#{quoteRegionId},#{weightRegionId},
+		#{carTrafficTypeId},#{carTrafficTypeName},#{trafficType},#{carTypeId},#{carTypeName})
+	</insert>
+	
+	<select id="getHistoryList" parameterType="map" resultType="map">
+        <if test="type=='huoyuan'">
+            select 1 type,CONVERT(hy.id,char) id,hy.goods_img img,DATE_FORMAT(hy.create_time,'%Y-%m-%d %H:%i:%s') createTime,hy.package_type packageType,
+            dic.`name` packageTypeName,
+            CONCAT(
+            hy.`begin_province_name`,
+            hy.`begin_area_name`,
+            hy.`begin_city_name`
+            ) startWay,
+            CONCAT(
+            hy.`end_province_name`,
+            hy.`end_area_name`,
+            hy.`end_city_name`
+            ) endWay,
+            CONCAT(
+            hy.`begin_province_name`,
+            hy.`begin_area_name`,
+            hy.`begin_city_name`,
+            ' 至  ',
+            hy.`end_province_name`,
+            hy.`end_area_name`,
+            hy.`end_city_name`
+            ) way,hy.state,hy.info,'' carNo,hy.goods_name goodsName,hy.company_name companyName,hy.weight,hy.volume,'' carOwner,'' carLength,ifnull(hy.cheyuan_id,'') id2,
+            '' car_axle_name,'' car_container_name,
+            <!---->
+            <!--(select count(*) from chppweb_relation_ch rel where rel.huoyuan_id=hy.id and rel.huoyuan_state!=1 and rel.cheyuan_state=1) relcot,-->
+            <!--cy.car_no o_info,-->
+            <!--IFNULL(cy.id,'') o_id,-->
+            <!---->
+            hy.begin_province_id beginProvinceId,hy.begin_city_id beginCityId,hy.begin_area_id beginAreaId,hy.end_province_id endProvinceId,hy.end_city_id endCityId,
+            hy.end_area_id endAreaId,hy.create_time
+            from chppweb_huoyuan hy
+            LEFT JOIN t_sys_order_dic dic on hy.package_type=dic.id
+            <!---->
+            <!--
+            LEFT JOIN chppweb_cheyuan cy on hy.cheyuan_id=cy.id
+            -->
+            <!---->
+            where hy.user_id=#{userId} and hy.state!=4 order by hy.create_time desc limit 0,100
+        </if>
+        <if test="type=='cheyuan'">
+            select 2 type,CONVERT(cy.id,char) id,cy.car_img img,DATE_FORMAT(cy.create_time,'%Y-%m-%d %H:%i:%s') createTime,'' packageType,'' packageTypeName,
+            CONCAT(
+            cy.`begin_province_name`,
+            cy.`begin_area_name`,
+            cy.`begin_city_name`
+            ) startWay,
+            CONCAT(
+            cy.`end_province_name`,
+            cy.`end_area_name`,
+            cy.`end_city_name`
+            ) endWay,
+            CONCAT(
+            cy.`begin_province_name`,
+            cy.`begin_area_name`,
+            cy.`begin_city_name`,
+            ' 至  ',
+            cy.`end_province_name`,
+            cy.`end_area_name`,
+            cy.`end_city_name`
+            ) way,cy.state,cy.info,cy.car_no carNo,'' goodsName,'' companyName,cy.weight,cy.volume,cy.car_owner carOwner,cy.length carLength,ifnull(cy.huoyuan_id,'') id2,
+            cy.car_axle_name,cy.car_container_name,
+            <!---->
+            <!--(select count(*) from chppweb_relation_ch rel where rel.cheyuan_id=cy.id and rel.cheyuan_state!=1 and rel.huoyuan_state=1) relcot,-->
+            <!--IFNULL(hy.goods_name,'') o_info,-->
+            <!--IFNULL(hy.id,'') o_id,-->
+            <!---->
+            cy.begin_province_id beginProvinceId,cy.begin_city_id beginCityId,cy.begin_area_id beginAreaId,cy.end_province_id endProvinceId,cy.end_city_id endCityId,
+            cy.end_area_id endAreaId,cy.create_time
+            from chppweb_cheyuan cy
+            <!---->
+            <!--
+            LEFT JOIN chppweb_huoyuan hy on cy.huoyuan_id=hy.id
+            -->
+            <!---->
+            where cy.user_id=#{userId} order by cy.create_time desc limit 0,100
+        </if>
+	</select>
+	
+	<select id="getHistoryListCot" parameterType="map" resultType="map">
+        <!--暂停使用-->
+		<!--select count(*) from (select 1 type,hy.id,goods_img img,DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s') createTime,package_type packageType,dic.`name` packageTypeName,-->
+		<!--CONCAT(-->
+					<!--IFNULL(`begin_province_name`,''),-->
+					<!--IFNULL(`begin_area_name`,''),-->
+					<!--IFNULL(`begin_city_name`,''),-->
+					<!--' 至  ',-->
+					<!--IFNULL(`end_province_name`,''),-->
+					<!--IFNULL(`end_area_name`,''),-->
+					<!--IFNULL(`end_city_name`,'')-->
+				<!--) way,state,info,'' carNo,goods_name goodsName,company_name companyName,weight,volume,'' carOwner,'' carLength-->
+				<!--from chppweb_huoyuan hy INNER JOIN t_sys_order_dic dic on hy.package_type=dic.id where user_id=#{userId}-->
+
+		<!--UNION ALL-->
+
+		<!--select 2 type,id,car_img img,DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s') createTime,'' packageType,'' packageTypeName,-->
+		<!--CONCAT(-->
+					<!--IFNULL(`begin_province_name`,''),-->
+					<!--IFNULL(`begin_area_name`,''),-->
+					<!--IFNULL(`begin_city_name`,''),-->
+					<!--' 至  ',-->
+					<!--IFNULL(`end_province_name`,''),-->
+					<!--IFNULL(`end_area_name`,''),-->
+					<!--IFNULL(`end_city_name`,'')-->
+				<!--) way,state,info,car_no carNo,'' goodsName,'' companyName,weight,volume,car_owner carOwner,length carLength-->
+				<!--from chppweb_cheyuan where user_id=#{userId} ) a-->
+	</select>
+	
+	<update id="updateRePublish" parameterType="map">
+		<if test="type=='huoyuan'">
+			update chppweb_huoyuan set state=1,create_time=now(),invalid_time=DATE_ADD(now(),INTERVAL invalid_num DAY) where id=#{id}
+		</if>
+		<if test="type=='cheyuan'">
+			update chppweb_cheyuan set state=1,create_time=now(),invalid_time=DATE_ADD(now(),INTERVAL invalid_num DAY) where id=#{id}
+		</if>
+	</update>
+
+    <update id="updateconfirm" parameterType="map">
+        replace into chppweb_relation_ch (cheyuan_id,huoyuan_id,cheyuan_state,huoyuan_state) values (#{cheyuanId},#{huoyuanId},#{cheyuanState},#{huoyuanState})
+    </update>
+
+    <select id="showRelationList" parameterType="map" resultType="map">
+        <!--暂停使用-->
+        <!--<if test="type=='huoyuan'">-->
+            <!--select CONVERT(rel.huoyuan_id,char) huoyuanId,CONVERT(cy.id,char) cheyuanId,cy.info,cy.car_id carId,-->
+            <!--CONCAT(-->
+            <!--IFNULL(cy.`begin_province_name`,''),-->
+            <!--IFNULL(cy.`begin_area_name`,''),-->
+            <!--IFNULL(cy.`begin_city_name`,'')-->
+            <!--) startWay,-->
+            <!--CONCAT(-->
+            <!--IFNULL(cy.`end_province_name`,''),-->
+            <!--IFNULL(cy.`end_area_name`,''),-->
+            <!--IFNULL(cy.`end_city_name`,'')-->
+            <!--) endWay,-->
+            <!--CONCAT(-->
+            <!--IFNULL(cy.`begin_province_name`,''),-->
+            <!--IFNULL(cy.`begin_area_name`,''),-->
+            <!--IFNULL(cy.`begin_city_name`,''),-->
+            <!--' 至  ',-->
+            <!--IFNULL(cy.`end_province_name`,''),-->
+            <!--IFNULL(cy.`end_area_name`,''),-->
+            <!--IFNULL(cy.`end_city_name`,'')-->
+            <!--) way,cy.car_no carNo,DATE_FORMAT(cy.create_time,'%Y-%m-%d %H:%i:%s') as createTime,-->
+            <!--rel.huoyuan_state huoyuanState,rel.cheyuan_state cheyuanState-->
+            <!--from chppweb_relation_ch rel LEFT JOIN chppweb_cheyuan cy on rel.cheyuan_id=cy.id-->
+            <!--where rel.huoyuan_id=#{id}-->
+        <!--</if>-->
+        <!--<if test="type=='cheyuan'">-->
+            <!--select CONVERT(rel.cheyuan_id,char) cheyuanId,CONVERT(hy.id,char) huoyuanId,cy.car_id carId,-->
+            <!--CONCAT(-->
+            <!--IFNULL(hy.`begin_province_name`,''),-->
+            <!--IFNULL(hy.`begin_area_name`,''),-->
+            <!--IFNULL(hy.`begin_city_name`,'')-->
+            <!--) startWay,-->
+            <!--CONCAT(-->
+            <!--IFNULL(hy.`end_province_name`,''),-->
+            <!--IFNULL(hy.`end_area_name`,''),-->
+            <!--IFNULL(hy.`end_city_name`,'')-->
+            <!--) endWay,-->
+            <!--CONCAT(-->
+            <!--IFNULL(hy.`begin_province_name`,''),-->
+            <!--IFNULL(hy.`begin_area_name`,''),-->
+            <!--IFNULL(hy.`begin_city_name`,''),-->
+            <!--' 至  ',-->
+            <!--IFNULL(hy.`end_province_name`,''),-->
+            <!--IFNULL(hy.`end_area_name`,''),-->
+            <!--IFNULL(hy.`end_city_name`,'')-->
+            <!--) way,hy.info,hy.garden,DATE_FORMAT(hy.create_time,'%Y-%m-%d %H:%i:%s') createTime,-->
+            <!--rel.huoyuan_state huoyuanState,rel.cheyuan_state cheyuanState-->
+            <!--from chppweb_relation_ch rel LEFT JOIN chppweb_huoyuan hy on rel.huoyuan_id=hy.id-->
+            <!--LEFT JOIN chppweb_cheyuan cy on rel.cheyuan_id=cy.id-->
+            <!--where rel.cheyuan_id=#{id}-->
+        <!--</if>-->
+    </select>
+
+    <update id="updateHuoyuanCheyuanId" parameterType="map">
+        update chppweb_huoyuan set cheyuan_id=#{cheyuanId},state=3 where id=#{huoyuanId}
+    </update>
+
+    <update id="updateCheyuanHuoyuanId" parameterType="map">
+        update chppweb_cheyuan set huoyuan_id=#{huoyuanId},state=3 where id=#{cheyuanId}
+    </update>
+    
+    <delete id="delInfo" parameterType="map">
+        <if test="type=='huoyuan'">
+            delete from chppweb_huoyuan where id=#{id}
+        </if>
+        <if test="type=='cheyuan'">
+            delete from chppweb_cheyuan where id=#{id}
+        </if>
+    </delete>
+
+    <insert id="saveAddress" parameterType="map">
+        <if test="infoType==1">
+            insert into chppweb_huoyuan_commonuseadd (id,user_id,company_id
+            <if test="beginProvinceId!=null and beginProvinceId!=''">
+                ,begin_province_id,begin_province_name
+            </if>
+            <if test="beginAreaId!=null and beginAreaId!=''">
+                ,begin_area_id,begin_area_name
+            </if>
+            <if test="beginCityId!=null and beginCityId!=''">
+                ,begin_city_id,begin_city_name
+            </if>
+            <if test="endProvinceId!=null and endProvinceId!=''">
+                ,end_province_id,end_province_name
+            </if>
+            <if test="endAreaId!=null and endAreaId!=''">
+                ,end_area_id,end_area_name
+            </if>
+            <if test="endCityId!=null and endCityId!=''">
+                ,end_city_id,end_city_name
+            </if>
+            ,province_area_id,main_tag) values (#{id},#{userId},#{companyId}
+            <if test="beginProvinceId!=null and beginProvinceId!=''">
+                ,#{beginProvinceId},#{beginProvinceName}
+            </if>
+            <if test="beginAreaId!=null and beginAreaId!=''">
+                ,#{beginAreaId},#{beginAreaName}
+            </if>
+            <if test="beginCityId!=null and beginCityId!=''">
+                ,#{beginCityId},#{beginCityName}
+            </if>
+            <if test="endProvinceId!=null and endProvinceId!=''">
+                ,#{endProvinceId},#{endProvinceName}
+            </if>
+            <if test="endAreaId!=null and endAreaId!=''">
+                ,#{endAreaId},#{endAreaName}
+            </if>
+            <if test="endCityId!=null and endCityId!=''">
+                ,#{endCityId},#{endCityName}
+            </if>
+            ,#{provinceAreaId},1)
+        </if>
+        <if test="infoType==2">
+            insert into chppweb_cheyuan_commonuseadd (id,user_id,car_id
+            <if test="beginProvinceId!=null and beginProvinceId!=''">
+                ,begin_province_id,begin_province_name
+            </if>
+            <if test="beginAreaId!=null and beginAreaId!=''">
+                ,begin_area_id,begin_area_name
+            </if>
+            <if test="beginCityId!=null and beginCityId!=''">
+                ,begin_city_id,begin_city_name
+            </if>
+            <if test="endProvinceId!=null and endProvinceId!=''">
+                ,end_province_id,end_province_name
+            </if>
+            <if test="endAreaId!=null and endAreaId!=''">
+                ,end_area_id,end_area_name
+            </if>
+            <if test="endCityId!=null and endCityId!=''">
+                ,end_city_id,end_city_name
+            </if>
+            ,province_area_id,main_tag) values (#{id},#{userId},#{carId}
+            <if test="beginProvinceId!=null and beginProvinceId!=''">
+                ,#{beginProvinceId},#{beginProvinceName}
+            </if>
+            <if test="beginAreaId!=null and beginAreaId!=''">
+                ,#{beginAreaId},#{beginAreaName}
+            </if>
+            <if test="beginCityId!=null and beginCityId!=''">
+                ,#{beginCityId},#{beginCityName}
+            </if>
+            <if test="endProvinceId!=null and endProvinceId!=''">
+                ,#{endProvinceId},#{endProvinceName}
+            </if>
+            <if test="endAreaId!=null and endAreaId!=''">
+                ,#{endAreaId},#{endAreaName}
+            </if>
+            <if test="endCityId!=null and endCityId!=''">
+                ,#{endCityId},#{endCityName}
+            </if>
+            ,#{provinceAreaId},#{mainTag})
+        </if>
+    </insert>
+
+    <select id="getUserAddress" parameterType="map" resultType="map">
+        <if test="infoType==1">
+            select CONVERT(id,char) id,
+            province_area_id provinceAreaId,
+            begin_province_id beginProvinceId,
+            begin_area_id beginAreaId,
+            begin_city_id beginCityId,
+            end_province_id endProvinceId,
+            end_area_id endAreaId,
+            end_city_id endCityId,
+            CONCAT(
+            `begin_province_name`,
+            IF (ifnull(`begin_area_name`,'') = '','',CONCAT('-', `begin_area_name`)),
+            IF (ifnull(`begin_city_name`,'') = '','',CONCAT('-', `begin_city_name`))
+            ) startWayName,
+            CONCAT(
+            `end_province_name`,
+            if (ifnull(`end_area_name`,'')='','',CONCAT('-',`end_area_name`)),
+            if (ifnull(`end_city_name`,'')='','',CONCAT('-',`end_city_name`))
+            ) endWayName
+            from chppweb_huoyuan_commonuseadd where company_id=#{companyId}
+        </if>
+        <if test="infoType==2">
+            select CONVERT(id,char) id,
+            province_area_id provinceAreaId,
+            begin_province_id beginProvinceId,
+            begin_area_id beginAreaId,
+            begin_city_id beginCityId,
+            end_province_id endProvinceId,
+            end_area_id endAreaId,
+            end_city_id endCityId,
+            CONCAT(
+            `begin_province_name`,
+            IF (ifnull(`begin_area_name`,'') = '','',CONCAT('-', `begin_area_name`)),
+            IF (ifnull(`begin_city_name`,'') = '','',CONCAT('-', `begin_city_name`))
+            ) startWayName,
+            CONCAT(
+            `end_province_name`,
+            if (ifnull(`end_area_name`,'') ='','',CONCAT('-',`end_area_name`)),
+            if (ifnull(`end_city_name`,'') ='','',CONCAT('-',`end_city_name`))
+            ) endWayName
+            from chppweb_cheyuan_commonuseadd where car_id=#{carId}
+        </if>
+    </select>
+
+    <delete id="deleteAdd" parameterType="map">
+        <if test="infoType==1">
+            delete from chppweb_huoyuan_commonuseadd where id=#{id}
+        </if>
+        <if test="infoType==2">
+            delete from chppweb_cheyuan_commonuseadd where id=#{id}
+        </if>
+    </delete>
+
+    <update id="updatePlatformLogistics" parameterType="map">
+        update chppweb_huoyuan set state=4 where id=#{id}
+    </update>
+
+    <select id="getMainLine" parameterType="map" resultType="map">
+        select * from chppweb_cheyuan_commonuseadd where car_id=#{id}
+        <if test="mainTag!=null and mainTag!=''">
+            and main_tag=#{mainTag}
+        </if>
+    </select>
+
+    <select id="getLastCheyuanCot" parameterType="map" resultType="integer">
+        select count(*) from (select id,invalid_time from chppweb_cheyuan where user_id=#{userId} and car_id=#{carId} ORDER BY create_time DESC LIMIT 0,1) a
+        where NOW()>=a.invalid_time
+    </select>
+    <select id="getLastCheyuanCot2" parameterType="map" resultType="integer">
+     select count(1) from chppweb_cheyuan where user_id=#{userId} and car_id=#{carId} 
+    </select>
+</mapper>

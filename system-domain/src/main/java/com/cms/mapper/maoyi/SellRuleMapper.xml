@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.maoyi.SellRuleMapper">
+	<resultMap id="sellRuleResultMap" type="com.cms.model.maoyi.CmsSellRule">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="mainProductId" property="mainProductId"
+			jdbcType="VARCHAR" />
+		<result column="updateTime" property="updateTime" jdbcType="VARCHAR" />
+		<result column="updator" property="updator" jdbcType="VARCHAR" />
+		<result column="sellType" property="sellType" jdbcType="INTEGER" />
+		<result column="payType" property="payType" jdbcType="INTEGER" />
+		<result column="deposit" property="deposit" jdbcType="DECIMAL" />
+		<result column="produceDutyExplain" property="produceDutyExplain"
+			jdbcType="VARCHAR" />
+		<result column="traderDutyExplain" property="traderDutyExplain"
+			jdbcType="VARCHAR" />
+		<result column="aftermarketExplain" property="aftermarketExplain"
+			jdbcType="VARCHAR" />
+		<collection property="productSellArea"  javaType="list"   ofType="com.cms.model.maoyi.CmsSellRuleArea"    resultMap="com.cms.mapper.maoyi.SellRuleAreaMapper.ruleAreaResultMap"/>
+		<collection property="productPrice"  javaType="list"   ofType="com.cms.model.maoyi.CmsPrice"    resultMap="com.cms.mapper.maoyi.PriceMapper.priceResultMap"/>
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, mainProductId, updateTime ,updator,sellType, payType, deposit,
+		produceDutyExplain,
+		traderDutyExplain, aftermarketExplain
+	</sql>
+	<select id="getSellRuleByGoodsId" resultMap="sellRuleResultMap"
+		parameterType="java.lang.String">
+		select s.id,s.mainProductId,s.sellType,s.payType,s.deposit,s.produceDutyExplain,
+		s.traderDutyExplain,s.aftermarketExplain,a.aid,a.productSellRuleId,a.provinceId,
+		a.provinceName,a.cityId,a.cityName,a.areaId,a.areaName,
+		p.priceId,p.productId,p.productCode,p.productSellRuleId,p.price,p.type from cms_product_t_sell_rule s
+		left join cms_product_t_rule_area a on s.id=a.productSellRuleId
+		left join cms_product_t_price p on s.id=p.productSellRuleId
+		where s.mainProductId = #{goodsId}
+	</select>
+	<!-- <insert id="insert" parameterType="com.cms.model.maoyi.CmsSellRule" 
+		> insert into cms_product_t_sell_rule(id, mainProductId, updateTime ,updator,sellType, 
+		payType, deposit, produceDutyExplain, traderDutyExplain, aftermarketExplain, 
+		productSellArea) values (#{id},#{mainProductId},#{updateTime},#{updator},#{sellType},#{payType},#{deposit},#{produceDutyExplain}, 
+		#{traderDutyExplain},#{aftermarketExplain},#{productSellArea) </insert> -->
+	<insert id="insert" parameterType="java.util.List">
+		replace into cms_product_t_sell_rule(id, mainProductId, updateTime
+		,updator,sellType, payType, deposit, produceDutyExplain,
+		traderDutyExplain, aftermarketExplain) values
+		<foreach collection="list" item="sellRule" index="index"
+			separator=",">
+			(#{sellRule.id},#{sellRule.mainProductId},#{sellRule.updateTime},#{sellRule.updator},#{sellRule.sellType},#{sellRule.payType},#{sellRule.deposit},#{sellRule.produceDutyExplain},
+			#{sellRule.traderDutyExplain},#{sellRule.aftermarketExplain})
+		</foreach>
+	</insert>
+</mapper>

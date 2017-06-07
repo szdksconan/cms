@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.cms.mapper.userCenter.SysUserSingelInfoMapper">
+	<insert id="insert" parameterType="com.cms.model.userCenter.SysUserSingelInfo" >
+		insert into sys_user_singel_info 
+		(pid,uid,profile_image,birthday,blood_type,native_place,income_level,degree,religion,personal_page,hobby,self_evaluation)
+		values(#{pid},#{uid},#{profileImage},#{birthday},#{bloodType},
+		#{nativePlace},#{incomeLevel},#{degree},#{religion},#{personalPage},#{hobby},#{selfEvaluation})
+	</insert>
+	<update id="update" parameterType="com.cms.model.userCenter.SysUserSingelInfo">
+		update sys_user_singel_info set uid=#{uid},
+		birthday=#{birthday},blood_type=#{bloodType},native_place=#{nativePlace},income_level=#{incomeLevel},
+		degree=#{degree},religion=#{religion},personal_page=#{personalPage},hobby=#{hobby},self_evaluation=#{selfEvaluation}
+		where pid=#{pid}
+	</update>
+	<delete id="delete" parameterType="long">
+		delete from sys_user_singel_info where pid = #{pid}
+	</delete>
+
+	<!-- 这儿需要配置关联表的查询信息 , 使用的时候在来进行配置-->
+	<select id="get" parameterType="long" resultType="map">
+		select * from sys_user_singel_info where uid=#{uid}
+	</select>
+	<!-- 在进行基本信息的修改时数据库中缺少邮编,传真两个字段 -->
+	<update id="updateBasicInfoPer" parameterType="com.cms.model.userCenter.SysUser">
+		update sys_user set realname=#{realname},sex=#{sex},tel=#{tel},visible_status=#{visibleStatus},
+		company_address_province=#{companyAddressProvince},company_address_city=#{companyAddressCity}
+		,company_address_county=#{companyAddressCounty},company_address_detail=#{companyAddressDetail},fax=#{fax},postcode=#{postcode}
+		 where uid=#{uid}
+	</update>
+	<update id="updatePhone" parameterType="com.cms.model.userCenter.SysUser">
+		update sys_user set phone=#{phone} where uid=#{uid}
+	</update>
+
+	<!-- 获得系统用户信息 -->
+	<select id="getSysUser" parameterType="long" resultType="map">
+		select * from sys_user where uid=#{uid}
+	</select>
+	<!-- 修改系统用户的邮箱 -->
+	<update id="updateEmail" parameterType="com.cms.model.userCenter.SysUser">
+		update sys_user set email=#{email} where uid=#{uid}
+	</update>
+	<!-- 修改头像的地址 -->
+	<update id="updateImgPath" parameterType="com.alibaba.fastjson.JSONObject">
+		update sys_user_singel_info set profile_image =#{profileImage} where uid=#{uid}
+	</update>
+
+</mapper>	

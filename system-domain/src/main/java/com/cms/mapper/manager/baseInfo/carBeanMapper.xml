@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.manager.baseInfo.carMapper" >
+ 	<sql id="CAR-PARAM">
+		    car.car_no as carNo,
+		    car.car_owner as carOwner,
+		    car.car_tel as carTel,
+		    car.car_length as carLength,
+		    car.car_weigth as carWeigth,
+		    car.car_volume as carVolume,
+		    car.car_location_tag as carLocationTag,
+		    car.car_traffic_type as carTrafficType
+	</sql>
+	
+	<select id="dataGrid" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.wuliu.CarBean">
+	  select <include refid="CAR-PARAM"/> from t_sys_car car where 1=1
+	  	<if test="carLocationTag!=null and carLocationTag!=''">
+	  		and car.car_location_tag=#{carLocationTag}
+	  	</if>
+	    <if test="order!=null and order!=''">
+	        ${order}
+	    </if>
+	</select>
+	
+	<select id="dataGridCot" parameterType="com.alibaba.fastjson.JSONObject" resultType="int">
+	  select count(1) from t_sys_car car where 1=1
+	  	<if test="carLocationTag!=null and carLocationTag!=''">
+	  		and car.car_location_tag=#{carLocationTag}
+	  	</if>
+	</select>
+	
+	<select id="dataGrid2" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.wuliu.CarBean">
+	  select <include refid="CAR-PARAM"/> from t_sys_company_car cc INNER JOIN t_sys_car car on cc.car_id=car.car_no where 1=1 
+	  	<if test="companyId!=null and companyId!=''">
+	  		and cc.company_id=#{companyId}
+	  	</if>
+	  	<if test="carLocationTag!=null and carLocationTag!=''">
+	  		and car.car_location_tag=#{carLocationTag}
+	  	</if>
+	    <if test="order!=null and order!=''">
+	        ${order}
+	    </if>
+	</select>
+
+		
+	<insert id="add" parameterType="com.cms.model.wuliu.CarBean">
+	    insert into t_sys_car (  car_no,car_owner,car_tel,car_type,car_length,car_weigth,car_volume,
+  								car_card,car_card_url,car_card2,car_card2_url,car_card3,car_card3_url,
+  								car_card4,car_card4_url,car_pic_url,car_address,car_axle,car_container,
+  								car_line_desc,car_location_tag,car_address2,car_tel2,car_traffic_type,
+  								update_user,update_system,car_longitude,car_latitude,car_location_time) 
+  								values (
+							     #{carNo},#{carOwner},#{carTel},#{carType},#{carLength},#{carWeigth},#{carVolume},
+							   #{carCard},#{carCardUrl},#{carCard2},#{carCard2Url},#{carCard3},#{carCard3Url},	
+							   #{carCard4},#{carCard4Url},#{carPicUrl},#{carAddress},#{carAxle},#{carContainer},	
+							   #{carLineDesc},#{carLocationTag},#{carAddress2},#{carTel2},#{carTrafficType},
+							   #{updateUser},#{updateSystem},#{carLongitude},#{carLatitude},#{carLocationTime})
+	</insert>
+	
+	
+	<select id="dataGrid3" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.wuliu.CarBean">
+	  select <include refid="CAR-PARAM"/> ,car_longitude as carLongitude, car_latitude as carLatitude from t_sys_car car where 1=1
+
+	</select>
+	
+</mapper>

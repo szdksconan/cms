@@ -1,0 +1,340 @@
+<!--<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>-->
+<html>
+<head>
+    <title>采购意向</title>
+    <meta charset="utf-8">
+</head>
+<div class="bei">
+    <table class="-querytable" id="queryTable">
+        <tr>
+            <td align="right">物资类别：</td>
+            <td id="wzlb-grup">
+                <div id="element_id"> 
+				  <select class="materials1 selelct" name="productTypeId"></select>
+				  <select class="materials2 selelct" name="productTypeId"></select>
+				  <select class="materials3 selelct" name="productTypeId"></select>
+				  <select class="materials4 selelct" name="productTypeId"></select>
+				</div>
+            </td>
+            <td align="right">采购数量：</td>
+            <td>
+                <input type="text" class="cmao_input" id="count" value=""/>
+                <div id="unitDiv2" style="display: inline-block">
+                    <select class="unitSelect select" id="unitId2"></select>
+                </div>
+            </td>
+            <td align="right">意向类型：</td>
+            <td>
+                <select id="intentType"></select>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">采购金额：</td>
+            <td>
+                <input type="text" class="cmao_input" id="price1" value=""/> 至 <input type="text" class="cmao_input" id="price2" value=""/>万元
+            </td>
+            <td align="right">主要规格型号：</td>
+            <td>
+                <input type="text" class="cmao_input" id="productModelSize" value=""/>
+            </td>
+            <td align="right">物资来源：</td>
+            <td>
+                <input type="text" class="cmao_input" city="true" id="sourceId" readonly/>
+            </td>
+        </tr>
+    </table>
+<div style="margin-left: 12px">
+	<p>&nbsp;</p>
+    <div id="toolbar" style="width: 100%">
+        <table style="width: 100%">
+            <tr>
+                <td align="left">
+                    <button id="btn_add" class="btn btn-blue btn-w150" type="button">新增采购意向</button>
+                </td>
+                <td align="right">
+                    <button class="btn btn-blue btn-w100" type="button" id="btn_query">查询</button>
+                    <button class="btn btn-darkgray btn-w100" type="button">清空</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <table id="table">
+    </table>
+</div>
+<div id="content" style="display: none;"></div>
+<script>
+    var intentObj={};
+    $("input[city=true]#sourceId").click(function (e) {
+        SelCity(this,e);
+    });
+    var date=new Date;
+    var month=date.getMonth()+1;
+    var year=date.getFullYear();
+    var options=new Array;
+    if (month<=6){
+        options.push({label:year+'年上半年',value:1});
+        options.push({label:year+'年第1季度',value:2});
+        options.push({label:year+'年第2季度',value:3});
+        options.push({label:year+'年下半年',value:4});
+        options.push({label:year+'年第3季度',value:5});
+        options.push({label:year+'年第4季度',value:6});
+    }else {
+        options.push({label:year+'年下半年',value:7});
+        options.push({label:year+'年第3季度',value:8});
+        options.push({label:year+'年第4季度',value:9});
+        options.push({label:year+1+'年上半年',value:10});
+        options.push({label:year+1+'年第1季度',value:11});
+        options.push({label:year+1+'年第2季度',value:12});
+    }
+    $('#intentType').multiselect('dataprovider', options);
+    //物资类别
+    $.cxSelect.defaults.emptyStyle = 'none';
+    $("#element_id").cxSelect({
+		url:'../js/common/productJson.json',
+		selects : ['materials1','materials2','materials3','materials4'],
+		nodata: 'none'
+	});
+</script>
+<script>
+    $('#unitDiv2').cxSelect({
+        data:_zNodes,
+        selects:['unitSelect']
+    });
+
+  	$('#btn_add').click(function(){
+        intentObj={};
+        layer.open({
+            title:[' 新增采购意向','font-size:18pt;text-align:center'],
+            skin: 'layui-layer-cms',
+            closeBtn:2,
+            offset: 'center', //右下角弹出
+            type: 1,
+            area: ['670px','400px'],//[width,height]
+            content:$('#content').load('../caigou/sc_yixiang_add.html'),
+            btn:['发布','取消'],
+            yes:function(index,layero){
+                var sourceId='';
+                var sourceName='';
+                var productTypeName='';
+                $('#wzyxForm #_areas .rule-tip').each(function(e){
+                    sourceId+=$(this).attr('data-id')+',';
+                    sourceName+=$(this).attr('value')+',';
+                });
+                $('#wzyxForm select[name=productTypeId]').each(function(e){
+                    if ($('#'+$(this).attr('id')+' option:selected').val()!=null&&$('#'+$(this).attr('id')+' option:selected').val()!=''){
+                        productTypeName+=$('#'+$(this).attr('id')+' option:selected').text()+',';
+                    }
+                });
+                sourceId=sourceId.length>0?sourceId.substr(0,sourceId.length-1):sourceId;
+                sourceName=sourceName.length>0?sourceName.substr(0,sourceName.length-1):sourceName;
+                productTypeName=productTypeName.length>0?productTypeName.substr(0,productTypeName.length-1):productTypeName;
+                $('#wzyxForm #intentType').val($('#wzyxForm #intentTypeId option:selected').text());
+                $('#wzyxForm #endTime').val($('#wzyxForm #intentTypeId option:selected').attr('data'));
+                $('#wzyxForm #sourceId').val(sourceId);
+                $('#wzyxForm #sourceName').val(sourceName);
+                $('#wzyxForm #productTypeName').val(productTypeName);
+                $('#wzyxForm #unitName').val($('#wzyxForm #unitId option:selected').text());
+                var options={
+                    url:'../purchaseIntent/savePurchaseIntent',
+                    type:'post',
+                    dataType:'json',
+                    success:function(data){
+                        closeLoading();
+                        if (data.success){
+                            layer.msg(data.msg, {icon: 1});
+                            layer.close(index);
+                            changeContent('../caigou/c_yixiang.html','right');
+                        }else {
+                            layer.msg(data.msg, {icon: 2});
+                        }
+                    }
+                };
+                loading();
+                $('#wzyxForm').ajaxSubmit(options);
+            },
+            no:function(index,layero){
+                layer.close(index);
+            }
+        });
+    });
+
+    $('#table').bootstrapTable({
+        url:'../purchaseIntent/getPurchaseIntentList',//请求后台的URL（*）
+        dataType:'json',
+        toolbar: '#toolbar',
+        toolbarWidth:'100%',
+        pagination: true,//是否显示分页
+        contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+        queryParamsType:'limit',
+        sortOrder:'desc',
+        queryParams:function(params){
+//            var productTypeId='';
+//            $('select[name^=productTypeId]').each(function(){
+//                productTypeId+=$(this).val()+',';
+//            });
+            return {
+                pageSize: params.limit,
+                sort:'createTime',
+                order:params.order,
+                pageNumber: params.pageNumber
+//                productTypeId:productTypeId.length>0?productTypeId.substr(0,productTypeId.length-1):''
+            };
+        },
+        sidePagination: "server",//分页方式：client客户端分页，server服务端分页
+        pageNumber:1,//初始化加载第一页，默认第一页
+        pageSize: 10, //每页的记录行数
+        pageList: [10, 20],//可供选择的每页的行数
+        uniqueId: "id",//每一行的唯一标识，一般为主键列
+        columns: [{
+                  field: 'Number',
+                  title: '序号',
+                  formatter: function (value, row, index) {
+                      return index+1;
+                  }
+            },{
+                title : '物资类别',
+                width : '200px',
+                field : 'productTypeName',
+                formatter:function(value,row){
+                    var _array = value.split(',');
+                    return _array.length==0?'':_array[_array.length-1];
+                }
+            },{
+                title : '规格型号',
+                field : 'productModelSize'
+            },{
+                title : '数量',
+                field : 'count',
+                formatter:function(value,row,index){
+                    return (value?value+row.unitName:'');
+                }
+            },{
+                title : '采购金额',
+                field : 'price',
+                formatter: function (value,row,index) {
+                    return (value?value+'万元':'');
+                }
+            },{
+                title : '意向类型',
+                field : 'intentType'
+            },{
+                title : '发布时间',
+                field : 'createTime'
+            },{
+                title : '物资来源地',
+                width : '150px',
+                field : 'sourceName'
+            },{
+                title: '操作',
+                field : 'action',
+                formatter: function (value, row, index) {
+                    return $.formatString('<a class="a_css" href="javascript:void(0)" onclick="updatePage(\'{0}\')">编辑</a> | ' +
+                    '<a class="a_css" href="javascript:void(0)" onclick="delPurchaseIntent(\'{1}\')">删除</a>',row.id,row.id);
+                }
+        }]
+    });
+
+    function updatePage(id){
+        intentObj=$('#table').bootstrapTable('getRowByUniqueId',id);
+        layer.open({
+            title:[' 编辑采购意向','font-size:18pt;text-align:center'],
+            skin: 'layui-layer-cms',
+            closeBtn:2,
+            offset: 'center', //右下角弹出
+            type: 1,
+            area: ['670px','400px'],//[width,height]
+            content:$('#content').load('../caigou/sc_yixiang_add.html'),
+            btn:['发布','取消'],
+            yes:function(index,layero){
+                var sourceId='';
+                var sourceName='';
+                var productTypeName='';
+                $('#wzyxForm #_areas .rule-tip').each(function(e){
+                    sourceId+=$(this).attr('data-id')+',';
+                    sourceName+=$(this).attr('value')+',';
+                });
+                $('#wzyxForm select[name=productTypeId]').each(function(e){
+                    if ($('#'+$(this).attr('id')+' option:selected').val()!=null&&$('#'+$(this).attr('id')+' option:selected').val()!=''){
+                        productTypeName+=$('#'+$(this).attr('id')+' option:selected').text()+',';
+                    }
+                });
+                sourceId=sourceId.length>0?sourceId.substr(0,sourceId.length-1):sourceId;
+                sourceName=sourceName.length>0?sourceName.substr(0,sourceName.length-1):sourceName;
+                productTypeName=productTypeName.length>0?productTypeName.substr(0,productTypeName.length-1):productTypeName;
+                $('#wzyxForm #intentType').val($('#wzyxForm #intentTypeId option:selected').text());
+                $('#wzyxForm #endTime').val($('#wzyxForm #intentTypeId option:selected').attr('data'));
+                $('#wzyxForm #sourceId').val(sourceId);
+                $('#wzyxForm #sourceName').val(sourceName);
+                $('#wzyxForm #productTypeName').val(productTypeName);
+                $('#wzyxForm #unitName').val($('#wzyxForm #unitId option:selected').text());
+                var options={
+                    url:'../purchaseIntent/savePurchaseIntent',
+                    type:'post',
+                    dataType:'json',
+                    success:function(data){
+                        closeLoading();
+                        if (data.success){
+                            layer.msg(data.msg, {icon: 1});
+                            layer.close(index);
+                            changeContent('../caigou/c_yixiang.html','right');
+                        }else {
+                            layer.msg(data.msg, {icon: 2});
+                        }
+                    }
+                };
+                loading();
+                $('#wzyxForm').ajaxSubmit(options);
+            },
+            no:function(index,layero){
+                layer.close(index);
+            }
+        });
+    }
+
+    function delPurchaseIntent(id){
+        layer.confirm('您确定要删除这条数据？',{btn:['是','否']},function(){
+            $.ajaxLoad({
+                url:'../purchaseIntent/delPurchaseIntent',
+                data:{
+                    id:id
+                },
+                success:function(data){
+                    if (data.success){
+                        layer.msg(data.msg, {icon: 1});
+                        $('#table').bootstrapTable('load',data.data);
+                    }else {
+                        layer.msg(data.msg, {icon: 2});
+                    }
+                }
+            });
+        });
+    }
+
+    $('#btn_query').click(function(){
+        var productTypeId='';
+        $('#queryTable select[name^=productTypeId]').each(function(){
+            if ($(this).val()!=''&&$(this).val()!=null){
+                productTypeId+=$(this).val()+',';
+            }
+        });
+        $.ajaxLoad({
+            url:'../purchaseIntent/getPurchaseIntentList',
+            data:{
+                count:$('#count').val(),
+                price1:$('#price1').val(),
+                price2:$('#price2').val(),
+                unitId:$('#unitId').val(),
+                intentType:$('#intentType option:selected').attr('label'),
+                productModelSize:$('#productModelSize').val(),
+                productTypeId:productTypeId.length>0?productTypeId.substr(0,productTypeId.length-1):'',
+                sourceId:$('#sourceId').attr('data-id'),
+                sourceName:$('#sourceId').val()
+            },
+            success:function(data){
+                $('#table').bootstrapTable('load',data);
+            }
+        });
+    });
+</script>
+</div>
+</html>

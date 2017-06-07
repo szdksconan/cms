@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.maoyi.ProductCenterMapper" >
+  <resultMap id="productCenterRMap" type="com.cms.model.maoyi.CmsProduct" >
+    <id column="productId" property="productId" jdbcType="INTEGER" />
+    <result column="enterpriceId" property="enterpriceId" jdbcType="VARCHAR" />
+    <result column="enterpriceName" property="enterpriceName" jdbcType="VARCHAR" />
+    <result column="oemId" property="oemId" jdbcType="VARCHAR" />
+    <result column="oemName" property="oemName" jdbcType="VARCHAR" />
+    <result column="goodsId" property="goodsId" jdbcType="VARCHAR" />
+    <result column="kindId" property="kindId" jdbcType="VARCHAR" />
+    <result column="kindName" property="kindName" jdbcType="VARCHAR" />
+    <result column="brandId" property="brandId" jdbcType="VARCHAR" />
+    <result column="brandName" property="brandName" jdbcType="VARCHAR" />
+    <result column="productCode" property="productCode" jdbcType="VARCHAR" />
+    <result column="productNameCn" property="productNameCn" jdbcType="VARCHAR" />
+    <result column="productNameEn" property="productNameEn" jdbcType="VARCHAR" />
+    <result column="productPlace" property="productPlace" jdbcType="VARCHAR" />
+    <result column="productIntroduction" property="productIntroduction" jdbcType="VARCHAR" />
+    <result column="productPrice" property="productPrice" jdbcType="DECIMAL" />
+    <result column="productSales" property="productSales" jdbcType="INTEGER" />
+    <result column="productStatus" property="productStatus" jdbcType="INTEGER" />
+    <result column="productClicks" property="productClicks" jdbcType="INTEGER" />
+    <result column="productMainImg" property="productMainImg" jdbcType="VARCHAR" />
+    <result column="productReleaseTime" property="productReleaseTime" jdbcType="TIMESTAMP" />
+    <result column="productCreateTime" property="productCreateTime" jdbcType="TIMESTAMP" />
+    <result column="productPromulgator" property="productPromulgator" jdbcType="INTEGER" />
+    <result column="productCreator" property="productCreator" jdbcType="VARCHAR" />
+    <result column="productDetail" property="productDetail" jdbcType="VARCHAR" />
+    <result column="productPackageSize" property="productPackageSize" jdbcType="VARCHAR" />
+    <result column="productGW" property="productGW" jdbcType="INTEGER" />
+    <result column="productBarCode" property="productBarCode" jdbcType="VARCHAR" />
+    <result column="productTotalStock" property="productTotalStock" jdbcType="INTEGER" />
+    <result column="StockAddress" property="stockAddress" jdbcType="VARCHAR" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="record_state" property="recordState" jdbcType="INTEGER" />
+    <result column="listedTime" property="listedTime" jdbcType="DATE" />
+    <result column="comeFrom" property="comeFrom" jdbcType="DATE" />
+    <result column="isFamousBrand" property="isFamousBrand" jdbcType="INTEGER"/>
+    <!-- <collection property="cmsProductPoint"  javaType="ArrayList"    ofType="com.cms.model.maoyi.CmsProductPoint"   	resultMap="com.cms.mapper.maoyi.ProductPointMapper.productPointResultMap"/> -->
+    <collection property="cmsAttrVal"  javaType="ArrayList"   ofType="com.cms.model.maoyi.CmsAttrVal"    resultMap="com.cms.mapper.maoyi.ProductAttrValueMapper.attrValueResultMap"/>
+    <collection property="cmsImages"  javaType="ArrayList"    ofType="com.cms.model.maoyi.CmsImages"   	resultMap="com.cms.mapper.maoyi.ImagesMapper.imgResultMap"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    productId,enterpriceId,enterpriceName,oemId,oemName,goodsId,kindId,kindName,brandId,brandName,
+    productCode,productNameCn,productNameEn,
+    productPlace,productIntroduction,productPrice,productSales,productStatus,productClicks,productMainImg,
+    productReleaseTime,productCreateTime,productPromulgator,productCreator,productDetail,productPackageSize,
+    productGW,productBarCode,productTotalStock,stockAddress,unit,record_state,listedTime,comeFrom,isFamousBrand
+  </sql>
+  <sql id="Bm_Column_List" >
+    t0.productId,t0.enterpriceId,t0.enterpriceName,t0.oemId,t0.oemName,t0.goodsId,t0.kindId,t0.kindName,t0.brandId,t0.brandName,t0.
+    productCode,t0.productNameCn,t0.productNameEn,t0.productPlace,t0.productIntroduction,t0.productPrice,t0.productSales,
+    t0.productStatus,t0.productClicks,t0.productMainImg,t0.productReleaseTime,t0.productCreateTime,t0.productPromulgator,
+    t0.productCreator,t0.productDetail,t0.productPackageSize,t0.productGW,t0.productBarCode,t0.productTotalStock,t0.stockAddress,
+    t0.unit,t0.record_state,t0.listedTime,t0.comeFrom,t0.isFamousBrand
+  </sql>
+ <!--  <select id="selectProductById" resultMap="productCenterRMap" parameterType="java.lang.String">
+  	select t.*,i.imgId,i.imgUrl,i.imgType  
+  		from cms_product_t_product t
+  		left join cms_product_t_images i on t.productId=i.productId
+  	 where t.productId=#{productId}  and t.record_state!=0 and t.productStatus=1
+  </select> -->
+  <select id="selectProductInfoById" resultMap="productCenterRMap" parameterType="java.lang.String">
+  	select * from cms_product_t_product t 
+  	where t.productId = #{productId}  and t.record_state!=0 and t.productStatus=1
+  </select>
+  <select id="selectProductList" resultMap="productCenterRMap" parameterType="com.cms.model.maoyi.CmsProduct">
+  	select * from cms_product_t_product t 
+  	left join cms_product_t_images i on t.productId=i.productId
+  	left join cms_product_t_product_attrval av on t.productId=av.productId
+  	left join cms_product_t_attr_value v on av.attrValueId=v.id
+  	left join cms_product_t_attr a on v.attrKeyId=a.id
+  	where  t.record_state!=0  and t.productStatus=1
+  	<if test="productId!=null and productId!=''">
+            and t.productId=#{productId}
+    </if>
+  	<if test="enterpriceId!=null and enterpriceId!=''">
+            and t.enterpriceId=#{enterpriceId}
+    </if>
+    <if test="goodsId!=null and goodsId!=''">
+            and t.goodsId=#{goodsId}
+    </if>
+    <if test="productNameCn!=null and productNameCn!=''">
+            and t.productNameCn like concat('%',#{productNameCn},'%')
+    </if>
+    <if test="isFamousBrand!=null and isFamousBrand!=''">
+    		and t.isFamousBrand=#{isFamousBrand}
+    </if>
+  </select>
+  <!-- 此方法已废弃 -->
+  <select id="selectByPrimaryKey" resultMap="productCenterRMap" parameterType="java.lang.String" >
+    select  <include refid="Base_Column_List" />
+    from cms_product_t_product 
+    where productId = #{productId} and record_state!=0  and t.productStatus=1
+  </select>
+ <insert id="insert" parameterType="com.cms.model.maoyi.CmsProduct" >
+    insert into cms_product_t_product (<include refid="Base_Column_List" />)
+    values (#{productId},#{enterpriceId},#{enterpriceName},#{oemId},#{oemName},#{goodsId},#{kindId},#{kindName},#{brandId},#{brandName},
+    #{productCode},#{productNameCn},#{productNameEn},
+    #{productPlace},#{productIntroduction},#{productPrice},#{productSales},#{productStatus},#{productClicks},#{productMainImg},
+    #{productReleaseTime},#{productCreateTime},#{productPromulgator},#{productCreator},#{productDetail},#{productPackageSize},
+    #{productGW},#{productBarCode},#{productTotalStock},#{stockAddress},#{unit},#{recordState},#{listedTime},#{comeFrom},#{isFamousBrand})
+  </insert>
+   <select id="selectEntProduct"  resultMap="productCenterRMap" parameterType="java.util.HashMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cms_product_t_product
+    where record_state!=0
+    <if test="enterpriceId!=null and enterpriceId!=''">
+  	 	and  enterpriceId = #{enterpriceId}
+  	</if>
+  	<if test="productStatus!=null and productStatus!=''">
+  	 	and  productStatus = #{productStatus}
+  	</if>
+    <if test="weight!=null and weight!=''">
+  	 	and  weight = #{weight}
+  	</if>
+  	<if test="keyWords!=null and keyWords!=''">
+  	 	and  (brandName like concat('%',#{keyWords},'%')
+  	 		or enterpriceName like concat('%',#{keyWords},'%')
+  	 		or productNameCn  like concat('%',#{keyWords},'%')
+  	 	)
+  	</if>
+  </select>
+  <update id="updateSellStatus" parameterType="java.util.HashMap">
+  	 update cms_product_t_product set productPrice=productPrice
+  	 <if test="record_state!=null and record_state!=''">
+  	 	,record_state=#{record_state}
+  	 </if>
+  	 <if test="productStatus!=null and productStatus!=''">
+  	 	,productStatus=#{productStatus}
+  	 </if>
+  	 where productId in 
+    <foreach collection="productIds" index="index" item="item" open="(" separator="," close=")">   
+        #{item}   
+    </foreach>  
+  </update>
+  <update id="updateIsFamousBrand" parameterType="java.util.HashMap">
+  	 update cms_product_t_product set productPrice=productPrice
+  	 <if test="isFamousBrand!=null and isFamousBrand!=''">
+  	 	,isFamousBrand=#{isFamousBrand}
+  	 </if>
+  	 where 1=1
+  	 <if test="enterpriceId!=null and enterpriceId!=''">
+  	 	and	enterpriceId=#{enterpriceId}
+  	 </if>
+  	 <if test="brandId!=null and brandId!=''">
+  	 	and brandId=#{brandId}
+  	 </if>
+  	 <if test="list!=null and list!='' ">
+  	 	and productId in 
+	    <foreach collection="list" index="index" item="item" open="(" separator="," close=")">   
+	        #{item}   
+	    </foreach> 
+  	 </if>
+  </update>
+   <select id="getFamousBrandCount" resultMap="productCenterRMap" parameterType="java.lang.String">
+  		select * from cms_product_t_product t
+  	 	where  t.isFamousBrand=1  and t.record_state!=0 
+  	 	and t.enterpriceId=#{enterpriceId}
+  </select>
+</mapper>

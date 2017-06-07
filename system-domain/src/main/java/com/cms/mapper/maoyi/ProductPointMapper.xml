@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.maoyi.ProductPointMapper">
+	<resultMap id="productPointResultMap" type="com.cms.model.maoyi.CmsProductPoint">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="productId" property="productId" jdbcType="VARCHAR" />
+		<result column="entId" property="entId" jdbcType="VARCHAR" />
+		<result column="pointId" property="pointId" jdbcType="VARCHAR" />
+		<result column="pointName" property="pointName" jdbcType="VARCHAR" />
+		<result column="total" property="total" jdbcType="INTEGER" />
+		<association property="cmsProduct" javaType="com.cms.model.maoyi.CmsProduct">
+			<id column="productId" property="productId" jdbcType="VARCHAR" />
+			<result column="productStatus" property="productStatus"
+				jdbcType="VARCHAR" />
+			<result column="record_state" property="recordState" jdbcType="VARCHAR" />
+		</association>
+		<association property="cmsPrice" javaType="com.cms.model.maoyi.CmsPrice">
+			<id column="id" property="id" jdbcType="VARCHAR" />
+			<result column="productId" property="productId" jdbcType="VARCHAR" />
+			<result column="productSellRuleId" property="productSellRuleId"
+				jdbcType="VARCHAR" />
+			<result column="price" property="price" jdbcType="DECIMAL" />
+			<result column="type" property="type" jdbcType="INTEGER" />
+		</association>
+	</resultMap>
+	<sql id="Base_Column_List">
+		id,productId,entId,pointId,pointName,total
+	</sql>
+	<select id="getProductPointById" resultMap="productPointResultMap"
+		parameterType="java.lang.String">
+		select * from cms_product_t_product_point where id =
+		#{id}
+	</select>
+	<select id="getStockPriceBypid" resultMap="productPointResultMap"
+		parameterType="java.util.HashMap">
+		select
+		p.*,t.productStatus,t.record_state,pr.productSellRuleId,
+		pr.price,pr.type
+		from cms_product_t_product_point p
+		left JOIN cms_product_t_product t on p.productId=t.productId
+		left JOIN cms_product_t_price pr on	p.productId=pr.productId
+		where p.productId in
+		<foreach collection="list" index="index" item="item"
+			open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+	<update id="updateStock" parameterType="java.util.HashMap">
+		update cms_product_t_product_point p
+			 SET p.total=p.total+#{total}
+			WHERE p.entId=#{entId}
+			and p.productId=#{productId}
+			and p.pointId=#{pointId}
+	</update>
+</mapper>

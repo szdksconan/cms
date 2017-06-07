@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>物流客户管理</title>
+<link rel="stylesheet" type="text/css"
+	href="../css/common/chuyunguanli.css" />
+<script type="text/javascript">
+	$(function(){
+		$('#customer')
+		.bootstrapTable(
+				{ //	        url:'purchase/test',//请求后台的URL（*）
+					editable : true, //开启编辑模式
+					clickToSelect : true,
+					data : [ //json数据
+					{
+						"id" : 1,
+						"company_name" : '<a href="#">中国物质储运总公司</a>',
+						"name" : "李四",
+						"phone" : "13600000000",
+						"yuns_num" : "10",
+						"yuns_money" : "10000.00"
+					},{
+						"id" : 2,
+						"company_name" : '<a href="#">中国物质储运总公司</a>',
+						"name" : "李四",
+						"phone" : "13600000000",
+						"yuns_num" : "10",
+						"yuns_money" : "10000.00"
+					},{
+						"id" : 3,
+						"company_name" : '<a href="#">中国物质储运总公司</a>',
+						"name" : "李四",
+						"phone" : "13600000000",
+						"yuns_num" : "10",
+						"yuns_money" : "10000.00"
+					},{
+						"id" : 4,
+						"company_name" : '<a href="#">中国物质储运总公司</a>',
+						"name" : "李四",
+						"phone" : "13600000000",
+						"yuns_num" : "10",
+						"yuns_money" : "10000.00"
+					},{
+						"id" : 5,
+						"company_name" : '<a href="#">中国物质储运总公司</a>',
+						"name" : "李四",
+						"phone" : "13600000000",
+						"yuns_num" : "10",
+						"yuns_money" : "10000.00"
+					},{
+						"id" : 6,
+						"company_name" : '<a href="#">中国物质储运总公司</a>',
+						"name" : "李四",
+						"phone" : "13600000000",
+						"yuns_num" : "10",
+						"yuns_money" : "10000.00"
+					},{
+						"id" : 7,
+						"company_name" : '<a href="#">中国物质储运总公司</a>',
+						"name" : "李四",
+						"phone" : "13600000000",
+						"yuns_num" : "10",
+						"yuns_money" : "10000.00"
+					},{
+						"id" : 8,
+						"company_name" : '<a href="#">中国物质储运总公司</a>',
+						"name" : "李四",
+						"phone" : "13600000000",
+						"yuns_num" : "10",
+						"yuns_money" : "10000.00"
+					},
+					{
+						"id" : 9,
+						"company_name" : '<a href="#">中国物质储运总公司</a>',
+						"name" : "李四",
+						"phone" : "13600000000",
+						"yuns_num" : "10",
+						"yuns_money" : "10000.00"
+					},
+					{
+						"id" : 10,
+						"company_name" : '<a href="#">中国物质储运总公司</a>',
+						"name" : "李四",
+						"phone" : "13600000000",
+						"yuns_num" : "10",
+						"yuns_money" : "10000.00"
+					}],
+					method : 'post', //请求方式（*）
+					striped : true, //是否显示行间隔色
+					cache : false, //是否使用缓存
+					pagination : true, //是否显示分页
+					queryParamsType : '', //传递参数
+					sortable : false, //是否启用排序
+//						sortOrder : "asc", //排序方式
+					sidePagination : "client", //分页方式：client客户端分页，server服务端分页
+					pageNumber : 1, //初始化加载第一页，默认第一页
+					pageSize : 5, //每页的记录行数
+					pageList : [ 5, 15 ], //可供选择的每页的行数
+					search : false, //是否显示表格搜索，此搜索是客户端搜索，不会进服务端
+					showColumns : false, //是否显示所有的列
+					showRefresh : false, //是否显示刷新按钮
+					minimumCountColumns : 2, //最少允许的列数
+					clickToSelect : true, //是否启用点击选中行
+					height : 500, //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+					width : 'auto',
+					uniqueId : "id", //每一行的唯一标识，一般为主键列
+					showToggle : false, //是否显示详细视图和列表视图的切换按钮
+					cardView : false, //是否显示详细视图
+					detailView : false, //是否显示父子表
+					paginationHAlign : 'right', //分页组件显示位置
+					paginationVAlign : 'bottom', //分页信息显示位置
+					paginationDetailHAlign : 'left', //right, left
+					columns : [
+							{
+								title : '序号',
+								field : 'id',
+								sortable : true
+							},
+							{
+								title : '企业名称',
+								field : 'company_name',
+								sortable : true
+							},
+							{
+								title : '联系人',
+								field : 'name',
+								sortable : true
+							},
+							{
+								title : '联系电话',
+								field : 'phone',
+								sortable : true
+							},
+							{
+								title : '运输次数',
+								field : 'yuns_num',
+								sortable : true
+							},
+							{
+								title : '运输总金额(元)',
+								field : 'yuns_money',
+								sortable : true
+							},
+							{
+								title : '操作',
+								edit : false,
+								field : 'action',
+								formatter : function(value, row, index) {
+									return '<a href="javascript:void(0)" onclick="del(\''
+									+ row.id + '\')">查看</a>|<a href="javascript:void(0)" onclick="del(\''
+											+ row.id + '\')">删除</a>';
+								}
+							}]
+				});
+		layer.config({
+			extend : [ 'skin/myskin.css' ]
+		//加载新皮肤
+		});
+
+		$('#btn_tanchu').click(function() {
+			layer.open({
+				title : [ '物流企业名录', 'font-size:18pt;text-align:center' ],
+				skin : 'layui-layer-cms',
+				closeBtn : 2,
+				offset : 'center', //右下角弹出
+				type : 2,
+				area : [ '65%' ],//[width,height]
+				content : 'index/header',
+				btn : [ '提交' ],
+				yes : function(index, layero) {
+					layer.close(index);
+				}
+			});
+		});
+	});
+</script>
+</head>
+<body>
+<div class="container">
+	<div class="lside">
+	<table class="yuns_table">
+		<tr>
+			<td colspan="2" style="height:50px;padding-left:25px;">
+				企业名称:<input type="text" class="cmao_input m126">
+			</td>
+		</tr>
+		<tr>
+			<td style="float:right;height:50px;">
+				<button class="btn btn-blue btn-w100 ml26" type="button">查询</button>
+				<button class="btn btn-gray btn-w100 ml26" type="button">清空</button>
+			</td>
+		</tr>
+	</table>
+	<table id="customer"></table>
+	</div>
+	<div class="rside"></div>
+</div>	
+</body>
+</html>

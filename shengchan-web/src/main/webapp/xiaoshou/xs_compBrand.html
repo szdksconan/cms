@@ -1,0 +1,120 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+</head>
+	<body>
+
+    <div id="brandBox" class="layer-sm-box">
+    	<input type="hidden" id="idAdd" value="">
+	    <table class="-querytable" style="width: 100%;">
+                <tr>
+                    <td  align="right">
+                       名称：
+                    </td>
+        	<td  >
+             <input type="text" class="cmao_inplg" id="brandNameAdd" />
+                    </td>
+                    <td>
+                    	  <button type="button" class="btn btn-blue btn-sm" onclick="addBrand()" id="brandAdd">保存</button>
+                    	  &nbsp; &nbsp; 
+                    	    <button type="button" class="btn btn-blue btn-sm" onclick="cleanBrand()" id="brandClean">取消</button>
+                    </td>
+                 </tr>
+        </table>
+		<table id="tabBrand"></table>
+    </div>
+    </body>
+</html>
+<script type="text/javascript">
+    var updateIndex;
+	$('#tabBrand').bootstrapTable({
+		url:'../product/getBrandList?companyId=1312312313',
+		pagination : true,// 是否显示分页
+		queryParamsType : '',// 传递参数
+		sidePagination : "client",// 分页方式：client客户端分页，server服务端分页
+		uniqueId : "id",// 每一行的唯一标识，一般为主键列
+		columns : [
+				{
+					title : '名称',
+					field : 'brandName'
+				},
+// 				{
+// 					visible:true,
+// 					title : 'Logo',
+// 					field : 'logoUrl'
+// 				},
+				{
+					title : '操作',
+					field : 'action',
+					formatter : function(value, row, index) {
+						return '<a href="javascript:void(0);" onclick="editCompBrand(\''+row.id+'\',\''+row.brandName+'\',\''+index+'\')">编辑</a> | <a href="javascript:void(0);" onclick="delCompBrand(\''+row.id+'\')">删除</a>';
+					}
+				} ]
+	});
+	
+	//新增或更新
+	function addBrand(){
+		var id = $('#idAdd').val();
+		var tag = false;
+		if(id == ''){
+			id = '99001'+parseInt(100 * Math.random());
+			tag = true;
+		}
+		var brandName = $('#brandNameAdd').val();
+		if(brandName == ''){
+			msg({texts:'名称不能为空！'});
+			return false;
+		}
+		  $.ajax({
+		      url: "../product/addOrUpdateCompBrand",
+		      datatype: 'json',
+		      type: "Post",
+		      data: {id:id,brandName:brandName,companyId:'1312312313'},
+		      async: false,//使用同步的方式,true为异步方式
+		      success: function (data) {
+				msg({texts:data});
+				if(tag)
+		    	$('#tabBrand').bootstrapTable('insertRow',	{index :0 ,
+						row : {id:id,companyId:'1312312313',brandName:brandName,createTime:'',logoUrl:''}});
+				else
+				$('#tabBrand').bootstrapTable('updateRow',	{index :updateIndex ,
+						row : {id:id,companyId:'1312312313',brandName:brandName,createTime:'',logoUrl:''}});	
+		    	  $("#brandId").multiselect('url', '../product/getBrandSelectList?companyId=1312312313');
+
+
+		      }
+		    });
+	}
+	
+	//删除
+	function delCompBrand(id){
+		  $.ajax({
+		      url: "../product/delCompBrand",
+		      datatype: 'json',
+		      type: "Post",
+		      data: {id:id},
+		      async: false,//使用同步的方式,true为异步方式
+		      success: function (data) {
+				msg({texts:data});
+				$('#tabBrand').bootstrapTable('removeByUniqueId', id);
+		    	$("#brandId").multiselect('url', '../product/getBrandSelectList?companyId=1312312313');
+		      }
+		    });
+		
+	}
+	
+	//编辑
+	function editCompBrand(id,brandName,index){
+		var id = $('#idAdd').val(id);
+		updateIndex =  index;
+		var brandName = $('#brandNameAdd').val(brandName);
+	}
+	
+	//清空
+	function cleanBrand(){
+		var id = $('#idAdd').val('');
+		var brandName = $('#brandNameAdd').val('');
+	}
+</script>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.maoyi.NetworkTempMapper" >
+  <resultMap id="BaseResultMap" type="com.cms.model.maoyi.NetworkTemp" >
+    <id column="id" property="id" jdbcType="DECIMAL" />
+    <result column="ent_name" property="entName" jdbcType="VARCHAR" />
+    <result column="ent_ac" property="entAc" jdbcType="VARCHAR" />
+    <result column="ent_an" property="entAn" jdbcType="VARCHAR" />
+    <result column="ent_al" property="entAl" jdbcType="VARCHAR" />
+    <result column="ent_ad" property="entAd" jdbcType="VARCHAR" />
+    <result column="contact_person" property="contactPerson" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="record_state" property="recordState" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, ent_name, ent_ac, ent_an, ent_al, ent_ad, contact_person, tel, record_state
+  </sql>
+ 
+  <insert id="insert" parameterType="com.cms.model.maoyi.NetworkTemp" >
+    insert into network_temp (id, ent_name, ent_ac, 
+      ent_an, ent_al, ent_ad, 
+      contact_person, tel, record_state
+      )
+    values (#{id,jdbcType=DECIMAL}, #{entName,jdbcType=VARCHAR}, #{entAc,jdbcType=VARCHAR}, 
+      #{entAn,jdbcType=VARCHAR}, #{entAl,jdbcType=VARCHAR}, #{entAd,jdbcType=VARCHAR}, 
+      #{contactPerson,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{recordState,jdbcType=INTEGER}
+      )
+  </insert>
+  
+  
+  <update id="update" parameterType="com.cms.model.maoyi.NetworkTemp" >
+    update network_temp
+    <set >
+      <if test="entName != null" >
+        ent_name = #{entName,jdbcType=VARCHAR},
+      </if>
+      <if test="entAc != null" >
+        ent_ac = #{entAc,jdbcType=VARCHAR},
+      </if>
+      <if test="entAn != null" >
+        ent_an = #{entAn,jdbcType=VARCHAR},
+      </if>
+      <if test="entAl != null" >
+        ent_al = #{entAl,jdbcType=VARCHAR},
+      </if>
+      <if test="entAd != null" >
+        ent_ad = #{entAd,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPerson != null" >
+        contact_person = #{contactPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="recordState != null" >
+        record_state = #{recordState,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=DECIMAL}
+  </update>
+  
+   <update id="delete" parameterType="long">
+  		update network_temp set  record_state = 1 where id = #{id}
+  </update>
+  
+  <select id="selectNetworkTempById" parameterType="long" resultType="com.cms.model.maoyi.NetworkBean">
+  	SELECT 
+		n.id as id,
+		n.ent_id as entId,
+		n.network_id as networkId,
+		n.temp_network_id as tempNetworkId,
+		n.cooperate_type as cooperateType,
+		n.record_state as recordState,
+		
+		t.ent_name as entName,
+		t.ent_ac as entAc,
+    	t.ent_an as entAn,
+	    t.ent_al as entAl,
+    	t.ent_ad as entAd,
+		t.contact_person as contactPerson,
+		t.tel as tel
+ 	from network n,network_temp t where n.temp_network_id = t.id and n.id = #{id} and n.record_state = 0 
+  </select>
+</mapper>

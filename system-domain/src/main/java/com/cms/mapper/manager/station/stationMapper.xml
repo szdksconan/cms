@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cms.mapper.manager.station.stationMapper">
+    <sql id="STATION-PARAM">
+        st.id as id,
+        st.company_id as companyId,
+        st.name as name,
+        st.role_id as roleId,
+        st.data_role_id as dataRoleId,
+        st.seq as seq
+    </sql>
+
+    <select id="dataGrid" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.manager.stationBean">
+        select <include refid="STATION-PARAM"/>,tsr.name as roleName,tsdr.name as dataRoleName from t_sys_station st
+        left join t_sys_role tsr on st.role_id=tsr.id left join t_sys_datarole tsdr on st.data_role_id=tsdr.id
+        where 1=1
+        <if test="order!=null and order!=''">
+            ${order}
+        </if>
+        <if test="order==null or order==''">
+            order by seq
+        </if>
+    </select>
+
+    <select id="dataGridCot" parameterType="com.alibaba.fastjson.JSONObject" resultType="int">
+        select count(1) from t_sys_station st
+        left join t_sys_role tsr on st.role_id=tsr.id left join t_sys_datarole tsdr on st.data_role_id=tsdr.id
+        where 1=1
+    </select>
+
+    <insert id="add" parameterType="com.cms.model.manager.stationBean">
+        insert into t_sys_station (name,role_id,data_role_id) values (#{name},#{roleId},#{dataRoleId})
+    </insert>
+
+    <delete id="delete" parameterType="com.alibaba.fastjson.JSONObject">
+        delete from t_sys_station where id=#{id}
+    </delete>
+
+    <select id="get" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.manager.stationBean">
+        select <include refid="STATION-PARAM"/> from t_sys_station st where 1=1
+        <if test="id!=null and id!=''">
+            and id=#{id}
+        </if>
+    </select>
+
+    <update id="update" parameterType="com.cms.model.manager.stationBean">
+		update t_sys_station set name=#{name},role_id=#{roleId},data_role_id=#{dataRoleId} where id=#{id}
+	</update>
+
+	
+	<update id="updateGrant" parameterType="com.cms.model.manager.userBean">
+
+
+
+		update t_sys_user set station_id=#{stationId} where id=#{userId}
+	</update>
+</mapper>

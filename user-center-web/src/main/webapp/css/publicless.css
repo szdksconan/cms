@@ -1,0 +1,1087 @@
+
+/**
+ *     公共less方法
+ */
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+/**
+ *   看板弹框less
+ */
+.boardset-dialog {
+  width: 640px;
+  border: 1px solid white;
+  margin: 0 auto;
+  /*设置tab按钮居中*/
+}
+.boardset-dialog .boardSetDialog-title {
+  cursor: default;
+}
+.boardset-dialog .ui-dialog-title span {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  height: 18px;
+  width: 18px;
+  background-image: url("../css/img/jingoalTaskIcon1x.png");
+  background-position: -320px 0;
+  margin-bottom: 2px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+.boardset-dialog .set-board {
+  *height: 273px;
+}
+.boardset-dialog .set-board ul {
+  padding-left: 0;
+  margin: 0;
+  font-size: 14px;
+}
+.boardset-dialog .set-board ul li {
+  padding: 0 10px 0 16px;
+  border-bottom: 1px solid #ebeced;
+  position: relative;
+}
+.boardset-dialog .set-board ul li .ui-checkbox {
+  background-image: url("../css/img/jingoalTaskIcon1x.png");
+  height: 20px !important;
+  width: 34px !important;
+  margin-top: 11px;
+  border: none;
+  background-position: 0 -60px;
+  position: absolute;
+  right: 6px;
+}
+.boardset-dialog .set-board ul li .ui-checkbox-checked {
+  background-position: -35px -60px;
+}
+.boardset-dialog .set-board .des {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  padding: 4px 0;
+}
+.boardset-dialog .set-board .sort-name,
+.boardset-dialog .set-board .sort-description {
+  padding-top: 6px;
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+.boardset-dialog .set-board .sort-name {
+  font-weight: bold;
+  margin-left: 8px;
+}
+.boardset-dialog .set-board .sort-description {
+  color: #808080;
+  margin-left: 12px;
+}
+.boardset-dialog .set-board .sort-btns {
+  height: 40px;
+  padding-left: 10px;
+}
+.boardset-dialog .set-board .sort-btns button {
+  height: 40px;
+  width: 60px;
+  border: none;
+  border-right: 1px solid #ccc;
+  background-color: #fff;
+  margin-left: -3px;
+  cursor: pointer;
+}
+.boardset-dialog .set-board .ui-tab-item-container,
+.boardset-dialog .boardset-dialog .ui-dialog-body .ui-tab-item-container {
+  padding: 0;
+}
+.boardset-dialog .foot {
+  margin: 30px 10px 10px 0;
+  height: 32px;
+}
+.boardset-dialog .foot span {
+  padding-left: 10px;
+  padding-top: 8px;
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  color: #808080;
+}
+.boardset-dialog .foot button {
+  float: right;
+}
+.boardset-dialog .set-board .ui-tab {
+  height: 48px;
+  background-color: #ebeced;
+}
+.boardset-dialog .set-board .ui-tab .ui-tab-item {
+  border: 1px solid #ebeced;
+  border-left: 0;
+  border-right: 0;
+}
+.boardset-dialog .set-board .ui-tab .ui-tab-title {
+  background: -moz-linear-gradient(top, #ffffff, #fafafa);
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#fafafa));
+  *background: #fafafa;
+  color: #666;
+  padding: 6px 20px;
+  border-bottom: 1px solid #f2f3f4;
+  text-align: center;
+  height: 32px;
+}
+.boardset-dialog .set-board .ui-tab .ui-tab-title .ui-item {
+  width: 48px;
+  margin-top: 10px;
+}
+.boardset-dialog .set-board .ui-tab .ui-tab-title .ui-tab-item-selected {
+  background: #919699;
+  color: #fff;
+  border: none;
+  border: 1px solid #ccc;
+}
+.boardset-dialog .set-board .ui-tab .ui-tab-title label {
+  font-size: 12px;
+  font-weight: normal;
+  padding: 6px 20px;
+  border: 1px solid #ccc;
+  color: #808080;
+  border-radius: 2px;
+}
+.boardset-dialog .set-board .ui-tab .ui-tab-title label:hover {
+  border: 1px solid #ccc;
+}
+.boardset-dialog .ui-dialog-body .set-board {
+  margin: 0 12px 10px 12px;
+  border: 1px solid #ebeced;
+  border-bottom: 0;
+}
+.boardset-dialog .ui-workbench-board-item {
+  cursor: move;
+}
+.boardset-dialog .ui-workbench-board-item .ui-checkbox {
+  cursor: pointer;
+}
+.boardset-dialog .boardset-dialog-active .ui-workbench-board-item {
+  cursor: default;
+}
+.boardset-dialog .boardset-dialog-active .ui-workbench-board-item .ui-checkbox {
+  cursor: default;
+}
+.boardset-dialog .cus-attend-icon,
+.boardset-dialog .cus-notice-icon,
+.boardset-dialog .cus-pline-icon,
+.boardset-dialog .cus-plan-icon,
+.boardset-dialog .cus-task-icon,
+.boardset-dialog .cus-log-icon,
+.boardset-dialog .cus-memo-icon {
+  height: 26px;
+  width: 26px;
+  background-image: url("../css/img/jingoalTaskIcon2x.png");
+  background-size: 600px 1200px;
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  vertical-align: middle;
+}
+.boardset-dialog .cus-attend-icon {
+  background-position: -54px -172px;
+}
+.boardset-dialog .cus-pline-icon {
+  background-position: -108px -172px;
+}
+.boardset-dialog .cus-task-icon {
+  background-position: 0 -225px;
+}
+.boardset-dialog .cus-memo-icon {
+  background-position: -27px -199px;
+}
+.boardset-dialog .cus-log-icon {
+  background-position: -81px -199px;
+}
+.boardset-dialog .cus-plan-icon {
+  background-position: -108px -199px;
+}
+.boardset-dialog .cus-notice-icon {
+  background-position: -135px -172px;
+}
+/**
+ *   看板弹框高清图标
+ */
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2) {
+  .boardset-dialog .set-board ul li .ui-checkbox,
+  .boardset-dialog .ui-dialog-title span,
+  .boardset-dialog .ui-dialog-close {
+    background-image: url("../css/img/jingoalTaskIcon2x.png");
+    background-size: 600px 1200px;
+  }
+  .boardset-dialog .set-board ul li .ui-checkbox {
+    background-position: 0 -57px;
+  }
+  .boardset-dialog .set-board ul li .ui-checkbox-checked {
+    background-position: -34px -57px;
+  }
+  .boardset-dialog .ui-dialog-title span {
+    background-position: -303px 0;
+  }
+  .boardset-dialog .ui-dialog .ui-dialog-close {
+    background-position: 0 -19px;
+  }
+  .boardset-dialog .ui-dialog .ui-dialog-close:hover {
+    background-position: -19px -18px;
+  }
+}
+.kq-dialog {
+  width: 480px;
+}
+.kq-dialog .ui-dialog-title {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  cursor: default;
+}
+.kq-dialog .ui-dialog-body {
+  padding-bottom: 12px;
+  padding-right: 12px;
+}
+.kq-dialog .ui-dialog-body .kq-unusual {
+  height: 32px;
+  width: 32px;
+  background-position: -440px -61px;
+  position: absolute;
+  left: 38px;
+  top: 30px;
+}
+.kq-dialog .ui-dialog-body .content {
+  padding-left: 68px;
+}
+.kq-dialog .ui-dialog-body .content h3 {
+  margin: 0;
+  padding: 10px 0 8px 14px;
+  font-size: 16px;
+  font-weight: normal;
+}
+.kq-dialog .ui-dialog-body .content span {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  padding-left: 14px;
+  color: #979899;
+}
+.kq-dialog .ui-dialog-body .content p {
+  margin: 0;
+}
+.kq-dialog .ui-dialog-body .buttons {
+  width: 100%;
+  text-align: right;
+  padding-top: 10px;
+}
+.kq-dialog .ui-dialog-body .buttons button {
+  border: 0;
+}
+.kq-dialog .ui-dialog-body .buttons .confirm {
+  background-color: #29e;
+  color: #fff;
+}
+.kq-dialog .ui-dialog-body .buttons .confirm:hover {
+  background-color: #00a8ff;
+}
+.kq-dialog .ui-dialog-body .buttons .confirm:active {
+  background-color: #07c;
+}
+.kq-dialog .ui-dialog-body .buttons .cancel {
+  background-color: #edeff0;
+  color: #616466;
+}
+.kq-dialog .ui-dialog-body .buttons .cancel:hover {
+  background-color: #f2f4f5;
+}
+.kq-dialog .ui-dialog-body .buttons .cancel:active {
+  background-color: #edeff0;
+}
+.kq-dialog .kq-dialog-body {
+  padding: 20px;
+}
+.kq-dialog .kq-dialog-body .content {
+  padding-left: 0;
+}
+.kq-dialog .kq-dialog-body table {
+  width: 100%;
+  border: 1px solid #ddd;
+}
+.kq-dialog .kq-dialog-body table td.time {
+  background-color: #F9F9F9;
+  font-size: 14px;
+  width: 140px;
+  text-align: center;
+  border-right: 1px solid #ddd;
+  color: #333;
+}
+.kq-dialog .kq-dialog-body table td.sign-in {
+  padding: 8px;
+  color: #999;
+}
+.kq-dialog .kq-dialog-body table td.sign-in b {
+  font-weight: normal;
+}
+.kq-dialog .kq-dialog-body table td.sign-in span {
+  color: #f00;
+}
+.kq-dialog .kq-dialog-body table td.sign-in strong {
+  font-weight: normal;
+  color: #333;
+  padding-left: 10px;
+}
+.kq-dialog .kq-dialog-body textarea {
+  width: 426px;
+  padding: 4px 6px;
+  margin-top: 16px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  max-width: 426px;
+}
+.kq-dialog .kq-dialog-body .error {
+  color: #f54545;
+  padding-top: 8px;
+}
+.workbench .layout .left-layout {
+  background-color: #fff;
+  margin-top: -1px;
+  min-height: 720px;
+}
+.workbench .layout .left-layout .user-info {
+  height: 80px;
+  border-bottom: 1px solid #ebeced;
+  padding: 20px 6px 20px 20px;
+}
+.workbench .layout .left-layout .user-info .head-image {
+  float: left;
+  height: 80px;
+  width: 80px;
+  border-radius: 40px;
+  cursor: pointer;
+  border: none;
+}
+.workbench .layout .left-layout .user-info .user-detail {
+  width: 78px;
+  float: left;
+  margin-left: 12px;
+  margin-top: 6px;
+  color: #666;
+  font-size: 12px;
+}
+.workbench .layout .left-layout .user-info .user-detail a {
+  color: #000;
+  font-size: 18px;
+  cursor: pointer;
+  display: block;
+  white-space: nowrap;
+  word-break: keep-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.workbench .layout .left-layout .user-info .user-detail .user-department,
+.workbench .layout .left-layout .user-info .user-detail .user-job {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 6px 0;
+}
+.workbench .layout .menu-work-progress-icon,
+.workbench .layout .menu-myAtten-icon,
+.workbench .layout .menu-myDoc-icon,
+.workbench .layout .menu-adds-icon,
+.workbench .layout .board-custom-icon {
+  background-image: url("../css/img/jingoalTaskIcon1x.png");
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  margin-right: 6px;
+  margin-top: -4px;
+  vertical-align: middle;
+}
+.workbench .layout .left-layout .lf-cal {
+  border-top: 1px solid #ebeced;
+  padding: 0 20px;
+}
+.workbench .layout .left-layout .lf-cal .cal-titl {
+  text-align: center;
+  font-weight: bold;
+  padding: 10px 0;
+  margin: 0 -6px 0 -4px;
+}
+.workbench .layout .left-layout .lf-cal .cal-titl .year-month {
+  width: 68%;
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  padding-top: 3px;
+}
+.workbench .layout .to-left,
+.workbench .layout .to-right {
+  height: 26px;
+  width: 24px;
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  background-image: url("../css/img/jingoalTaskIcon1x.png");
+  vertical-align: top;
+  cursor: pointer;
+}
+.workbench .layout .to-left {
+  background-position: -354px 4px;
+}
+.workbench .layout .to-right {
+  background-position: -337px 4px;
+}
+.workbench .layout .to-left:hover {
+  background-position: -354px -16px;
+}
+.workbench .layout .to-right:hover {
+  background-position: -337px -16px;
+}
+.workbench .layout .right-layout {
+  background-color: #eee;
+  margin-top: -1px;
+}
+.workbench .layout .right-layout div.custom {
+  height: 40px;
+  background-color: #fff;
+  display: block;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+.workbench .layout .right-layout .board-custom-icon {
+  background-position: -320px 0;
+  margin-top: 0;
+}
+.workbench .layout .right-layout .layout-style,
+.workbench .layout .right-layout .custom-board {
+  line-height: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.workbench .layout .right-layout .custom-board {
+  padding-left: 16px;
+  padding-right: 26px;
+  display: block;
+}
+.workbench .layout .right-layout .custom-board:hover .board-custom-icon {
+  background-position: -320px -20px;
+}
+.workbench .layout .right-layout .layout-style {
+  float: right;
+  margin-right: 30px;
+}
+.workbench .layout .right-layout .right-list {
+  background-color: #fff;
+  margin-top: 10px;
+  padding-top: 1px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+.workbench .layout .right-layout .right-list .board_empty_tip {
+  padding: 10px 37px;
+  color: #919699;
+  font-size: 12px;
+}
+.workbench .layout .right-layout .right-list .small-title {
+  padding: 8px 10px 8px 16px;
+  border-bottom: 1px solid #ebeced;
+  color: #656666;
+  display: block;
+  *display: inline-block;
+}
+.workbench .layout .right-layout .right-list .small-title i {
+  float: right;
+  background-position: -340px 0;
+}
+.workbench .layout .right-layout .right-list .small-title:hover i {
+  background-position: -340px -20px;
+}
+.workbench .layout .right-layout .right-list ul {
+  padding-bottom: 10px;
+  padding-left: 32px;
+  margin-top: 10px;
+  color: #919699;
+}
+.workbench .layout .right-layout .right-list ul li {
+  font-size: 12px;
+  list-style-type: inherit;
+  padding: 4px;
+}
+.workbench .layout .right-layout .right-list ul li a {
+  width: 190px;
+  display: inline-block;
+  /*内联对象需加*/
+  word-break: keep-all;
+  /* 不换行 */
+  white-space: nowrap;
+  /* 不换行 */
+  overflow: hidden;
+  /* 内容超出宽度时隐藏超出部分的内容 */
+  text-overflow: ellipsis;
+  margin-bottom: -4px;
+  color: #303233;
+}
+.workbench .layout .right-layout .right-list ul li a:hover {
+  color: #29e;
+}
+.workbench .layout .right-layout .right-list .work-clock {
+  padding: 0 10px;
+  border-bottom: 1px solid #ebeced;
+}
+.workbench .layout .right-layout .right-list .work-clock table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 0;
+}
+.workbench .layout .right-layout .right-list .work-clock table tr.first td {
+  border-bottom: 1px solid #ebeced;
+}
+.workbench .layout .right-layout .right-list .work-clock table td {
+  height: 60px;
+  vertical-align: middle;
+  padding-left: 10px;
+}
+.workbench .layout .right-layout .right-list .work-clock table td.title {
+  color: #666;
+  border-right: 1px solid #ebeced;
+  position: relative;
+}
+.workbench .layout .right-layout .right-list .work-clock table td.title div {
+  margin-top: 4px;
+}
+.workbench .layout .right-layout .right-list .work-clock table td.title span {
+  color: #999;
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  padding-top: 4px;
+}
+.workbench .layout .right-layout .right-list .work-clock table td.clock {
+  padding: 0 0 0 10px;
+  position: relative;
+}
+.workbench .layout .right-layout .right-list .work-clock table td.clock span {
+  color: #ddd;
+  font-size: 12px;
+  display: block;
+}
+.workbench .layout .right-layout .right-list .work-clock table td.clock span.time {
+  color: #666;
+  font-size: 20px;
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  height: 26px;
+  padding-top: 4px;
+}
+.workbench .layout .right-layout .right-list .work-clock table td.clock span.time b.kq_seconds {
+  font-size: 16px;
+  font-weight: normal;
+  color: #999;
+}
+.workbench .layout .right-layout .right-list .work-clock table td.clock span.disable {
+  color: #b8b8b8;
+}
+.workbench .layout .right-layout .right-list .work-clock table td.clock span.error {
+  color: #f54545;
+}
+.workbench .layout .right-layout .right-list .work-clock table td.clock span.normal {
+  color: #666;
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+.workbench .layout .right-layout .right-list .work-clock table td.clock span.ip {
+  width: 150px;
+  height: 18px;
+  white-space: nowrap;
+  word-break: keep-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.workbench .layout .right-layout .right-list .work-clock table td.clock span.ip span {
+  display: inline;
+}
+.workbench .layout .right-layout .right-list .work-clock table td.clock .btn {
+  padding: 2px 10px;
+  cursor: pointer;
+  font-size: 12px;
+  float: none;
+  position: absolute;
+  right: 0;
+  top: 12px;
+}
+.workbench .layout .right-layout .right-list .work-clock table td.clock .sign {
+  color: #fff;
+  background-color: #29e;
+  padding: 3px 10px;
+  border: none;
+}
+.workbench .layout .right-layout .right-list .work-clock table td.clock .sign:hover {
+  background-color: #129efd;
+}
+.workbench .layout .right-layout .right-list .work-clock table td.clock .sign:active {
+  background-color: #07c;
+}
+.workbench .layout .right-layout .right-list .work-clock table td.clock .explain {
+  border: 1px solid #d7d8d9;
+  padding: 2px 12px;
+  background-color: #fff;
+}
+.workbench .layout .right-layout .right-list .work-clock table td.clock .text {
+  color: #999;
+  padding-right: 6px;
+  cursor: default;
+  position: absolute;
+  right: 0;
+  top: 12px;
+}
+.workbench .layout .right-layout .right-list .work-clock table td.error {
+  color: #f54545;
+}
+.workbench .layout .right-layout .right-list .attend-btn {
+  padding: 10px 16px 12px 16px;
+  border-top: 1px solid #ebeced;
+}
+.workbench .layout .right-layout .right-list .forbid-hint {
+  text-align: center;
+  padding-bottom: 18px;
+  padding-top: 18px;
+  color: #666;
+  font-size: 12px;
+}
+.workbench .layout .right-layout .right-list .forbid-hint i {
+  height: 19px;
+  width: 19px;
+  vertical-align: top;
+  margin-right: 4px;
+  background-image: url("../css/img/workbench/workbench1x.png");
+  background-position: 0 -76px;
+}
+.workbench .layout .right-layout .right-list .kq-clock-off {
+  font-family: "Helvetica", "Tahoma", "Microsoft Yahei", "微软雅黑", "Simsun", "宋体";
+  font-size: 14px;
+  background-color: #64bbfa;
+  height: 34px;
+  line-height: 34px;
+  width: 100%;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background-color 0.5s ease 0s, color 0.5s ease 0s;
+  vertical-align: middle;
+  padding: 0;
+}
+.workbench .layout .right-layout .right-list .kq-clock-off:hover {
+  background-color: #129efd;
+}
+.workbench .layout .right-layout .right-list .kq-clock-off:active {
+  background-color: #07c;
+}
+.workbench .layout .right-layout .right-list .kq-clock-off i {
+  background-position: -260px 0;
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  margin: 0 0 -4px 0;
+}
+.workbench .layout .right-layout .right-list .right-list-task {
+  width: 140px;
+}
+.workbench .layout .right-layout .right-list .task-status {
+  float: right;
+  margin-right: 10px;
+}
+.workbench .layout .right-layout .right-list .r-kqIcon,
+.workbench .layout .right-layout .right-list .r-notice-icon,
+.workbench .layout .right-layout .right-list .r-main-icon,
+.workbench .layout .right-layout .right-list .r-plan-icon,
+.workbench .layout .right-layout .right-list .r-task-icon,
+.workbench .layout .right-layout .right-list .r-log-icon,
+.workbench .layout .right-layout .right-list .r-memo-icon {
+  height: 16px;
+  width: 16px;
+  background-image: url("../css/img/jingoalTaskIcon1x.png");
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  margin: 0 10px -3px 0;
+}
+.workbench .layout .right-layout .right-list .r-kqIcon {
+  background-position: -32px -144px;
+}
+.workbench .layout .right-layout .right-list .r-notice-icon {
+  background-position: -80px -144px;
+}
+.workbench .layout .right-layout .right-list .r-main-icon {
+  background-position: -64px -144px;
+}
+.workbench .layout .right-layout .right-list .r-plan-icon {
+  background-position: -160px -144px;
+}
+.workbench .layout .right-layout .right-list .r-task-icon {
+  background-position: -192px -144px;
+}
+.workbench .layout .right-layout .right-list .r-log-icon {
+  background-position: -144px -144px;
+}
+.workbench .layout .right-layout .right-list .r-memo-icon {
+  background-position: -112px -144px;
+}
+.workbench .layout .ui-monthview {
+  padding: 10px 0;
+}
+.workbench .layout .ui-monthview table {
+  width: 100%;
+}
+.workbench .layout .ui-monthview tr.ui-monthview-extra {
+  display: none;
+}
+.workbench .layout .ui-monthview td {
+  position: relative;
+  height: 33px;
+  width: 30px;
+  padding: 0;
+}
+.workbench .layout .ui-monthview td.ui-monthview-date {
+  border-radius: 12px;
+}
+.workbench .layout .ui-monthview td.ui-monthview-date a {
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  display: block;
+  vertical-align: middle;
+  border: 1px solid white;
+  border-radius: 11px;
+}
+.workbench .layout .ui-monthview td.ui-monthview-date a:hover {
+  border-color: #3898ef !important;
+}
+.workbench .layout .ui-monthview td.ui-monthview-date i {
+  width: 4px;
+  height: 4px;
+  background: url("../css/img/icon-cal-dot.png");
+  position: absolute;
+  top: 30px;
+  left: 10px;
+}
+.workbench .layout .ui-monthview td.ui-monthview-date-selected {
+  background: none;
+}
+.workbench .layout .ui-monthview td.ui-monthview-date-selected a {
+  border-color: #3898ef !important;
+}
+.workbench .layout .ui-monthview td.ui-monthview-today a {
+  border: 1px solid #3898ef !important;
+  background-color: #3898ef;
+  color: white;
+}
+.workbench .layout .ui-monthview td.ui-monthview-extra a {
+  color: #a4acb6;
+  background: none;
+}
+.modal-wrap {
+  padding: 20px;
+  width: 460px;
+  background: #fff;
+  border: 1px solid #ccc \9;
+  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2);
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -250px;
+  margin-top: -180px;
+  z-index: 2000;
+}
+.modal-wrap .modal-title {
+  position: relative;
+}
+.modal-wrap .modal-title .title {
+  height: 15px;
+  line-height: 15px;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  font-weight: normal;
+}
+.modal-wrap .modal-title .close {
+  height: 15px;
+  line-height: 15px;
+  position: absolute;
+  top: -2px;
+  right: 0;
+  cursor: pointer;
+  font-size: 21px;
+  color: #969899;
+}
+.modal-wrap .modal-body.tip {
+  width: 460px;
+  height: 220px;
+  text-align: center;
+}
+.modal-wrap .modal-body.tip .icon-tip {
+  margin-top: 80px;
+}
+.modal-wrap .modal-body.tip i.icon-modal-ask-big {
+  height: 65px;
+  width: 65px;
+  background-image: url("../css/img/icon1x.png");
+  background-position: -40px -360px;
+}
+.modal-wrap .modal-body.tip .title-tip {
+  margin-top: 19px;
+  font-size: 20px;
+  color: #2e3133;
+}
+.modal-wrap .modal-body.tip .close-tip {
+  font-size: 12px;
+  margin-top: 11px;
+  color: #656666;
+}
+.invite {
+  height: 60px;
+  background-color: #f2f4f5;
+  text-align: center;
+  position: relative;
+  margin: 10px;
+  display: none;
+}
+.invite .logo,
+.invite .ui-checkbox {
+  background-image: url("../css/img/workbench/workbench1x.png");
+}
+.invite .right-now {
+  background-color: #eee;
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  padding: 5px 23px;
+  color: #29e;
+  border: 1px solid #29e;
+  vertical-align: top;
+  margin-top: 16px;
+  margin-right: 20px;
+  font-size: 13px;
+}
+.invite .right-now:hover {
+  background-color: #29e;
+  color: #fff;
+}
+.invite .right-now:active {
+  border: 1px solid #07c;
+  background-color: #07c;
+}
+.invite .logo {
+  height: 49px;
+  width: 71px;
+  background-position: 0 -20px;
+  margin-top: 8px;
+}
+.invite span {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  font-size: 18px;
+  color: #333;
+  vertical-align: top;
+  margin: 18px 20px 0 20px;
+  *margin-top: 22px;
+}
+.invite label {
+  position: absolute;
+  right: 10px;
+  bottom: 6px;
+  color: #666;
+  font-size: 12px;
+}
+.invite label .ui-checkbox {
+  height: 16px;
+  width: 16px;
+  background-position: 0 0;
+  margin-bottom: 2px;
+}
+.invite label .inviteDisappear-checked {
+  background-position: -16px 0;
+}
+.invite .close {
+  float: right;
+  margin: 6px 6px 0 0;
+  background-position: 0 -18px;
+  cursor: pointer;
+}
+.invite .close:hover {
+  background-position: -20px -18px;
+}
+.ui-select-options {
+  border: 1px solid #cacbcc;
+  border-radius: 2px;
+  padding: 5px 0;
+}
+.ui-select-options .ui-item {
+  height: 22px;
+  line-height: 22px;
+  font-size: 12px;
+  padding: auto 9px;
+}
+.ui-select-options .ui-select-item-hover,
+.ui-select-options .ui-select-item-focus {
+  color: white;
+  background: #29e;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2) {
+  .kq-dialog .ui-dialog-body .kq-unusual {
+    background-position: -175px -592px;
+  }
+  .workbench .layout .menu-work-progress-icon,
+  .workbench .layout .menu-myAtten-icon,
+  .workbench .layout .menu-myDoc-icon,
+  .workbench .layout .menu-adds-icon,
+  .workbench .layout .board-custom-icon,
+  .workbench .layout .to-right,
+  .workbench .layout .to-left {
+    background-image: url("../css/img/jingoalTaskIcon2x.png");
+    background-size: 600px 1200px;
+  }
+  .workbench .layout .user-menu .menu-work-progress-icon {
+    background-position: 0 -36px;
+  }
+  .workbench .layout .user-menu .menu-myAtten-icon {
+    background-position: -266px -36px;
+  }
+  .workbench .layout .user-menu .menu-myDoc-icon {
+    background-position: -38px -36px;
+  }
+  .workbench .layout .user-menu .menu-adds-icon {
+    background-position: -19px -36px;
+  }
+  .workbench .layout .user-menu .ui-left-menu-title .ui-item-selected a .menu-work-progress-icon,
+  .workbench .layout .user-menu .ui-item:hover .menu-work-progress-icon {
+    background-position: -78px -37px;
+  }
+  .workbench .layout .user-menu .ui-left-menu-title .ui-item-selected a .menu-myAtten-icon,
+  .workbench .layout .user-menu .ui-item:hover .menu-myAtten-icon {
+    background-position: -247px -36px;
+  }
+  .workbench .layout .user-menu .ui-left-menu-title .ui-item-selected a .menu-myDoc-icon,
+  .workbench .layout .user-menu .ui-item:hover .menu-myDoc-icon {
+    background-position: -117px -36px;
+  }
+  .workbench .layout .user-menu .ui-left-menu-title .ui-item-selected a .menu-adds-icon,
+  .workbench .layout .user-menu .ui-item:hover .menu-adds-icon {
+    background-position: -98px -36px;
+  }
+  .workbench .layout .to-left {
+    background-position: -340px -83px;
+  }
+  .workbench .layout .to-left:hover {
+    background-position: -303px -83px;
+  }
+  .workbench .layout .to-right {
+    background-position: -358px -83px;
+  }
+  .workbench .layout .to-right:hover {
+    background-position: -321px -83px;
+  }
+  .workbench .layout .right-layout .board-custom-icon {
+    background-position: -303px 0;
+    margin-top: 0;
+  }
+  .workbench .layout .right-layout .custom-board:hover .board-custom-icon {
+    background-position: -96px -57px;
+  }
+  .workbench .layout .right-layout .right-list .kq-clock-off i {
+    background-position: -248px 0;
+  }
+  .workbench .layout .right-layout .right-list .forbid-hint i {
+    background-size: 500px 500px;
+    background-image: url("../css/img/workbench/workbench2x.png");
+    background-position: 0 -76px;
+  }
+  .workbench .layout .right-layout .right-list .r-kqIcon,
+  .workbench .layout .right-layout .right-list .r-notice-icon,
+  .workbench .layout .right-layout .right-list .r-main-icon,
+  .workbench .layout .right-layout .right-list .r-plan-icon,
+  .workbench .layout .right-layout .right-list .r-task-icon,
+  .workbench .layout .right-layout .right-list .r-log-icon,
+  .workbench .layout .right-layout .right-list .r-memo-icon {
+    background-image: url("../css/img/jingoalTaskIcon1x.png");
+    background-size: 400px 500px;
+  }
+  .workbench .layout .right-layout .right-list .r-kqIcon {
+    background-position: -32px -83px;
+  }
+  .workbench .layout .right-layout .right-list .r-notice-icon {
+    background-position: -80px -83px;
+  }
+  .workbench .layout .right-layout .right-list .r-main-icon {
+    background-position: -64px -83px;
+  }
+  .workbench .layout .right-layout .right-list .r-plan-icon {
+    background-position: -160px -83px;
+  }
+  .workbench .layout .right-layout .right-list .r-task-icon {
+    background-position: 0 -99px;
+  }
+  .workbench .layout .right-layout .right-list .r-log-icon {
+    background-position: -144px -83px;
+  }
+  .workbench .layout .right-layout .right-list .r-memo-icon {
+    background-position: -112px -83px;
+  }
+  .workbench .layout .right-layout .right-list .small-title i {
+    background-position: -325px 0;
+  }
+  .workbench .layout .right-layout .right-list .small-title:hover i {
+    background-position: -344px 0;
+  }
+  .invite .logo,
+  .invite .ui-checkbox {
+    background-image: url("../css/img/workbench/workbench2x.png");
+    background-size: 500px 500px;
+  }
+  .invite .close:hover {
+    background-position: -19px -18px;
+  }
+}
+.workbence-mid .newtip {
+  color: #f56845;
+  font-size: 12px;
+  height: 32px;
+  line-height: 32px;
+  background-color: #fffab8;
+  text-align: center;
+  display: none;
+  cursor: pointer;
+}
+.workbence-mid .main-list .list-text p {
+  margin: 7px 0 2px 0;
+  padding-right: 20px;
+  line-height: 22px;
+  word-wrap: break-word;
+}
+.workbence-mid .main-list .list-text p span {
+  color: #b8b8b8;
+}
+.workbence-mid .main-list .list-text .publish-time {
+  float: right;
+  font-size: 12px;
+  color: #b8b8b8;
+}
+.workbence-mid .main-list .list-text .list-show {
+  font-size: 12px;
+  color: #29e;
+}

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.manager.driver.driverMapper" >
+ 		<sql id="DRIVER-PARAM">
+	    id,
+	    name,
+	    tel1,
+	    tel2,
+	    login,
+	    password,
+	    card_no1 as cardNo1,
+	    card_no2 as cardNo2,
+	    create_date as createDate,
+	    create_user as createUser,
+	    address,
+	    email,
+	    qq,
+	    state
+	</sql>
+	
+	<select id="dataGrid" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.manager.driverBean">
+	    select <include refid="DRIVER-PARAM"/> from t_sys_driver where 1=1 
+	  	 <if test="name!=null and name!=''">
+	        and name like concat('%',#{name},'%')
+	    </if>
+	    <if test="login!=null and login!=''">
+	        and login like concat('%',#{login},'%')
+	    </if>
+	     <if test="tel1!=null and tel1!=''">
+	        and tel1 like concat('%',#{tel1},'%')
+	    </if>
+	     <if test="qq!=null and qq!=''">
+	        and qq like concat('%',#{qq},'%')
+	    </if>
+	      <if test="state!=2">
+	        and state = #{state}
+	    </if>
+	    <if test="order!=null and order!=''">
+	        ${order}
+	    </if>
+	</select>
+	
+	<select id="dataGridCot" parameterType="com.alibaba.fastjson.JSONObject" resultType="int">
+	    select count(1) from t_sys_driver where 1=1 
+	  	 <if test="name!=null and name!=''">
+	        and name like concat('%',#{name},'%')
+	    </if>
+	    <if test="login!=null and login!=''">
+	        and login like concat('%',#{login},'%')
+	    </if>
+	     <if test="tel1!=null and tel1!=''">
+	        and tel1 like concat('%',#{tel1},'%')
+	    </if>
+	     <if test="qq!=null and qq!=''">
+	        and qq like concat('%',#{qq},'%')
+	    </if>
+	      <if test="state!=2">
+	        and state = #{state}
+	    </if>
+	</select>
+			
+	<update id="edit" parameterType="com.cms.model.manager.driverBean">
+	    update t_sys_driver set  tel1=#{tel1},
+	    tel2 = #{tel2},
+	    card_no1 =#{cardNo1},
+	    card_no2 =#{cardNo2},
+	    address = #{address},
+	    email = #{email},
+	    qq =#{qq},
+	    state =#{state} where id=#{id}
+	</update>
+	
+	<insert id="add" parameterType="com.cms.model.manager.driverBean">
+	    insert into t_sys_driver (name,
+	    tel1,
+	    tel2,
+	    login,
+	    password,
+	    card_no1 ,
+	    card_no2 ,
+	    create_date,
+	    create_user ,
+	    address,
+	    email,
+	    qq,
+	    state) values (#{name},#{tel1},#{tel2},#{login},#{password},#{cardNo1},#{cardNo2},
+	    #{createDate},#{createUser},#{address},#{email},#{qq},#{state})
+	</insert>
+	
+	<delete id="delete" parameterType="com.alibaba.fastjson.JSONObject">
+	    delete from t_sys_driver where id=#{id}
+	</delete>
+	
+	<select id="get" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.manager.driverBean">
+	    select <include refid="DRIVER-PARAM"/> from t_sys_driver where 1=1 
+	    <if test="id!=null and id!=''">
+	    	and id=#{id}
+	    </if>
+	    <if test="login!=null and login!=''">
+	    	and login=#{login}
+	    </if>
+	</select>
+		<update id="editpassword" parameterType="com.cms.model.manager.driverBean">
+	    update t_sys_driver set  
+	    password =#{password} where id=#{id}
+	</update>
+</mapper>

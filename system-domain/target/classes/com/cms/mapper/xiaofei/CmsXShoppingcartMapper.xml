@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.xiaofei.CmsXShoppingcartMapper" >
+  <resultMap id="BaseResultMap" type="com.cms.model.xiaofei.CmsXShoppingcart" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="PRODUCT_CODE" property="productCode" jdbcType="VARCHAR" />
+    <result column="GOODS_ID" property="goodsId" jdbcType="VARCHAR" />
+    <result column="PRODUCT_NAME" property="productName" jdbcType="VARCHAR" />
+    <result column="STORE_ID" property="storeId" jdbcType="VARCHAR" />
+    <result column="STORE_NAME" property="storeName" jdbcType="VARCHAR" />
+    <result column="STORE_LOGO_URL" property="storeLogoUrl" jdbcType="VARCHAR" />
+    <result column="PRODUCT_PRICE" property="productPrice" jdbcType="DOUBLE" />
+    <result column="PRODUCT_DISCOUNT_PRICE" property="productDiscountPrice" jdbcType="DOUBLE" />
+    <result column="PRODUCT_NUMBER" property="productNumber" jdbcType="INTEGER" />
+    <result column="PRODUCT_IMG_URL" property="productImgUrl" jdbcType="VARCHAR" />
+    <result column="ADD_TIME" property="addTime" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="PRODUCT_ATTRIBUTE" property="productAttribute" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <!-- 添加到购物车 -->
+  <insert id="addGoodsToShoppingcart" parameterType="com.cms.model.xiaofei.CmsXShoppingcart" >
+    insert into cms_x_Shoppingcart
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="productCode != null" >
+        PRODUCT_CODE,
+      </if>
+      <if test="goodsId != null" >
+        GOODS_ID,
+      </if>
+      <if test="productName != null" >
+        PRODUCT_NAME,
+      </if>
+      <if test="storeId != null" >
+        STORE_ID,
+      </if>
+      <if test="storeName != null" >
+        STORE_NAME,
+      </if>
+      <if test="storeLogoUrl != null" >
+        STORE_LOGO_URL,
+      </if>
+      <if test="productPrice != null" >
+        PRODUCT_PRICE,
+      </if>
+      <if test="productDiscountPrice != null" >
+        PRODUCT_DISCOUNT_PRICE,
+      </if>
+      <if test="productNumber != null" >
+        PRODUCT_NUMBER,
+      </if>
+      <if test="productImgUrl != null" >
+        PRODUCT_IMG_URL,
+      </if>
+      <if test="addTime != null" >
+        ADD_TIME,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="productAttribute != null" >
+        PRODUCT_ATTRIBUTE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="productCode != null" >
+        #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null" >
+        #{storeId,jdbcType=VARCHAR},
+      </if>
+      <if test="storeName != null" >
+        #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeLogoUrl != null" >
+        #{storeLogoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="productPrice != null" >
+        #{productPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="productDiscountPrice != null" >
+        #{productDiscountPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="productNumber != null" >
+        #{productNumber,jdbcType=INTEGER},
+      </if>
+      <if test="productImgUrl != null" >
+        #{productImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="productAttribute != null" >
+        #{productAttribute,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <!-- 查询购物车中是否添加过商品 -->
+  <select id="selectShoppingcartGetSize" resultType="Integer">
+  	SELECT COUNT(1) FROM cms_x_shoppingcart WHERE PRODUCT_CODE=#{0} AND GOODS_ID=#{1};
+  </select>
+  <!-- 查询商品数量 -->
+  <select id="selectGoodsGetNumber" resultType="Integer">
+  	SELECT PRODUCT_NUMBER FROM cms_x_shoppingcart WHERE PRODUCT_CODE=#{0} AND GOODS_ID=#{1};
+  </select>
+  <!-- 更新购物车中的商品信息 -->
+  <update id="updateShoppingcartAndGoodsInfo" parameterType="com.cms.model.xiaofei.CmsXShoppingcart">
+  	update cms_x_shoppingcart set
+ 	PRODUCT_NUMBER = #{0}
+    where PRODUCT_CODE=#{1} AND GOODS_ID=#{2}
+  </update>
+  <!-- 根据用户ID查询购物车数据 -->
+  <select id="selectGetUserIdAndShoppingcartAllInfo" parameterType="map" resultType="map">
+  	SELECT * FROM cms_x_shoppingcart a WHERE a.USER_ID=#{userId} and a.STATUS=0;
+  </select>
+  <!-- 根据购物车ID查询购物车信息 -->
+  <select id="selectGetIdAndShoppingcartAllInfo" resultMap="BaseResultMap">
+  	SELECT * FROM cms_x_shoppingcart a WHERE a.ID=#{Id}
+  </select>
+  <!-- 根据ID删除购物车中对应的商品 -->
+  <delete id="delShoppingcartAndGoods" parameterType="String">
+  	DELETE FROM cms_x_shoppingcart WHERE ID=#{Id}
+  </delete>
+</mapper>

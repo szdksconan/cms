@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cms.mapper.manager.user.userdMapper">
+
+	<sql id="USER-PARAM">
+	    tsu.id as userId,
+	    tsu.name as name,
+	    tsu.login_name as loginName,
+	    tsu.login_pwd as loginPwd,
+	    tsu.role_id as roleId,
+	    tsu.department_id as departmentId,
+	    tsu.description as description,
+	    tsu.subcompany_id as subcompanyId,
+	    tsu.sex as sex,
+	    tsu.role_id as roleId
+	</sql>
+	
+	<select id="getUserInfo" parameterType="com.cms.model.manager.userBean" resultType="com.cms.model.manager.userBean">
+	    select <include refid="USER-PARAM"/> from t_sys_user tsu where login_name=#{loginName}
+	</select>
+	
+	<select id="dataGrid" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.manager.userBean">
+		select
+			<include refid="USER-PARAM"/>,
+			tsr.id AS roleId
+		FROM
+			t_sys_user tsu 
+			LEFT JOIN t_sys_role tsr on tsu.role_id=tsr.id 
+	    <if test="loginName!=null and loginName!=''">
+	       	  and tsu.login_name like concat('%',#{loginName},'%')
+	    </if>
+	    <if test="name!=null and name!=''">
+	          and tsu.name like concat('%',#{name},'%')
+	    </if>
+	    <if test="roleId!=null and roleId!=''">
+	          and tsu.role_id like concat('%',#{roleId},'%')
+	    </if>
+	    <if test="order!=null and order!=''">
+	        ${order}
+	    </if>
+	</select>
+	
+	<select id="dataGridCot" parameterType="com.alibaba.fastjson.JSONObject" resultType="int">
+		select count(1) FROM
+			t_sys_user tsu 
+			LEFT JOIN t_sys_role tsr on tsu.role_id=tsr.id 
+	    <if test="loginName!=null and loginName!=''">
+	       	  and tsu.login_name like concat('%',#{loginName},'%')
+	    </if>
+	    <if test="name!=null and name!=''">
+	          and tsu.name like concat('%',#{name},'%')
+	    </if>
+	    <if test="roleId!=null and roleId!=''">
+	          and tsu.role_id like concat('%',#{roleId},'%')
+	    </if>
+	</select>
+	
+		
+	<update id="update" parameterType="com.cms.model.manager.userBean">
+	    update t_sys_user set name=#{name},login_name=#{loginName},login_pwd=#{loginPwd},
+	    role_id=#{roleId}, department_id=#{departmentId},subcompany_id=#{subcompanyId},
+	    description=#{description},station_id=#{stationId},sex=#{sex} where id=#{userId}
+	</update>
+	
+	<insert id="add" parameterType="com.cms.model.manager.userBean">
+	    insert into t_sys_user (sex,name,login_name,login_pwd,description
+	    <if test="roleId!=null and roleId!=''">
+	    	,role_id
+	    </if>
+	    <if test="departmentId!=null and departmentId!=''">
+	    	,department_id
+	    </if>
+	    <if test="subcompanyId!=null and subcompanyId!=''">
+	    	,subcompany_id
+	    </if>
+	    <if test="stationId!=null and stationId!=''">
+	    	,station_id
+	    </if>
+	    ) values (#{sex},#{name},#{loginName},#{loginPwd},#{description}
+	    <if test="roleId!=null and roleId!=''">
+	    	,#{roleId}
+	    </if>
+	    <if test="departmentId!=null and departmentId!=''">
+	    	,#{departmentId}
+	    </if>
+	    <if test="subcompanyId!=null and subcompanyId!=''">
+	    	,#{subcompanyId}
+	    </if>
+	    <if test="stationId!=null and stationId!=''">
+	    	,#{stationId}
+	    </if>
+	    )
+	</insert>
+	
+	<delete id="delete" parameterType="long">
+	    delete from t_sys_user where id=#{id}
+	</delete>
+	
+	<select id="get" parameterType="com.cms.model.manager.userBean" resultType="com.cms.model.manager.userBean">
+	    select <include refid="USER-PARAM"/>
+			from t_sys_user tsu
+			where tsu.id=#{id}
+	</select>
+</mapper>

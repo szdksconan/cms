@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.userCenter.SysUserMapper">
+		
+	<sql id="SYSUSER-PARAM">
+		uid,
+		parent_id as parentId,
+		uname,
+		password,
+		phone,
+		realname,
+		sex,
+		tel,
+		cert_type as certType,
+		cert_num as certNum,
+		email,
+		user_type as userType,
+		member_type as memberType,
+		member_other_mark as memberOtherMark,
+		pwd_protect_1 as pwdProtect1,
+		pwd_protect_2 as pwdProtect2,
+		pwd_protect_3 as pwdProtect3,
+		pwd_protect_answer_1 as pwdProtectAnswer1,
+		pwd_protect_answer_2 as pwdProtectAnswer2,
+		pwd_protect_answer_3 as pwdProtectAnswer3,
+		company_name as companyName,
+		company_address_province as companyAddressProvince,
+		company_address_city as companyAddressCity,
+		company_address_county as companyAddressCounty,
+		company_address_detail as companyAddressDetail,
+		contact_person_name as contactPersonName,
+		contact_person_sex as contactPersonSex,
+		contact_person_phone as contactPersonPhone,
+		user_number as userNumber,
+		position,
+		entry_date as entryDate,
+		creator_time as creatorTime,
+		creator,
+		status,
+		is_enable as isEnable,
+		is_default as isDefault,
+		description,
+		depart_id as departId,
+		company_id as companyId,
+		subcompany_id as subcompanyId,
+		station_id as stationId,
+		pay_pwd as payPwd,
+		is_authenticate as isAuthenticate
+	</sql>
+	<resultMap type="com.cms.model.userCenter.SysUser" id="userResultMap">
+	    <!-- column:库表的字段名 property:实体类里的属性名 -->
+	    <id column="uid" property="uid" />
+	    <result column="parent_id" property="parentId" />
+	    <result column="uname" property="uname" />
+	    <result column="password" property="password" />
+	    <result column="phone" property="phone" />
+	    <result column="realname" property="realname" />
+	    <result column="sex" property="sex" />
+	    <result column="tel" property="tel" />
+	    <result column="cert_type" property="certType" />
+	    <result column="cert_num" property="certNum" />
+	    <result column="user_type" property="userType" />
+	    <result column="member_other_mark" property="memberOtherMark" />
+	    <result column="pwd_protect_1" property="pwdProtect1" />
+	    <result column="pwd_protect_2" property="pwdProtect2" />
+	    <result column="pwd_protect_3" property="pwdProtect3" />
+	    <result column="pwd_protect_answer_1" property="pwdProtectAnswer1" />
+	    <result column="pwd_protect_answer_2" property="pwdProtectAnswer2" />
+	    <result column="pwd_protect_answer_3" property="pwdProtectAnswer3" />
+	    <result column="company_name" property="companyName" />
+	    <result column="company_address_province" property="companyAddressProvince" />
+	    <result column="company_address_city" property="companyAddressCity" />
+	    <result column="company_address_county" property="companyAddressCounty" />
+	    <result column="company_address_detail" property="companyAddressDetail" />
+	    <result column="contact_person_name" property="contactPersonName" />
+	    <result column="contact_person_sex" property="contactPersonSex" />
+	    <result column="contact_person_phone" property="contactPersonPhone" />
+	    <result column="user_number" property="userNumber" />
+	    <result column="position" property="position" />
+	    <result column="entry_date" property="entryDate" />
+	    <result column="creator_time" property="creatorTime" />
+	    <result column="creator" property="creator" />
+	    <result column="status" property="status" />
+	    <result column="is_enable" property="isEnable" />
+	    <result column="is_default" property="isDefault" />
+	    <result column="depart_id" property="departId" />
+	    <result column="company_id" property="companyId" />
+	    <result column="subcompany_id" property="subcompanyId" />
+	    <result column="station_id" property="stationId" />
+	    <result column="pay_pwd" property="payPwd" />
+	    <result column="is_authenticate" property="isAuthenticate" />
+	</resultMap>
+	<insert id="add" parameterType="com.cms.model.userCenter.SysUser">
+		insert into sys_user 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="uid != null and uid != ''">uid,</if>
+			<if test="parentId != null and parentId != ''">parent_id,</if>
+			<if test="uname != null and uname != ''">uname,</if>
+			<if test="password != null and password != ''">password,</if>
+			<if test="phone != null and phone != ''">phone,</if>
+			<if test="realname != null and realname != ''">realname,</if>
+			<if test="sex != null and sex != ''">sex,</if>
+			<if test="tel != null and tel != ''">tel,</if>
+			<if test="certType != null and certType != ''">cert_type,</if>
+			<if test="certNum != null and certNum != ''">cert_num,</if>
+			<if test="email != null and email != ''">email,</if>
+			<if test="userType != null and userType != ''">user_type,</if>
+			<if test="memberType != null and memberType != ''">member_type,</if>
+			<if test="memberOtherMark != null and memberOtherMark != ''">member_other_mark,</if>
+			<if test="pwdProtect1 != null and pwdProtect1 != ''">pwd_protect_1,</if>
+			<if test="pwdProtect2 != null and pwdProtect2 != ''">pwd_protect_2,</if>
+			<if test="pwdProtect3 != null and pwdProtect3 != ''">pwd_protect_3,</if>
+			<if test="pwdProtectAnswer1 != null and pwdProtectAnswer1 != ''">pwd_protect_answer_1,</if>
+			<if test="pwdProtectAnswer2 != null and pwdProtectAnswer2 != ''">pwd_protect_answer_2,</if>
+			<if test="pwdProtectAnswer3 != null and pwdProtectAnswer3 != ''">pwd_protect_answer_3,</if>
+			<if test="companyName != null and companyName != ''">company_name,</if>
+			<if test="companyAddressProvince != null and companyAddressProvince != ''">company_address_province,</if>
+			<if test="companyAddressCity != null and companyAddressCity != ''">company_address_city,</if>
+			<if test="companyAddressCounty != null and companyAddressCounty != ''">company_address_county,</if>
+			<if test="companyAddressDetail != null and companyAddressDetail != ''">company_address_detail,</if>
+			<if test="contactPersonName != null and contactPersonName != ''">contact_person_name,</if>
+			<if test="contactPersonSex != null and contactPersonSex != ''">contact_person_sex,</if>
+			<if test="contactPersonPhone != null and contactPersonPhone != ''">contact_person_phone,</if>
+			<if test="userNumber != null and userNumber != ''">user_number,</if>
+			<if test="position != null and position != ''">position,</if>
+			<if test="entryDate != null">entry_date,</if>
+			<if test="creatorTime != null">creator_time,</if>
+			<if test="creator != null and creator != ''">creator,</if>
+			<if test="status != null and status != ''">status,</if>
+			<if test="isEnable != null and isEnable != ''">is_enable,</if>
+			<if test="isDefault != null and isDefault != ''">is_default,</if>
+			<if test="description != null and description != ''">description,</if>
+			<if test="departId != null and departId != ''">depart_id,</if>
+			<if test="companyId != null and companyId != ''">company_id,</if>
+			<if test="subcompanyId != null and subcompanyId != ''">subcompany_id,</if>
+			<if test="stationId != null and stationId != ''">station_id,</if>
+			<if test="payPwd != null and payPwd != ''">pay_pwd,</if>
+			<if test="isAuthenticate != null and isAuthenticate != ''">is_authenticate,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="uid != null and uid != ''">#{uid},</if>
+			<if test="parentId != null and parentId != ''">#{parentId},</if>
+			<if test="uname != null and uname != ''">#{uname},</if>
+			<if test="password != null and password != ''">#{password},</if>
+			<if test="phone != null and phone != ''">#{phone},</if>
+			<if test="realname != null and realname != ''">#{realname},</if>
+			<if test="sex != null and sex != ''">#{sex},</if>
+			<if test="tel != null and tel != ''">#{tel},</if>
+			<if test="certType != null and certType != ''">#{certType},</if>
+			<if test="certNum != null and certNum != ''">#{certNum},</if>
+			<if test="email != null and email != ''">#{email},</if>
+			<if test="userType != null and userType != ''">#{userType},</if>
+			<if test="memberType != null and memberType != ''">#{memberType},</if>
+			<if test="memberOtherMark != null and memberOtherMark != ''">#{memberOtherMark},</if>
+			<if test="pwdProtect1 != null and pwdProtect1 != ''">#{pwdProtect1},</if>
+			<if test="pwdProtect2 != null and pwdProtect2 != ''">#{pwdProtect2},</if>
+			<if test="pwdProtect3 != null and pwdProtect3 != ''">#{pwdProtect3},</if>
+			<if test="pwdProtectAnswer1 != null and pwdProtectAnswer1 != ''">#{pwdProtectAnswer1},</if>
+			<if test="pwdProtectAnswer2 != null and pwdProtectAnswer2 != ''">#{pwdProtectAnswer2},</if>
+			<if test="pwdProtectAnswer3 != null and pwdProtectAnswer3 != ''">#{pwdProtectAnswer3},</if>
+			<if test="companyName != null and companyName != ''">#{companyName},</if>
+			<if test="companyAddressProvince != null and companyAddressProvince != ''">#{companyAddressProvince},</if>
+			<if test="companyAddressCity != null and companyAddressCity != ''">#{companyAddressCity},</if>
+			<if test="companyAddressCounty != null and companyAddressCounty != ''">#{companyAddressCounty},</if>
+			<if test="companyAddressDetail != null and companyAddressDetail != ''">#{companyAddressDetail},</if>
+			<if test="contactPersonName != null and contactPersonName != ''">#{contactPersonName},</if>
+			<if test="contactPersonSex != null and contactPersonSex != ''">#{contactPersonSex},</if>
+			<if test="contactPersonPhone != null and contactPersonPhone != ''">#{contactPersonPhone},</if>
+			<if test="userNumber != null and userNumber != ''">#{userNumber},</if>
+			<if test="position != null and position != ''">#{position},</if>
+			<if test="entryDate != null">#{entryDate},</if>
+			<if test="creatorTime != null">#{creatorTime},</if>
+			<if test="creator != null and creator != ''">#{creator},</if>
+			<if test="status != null and status != ''">#{status},</if>
+			<if test="isEnable != null and isEnable != ''">#{isEnable},</if>
+			<if test="isDefault != null and isDefault != ''">#{isDefault},</if>
+			<if test="description != null and description != ''">#{description},</if>
+			<if test="departId != null and departId != ''">#{departId},</if>
+			<if test="companyId != null and companyId != ''">#{companyId},</if>
+			<if test="subcompanyId != null and subcompanyId != ''">#{subcompanyId},</if>
+			<if test="stationId != null and stationId != ''">#{stationId},</if>
+			<if test="payPwd != null and payPwd != ''">#{payPwd},</if>
+			<if test="isAuthenticate != null and isAuthenticate != ''">#{isAuthenticate},</if>
+		</trim>
+	</insert>
+
+	
+	<select id="findById" parameterType="java.lang.Long" resultType="com.cms.model.userCenter.SysUser">
+		select * from sys_user where uid=#{uid}
+	</select>
+	<select id="findByName" parameterType="com.cms.model.userCenter.SysUser" resultMap="userResultMap">
+		select * from sys_user where uname=#{uname}
+	</select>
+	<select id="findByNameAndPwd" parameterType="com.cms.model.userCenter.SysUser" resultMap="userResultMap">
+		select * from sys_user where uname=#{uname} and password=#{password}
+	</select>
+	<update id="update" parameterType="com.cms.model.userCenter.SysUser">
+		update sys_user set
+		<trim suffixOverrides="," >
+			<if test="parentId != null and parentId != ''">parent_id=#{parentId},</if>
+			<if test="uname != null and uname != ''">uname=#{uname},</if>
+			<if test="password != null and password != ''">password=#{password},</if>
+			<if test="phone != null and phone != ''">phone=#{phone},</if>
+			<if test="realname != null and realname != ''">realname=#{realname},</if>
+			<if test="sex != null and sex != ''">sex=#{sex},</if>
+			<if test="tel != null and tel != ''">tel=#{tel},</if>
+			<if test="certType != null and certType != ''">cert_type=#{certType},</if>
+			<if test="certNum != null and certNum != ''">cert_num=#{certNum},</if>
+			<if test="email != null and email != ''">email=#{email},</if>
+			<if test="userType != null and userType != ''">user_type=#{userType},</if>
+			<if test="memberType != null and memberType != ''">member_type=#{memberType},</if>
+			<if test="memberOtherMark != null and memberOtherMark != ''">member_other_mark=#{memberOtherMark},</if>
+			<if test="pwdProtect1 != null and pwdProtect1 != ''">pwd_protect_1=#{pwdProtect1},</if>
+			<if test="pwdProtect2 != null and pwdProtect2 != ''">pwd_protect_2=#{pwdProtect2},</if>
+			<if test="pwdProtect3 != null and pwdProtect3 != ''">pwd_protect_3=#{pwdProtect3},</if>
+			<if test="pwdProtectAnswer1 != null and pwdProtectAnswer1 != ''">pwd_protect_answer_1=#{pwdProtectAnswer1},</if>
+			<if test="pwdProtectAnswer2 != null and pwdProtectAnswer2 != ''">pwd_protect_answer_2=#{pwdProtectAnswer2},</if>
+			<if test="pwdProtectAnswer3 != null and pwdProtectAnswer3 != ''">pwd_protect_answer_3=#{pwdProtectAnswer3},</if>
+			<if test="companyName != null and companyName != ''">company_name=#{companyName},</if>
+			<if test="companyAddressProvince != null and companyAddressProvince != ''">company_address_province=#{companyAddressProvince},</if>
+			<if test="companyAddressCity != null and companyAddressCity != ''">company_address_city=#{companyAddressCity},</if>
+			<if test="companyAddressCounty != null and companyAddressCounty != ''">company_address_county=#{companyAddressCounty},</if>
+			<if test="companyAddressDetail != null and companyAddressDetail != ''">company_address_detail=#{companyAddressDetail},</if>
+			<if test="contactPersonName != null and contactPersonName != ''">contact_person_name=#{contactPersonName},</if>
+			<if test="contactPersonSex != null and contactPersonSex != ''">contact_person_sex=#{contactPersonSex},</if>
+			<if test="contactPersonPhone != null and contactPersonPhone != ''">contact_person_phone=#{contactPersonPhone},</if>
+			<if test="userNumber != null and userNumber != ''">user_number=#{userNumber},</if>
+			<if test="position != null and position != ''">position=#{position},</if>
+			<if test="entryDate != null">entry_date=#{entryDate},</if>
+			<if test="creatorTime != null">creator_time=#{creatorTime},</if>
+			<if test="creator != null and creator != ''">creator=#{creator},</if>
+			<if test="status != null and status != ''">status=#{status},</if>
+			<if test="isEnable != null and isEnable != ''">is_enable=#{isEnable},</if>
+			<if test="isDefault != null and isDefault != ''">is_default=#{isDefault},</if>
+			<if test="description != null and description != ''">description=#{description},</if>
+			<if test="departId != null and departId != ''">depart_id=#{departId},</if>
+			<if test="companyId != null and companyId != ''">company_id=#{companyId},</if>
+			<if test="subcompanyId != null and subcompanyId != ''">subcompany_id=#{subcompanyId},</if>
+			<if test="stationId != null and stationId != ''">station_id=#{stationId},</if>
+			<if test="payPwd != null and payPwd != ''">pay_pwd=#{payPwd},</if>
+			<if test="isAuthenticate != null and isAuthenticate != ''">is_authenticate=#{isAuthenticate},</if>
+		</trim>
+		 where uid=#{uid}
+		
+	</update>
+	
+</mapper>

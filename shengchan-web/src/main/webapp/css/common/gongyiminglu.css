@@ -1,0 +1,55 @@
+@CHARSET "UTF-8";
+.gy-1th {width: 44%;float: left;line-height: 30px;text-align: center;}
+.gy-head{margin-top: 20px;color: #666;font-weight: bold;}
+.gy-list{margin-top: 10px;}
+.gy-2rd {width: 28%;float: left;line-height: 30px;text-align: center;}
+.gy-3nd {width: 22%;float: left;line-height: 30px;text-align: center;}
+.gy-intro {width: 28%;float: left;}
+.gy-title{width: 100%;}
+.gy-daigong {width: 22%;float: left;}
+.gy-product {width: 46%;float: left;padding: 5px 10px;}
+.gy-shebei {width: 23%;float: left;padding: 5px 10px;}
+.gy-hang {width: 100%;line-height: 23px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;padding: 0px 7px;font-family: simsun;color: #888;font-size: 12px;}
+.gy-checkbox {float: left;padding-left: 5px;}
+.gy-choose {padding-left: 5px;position: absolute;}
+.gy-intro-l {float: left;}
+.gy-intro-r {width: 55%;float: left;margin-left: 10px;}
+.gy-logo {width: 110px;height: 110px;margin-left: 10px;margin-top: 5px;}
+.gy-intro-d {width: 100%;float：left;}
+.gy-intro-hang {width: 100%;}
+.gy-intro-font {font-size: 15px;padding-left: 30px;}
+.gy-intro-item {float: right;margin-right: 10px;}
+.gy-c-png {padding-left: 65px;}
+.gy-intro-z {text-align: center;width: 100%;display: block;}
+.swiper-slide {-webkit-flex-shrink: 0;-ms-flex: 0 0 auto;flex-shrink: 0;width: 100%;position: relative;}
+#conten4 {height: 200px;}
+#conten4 img {width: 100%;height: 168px;}
+.gy-5th {width: 4%;float: left;}
+.gy-caozuo {width: 4%;float: left;text-align: center;line-height: 130px;}
+.gy-delete {cursor: pointer;}
+#tubiaomoshi {width: 100%;height: 600px;}
+.gy-pfl {z-index: 2;height: 247px;position: absolute;top: 0px;left: 0px;background: #FFFFFF;}
+.pfl-u {width: 100%;float: left;}
+.gy-pfr {width: 216px;height: 100%;border: 1px solid #4496C5;position: absolute;right: 0;top: 0;float: right;background: #FFFFFF;}
+.plf-l {float: left;width: 40%;}
+.plf-r {float: left;width: 60%;}
+.pd32 {padding: 0px 0px 0px 21px;}
+.gy-logo-l {width: 120px;height: 120px;border: 1px solid #dddddd;margin-left: 5px;margin-top: 10px;}
+.pd20 {padding-left: 20px;}
+.gy-right-shrink{width: 20px;height: 100%;position: absolute;margin-right: 20px;}
+.gy-shrink-text{
+	display: block;
+	width: 20px;
+	height: 32px;
+	margin-top: 240px;
+	cursor: pointer;
+	background-image: url(../../images/CssGaga.png);
+    background-repeat: no-repeat;
+    background-position: -5px 0;
+}
+.gy-shrink-left{
+	background-position: -39px 0;
+}
+.gy-right-shrink-content{height:100%;margin-left: 20px;overflow-y: scroll;}
+.gy-product img{height:121px;}
+.zoom-list dd.active a{color: #4996C4;font-weight:600}

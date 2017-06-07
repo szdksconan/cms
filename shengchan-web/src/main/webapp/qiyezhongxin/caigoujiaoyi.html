@@ -1,0 +1,185 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>采购交易规则</title>
+<link rel="stylesheet" type="text/css" href="../css/common/chuyunguanli.css" />
+<link rel="stylesheet" type="text/css" href="../css/common/qiyezhongxin.css" />
+<script charset="utf-8" type="text/javascript" src="../js/qiyezhongxin/caigoujiaoyi.js"></script>
+<script type="text/javascript">
+	var companyid = "1312312313";
+</script>	
+<style type="text/css">
+.cg1 {
+	display: inline-block;
+	width: 40%;
+	line-height: 40px;
+}
+.cg2 {
+	width: 60%;
+	line-height: 40px;
+	display: inline;
+}
+
+.cg3 {
+	width: 100%;
+	line-height: 47px;
+	margin: 10px 0px;
+}
+.cg-payway{
+	width:40%;
+	line-height:40px;
+	float:left;
+}
+.cg-creat{
+	width:60%;
+	line-height:40px;
+	float:left;
+}
+#updateBuyRule {
+	width: 100%;
+	float: left;
+	display: none;
+}
+
+.edit-cg1 {
+	width: 33%;
+	float: left;
+	line-height: 40px;
+	padding-left: 10px;
+}
+
+.edit-cg2 {
+	width: 32%;
+	float: left;
+	line-height: 40px;
+}
+
+.edit-cg3 {
+	width: 34%;
+	float: left;
+	line-height: 40px;
+}
+
+.edit-cg4 {
+	width: 100%;
+	float: left;
+	line-height: 40px;
+	padding-left: 10px;
+}
+.edit-cg5{
+	line-height:40px;
+	float:left;
+	width:30%
+}
+.describle-title {
+	padding-left: 10px;
+	width: 13%;
+	float: left;
+	line-height: 40px;
+}
+
+.edit-desrible {
+	width: 87%;
+	float: left;
+	line-height: 40px;
+}
+
+.cg-apply {
+	width: 100%;
+	line-height: 40px;
+	float: left;
+	padding-left: 10px;
+}
+
+.cg-check {
+	position: relative;
+	top: 2px;
+}
+.textarea-c{
+	resize: none;
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div class="cg1">
+			规则名称：<input type="text" id="queryname" class="cmao_input m126">
+		</div>
+		<div class="cg2">
+			适用物资：
+				<span id="apply_goods"> 
+				  <select class="materials1 selelct" id="type5" name="productTypeId"></select>
+				  <select class="materials2 selelct" id="type6" name="productTypeId"></select>
+				  <select class="materials3 selelct" id="type7" name="productTypeId"></select>
+				  <select class="materials4 selelct" id="type8" name="productTypeId"></select>
+				</span>
+		</div>
+<!-- 		<div class="cg-payway"> -->
+<!-- 			付款方式：<select id="pay_type"></select> -->
+<!-- 		</div> -->
+<!-- 		<div class="cg-creat"> -->
+<!-- 			编制人：<input type="text" id="recreat" class="cmao_input m126"/> -->
+<!-- 		</div> -->
+		<div class="cg3 clearfix">
+			<div class="pull-left">
+				<button class="btn btn-blue btn-w120 ml26" type="button" onclick="addcgzi();">新增采购规则</button>
+			</div>
+			<div class="pull-right">
+				<button class="btn btn-blue btn-w100 ml26" onclick = "queryRule()" type="button">查询</button>
+				<button class="btn btn-gray btn-w100 ml26" onclick="clearcg();" type="button">清空</button>
+			</div>
+		</div>
+		<table id="caigoujiaoyi"></table>
+	</div>
+	<!-- 用于编辑页面 -->
+	<div id="updateBuyRule">
+		<form id="guize" method="post" action="#">
+		<div class="edit-cg1">
+			<input type="hidden" id="guizeId" name="id">
+			<input type="hidden" id="compId" name ="compid">
+			<span class="cmao_title">规则名称：</span><input type="text" name="ruleName"  class="cmao_input m126" id="guizename" />
+		</div>
+		<div class="edit-cg2">
+			<span class="cmao_title">编制时间：</span><input type="text" id="bianzhiTime" name="ruleTime" width="134px" class="cmao_input m126"  disabled="disabled"/>
+		</div>
+		<div class="edit-cg3">
+			<span class="cmao_title">编制人：</span><input type="text" class="cmao_input m126" name="creator" id="createor" disabled="disabled"/>
+		</div>
+		<div class="cg-apply clearfix">
+			<span class="cmao_title">适用物资：</span>
+				<span id="element_id"> 
+				  <select class="materials1 selelct" id="type1" name="productTypeId"></select>
+				  <select class="materials2 selelct" id="type2" name="productTypeId"></select>
+				  <select class="materials3 selelct" id="type3" name="productTypeId"></select>
+				  <select class="materials4 selelct" id="type4" name="productTypeId"></select>
+				</span>
+<!-- 			<div onclick="addproduct(this);" class="add-png" title="添加"></div> -->
+				<font class="add_text" onclick="addproduct(this);">添加</font>
+		</div>
+		<div class="detail-product-r-down clearfix" id="blank_theme"></div>
+		<div class="cg-apply clearfix">
+			<span class="cmao_title">物资来源：</span>
+			<input type="text" class="cmao_input m126" id="wzly">
+		</div>
+		<div class="detail-product-r-down clearfix" id="_areas"></div>
+		<div class="edit-cg4 clearfix" >
+			<span class="cmao_title">付款方式：</span>
+			<label><input type="checkbox" class="cg-check" name="jiesuanType" value="现款现货"/>现款现货</label>
+			<label class="ml10"><input type="checkbox" class="cg-check" value="分期付款" name="jiesuanType"/>分期付款</label>
+		</div>
+<!-- 		<div class="edit-cg5" > -->
+<!-- 			支付方式：<input type="text" id="payWay" class="cmao_input m126"/> -->
+<!-- 		</div> -->
+		<div class="edit-cg4">
+			<span class="cmao_title">交易规则描述：</span>
+			<textarea cols="90"  rows="5" class="textarea-c" id="describle"></textarea>
+		</div>
+	</form>
+	</div>
+</body>
+</html>

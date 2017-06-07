@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>客户名录</title>
+    <meta charset="utf-8">
+    <script src="../js/common/tabs.js"></script>
+    
+</head>
+<body class="bei">
+<div class="sc_cgd">
+    <table>
+        <tr>
+            <td>
+                企业名称：<input type="text" class="cmao_input" value="企业名称"/>
+            </td>
+            <td>
+                所在地区：<input type="text" class="cmao_input" style="width: 40%;" id="city" readonly/>
+            </td>
+            <td>
+                所属行业：<input type="text" class="cmao_input" style="width: 40%;" id="hylb" readonly/>
+            </td>
+            <td>
+                采购物资名称：<input type="text" class="cmao_input" />
+            </td>
+            <td>
+                <button  class="btn btn-blue btn-w100" type="button" >查询</button>
+                <button  class="btn btn-darkgray btn-w100" type="button" >清空</button>
+            </td>
+        </tr>
+    </table>
+</div>
+<div style="width: 100%">
+	<div class="container" style="margin-top: 20px;">
+				<ul class="nav nav-tabs">
+					<li class="active">
+						<a href="#tab4" data-toggle="tab" style="color: black;">采购客户列表</a>
+					</li>
+					<li >
+						<a href="#tab4" data-toggle="tab" style="color: black;">关注的生产厂家</a>
+					</li>
+					<li >
+						<a href="#tab4" data-toggle="tab" style="color: black;">关注的贸易商</a>
+					</li>
+				</ul>
+				<div class="tab-content">
+     
+        		<div class="container" style="margin-top: 20px;" id="tab4">
+				<ul class="nav nav-tabs">
+					<li class="active" style="float: right;">
+						<a href="#tab1" data-toggle="tab" style="color: black;">地图模式</a>
+					</li>
+					<li style="float: right;">
+						<a href="#tab2" data-toggle="tab"style="color: black;">图片模式</a>
+					</li>
+					<li style="float: right;">
+						<a href="#tab3" data-toggle="tab" style="color: black;">列表模式</a>
+					</li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="tab1" style="margin-top: 20px;">
+        	     <img alt="我是地图" src="../images/map.png">
+                </table>
+       		 </div>
+       		 <div class="tab-pane" id="tab2">
+                        <table width="100%">
+                            <tr>
+                                <td width="30%" style="padding-top: 20px;">
+                                    <div style="width: 100%;height: 230px">
+                                        <table style="width:100%;height: 81%">
+                                            <tr>
+                                                <td rowspan="7"><a href="javascript:void(0)"><img src="../images/20160418.png" class="mLU-img"/></a></td>
+                                                <td>企业性质：私营企业</td>
+                                            </tr>
+                                            <tr>
+                                                <td>所属行业：机械</td>
+                                            </tr>
+                                            <tr>
+                                                <td>所在地区：成都高新区</td>
+                                            </tr>
+                                            <tr>
+                                                <td> 交易次数：5次</td>
+                                            </tr>
+                                            <tr>
+                                                <td>交易总金额：100万元</td>
+                                            </tr>
+                                            <tr>
+                                                <td>联系人：张三</td>
+                                            </tr>
+                                            <tr>
+                                                <td>联系电话：13512345678</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <a class="a_css" href="javascript:void(0)">成都高新区机械有限公司</a>
+                                                </td>
+                                                <td align="right">
+                                                    <a class="a_css" href="javascript:void(0)">查看</a> | <a class="a_css" href="javascript:void(0)">删除</a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                                <td align="top" width="4px">
+                                    <div class="thumbnail thumbnail-item">企业最新物资需求</div>
+                                </td>
+                                <td>
+                                    <div style="width: 100%">
+                                        <table style="width: 100%">
+                                            <tr>
+                                                <td>
+                                                    <div>
+                                                        <ul class="qy_conul4">
+                                                            <li class="active" >物资需求</li>
+                                                            <li >招标信息</li>
+                                                            <li >代工信息</li>
+                                                        </ul>
+                                                        <div class="qy_tab4" style="height: auto;">
+                                                            <div class="tab-pane active">
+                                                                <table class="table_wzxq">
+                                                                </table>
+                                                            </div>
+                                                            <div class="tab-pane ">
+                                                                <table class="table_zbxx" >
+                                                                </table>
+                                                            </div>
+                                                            <div class="tab-pane ">
+                                                                <table class="table_dgxx">
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="30%" style="padding-top: 20px;">
+                                    <div style="width: 100%;height: 230px">
+                                        <table style="width: 100%;height: 81%">
+                                            <tr>
+                                                <td rowspan="7"><a href="javascript:void(0)"><img src="../images/20160418.png" class="mLU-img"/></a></td>
+                                                <td>企业性质：私营企业</td>
+                                            </tr>
+                                            <tr>
+                                                <td>所属行业：机械</td>
+                                            </tr>
+                                            <tr>
+                                                <td>所在地区：成都高新区</td>
+                                            </tr>
+                                            <tr>
+                                                <td> 交易次数：5次</td>
+                                            </tr>
+                                            <tr>
+                                                <td>交易总金额：100万元</td>
+                                            </tr>
+                                            <tr>
+                                                <td>联系人：张三</td>
+                                            </tr>
+                                            <tr>
+                                                <td>联系电话：13512345678</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <a class="a_css" href="javascript:void(0)">成都高新区机械有限公司</a>
+                                                </td>
+                                                <td align="right">
+                                                    <a class="a_css" href="javascript:void(0)">查看</a> | <a class="a_css" href="javascript:void(0)">删除</a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                                <td align="top" width="4px">
+                                    <div class="thumbnail thumbnail-item">企业最新物资需求</div>
+                                </td>
+                                <td>
+                                    <div style="width: 100%">
+                                        <table style="width: 100%">
+                                            <tr>
+                                                <td>
+                                                    <div>
+                                                        <ul class="qy_conul4">
+                                                            <li class="active" >物资需求</li>
+                                                            <li >招标信息</li>
+                                                            <li >代工信息</li>
+                                                        </ul>
+                                                        <div class="qy_tab4" style="height: auto;">
+                                                            <div class="tab-pane active">
+                                                                <table class="table_wzxq">
+                                                                </table>
+                                                            </div>
+                                                            <div class="tab-pane ">
+                                                                <table class="table_zbxx" >
+                                                                </table>
+                                                            </div>
+                                                            <div class="tab-pane ">
+                                                                <table class="table_dgxx">
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                               <td width="30%" style="padding-top: 20px;">
+                                    <div style="width: 100%;height: 230px">
+                                        <table style="width: 100%;height: 81%">
+                                            <tr>
+                                                <td rowspan="7"><a href="javascript:void(0)"><img src="../images/20160418.png" class="mLU-img"/></a></td>
+                                                <td>企业性质：私营企业</td>
+                                            </tr>
+                                            <tr>
+                                                <td>所属行业：机械</td>
+                                            </tr>
+                                            <tr>
+                                                <td>所在地区：成都高新区</td>
+                                            </tr>
+                                            <tr>
+                                                <td> 交易次数：5次</td>
+                                            </tr>
+                                            <tr>
+                                                <td>交易总金额：100万元</td>
+                                            </tr>
+                                            <tr>
+                                                <td>联系人：张三</td>
+                                            </tr>
+                                            <tr>
+                                                <td>联系电话：13512345678</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <a class="a_css" href="javascript:void(0)">成都高新区机械有限公司</a>
+                                                </td>
+                                                <td align="right">
+                                                    <a class="a_css" href="javascript:void(0)">查看</a> | <a class="a_css" href="javascript:void(0)">删除</a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                                <td align="top" width="4px">
+                                    <div class="thumbnail thumbnail-item">企业最新物资需求</div>
+                                </td>
+                                <td>
+                                    <div style="width: 100%">
+                                        <table style="width: 100%">
+                                            <tr>
+                                                <td>
+                                                    <div>
+                                                        <ul class="qy_conul4">
+                                                            <li class="active" >物资需求</li>
+                                                            <li >招标信息</li>
+                                                            <li >代工信息</li>
+                                                        </ul>
+                                                        <div class="qy_tab4" style="height: auto;">
+                                                            <div class="tab-pane active">
+                                                                <table class="table_wzxq">
+                                                                </table>
+                                                            </div>
+                                                            <div class="tab-pane ">
+                                                                <table class="table_zbxx" >
+                                                                </table>
+                                                            </div>
+                                                            <div class="tab-pane ">
+                                                                <table class="table_dgxx">
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                      <div class="tab-pane " id="tab3">
+                        <table id="table_1" >
+                        </table>
+                    </div>
+    </div>
+	</div>
+            
+            
+        </div>
+    </div>
+</div>
+<script>
+    $("#city").click(function (e) {
+        SelCity(this,e);
+    });
+
+    $('#hylb').multiselect({
+        nonSelectedText:'请选择',
+        maxHeight:'500'
+    });
+    $('#hylb').multiselect('url',{url:'common/getBaseIndustryList',cache:true});
+
+    var tableoption={
+        data:[{
+            "companyName":"重庆马鞍山制造有限公司",
+            "companyProperty": "私营企业",
+            "industry": "机械制造",
+            "area": "重庆江北区",
+            "wzName": "开山牌：挖掘机系列",
+            "linkMan": "张三",
+            "phone": "13512345678",
+            "categoryCount":"5",
+            "categoryAmount":"100000.00"
+        },{
+            "companyName":"雅安名山茶叶有限公司",
+            "companyProperty": "国有企业",
+            "industry": "食品行业",
+            "area": "四川雅安",
+            "wzName": "香茗牌：制茶系列",
+            "linkMan": "李四",
+            "phone": "13512345678",
+            "categoryCount":"5",
+            "categoryAmount":"100000.00"
+        },{
+            "companyName":"重庆马鞍山制造有限公司",
+            "companyProperty": "私营企业",
+            "industry": "机械制造",
+            "area": "重庆江北区",
+            "wzName": "开山牌：挖掘机系列",
+            "linkMan": "张三",
+            "phone": "13512345678",
+            "categoryCount":"5",
+            "categoryAmount":"100000.00"
+        }],
+//        toolbar: '#toolbar',
+        toolbarWidth:'100%',
+        pagination: true,//是否显示分页
+        queryParamsType:'',//传递参数
+        sidePagination: "client",//分页方式：client客户端分页，server服务端分页
+        uniqueId: "id",//每一行的唯一标识，一般为主键列
+        columns: [{
+            field: 'Number',
+            title: '序号',
+            formatter: function (value, row, index) {
+                return index+1;
+            }
+        },{
+            title : '企业名称',
+            field : 'companyName'
+        },{
+            title : '企业性质',
+            field : 'companyProperty'
+        },{
+            title : '所属行业',
+            field : 'industry'
+        },{
+            title : '所在地区',
+            field : 'area'
+        },{
+            title : '采购物资名称',
+            field : 'wzName'
+        },{
+            title : '联系人',
+            field : 'linkMan'
+        },{
+            title : '联系电话',
+            field : 'phone'
+        },{
+            title : '交易次数',
+            field : 'categoryCount'
+        },{
+            title : '交易总金额',
+            field : 'categoryAmount'
+        },{
+            title: '操作',
+            field : 'action',
+            formatter: function (value, row, index) {
+                return '<a class="a_css"   href="javascript:void(0)" onclick="changeContent(\'../xiaoshou/xs_khmlxq.html\',\'right\')">查看</a> | <a class="a_css" href="#">删除</a>';
+            }
+        }]
+    };
+
+    $('#table_1').bootstrapTable(tableoption);
+
+    var tableoption_1 = {};
+    $.extend(tableoption_1,tableoption);
+    tableoption_1.columns = [{
+        field: 'Number',
+        title: '序号',
+        formatter: function (value, row, index) {
+            return index+1;
+        }
+    },{
+        title : '物资编码',
+        field : 'wzCode'
+    },{
+        title : '物资名称',
+        field : 'wzName'
+    },{
+        title : '规格型号',
+        field : 'size'
+    },{
+        title : '所属行业',
+        field : 'industry'
+    },{
+        title : '物资类别',
+        field : 'wzType'
+    },{
+        title : '采购数量',
+        field : 'count'
+    },{
+        title : '交货日期',
+        field : 'deliveryTime'
+    }];
+    tableoption_1.data = [{
+            "wzCode":"SE-222222",
+            "wzName": "电脑",
+            "size": "LYC002",
+            "industry": "电子产品",
+            "wzType": "成品",
+            "count": "10台",
+            "deliveryTime": "2016.04.30"
+        },{
+            "wzCode":"XE-111111",
+            "wzName": "主板",
+            "size": "LYC002",
+            "industry": "金属制品",
+            "wzType": "半成品",
+            "count": "10台",
+            "deliveryTime": "2016.04.30"
+        },{
+            "wzCode":"SE-222222",
+            "wzName": "电脑",
+            "size": "LYC002",
+            "industry": "电子产品",
+            "wzType": "成品",
+            "count": "10台",
+            "deliveryTime": "2016.04.30"
+        }];
+
+    var tableoption_2 = {};
+    var tableoption_3 = {};
+    $.extend(tableoption_2,tableoption);
+    tableoption_2.columns = [{
+        field: 'Number',
+        title: '序号',
+        formatter: function (value, row, index) {
+            return index+1;
+        }
+    },{
+        title : '招标单号',
+        field : 'zbCode'
+    },{
+        title : '招标名称',
+        field : 'zbName'
+    },{
+        title : '物资摘要',
+        field : 'abstract'
+    },{
+        title : '发布日期',
+        field : 'createTime'
+    },{
+        title : '投标截止日',
+        field : 'endTime'
+    }];
+    tableoption_2.data = [{
+        "zbCode":"ZB2016014101",
+        "zbName": "XXX招标",
+        "abstract": "烟灰缸",
+        "createTime": "2016.04.10",
+        "endTime": "2016.04.22"
+    },{
+        "zbCode":"ZB2016014101",
+        "zbName": "XXX招标",
+        "abstract": "烟灰缸",
+        "createTime": "2016.04.10",
+        "endTime": "2016.04.22"
+    },{
+        "zbCode":"ZB2016014101",
+        "zbName": "XXX招标",
+        "abstract": "烟灰缸",
+        "createTime": "2016.04.10",
+        "endTime": "2016.04.22"
+    }];
+
+    $.extend(tableoption_3,tableoption);
+    tableoption_3.columns = [{
+        field: 'Number',
+        title: '序号',
+        formatter: function (value, row, index) {
+            return index+1;
+        }
+    },{
+        title : '委托代工单号',
+        field : 'wtCode'
+    },{
+        title : '委托标题',
+        field : 'wtName'
+    },{
+        title : '内容摘要',
+        field : 'abstract'
+    },{
+        title : '发布日期',
+        field : 'createTime'
+    },{
+        title : '截止日期',
+        field : 'endTime'
+    },{
+        title : '合作模式',
+        field : 'cooperationModel'
+    }];
+    tableoption_3.data = [{
+        "wtCode":"DG-20160422",
+        "wtName": "核电站材料加工",
+        "abstract": "XXXX轴承",
+        "createTime": "2016.04.10",
+        "endTime": "2016.04.22",
+        "cooperationModel": "长期合作"
+    },{
+        "wtCode":"DG-20160422",
+        "wtName": "核电站材料加工",
+        "abstract": "XXXX轴承",
+        "createTime": "2016.04.10",
+        "endTime": "2016.04.22",
+        "cooperationModel": "短期合作"
+    },{
+        "wtCode":"DG-20160422",
+        "wtName": "核电站材料加工",
+        "abstract": "XXXX轴承",
+        "createTime": "2016.04.10",
+        "endTime": "2016.04.22",
+        "cooperationModel": "短期合作"
+    }];
+    $('.table_wzxq').bootstrapTable(tableoption_1);
+    $('.table_zbxx').bootstrapTable(tableoption_2);
+    $('.table_dgxx').bootstrapTable(tableoption_3);
+</script>
+</body>
+</html>

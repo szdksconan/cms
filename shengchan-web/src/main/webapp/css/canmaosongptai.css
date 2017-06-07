@@ -1,0 +1,104 @@
+/**产贸送平台具体网页应用样式*/
+@charset "utf-8";
+@import url(bootstrap.css);
+@import url(font-awesome.min.css);
+@import url(bootstrap.min.css);
+/*@import url(cmcommon.css);*/
+@import url(menhu.css);
+/*@import url(common/bootstrap-table.css);*/
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, textarea, th, td {
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+
+body, button, input, select, textarea {
+    font: 13px/1.5 "microsoft yahei", Verdana, Helvetica, Arial, sans-serif;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -box-sizing: border-box;
+
+}
+
+.laydate_box, .laydate_box * {
+    box-sizing: content-box;
+}
+/*  产贸平台第一级页面顶部通用样式*/
+.cmao_top{width: 100%;height: 33px;background-color: #707070;padding-left: 150px;padding-top:5px;color:#ffffff;}
+.cmao_top .cmao_head{width:1000px;margin:0 auto;padding-left: 30px;}
+.cmao_top .cmao_label{float: right;width: 400px;}
+.cmao_top span{display:inline-block;width:75px;}
+
+
+/*  产贸平台第三级页面产贸框架横向纵向菜单*/
+.cmao_cont{width:100%;height:auto;background-color: #ffffff;min-width:1200px;overflow-x: auto;\9;}
+
+
+.cmao_cont .cmao_daohang{height:auto;width: 100%;display: inline-block;background-color: #ffffff;margin:0;padding:0;padding-top:0\9;}
+.cmao_cont .cmao_daohang .cmao_daoleft{width:12%;float: left;border-right: 1px solid #f6f6f6;}
+.cmao_cont .cmao_daohang .cmao_daoleft .cmao_fen{width:100%;height:60px;background-color: #ffffff;border-bottom: 1px solid #f6f6f6;padding:20px 0 0 20px;font-size: 18px;color: #333333;}
+
+.cmao_cont .cmao_daohang .cmao_daoright{ width:88%;height:auto;float:left;display: inline-block;margin:0;padding: 0;background-color: #ffffff;}
+.cmao_cont .cmao_daohang .cmao_daoright > div{width:100%;height: auto;padding-left: 3%;}
+
+/* 第三级页面产贸框架的head*/
+.cmaosc_top{width: 100%;height: 60px;background-color: rgba(6, 111, 175, 0.73);padding: 0 0 0 13px;color:#ffffff;min-width: 1200px;}
+
+.cmaosc_top .cmao_head{width:600px;}
+.cmaosc_top .cmao_label{float: right;width:800px;}
+.cmaosc_top span{display:inline-block;width:100px;}
+.cmaosc_top .cmaosc_logo{display: inline-block;float: left;border-right: 1px solid #eee;width: 129px;height: 57px;padding: 18px 0 0 0;}
+.cmaosc_top .cmaosc_pt{display: inline-block;float: left;width: 129px;height: 57px;padding: 18px 0 0 18px;font-size: 18px;color: #ffffff;}
+.cmaosc_top .cmaosc_tr{float: right;width: 900px;height: auto;}
+.cmaosc_top .cmaosc_tr .cmao_cmeu{  width: 23px;  margin-top: 18px;    display: inline-block;float: right;}
+.cmaosc_top .cmaosc_tr .cmao_tou{width:60px;height: 57px;padding:10px 5px 0 5px;float: right;}
+.cmaosc_top .cmaosc_tr .cmao_xi{width: 100px;border-left:1px solid #eee;border-right:1px solid #eee;height: 57px;padding-left:20px;float: right;}
+.cmaosc_top .cmaosc_tr .cmao_xi img{margin:20px 16px 0 0;}
+
+.cmaosc_top .cmaosc_tr .cmao_sc{width: 120px;height: 57px;padding-top:16px;float: right;font-size: 18px; }
+.cmaosc_top .cmaosc_tr .cmao_sc i{font-size: 12px;}
+.cmaosc_top i{color: #ffffff;}
+
+.cmaosc_top .cmaosc_tr .cmaosc_sou{display: inline-block;width: 400px;height: 36px;margin-top:12px;margin-right: 20px;border-radius:3px;background-color: #ffffff;float: right; }
+.cmaosc_top .cmaosc_tr .cmaosc_sou input{width: 370px;border: none;color: #333333;padding-left: 5px;padding-top: 8px;border-radius:6px;height: auto; }
+
+.cmaosc_top .cmaosc_tr .cmaosc_sou img{margin-top:-4px; }
+.cmaosc_top .cmaosc_tr .cmaosc_bang{float: right; width: 61px;margin-top: 1px;}
+.cmaosc_top .cmaosc_tr .cmaosc_bang .cmao_b{width: 60px;height: 36px;border-top-left-radius:3px;border-bottom-left-radius:3px;background-color: #f7f7f7;margin:11px 1px 0 0;}
+.cmaosc_top .cmaosc_tr .cmaosc_bang .cmao_b .cmao_set{background:url(../images/sanjiao.png) 45px 16px no-repeat;color: #333333;padding:8px ;cursor: pointer;}
+.cmaosc_top .cmaosc_tr .cmaosc_bang .cmao_b .camo_bs{width:60px;position:absolute;border:1px solid #f7f7f7;display:none;color: #333333;background-color: #f7f7f7;z-index: 9;}
+.cmaosc_top .cmaosc_tr .cmaosc_bang .cmao_b .cmao_sel{background:url(../images/sanjiao1.png) 45px 16px no-repeat;color: #333333;padding:8px ;cursor: pointer;}
+
+.cmaosc_top .cmaosc_tr .cmaosc_bang .cmao_b ul li{line-height:30px;padding-left:10px;}
+.cmaosc_top .cmaosc_tr .cmaosc_bang .cmao_b ul li:hover{background:#CCC;color:#FFF;cursor: pointer;}
+
+/* 第三级页面产贸框架通用横向排列菜单  */
+.cmaosc_caidan{width: 100%;background-color: #ffffff;height: 60px;border-bottom:1px solid #e3e3e3;min-width: 1366px; }
+.cmaosc_caidan div{display: inline-block;font-size: 18px;color: #333333;padding-top:16px; }
+.cmaosc_caidan div:first-child{display: inline-block;font-size: 18px;color: #333333;padding-top:16px;padding-left: 20px; }
+.cmaosc_caidan ul li{display: inline-block;width: 80px; height: 43px;color: #333333;margin-left:138px;text-align: center;font-weight: bold;}
+.cmaosc_caidan ul a{display: inline-block;}
+.cmaosc_caidan .active{color:rgba(6, 111, 175, 0.73);border-bottom:3px solid rgba(6, 111, 175, 0.73); }
+
+
+/*特殊菜单消费板块菜单*/
+.cmaosc_caidanxf{width: 100%;background-color: #ffffff;height: 60px;border-bottom:1px solid #e3e3e3;min-width: 1366px; }
+.cmaosc_caidanxf div{display: inline-block;font-size: 18px;color: #333333;padding-top:16px; }
+.cmaosc_caidanxf div:first-child{display: inline-block;font-size: 18px;color: #333333;padding-top:16px;padding-left: 20px; }
+.cmaosc_caidanxf ul li{display: inline-block;width:72px; height: 43px;color: #333333;margin-left:112px;text-align: center;font-weight: bold;}
+.cmaosc_caidanxf .active{color:#b70707;border-bottom:3px solid #b70707;}
+
+
+/* 2016-3-24产贸平台生产模块通用样式*/
+
+/*1物资采购采购意向样式*/
+.sc_cg{height:36px;width: 99%;margin:10px 10px 10px 0;background-color: #fffcdd;border: 1px solid #e6d3ab;color: #f48414;font-weight: bold;padding:8px 7px 0 5px;}
+.sc_cg i{color: #ff403d;float: right;font-size: 18px;cursor: pointer;}
+
+/*填充表单*/
+.sc_cgd{/*margin: 10px 0 0 10px;*/margin-top: 10px;}
+.sc_cgd table{width: 100%;height: auto;}
+.sc_cgd table tr{width: 100%;height: 50px;}
+.sc_cgd table tr td{height: 50px;}
+
+

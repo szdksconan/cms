@@ -1,0 +1,100 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+</head>
+<div style="min-width: 600px;">
+    <div class="sc_cgd">
+        <form method="post" id="cpfbmx" enctype="multipart/form-data">
+            <input type="hidden" id="delProductFileKeys" name="delProductFileKeys" value=""/>
+            <input type="hidden" id="oldProductCode" />
+            <input type="hidden" id="productId"/>
+            <table class="-querytable" style="width: 100%;">
+                <tr>
+                    <td  align="right">
+                        产品编码：
+                    </td>
+                    <td>
+                        <input type="text" class="cmao_inplg" id="productCode" value=""/>
+                    </td>
+                    <td  align="right">
+                        规格型号：
+                    </td>
+                    <td>
+                        <input type="text" class="cmao_inplg" id="productModelSize" value=""/>
+                    </td>
+                    <td  align="right">
+                        库存余量：
+                    </td>
+                    <td>
+                        <input type="text" class="cmao_inplg" id="warehouseBalance"  value=""/>
+                        <div id="unitBox">
+                        	<select class="unit select" id="unitId"></select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td  align="right">
+                        产地：
+                    </td>
+                    <td>
+                        <input type="text" class="cmao_inplg" style="min-width: 200px" id="industryId" city="true" readonly/>
+                    </td>
+                    <td  align="right">
+                        上市时间：
+                    </td>
+                    <td>
+                        <input type="text" id="ipoTime" class="laydate-icon" onclick="laydate({format: 'YYYY-MM-DD'})"/>
+                    </td>
+            
+                </tr>
+	            <tr>
+
+<!--                     <td  align="right"> -->
+<!--                         	参数名称： -->
+<!--                     </td> -->
+<!--                     <td> -->
+<!--                         <input type="text" id="configName" class="cmao_inplg" placeholder="如：体重"  value=""/> -->
+<!--                     </td> -->
+<!--                     <td  align="right"> -->
+<!--                         	参数值： -->
+<!--                     </td> -->
+<!--                     <td> -->
+<!--                         <input type="text" id="configValue" class="cmao_inplg" placeholder="如：50kg"  value=""/> -->
+<!--                     </td> -->
+                    <td colspan="2" align="center">
+                    	<button id="btn_addconfig" class="btn btn-blue btn-w120" type="button">添加参数配置</button>
+                    </td>
+                </tr>
+	      		 <tr>
+		            <td colspan="6">
+		                <div style="width: 100%;height: 100%;margin-left:10px;" id="configArea" >
+		                	
+		                </div>
+		            </td>
+        		</tr>
+                
+            </table>
+        </form>
+    </div>
+	<div class="tab-content " >
+			<div class="tab-pane active" id="cplb">
+					<div class="upload-box">
+						<div class="statusBar">
+							<button type="button" class="btn btn-blue upload-btn uploadBtn" name="uploadBtn">上传图片</button>
+						</div>
+						<ul class="uploadList clearfix" name="uploadList" id="uploadList">
+						</ul>
+						<div class="placeholder">
+							<p>您还没有上传任何图片，快去上传吧</p>
+							<!--<button type="button" class="btn btn-blue upload-btn uploadBtn" name="uploadBtn">上传图片</button>-->
+						</div>
+					</div>
+				</div>
+	</div>
+
+</div>
+</html>
+<script src="../js/xiaoshou/xs_cpfb_mx.js"></script>

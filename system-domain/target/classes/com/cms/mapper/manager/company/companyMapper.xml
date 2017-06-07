@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.manager.company.companyMapper" >
+  <sql id="COMPANY-PARAM" >
+  	tsc.id as companyId,
+  	tsc.company_name as companyName,
+  	tsc.company_no as companyNo,
+  	tsc.company_login as companyLogin,
+  	tsc.company_pwd as companyPwd,
+  		tsc.company_add as companyAdd,
+	  	tsc.company_tel1 as companyTel1,
+	  	tsc.company_tel2 as companyTel2,
+	  	DATE_FORMAT(tsc.company_create_date,'%Y-%m-%d') as companyCreateDate,
+	  	tsc.company_money as companyMoney,
+	  	tsc.message_sum as messageSum,
+	  	tsc.check_sum as checkSum,
+	  	tsc.tel_sum as telSum,
+	  	tsc.begin_add as beginAdd,
+	  	tsc.end_add as endAdd,
+	  	tsc.company_garden as companyGarden,
+	  	tsc.company_gis as companyGis,
+	  	tsc.company_type as companyType,
+	  	tsc.company_pic as companyPic,
+	  	tsc.company_linkman as companyLinkman,
+	  	tsc.paper_type as paperType,
+	  	tsc.paper_pic as paperPic,
+	  	tsc.industry_pic as industryPic,
+	  	tsc.paper_no as paperNo,
+	  	tsc.company_pic_min as companyPicMin,
+	  	tsc.paper_pic_min as paperPicMin,
+	  	tsc.industry_pic_min as industryPicMin,
+		tsc.status as status,
+		tsc.pname as pname,
+		tsc.aname as aname,
+		tsc.cname as cname,
+		tsc.check_type as checkType,
+		tsc.join_type as joinType,
+		tsc.longitude as longitude,
+		tsc.latitude as latitude,
+		tsc.company_contactnum as companyContactnum
+  </sql>
+  <!-- 
+	<select id="dataGrid" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.manager.companyBean">
+		select <include refid="COMPANY-PARAM"/>,tsl.status from t_sys_company tsc INNER JOIN t_sys_loginuser tsl on tsc.id=tsl.id where 1=1 
+		<if test="status!=-1 and status!='-1'">
+			and tsl.status=#{status}
+		</if>
+		<if test="keyword!=null and keyword!=''">
+		and (tsc.company_name like concat('%',#{keyword},'%') or tsc.company_no like concat('%',#{keyword},'%') or tsc.company_add like concat('%',#{keyword},'%') or 
+		tsc.company_garden like concat('%',#{keyword},'%'))
+		</if>
+	</select>
+   -->
+  
+  <select id="dataGrid" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.manager.companyBean">
+  	select <include refid="COMPANY-PARAM"/>  from t_sys_company tsc  where 1=1 
+  </select>
+  
+  <select id="dataGridCot" parameterType="com.alibaba.fastjson.JSONObject" resultType="int">
+  	select count(1)  from t_sys_company tsc  where 1=1 
+  </select>
+  <update id="updateFlag" parameterType="com.alibaba.fastjson.JSONObject">
+  	update t_sys_company set status=#{status} where id=#{id}
+  </update>
+  
+  <select id="getInfo" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.manager.companyBean">
+  	select <include refid="COMPANY-PARAM"/> from t_sys_company tsc where tsc.id=#{companyId}
+  </select>
+  
+  <insert id="add" parameterType="com.alibaba.fastjson.JSONObject">
+  	insert into t_sys_company (id,company_name,company_no,company_add,company_garden,company_linkman,paper_type,paper_no,paper_pic,industry_pic,company_pic,paper_pic_min,
+  	industry_pic_min,company_pic_min,begin_add,end_add,pname,aname,cname,status,longitude,latitude,join_type
+  	,check_type,company_create_date,company_tel1,company_type,company_contactnum,company_money) values (
+  	#{id},#{companyName},#{companyNo},#{companyAdd},#{companyGarden},#{companyLinkman},#{paperType},#{paperNo},#{paperPic},#{industryPic},#{companyPic},#{paperPicMin},#{industryPicMin},#{companyPicMin}
+  	,#{beginAdd},#{endAdd},#{pname},#{aname},#{cname},#{status},#{longitude},#{latitude},#{joinType},
+  	#{checkType},#{companyCreateDate},#{companyTel1},#{companyType},#{companyContactnum},#{companyMoney})
+  </insert>
+  
+  <update id="update" parameterType="com.alibaba.fastjson.JSONObject">
+  	update t_sys_company set 
+  	company_name=#{companyName},company_no=#{companyNo},company_add=#{companyAdd},company_garden=#{companyGarden},company_linkman=#{companyLinkman},paper_type=#{paperType},paper_no=#{paperNo},
+  	paper_pic=#{paperPic},industry_pic=#{industryPic},paper_pic_min=#{paperPicMin},industry_pic_min=#{industryPicMin},
+  	pname=#{pname},aname=#{aname},cname=#{cname},status=#{status},longitude=#{longitude},latitude=#{latitude},join_type=#{joinType}
+  	,check_type=#{checkType},company_create_date=#{companyCreateDate},company_tel1=#{companyTel1},company_type=#{companyType},
+  	company_contactnum=#{companyContactnum},company_money=#{companyMoney} where id=#{id}
+
+
+  </update>
+  
+    <select id="dataGrid2" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.manager.companyBean">
+  	select <include refid="COMPANY-PARAM"/> from t_sys_company tsc 
+ 	    <if test="order!=null and order!=''">
+	        ${order}
+	    </if>
+  </select>
+</mapper>

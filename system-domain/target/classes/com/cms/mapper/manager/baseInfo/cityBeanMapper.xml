@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.manager.baseInfo.cityMapper" >
+	<sql id="CITY-PARAM">
+		    id,
+		    name,
+		    pid,
+		    lid,
+		    aid,
+		    code
+	</sql>
+	
+	<select id="dataGrid" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.wuliu.CityBean">
+	  SELECT
+			a.id AS id,
+			a.code,
+			a. NAME AS NAME,
+			b. NAME AS pname,
+			c. NAME AS lname,
+			d. NAME AS aname
+		FROM
+			t_sys_city a LEFT JOIN t_sys_area d on a.aid=d.id
+			LEFT JOIN t_sys_province b on a.pid=b.id 
+			LEFT JOIN t_sys_line c on a.lid=c.id
+	      <if test="name!=null and name!=''">
+	          and a.name like concat('%',#{name},'%')
+	    </if>
+	    <if test="pid!=null and pid!=''">
+	          and a.pid = #{pid}
+	    </if>
+	    <if test="order!=null and order!=''">
+	        ${order}
+	    </if>
+	</select>
+	
+	<select id="dataGridCot" parameterType="com.alibaba.fastjson.JSONObject" resultType="int">
+	  SELECT count(1) FROM
+			t_sys_city a LEFT JOIN t_sys_area d on a.aid=d.id
+			LEFT JOIN t_sys_province b on a.pid=b.id 
+			LEFT JOIN t_sys_line c on a.lid=c.id
+	      <if test="name!=null and name!=''">
+	          and a.name like concat('%',#{name},'%')
+	    </if>
+	    <if test="pid!=null and pid!=''">
+	          and a.pid = #{pid}
+	    </if>
+	</select>
+	
+			
+	<update id="edit" parameterType="com.cms.model.wuliu.CityBean">
+	    update t_sys_city set code=#{code},pid=#{pid},lid=#{lid},
+	    aid=#{aid},name=#{name} where id=#{id}
+	</update>
+	
+	<insert id="add" parameterType="com.cms.model.wuliu.CityBean">
+	    insert into t_sys_city (code,pid,lid,aid,name) values (#{code},#{pid},#{lid},#{aid},#{name})
+	</insert>
+	
+	<delete id="delete" parameterType="com.alibaba.fastjson.JSONObject">
+	    delete from t_sys_city where id=#{id}
+	</delete>
+	
+	<select id="get" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.wuliu.CityBean">
+	    select <include refid="CITY-PARAM"/> from t_sys_city where id=#{id}
+	</select>
+	
+		
+	<select id="selectCityJson" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.wuliu.CityBean">
+	  SELECT
+			a.id AS id,
+			a.code AS code,
+			a. NAME AS NAME,
+			b. NAME AS pname,
+			c. NAME AS lname,
+			d. NAME AS aname
+		FROM
+			t_sys_city a 
+			LEFT JOIN t_sys_area d on a.aid=d.id
+			LEFT JOIN t_sys_province b on a.pid=b.id 
+			LEFT JOIN t_sys_line c on a.lid=c.id
+	      <if test="p!=null and p!=''">
+	          and a.name like concat('%',#{p},'%')
+	    </if>
+	</select>
+	<select id="selectCityJson2" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.wuliu.CityBean">
+	  SELECT <include refid="CITY-PARAM"/> 
+	  from t_sys_city  where 1=1
+	      <if test="p!=null and p!=''">
+	          and name like concat('%',#{p},'%')
+	    </if>
+	      <if test="pid!=null and pid!=''">
+	          and pid = #{pid}
+	    </if>
+	     <if test="pid2!=null and pid2!=''">
+	          and aid = #{pid2}
+	    </if>
+	</select>
+</mapper>

@@ -1,0 +1,12 @@
+document.writeln("<div class=\"shouye_foot\" >");
+document.writeln("<div style=\"font-size: 14px\">");
+document.writeln("        关于产贸送   &nbsp; |  &nbsp;   法律声明  &nbsp;   |   &nbsp;  加盟入驻    &nbsp; |  &nbsp;   帮助中心");
+document.writeln("");
+document.writeln("    </div>");
+document.writeln("    <div style=\"font-size: 14px\">");
+document.writeln("        如有任何问题请拨打热线电话       24小时热线电话：400-800-2015-0586");
+document.writeln("");
+document.writeln("    </div>");
+document.writeln("    <div style=\"font-size: 14px\">");
+document.writeln("        Copyright  2015 cmswl Inc. 保留所有权利。    新公安网安备 10000000586 新ICP备10000586");
+document.writeln("    </div>");

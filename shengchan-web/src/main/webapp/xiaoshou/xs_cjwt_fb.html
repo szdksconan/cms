@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="../css/canmaosongptai.css">
+<link rel="stylesheet" type="text/css" href="../css/shenchan.css">
+<link rel="stylesheet" type="text/css"
+	href="../css/common/bootstrap-multiselect.css">
+<script src="../css/laydate/laydate.js"></script>
+<script src="../js/common/jquery.js"></script>
+<script src="../js/common/control.js"></script>
+<script src="../js/common/bootstrap.min.js"></script>
+<script src="../js/common/bootstrap-multiselect.js"></script>
+<script src="../js/common/common.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../city/city.css">
+<script src="../city/cityJson.js"></script>
+<script src="../city/citySet.js"></script>
+<script src="../city/Popt.js"></script>
+</head>
+<body class="bei" style="width: 100%;">
+		<table class="-querytable" style="width: 78%;">
+			<tr>
+				<td align="right"> 产品品牌： </td>
+				<td><select id="cppp">
+					</select>
+				</td>
+				<td align="right"> 产品系列： </td>
+				<td><select id="cpxl">
+					</select>
+				</td>
+
+				<td align="right"> 产品名称：</td>
+				<td> <select id="cpmc"></select>
+				</td>
+
+			</tr>
+			<tr>
+				<td align="right">
+				标题：</td>
+				<td colspan="5"> <input type="text" class="cmao_inplg"
+						value="挖掘机日常养护10大问题"  /> 
+						 <select
+						id="wtfl"></select>
+				</td>
+			</tr>
+
+			<tr>
+				<td align="right">内容：</td>
+				<td colspan="5"> <textarea name="textarea"
+							class="sc_tarea" cols="50" rows="17"
+							placeholder="1.XXXXXXXXXXXXXXXXXXXX"></textarea>
+				</td>
+			</tr>
+		</table>
+	<script>
+		//发布类型加载
+		var optionscppp = [ {
+			label : '开山牌',
+			value : '1'
+		}, {
+			label : '大力神牌',
+			value : '2'
+		}, {
+			label : '天辉牌',
+			value : '3'
+		} ];
+
+		$('#cppp').multiselect('dataprovider', optionscppp);
+		//发布类型加载
+		var optionscpxl = [ {
+			label : '轻型挖掘机',
+			value : '1'
+		}, {
+			label : '轻型压路机',
+			value : '2'
+		}, {
+			label : '重型吊车2056系',
+			value : '3'
+		} ];
+
+		$('#cpxl').multiselect('dataprovider', optionscpxl);
+		//发布类型加载
+		var optionscpmc = [ {
+			label : '10T轻型挖掘机(三一重工)',
+			value : '1'
+		}, {
+			label : '轻型压路机(成都双流机械制造)',
+			value : '2'
+		}, {
+			label : '重型吊车2056系(成都双流机械制造)',
+			value : '3'
+		} ];
+
+		$('#cpmc').multiselect('dataprovider', optionscpmc);
+
+		//发布类型加载
+		var optionswtfl = [ {
+			label : '日常养护',
+			value : '1'
+		}, {
+			label : '维修指南',
+			value : '2'
+		}, {
+			label : '站点咨询',
+			value : '3'
+		} ];
+
+		$('#wtfl').multiselect('dataprovider', optionswtfl);
+	</script>
+
+</body>
+</html>

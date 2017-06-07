@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>    
+<!DOCTYPE mapper    
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cms.mapper.userCenter.com.AccountComSysUserMapper">
+
+ <!-- 收货地址列表 -->
+ <resultMap id="user" type="SysUser">
+  <id property="uid" column="uid" />
+  <result property="certType" column="cert_type"/>
+  <result property="certNum" column="cert_num"/>
+  <result property="userType" column="user_type"/>
+  <result property="memberType" column="member_type"/>
+  <result property="memberOtherMark" column="member_other_mark"/>
+  <result property="pwdProtect1" column="pwd_protect_1"/>
+  <result property="pwdProtect2" column="pwd_protect_2"/>
+  <result property="pwdProtect3" column="pwd_protect_3"/>
+  <result property="pwdProtectAnswer1" column="pwd_protect_answer_1"/>
+  <result property="pwdProtectAnswer2" column="pwd_protect_answer_2"/>
+  <result property="pwdProtectAnswer3" column="pwd_protect_answer_3"/>
+  <result property="companyName" column="company_name"/>
+  <result property="companyAddressProvince" column="company_address_province"/>
+  <result property="companyAddressCity" column="company_address_city"/>
+  <result property="companyAddressCounty" column="company_address_county"/>
+  <result property="companyAddressDetail" column="company_address_detail"/>
+  <result property="contactPersonName" column="contact_person_name"/>
+  <result property="contactPersonSex" column="contact_person_sex"/>
+  <result property="contactPersonPhone" column="contact_person_phone"/>
+  <result property="contactPersonDepart" column="contact_person_depart"/>
+  <result property="contactPersonPosition" column="contact_person_position"/>
+  <result property="contactPersonTel" column="contact_person_tel"/>
+  <result property="contactPersonCertType" column="contact_person_certType"/>
+  <result property="contactPersonCertNum" column="contact_person_certNum"/>
+  <result property="userNumber" column="user_number"/>
+  <result property="entryDate" column="entry_date"/>
+  <result property="creatorTime" column="creator_time"/>
+  <result property="isEnable" column="is_enable"/>
+  <result property="isDefault" column="is_default"/>
+  <result property="departId" column="depart_id"/>
+  <result property="companyId" column="company_id"/>
+  <result property="subcompanyId" column="subcompany_id"/>
+  <result property="stationId" column="station_id"/>
+  <result property="payPwd" column="pay_pwd"/>
+  <result property="isAuthenticate" column="is_authenticate"/>
+ </resultMap>
+
+	<!-- 拿到企业账户的基本信息 -->
+	 <select id="getSysUser"  parameterType="java.lang.String" resultMap="user">
+	      select * from sys_user where uid=#{uid}
+	 </select>
+ 
+     <!-- 更新企业账户基本信息 -->
+     <update id="updateBasicInfo" parameterType="SysUser">
+     	update sys_user set uname=#{uname},realname=#{realname},cert_type=#{certType},cert_num=#{certNum},phone=#{phone},
+     	tel=#{tel},email=#{email},
+     	contact_person_name=#{contactPersonName},contact_person_sex=#{contactPersonSex},position=#{position},contact_person_phone=#{contactPersonPhone},
+     	contact_person_depart=#{contactPersonDepart},
+     	contact_person_position=#{contactPersonPosition},
+     	contact_person_tel=#{contactPersonTel},
+     	contact_person_certType=#{contactPersonCertType},
+     	contact_person_certNum=#{contactPersonCertNum}
+     	where uid=#{uid}
+     </update>
+     
+</mapper> 

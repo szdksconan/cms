@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.cms.mapper.shengchan.ProductSellRuleMapper">
+    <sql id="PRODUCTSELLRULE">
+        id,
+        main_product_id as mainProductId,
+        DATE_FORMAT(update_time,'%Y-%m-%d') as updateTime,
+        DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s') as createTime,
+        apply_product_type as applyProductType,
+        updator,
+        sell_type as sellType,
+        pay_type as payType,
+        deposit,
+        produce_duty_explain as produceDutyExplain,
+        trader_duty_explain as traderDutyExplain,
+        aftermarket_explain as aftermarketExplain,
+        rule_id as ruleId,
+        rule_name as ruleName,
+        rule_area_code as ruleAreaCode,
+        rule_area as ruleArea
+    </sql>
+    <sql id="PRODUCTSELLRULEAREA">
+        id,
+        product_sell_rule_id as productSellRuleId,
+        province_id as provinceId,
+        city_id as cityId,
+        area_id as areaId,
+        province_name as provinceName,
+        city_name as cityName,
+        area_name as areaName,
+        company_id as companyId
+    </sql>
+    <sql id="PRODUCTPRICE">
+        id,
+        product_id as productId,
+        product_code as productCode,
+        price,
+        product_sell_rule_id as productSellRuleId,
+        type
+    </sql>
+
+    <insert id="saveProductSellRule" parameterType="java.util.List">
+        replace into product_sell_rule (id,main_product_id,update_time,updator,sell_type,pay_type,deposit,produce_duty_explain,trader_duty_explain,aftermarket_explain,
+        rule_id,rule_name,create_time,apply_product_type,rule_area_code,rule_area) values
+        <foreach collection="list" item="sellRule" index="index" separator="," >
+            (#{sellRule.id},#{sellRule.mainProductId},#{sellRule.updateTime},#{sellRule.updator},#{sellRule.sellType},#{sellRule.payType},#{sellRule.deposit},#{sellRule.produceDutyExplain},
+            #{sellRule.traderDutyExplain},#{sellRule.aftermarketExplain},#{sellRule.ruleId},#{sellRule.ruleName},#{sellRule.createTime},#{sellRule.applyProductType},#{sellRule.ruleAreaCode},
+            #{sellRule.ruleArea})
+        </foreach>
+    </insert>
+
+    <insert id="saveProductSellRuleArea" parameterType="java.util.List">
+        replace into product_sell_rule_area (id,product_sell_rule_id,province_id,city_id,area_id,province_name,city_name,area_name,company_id) values
+        <foreach collection="list" item="sellRuleArea" index="index" separator="," >
+            (#{sellRuleArea.id},#{sellRuleArea.productSellRuleId},#{sellRuleArea.provinceId},#{sellRuleArea.cityId},#{sellRuleArea.areaId},
+            #{sellRuleArea.provinceName},#{sellRuleArea.cityName},#{sellRuleArea.areaName},#{sellRuleArea.companyId})
+        </foreach>
+    </insert>
+
+    <insert id="saveProductSellRulePrice" parameterType="java.util.List">
+        replace into product_price (id,product_id,product_code,price,product_sell_rule_id,type,main_product_id) values
+        <foreach collection="list" item="sellRulePrice" index="index" separator="," >
+            (#{sellRulePrice.id},#{sellRulePrice.productId},#{sellRulePrice.productCode},#{sellRulePrice.price},#{sellRulePrice.productSellRuleId},
+            #{sellRulePrice.type},#{sellRulePrice.mainProductId})
+        </foreach>
+    </insert>
+
+    <select id="getProductSellRuleList" parameterType="com.cms.model.shengchang.MainProductBean" resultType="com.cms.model.shengchang.ProductSellRuleBean">
+        select <include refid="PRODUCTSELLRULE"/> from product_sell_rule where 1=1
+        <if test="id!=null and id!=''">
+            and main_product_id=#{id}
+        </if>
+    </select>
+
+    <select id="getProductSellRuleArealist" parameterType="com.cms.model.shengchang.ProductSellRuleBean" resultType="com.cms.model.shengchang.ProductSellRuleAreaBean">
+        select <include refid="PRODUCTSELLRULEAREA"/> from product_sell_rule_area where 1=1
+        <if test="id!=null and id!=''">
+            and product_sell_rule_id=#{id}
+        </if>
+    </select>
+
+    <select id="getProductPriveList" parameterType="com.cms.model.shengchang.ProductSellRuleBean" resultType="com.cms.model.shengchang.ProductPriceBean">
+        select <include refid="PRODUCTPRICE"/> from product_price where 1=1
+        <if test="id!=null and id!=''">
+            and product_sell_rule_id=#{id}
+        </if>
+    </select>
+
+    <delete id="delProductSellRuleArea" parameterType="com.cms.model.shengchang.ProductSellRuleBean">
+        delete from product_sell_rule_area where product_sell_rule_id=#{id}
+    </delete>
+
+    <delete id="delProductSellRulePrice" parameterType="map">
+        delete from product_price where id=''
+        <if test="mainProductId!=null and mainProductId!=''">
+            or main_product_id=#{mainProductId}
+        </if>
+        <if test="productId!=null and productId!=''">
+            or product_id=#{productId}
+        </if>
+    </delete>
+
+    <delete id="delProductSellRuleList" parameterType="java.util.List">
+        delete from product_sell_rule
+        <where>
+            id in
+            <foreach collection="list" item="rule" index="index" open="(" separator="," close=")">
+                #{rule.id}
+            </foreach>
+        </where>
+    </delete>
+</mapper>

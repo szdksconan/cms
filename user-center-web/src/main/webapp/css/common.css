@@ -1,0 +1,299 @@
+	body{
+		font-family: "microsoft yahei";
+	}
+	input{
+		padding-left: 5px;
+	}
+	input:focus,select:focus,textarea:focus{
+	    outline:none;
+    }
+    ul{
+    list-style-type:none;
+    }
+    ul li,a{
+    	cursor: pointer;
+    }
+    .text-underline{
+    	text-decoration: underline;
+    }
+    .fn-left{
+    	float: left;
+    }
+    .fn-right{
+    	float: right;
+    }
+    .show{
+    	display: block;
+    }
+    .hide{
+    	display: none;
+    }
+     .padding-t-10{
+	padding-top: 10px;
+    }
+    .padding-t-15{
+	padding-top: 15px;
+    }
+    .padding-t-50{
+	padding-top: 50px;
+    }
+    .padding-l-10{
+	padding-left: 10px;
+    }
+    .padding-l-20{
+	padding-left: 20px;
+    }
+    .padding-l-40{
+	padding-left: 40px;
+    }
+    .padding-r-10{
+	padding-right: 10px;;
+    }
+    .padding-r-15{
+	padding-right: 15px;;
+    }
+     .padding-r-20{
+	padding-right: 20px;;
+    }
+    .padding-b-10{
+	padding-bottom: 10px;;
+    }
+    .padding-b-20{
+	padding-bottom: 20px;;
+    }
+    .margin-t-5{
+    	margin-top: 5px;
+    }
+    .margin-t-7{
+    	margin-top: 7px;
+    }   
+    .margin-t-10{
+    	margin-top: 10px;
+    }
+    .margin-t-13{
+    	margin-top: 13px;
+    }
+    .margin-t-15{
+    	margin-top: 15px;
+    }
+    .margin-t-20{
+    	margin-top: 20px;
+    } 
+    .margin-t-30{
+    	margin-top: 30px;
+    }
+    .margin-t-40{
+    	margin-top: 40px;
+    }  
+    .margin-t-45{
+    	margin-top: 45px;
+    }
+    .margin-t-50{
+    	margin-top: 50px;
+    }
+    .margin-t-56{
+    	margin-top: 56px;
+    }
+    .margin-t-100{
+    	margin-top: 100px;
+    }  
+    .margin-t-120{
+    	margin-top: 120px;
+    }  
+    .margin-l-5{
+    	margin-left: 5px;
+    }
+    .margin-l-10{
+    	margin-left: 10px;
+    }
+    .margin-l-15{
+    	margin-left: 15px;
+    }  
+     .margin-l-20{
+    	margin-left: 20px;
+    } 
+     .margin-l-25{
+    	margin-left: 25px;
+    } 
+    .margin-l-30{
+    	margin-left: 30px;
+    }
+     .margin-l-40{
+    	margin-left: 40px;
+    }  
+    .margin-l-60{
+    	margin-left: 60px;
+    }
+    .margin-l-70{
+    	margin-left: 70px;
+    }
+    .margin-l-100{
+    	margin-left: 100px;
+    }  
+    .margin-l-120{
+    	margin-left: 120px;
+    }
+    .margin-l-125{
+    	margin-left: 125px;
+    } 
+    .margin-l-310{
+    	margin-left: 310px;
+    }       
+    .margin-r-5{
+    	margin-right: 5px;
+    }
+    .margin-r-20{
+    	margin-right: 20px;
+    }                  
+    .font-12{
+	font-size: 12px;
+    }
+    .font-14{
+	font-size: 14px;
+    }
+    .font-16{
+	font-size: 16px;
+    }
+    .font-18{
+	font-size: 18px;
+    }
+    .font-20{
+	font-size: 20px;
+    }
+     .font-24{
+	font-size: 24px;
+    }
+    .font-28{
+	font-size: 28px;
+    }
+    .font-bold{
+    	font-weight: bold;
+    }
+    .font-b-400{
+    	font-weight: 400;
+    }
+    .text-center{
+	text-align: center;
+    }
+    .text-left{
+	text-align: left;
+    } 
+    .text-right{
+	text-align: right;
+    }
+    
+	.h-40{
+		height: 40px;
+	}
+	.h-38{
+		height: 38px;
+	}
+	.line-h-38{
+		line-height: 38px;
+	}
+	.line-h-42{
+		line-height: 42px;
+	}
+	.w-50{
+		width: 50px;
+	}
+	.w-60{
+		width: 60px;
+	}
+	.w-80{
+		width: 80px;
+	}
+	.w-90{
+		width: 90px;
+	}
+	 .w-100{
+		width: 100px;
+	}
+	.w-110{
+		width: 110px;
+	}
+	 .w-200{
+	 	width: 200px;
+	 }
+	 .w-170{
+	 	width: 170px;
+	 }
+	 .w-70{
+	 	width: 70px;
+	 }
+	 .w-130{
+	 	width: 130px;
+	 }
+	 .w-134{
+	 	width: 134px;
+	 }
+	 .w-163{
+	 	width: 163px;
+	 }
+	 .w-183{
+	 	width: 183px;
+	 }
+	 .w-194{
+	 	width: 194px;
+	 }
+	.w-220{
+		width:220px;
+	}
+	.w-330{
+		width:330px;
+	}
+	.w-360{
+		width:360px;
+	}
+	.color-707070{
+		color: #707070;
+	}
+	.color-B0B0B0{
+		color:#B0B0B0;
+	}
+	.color-070707{
+		color: #070707;
+	}
+	.color-919191{
+		color:#919191;
+	}
+	.color-101010{
+		color: #101010;
+	}
+	.color-B8B8BF{
+		color: #B8B8BF;
+	}
+	.color-red{
+		color:red;
+	} 
+	.color-9D9D9D{
+	color:#9D9D9D;	
+    }
+	.color-B2B2B2{
+	    color:#B2B2B2;
+	}
+	.color-A0A0A0{
+		color: #A0A0A0;
+	}
+	.color-666666{
+		color:#666666;
+	}
+	.color-7D7D7D{
+		color:#7D7D7D;
+	}
+	.color-999999{
+		color: #999999;
+	}
+	.color-000000{
+		color: #000000;
+	}
+	.color-B70707{
+		color: #B70707;
+	}
+	.color-A3A3A3{
+		color: #A3A3A3;
+	}
+	.must{
+		padding: 5px;
+	}
+	

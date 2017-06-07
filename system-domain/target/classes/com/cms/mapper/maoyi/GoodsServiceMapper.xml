@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.maoyi.GoodsServiceMapper" >
+  <resultMap id="BaseResultMap" type="com.cms.model.maoyi.GoodsService" >
+    <id column="id" property="id" jdbcType="DECIMAL" />
+    <result column="enterprise_id" property="enterpriseId" jdbcType="DECIMAL" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="region" property="region" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+     
+<!--      拿到对应企业id的所有服务 -->
+     <select id="getAllGoodsService" parameterType="long" resultMap="BaseResultMap">
+           select id, enterprise_id, type, region, description
+             from goods_service  where enterprise_id=#{id}
+     </select>
+     
+<!--       删除相应的商品服务 -->
+	  <delete id="deleteService"  parameterType="long" >
+	    delete from goods_service
+	    where id = #{id}
+	  </delete>
+<!--   添加保存服务 -->
+	  <insert id="addGoodsService" parameterType="com.cms.model.maoyi.GoodsService" >
+	    insert into goods_service (id, enterprise_id, type, 
+	      region, description)
+	    values (#{id,jdbcType=DECIMAL}, #{enterpriseId,jdbcType=DECIMAL}, #{type,jdbcType=INTEGER}, 
+	      #{region,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR})
+	  </insert>
+	  
+<!-- 	  拿到某个商品服务 -->
+	     <select id="getGoodsService" parameterType="long"  resultMap="BaseResultMap" >
+	       select id, enterprise_id, type, region, description 
+	       from goods_service where id=#{id}
+	     </select>
+	     
+<!-- 	  //修改某个商品服务 -->
+        <update id="updateGoodsService" parameterType="com.cms.model.maoyi.GoodsService" >
+		    update goods_service
+		    set  region = #{region},description = #{description}
+		    where id = #{id}
+		  </update>
+</mapper>

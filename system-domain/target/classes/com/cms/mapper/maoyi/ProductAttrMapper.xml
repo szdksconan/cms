@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.maoyi.ProductAttrMapper">
+	<resultMap id="attrResultMap" type="com.cms.model.maoyi.CmsAttr">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="kindsId" property="kindsId" jdbcType="VARCHAR" />
+		<result column="attrNameCn" property="attrNameCn" jdbcType="VARCHAR" />
+		<result column="attrNameEn" property="attrNameEn" jdbcType="VARCHAR" />
+		<result column="attrCreator" property="attrCreator" jdbcType="VARCHAR" />
+		<result column="attrCreateTime" property="attrCreateTime"
+			jdbcType="DATE" />
+	</resultMap>
+	<select id="getAttrById" resultMap="attrResultMap"
+		parameterType="java.lang.String">
+		select * from cms_product_t_attr where id = #{id}
+	</select>
+	<select id="getAttrByKindsId" resultMap="attrResultMap"
+		parameterType="java.lang.String">
+		select * from cms_product_t_attr
+		where kindsId = #{kindsId}
+	</select>
+	<insert id="insert" parameterType="java.util.List">
+		insert into cms_product_t_attr(id, kindsId, attrNameCn
+		,attrNameEn,attrCreator, attrCreateTime) values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.id},#{item.kindsId},#{item.attrNameCn},#{item.attrNameEn},
+			#{item.attrCreator},#{item.attrCreateTime})
+		</foreach>
+	</insert>
+</mapper>

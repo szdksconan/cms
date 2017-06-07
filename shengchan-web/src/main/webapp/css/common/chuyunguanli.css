@@ -1,0 +1,486 @@
+/* 运输提请css */
+/* 下拉框控件css */
+.btn-group>.btn, .btn-group>.dropdown-menu, .btn-group>.popover {
+	font-size: 14px;
+	padding-top: 1px;
+}
+/* laydate日历控件 */
+.laydate-icon, .laydate-icon-default, .laydate-icon-danlan,
+	.laydate-icon-dahong, .laydate-icon-molv {
+	width: 110px;
+	height: 30px;
+}
+/* 用于配置bootstrap中的表头居中 */
+.bootstrap-table .table thead>tr>th {
+	text-align: center;
+}
+/* 用于配置表格中的内容居中 */
+.bootstrap-table .table {
+	border-collapse: collapse !important;
+	font-size: 13px;
+	text-align: center;
+}
+/* 下拉框设置 */
+/*.btn-group>.btn:first-child {
+	width: 150px;
+	height: 30px;
+}*/
+
+/*.btn .caret {
+	margin-top: 9px;
+	float: right;
+}*/
+/* 表格布局 */
+.yuns_table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	font-size: 14px;
+	width: 100%;
+}
+.yunshutiqi {
+	float: left;
+	width: 33.3%;
+	height: 50px;
+	line-height: 50px;
+}
+
+.clear {
+	clear: both;
+}
+
+.yunshutiqi-query {
+	float: right;
+	height: 50px;
+	line-height: 50px;
+}
+.yunshuti-tg{
+	float:left;line-height:50px;width:17.5%;
+}
+.yunshutiqi-area{
+	
+	float:left;line-height:50px;height:50px;width:100%;
+}
+.yunshutiqi-qb{
+	line-height:50px;height:50px;width:100%;float:right;
+}
+/* 库存管理样式 */
+.storage_firstCloumn {
+	width: 16.3%;
+	height: 50px;
+	padding-left: 15px;
+}
+
+.storage_secondCloumn {
+	width: 16.3%;
+	height: 50px;
+}
+
+.storage_thirdCloumn {
+	width: 26.3%;
+	height: 50px;
+}
+/* 物流合作样式 */
+.left {
+	float: left;
+	width: 40%;
+}
+
+.center {
+	float: left;
+	width: 40%;
+}
+
+.right {
+	float: left;
+	width: -6%;
+	text-align: center;
+}
+
+.wlyunshu-right {
+	float: left;
+	width: 19%;
+	text-align: center;
+}
+
+.right>div {
+	margin-top: 3px;
+	margin-bottom: 3px;
+}
+
+.right>div {
+	float: right;
+	width: 100%;
+}
+
+.left-l {
+	float: left;
+}
+
+.left-r {
+	float: left;
+	margin-left: 10px;
+}
+
+.left-bottom {
+	float: left;
+	width: 100%;
+}
+
+.btn-type {
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+.details {
+	float: left;
+	width: 20px;
+	height: 100%;
+	position: relative;
+	top: 12%;
+}
+
+.ml-20 {
+	margin-left: 20px;
+}
+
+.s-star {
+	display: inline-block;
+	vertical-align: middle;
+	width: 75px;
+	height: 15px;
+	margin-top: -3px;
+	background:
+		url(http://misc.360buyimg.com/user/myjd-2015/css/i/star-s.png) 0 0;
+}
+
+.comt-head {
+	background: #f5f5f5 none repeat scroll 0 0;
+	border-bottom: 1px solid #eee;
+	color: #999;
+	height: 30px;
+	line-height: 30px;
+	margin-bottom: -6px;
+	float: left;
+	width: 100%;
+}
+
+.comt-head .col11 {
+	float: left;
+	width: 30%;
+	text-align: center;
+}
+
+.comt-head .col12 {
+	width: 52%;
+	float: left;
+	padding-left: 202px;
+}
+
+.comt-head .col13 {
+	float: left;
+	width: 14.5%;
+	text-align: center;
+}
+
+/* body { */
+/* 	color: #666; */
+/* 	font: 12px/150% Arial, Verdana, "宋体"; */
+/* } */
+.ml-5 {
+	margin-left: 8px;
+}
+
+.content>ul>li>div {
+	border: 1px solid #4996C5;
+	height: auto;
+	margin-top: 10px;
+	padding-top: 10px;
+	width: 100%;
+	float: left;
+}
+
+.top-title {
+	background-color: #f5f5f5;
+	margin-bottom: 3px;
+}
+/* 最大容器 */
+.container {
+	width: 100%;
+	/*height: 100%;*/
+}
+
+.lside {
+	width: 100%;
+	float: left;
+}
+
+.rside {
+	width: 0%;
+	float: left;
+}
+/* 物流运输 */
+.ml-37 {
+	margin-left: 37px;
+	/* 	padding-top: 10px; */
+	line-height: 50px;
+}
+
+.pt-10 {
+	line-height: 50px;
+}
+
+.wlyunshu_c1th {
+	width: 28%;
+	height: 50px;
+	float: left;
+}
+
+.wlyunshu_c {
+	width: 24%;
+	height: 50px;
+	float: left;
+}
+
+.wlyunshu_c3th {
+	width: 23%;
+	height: 50px;
+	float: left;
+}
+
+.wlyunshu_c4th {
+	width: 25%;
+	height: 50px;
+	float: left;
+}
+
+.wlyunshu_c1 {
+	width: 38%;
+	height: 50px;
+	float: left;
+}
+
+.wlyunshu_btn {
+	width: 100%;
+	height: 50px;
+	clear: both;
+}
+
+.wlyunshu_btn1 {
+	padding-top: 10px;
+	float: left;
+	margin-left: 37px;
+}
+
+.wlyunshu_btn2 {
+	padding-top: 10px;
+	float: right;
+}
+.wlyunshu-btn{
+	padding-top: 3px; padding-left: 0px;
+}
+.btn_quere{
+	display:none;
+}
+.ml-10{
+	margin-left:10px;
+}
+.inwl110 {
+	width: 140px;
+	display: none;
+}
+
+.inwl90 {
+	width: 90px;
+	display: none;
+}
+/* 布局信息 */
+.left_goods {
+	float: left;
+	margin-left: 10px;
+	width: 38%;
+}
+
+.center_wlyunshu {
+	float: left;
+	margin-left: 10px;
+	width: 22.5%;
+}
+
+.center_lianxi {
+	float: left;
+	margin-left: 10px;
+	width: 23%;
+	/* 	border:1px solid red; */
+}
+/* 表头信息样式 */
+.comt-head .col14 {
+	float: left;
+	width: 33%;
+	text-align: center;
+}
+
+.comt-head .col15 {
+	width: 23%;
+	float: left;
+	text-align: center;
+}
+
+.comt-head .col16 {
+	float: left;
+	width: 21.5%;
+	text-align: center;
+}
+
+.comt-head .col17 {
+	float: left;
+	width: 22.5%;
+	text-align: center;
+}
+
+
+.seach-conds {
+	margin: 10px 20px 10px 0px;
+	float: left;
+	width: 100%;
+}
+
+.item span {
+	float: left;
+}
+
+.seach-conds .dt {
+	float: left;
+	width: 7%;
+}
+
+.seach-conds .dd {
+	float: left;
+	width: 80%;
+}
+
+.seach-conds .dd .item span {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.seach-conds .dd .item span {
+	margin: 0px 1px 5px 8px;
+	border: 1px solid #CCC;
+	text-align: center;
+	width: 100px;
+	height: 23px;
+	vertical-align: middle;
+	line-height: 20px;
+}
+
+.seach-conds .dd .item span:HOVER {
+	cursor: pointer;
+	border: 2px solid #4996C5;
+}
+/* 鼠标移出事件 */
+.seach {
+	cursor: pointer;
+	border: 2px solid #4996C5 !important;
+}
+
+.selected {
+	background: url(../../images/a.png) no-repeat -10px -21px;
+	position: relative;
+	zoom: 1;
+}
+
+.area-button {
+	float: left;
+	width: 100%;
+	height: 30px;
+}
+
+.area-button .b-left {
+	float: left;
+	width: 60%;
+	height: 100%;
+}
+
+.area-button .b-right {
+	float: left;
+	width: 40%;
+}
+
+.b-right-button {
+	clear: both;
+	float: right;
+}
+
+/* 发布时间 */
+.publishtime {
+	width: 79%;
+	float: left;
+	background-color: #f5f5f5;
+}
+.publishtime-first{text-align: center;}
+.publishtime-tow{margin-left: 16px;float:right;padding-right: 10px;}
+.publishtime-last{margin-left: 96px;float:right;}
+.publishtime label{
+	cursor: initial;
+}
+.publishtime label span{
+	font-weight: 100;
+}
+.pingtaiwuliu {
+	width: 21%;
+	float: left;
+	border-left: 1px solid black;
+	background-color: #f5f5f5;
+}
+/* 每一栏高度设置 */
+.wl_height {
+	/*height: 170px !important;*/
+}
+
+.wl_text {
+	margin-left: 18px;
+}
+/* 运输提请按钮样式 */
+/* .item1 span{ */
+/* 	float: left; */
+/* } */
+.item1 span {
+	margin-left: 5px;
+	margin-right: 5px;
+	float:left;
+}
+
+.item1 span {
+	margin: 0px 1px 5px 8px;
+	border: 1px solid #CCC;
+	text-align: center;
+	width: 75px;
+	height: 30px;
+	vertical-align: middle;
+	line-height: 30px;
+}
+.item1 span:HOVER {
+	cursor: pointer;
+	border: 2px solid #4996C5;
+}
+.selected1 {
+	background: url(../../images/a.png) no-repeat -35px -14px;
+	position: relative;
+	zoom: 1;
+}
+table a{
+	color: #066faf;
+}
+table a:hover{
+	color: red;
+}
+/* 物流运单样式 */
+.wlyundan{
+	float:left;line-height:50px;height:50px;width:60%;
+}
+.wlyundan-c{
+	float: left;
+	width: 29.3%;
+	height: 50px;
+	line-height: 50px;
+}

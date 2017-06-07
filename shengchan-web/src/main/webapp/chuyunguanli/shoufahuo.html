@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>收发货地址管理</title>
+<link rel="stylesheet" type="text/css"
+	href="../css/common/chuyunguanli.css" />
+<style type="text/css">
+	.sf-head {
+		width: 100%;
+		height: 30px;
+		float: left;
+		line-height: 30px;
+	}
+	
+	.head-bott {
+		border-bottom: 1px solid #4996C5;
+	}
+	
+	.sf-cont1th {
+		width: 9%;
+		height: 120px;
+		line-height: 120px;
+		float: left;
+		text-align:right;
+	}
+	
+	.sf-cont2nd {
+		width: 91%;
+		height: 120px;
+		float: left;
+		
+	}
+	
+	.clear {
+		clear: both;
+	}
+	
+	.sf-cont-detail {
+		width: 60%;
+		height: 40px;
+		line-height: 40px;
+		float: left;
+	}
+	
+	.sf-cont-detail-btn {
+		width: 40%;
+		height: 40px;
+		line-height: 40px;
+		float: right;
+	}
+	
+	.btn-g {
+		float: right;
+		cursor: pointer;
+	}
+	
+	.sf-foot-l {
+		width: 9%;
+		height: 40px;
+		line-height: 40px;
+		float: left;
+		textr-align: right;
+	}
+	
+	.sf-foot-r {
+		width: 91%;
+		height: 40px;
+		line-height: 40px;
+		float: left;
+	}
+	
+	.sf-r-1 {
+		width: 20%;
+		height: 40px;
+		line-height: 40px;
+		float: left;
+	}
+	
+	.sf-r-2 {
+		width: 30%;
+		height: 40px;
+		line-height: 40px;
+		float: left;
+	}
+	
+	.sf-r-3 {
+		width: 25%;
+		height: 40px;
+		line-height: 40px;
+		float: left;
+	}
+	
+	.sf-content {
+		float: left;
+		margin-top: 10px;
+		width: 100%;
+		height: auto;
+		margin-bottom: 10px;
+	}
+	
+	.sf-content-d {
+		border: 1px solid #4996C5;
+		width: 100%;
+		padding: 10px 0;
+		float: left;
+	}
+	
+	.hide {
+		display: none;
+	}
+	
+	.sf-width {
+		width: 458px;
+	}
+	
+	.sf-add {
+		height: 60px;
+		width: 100%;
+		line-height: 60px;
+		float: right;
+	}
+	
+	.right {
+		float: right;
+		margin-top: 10px;
+	}
+	
+	.content {
+		width: 100%;
+		height: auto;
+	}
+	
+	.head-text {
+		float: left;
+		width: auto;
+		height: 30px;
+		line-height: 30px;
+		border-top: 1px solid #4996C5;
+		border-left: 1px solid #4996C5;
+		border-right: 1px solid #4996C5;
+		background-color: #4996C5;
+	}
+	
+	.head-text1 {
+		float: right;
+		height: 30px;
+		line-height: 30px;
+		cursor: pointer;
+	}
+	
+	.w8 {
+		width: 87px;
+	}
+	
+	.w7 {
+		width: 61px;
+	}
+	
+	.sf-shouqi {
+		float: left;
+		color: #4996C5;
+		cursor: pointer;
+	}
+	
+	.shouqi-icon {
+		float: right;
+		margin: 7px;
+		width: 15px;
+		height: 16px;
+		margin-left: 0px;
+		cursor: pointer;
+	}
+	
+	.up {
+		background: url(../images/chuyun/top.png) no-repeat;
+	}
+	
+	.down {
+		background: url(../images/chuyun/down.png) no-repeat;
+	}
+	
+	.sf-edit {
+		cursor: pointer;
+	}
+	
+	.sf-delete {
+		margin-left: 4px;
+		cursor: pointer;
+	}
+	
+	.ml-4 {
+		margin-left: 4px;
+	}
+	
+	.sf-save {
+		cursor: pointer;
+	}
+	
+	.sf-cancel {
+		margin-left: 4px;
+		cursor: pointer;
+	}
+	
+	.item2 {
+		border: 1px solid #4996C5;
+		float: left;
+		width: 100%;
+		height: 100%;
+		padding: 10px 0;
+	}
+	
+	.item2>div {
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+	
+	.firstdiv-l {
+		float: left;
+		width: 77%;
+	}
+	
+	.firstdiv-r {
+		float: left;
+		width: 23%;
+	}
+	
+	.btn-show {
+		display: "";
+	}
+	
+	.btn-hide {
+		display: none;
+	}
+	
+	.item2 label.item-label {
+		text-align: right;
+		width: 10em;
+	}
+	
+	.addressinfo {
+		float: left;
+		width: 100%;
+	}
+	
+	.address-select>div {
+		margin-top: 2px;
+		margin-bottom: 6px;
+	}
+	
+	.addressinfo>div {
+		float: left;
+	}
+	
+	.goods-type {
+		float: left;
+		width: 100%;
+	}
+	
+	.goods-type>div {
+		float: left;
+	}
+	
+	.operate {
+		float: left;
+		width: 100%;
+		height: 100%;
+	}
+	
+	.oper-l {
+		float: left;
+		width: 87%;
+		height: 3em;
+	}
+	
+	.oper-r {
+		float: left;
+		width: 11%;
+	}
+	
+	.sel-type {
+		width: 100px;
+	}
+	
+	.ml5 {
+		margin-left: 5px;
+	}
+	
+	.crumb-select-item {
+		width: 85px;
+		float: left;
+		height: 25px;
+		position: relative;
+		line-height: 22px;
+		border: 1px solid #DDD;
+		font-size: 12px;
+		vertical-align: top;
+		margin: 5px 5px 5px 0;
+		margin-right: 16px;
+		padding: 0 26px 0 4px;
+		cursor: pointer;
+		background: #f3f3f3;
+		background-image: initial;
+		background-position-x: initial;
+		background-position-y: initial;
+		background-size: initial;
+		background-repeat-x: initial;
+		background-repeat-y: initial;
+		background-attachment: initial;
+		background-origin: initial;
+		background-clip: initial;
+		background-color: rgb(243, 243, 243);
+	}
+	
+	.crumb-select-item i {
+		display: block;
+		position: absolute;
+		width: 25px;
+		height: 22px;
+		right: 0;
+		top: 0;
+		background: url(../images/chuyun/search.ele.png) no-repeat 7px -140px;
+		background-image: url(../images/chuyun/search.ele.png);
+		background-position-x: 7px;
+		background-position-y: -140px;
+		background-size: initial;
+		background-repeat-x: no-repeat;
+		background-repeat-y: no-repeat;
+		background-attachment: initial;
+		background-origin: initial;
+		background-clip: initial;
+		background-color: initial;
+	}
+	
+	#wuzi-type {
+		width: 47em;
+		float: left;
+	}
+	
+	.detail {
+		float: left;
+		width: 100%;
+		height: 100%;
+		padding-top: 10px;
+	}
+	
+	.detail-l {
+		height: 30px;
+		line-height: 30px;
+		float: left;
+		width: auto;
+		border-top: 1px solid #4996C5;
+		border-left: 1px solid #4996C5;
+		border-right: 1px solid #4996C5;
+		background-color: #4996C5;
+	}
+	
+	.detail-l>span {
+		font-size: 16px;
+	}
+	
+	.detail-r {
+		height: 30px;
+		float: right;
+		width: 2%;
+		line-height: 30px;
+	}
+	
+	.slide-active {
+		background: url(../images/chuyun/top.png) center right no-repeat;
+		height: 20px;
+	}
+	
+	.slide-inactive {
+		background: url(../images/chuyun/down.png) center right no-repeat;
+		height: 20px;
+	}
+	
+	.add-png {
+		background: url(../images/chuyun/add.png) top right no-repeat;
+		height: 20px;
+		width: 35px;
+		margin-top: 7px;
+	}
+	
+	.cangku {
+		float: left;
+		width: 100%;
+		height: 100%;
+	}
+	
+	#add-again {
+		margin-top: 8px;
+	}
+	
+	.goods-type-l {
+		float: left;
+		width: 50%;
+	}
+	
+	.goods-type-r {
+		float: left;
+		width: 50%;
+	}
+	
+	.detail-text {
+		float: right;
+		width: 5%;
+		height: 30px;
+		line-height: 30px;
+	}
+	
+	.det-l {
+		cursor: pointer;
+	}
+	
+	.w9 {
+		width: 29px;
+	}
+	</style>
+<script type="text/javascript" src="../js/qiyezhongxin/slider.js"></script> 
+</head>
+<body>
+	<div class="container">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#tab1" data-toggle="tab"
+				style="color: black;">收发货地址</a></li>
+			<li><a href="#tab2" data-toggle="tab" style="color: black;">仓库信息</a></li>
+		</ul>
+		<div class="tab-content">
+			<div class="tab-pane active" id="tab1">
+				<div class="content">
+					<div class="sf-content">
+						<div class="sf-head">
+							<div class="head-text">
+								&emsp;<label style="font-size: 16px;">双流县临时收货地址</label>&emsp;
+							</div>
+							<div class="head-text1 w8 " data-cmd="div1">
+								<span class="sf-shouqi">详细信息&emsp; </span> <span
+									class="shouqi-icon down"></span>
+							</div>
+							<div class="head-text1 w7 hide" data-cmd="div2">
+								<span class="sf-shouqi">收起&emsp;</span> <span
+									class="shouqi-icon up"></span>
+							</div>
+						</div>
+						<div class="sf-content-d">
+							<div class="sf-cont1th">
+								<label>详细地址&emsp;</label>
+							</div>
+							<div class="sf-cont2nd">
+								<div class="sf-cont-detail">
+									<select data-cmd="stock_name"></select>
+								</div>
+								<div class="sf-cont-detail-btn">
+									<span class="btn-g"> <img
+										src="../images/chuyun/edit.png" class="sf-edit"
+										onclick='edit(this);' title="编辑" /> <img
+										src="../images/chuyun/delete.png" onclick='deldom(this);'
+										class="sf-delete" title="删除" /> &emsp;
+									</span> <span class="btn-g hide"> <img
+										src="../images/chuyun/save.png" class="sf-save" title="保存"
+										onclick="save(this);" /> <img
+										src="../images/chuyun/cacle.png" class="sf-cancel" title="取消"
+										onclick="cancel(this);" />&emsp;
+									</span>
+								</div>
+								<div class="sf-cont-detail">
+									<select data-cmd="address_province"></select> <select
+										data-cmd="address_city"></select> <select
+										data-cmd="address_region"></select>
+								</div>
+								<div class="sf-cont-detail">
+									<input type="text" class="cmao_input sf-width"
+										placeholder="填写详细地址" readonly="readonly" value="四川省成都市高新区" />
+								</div>
+							</div>
+							<div class="sf-foot-l clear">
+								<label style="float:right;">联系人&emsp;</label>
+							</div>
+							<div class="sf-foot-r">
+								<div class="sf-r-1">
+									<input type="text" class="cmao_input m126" readonly="readonly"
+										value="李四" />
+								</div>
+								<div class="sf-r-2">
+									<label>固定电话：</label><input type="text" class="cmao_input m126"
+										readonly="readonly" value="85124542" />
+								</div>
+								<div class="sf-r-3">
+									<label>手机：</label><input type="text" class="cmao_input m126"
+										readonly="readonly" value="135000000" />
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+
+				</div>
+				<!-- 添加按钮 -->
+				<div class="sf-add">
+					<button class="btn btn-blue btn-w120 right" id="add" type="button">继续添加</button>
+				</div>
+
+
+			</div>
+
+			<!-- 仓库信息 -->
+			<div class="tab-pane " id="tab2">
+
+				<div class="content2">
+					<ul>
+						<li>
+							<div class="detail">
+								<div class="cangku">
+									<div class="detail-l">
+										&emsp;<label style="font-size: 16px;">双流县临时仓库</label>&emsp;
+									</div>
+									<span class="det-l" onclick="show(this);">
+										<div class="detail-r">
+											<div class="slide-inactive" style="margin-top: 5px;"></div>
+										</div>
+										<div class="detail-text">
+											<span class="sf-shouqi">详细信息</span>
+										</div>
+										<div class="detail-text w9 hide">
+											<span class="sf-shouqi">收起</span>
+										</div>
+									</span>
+								</div>
+								<div class="item2">
+									<div class="firstdiv">
+										<div class="firstdiv-l">
+											<label class="item-label">仓库名称：</label><input readonly="readonly"
+												class="cmao_input m126" />
+										</div>
+										<div class="firstdiv-r">
+
+											<div class="sf-cont-detail-btn">
+												<span class="btn-g"> <img
+													src="../images/chuyun/edit.png" onclick='edit(this);'
+													title="编辑" /> <img src="../images/chuyun/delete.png"
+													onclick='deldom(this);' class='ml-4' title="删除" /> &emsp;
+												</span> <span class="btn-g hide"> <img
+													src="../images/chuyun/save.png" 
+													onclick='save(this);' title="保存" /> <img
+													src="../images/chuyun/cacle.png" class="ml-4" title="取消"
+													onclick='cancel(this);' />&emsp;
+												</span>
+											</div>
+										</div>
+
+									</div>
+									<div>
+										<label class="item-label">库管员：</label><input readonly="readonly" data-cmd="name"
+											class="cmao_input m126" /> <label class="item-label">固定电话：</label><input
+											readonly="readonly" class="cmao_input m126" /> <label class="item-label">手机：</label><input
+											readonly="readonly" class="cmao_input m126" />
+									</div>
+									<div class="addressinfo">
+										<div class="address-lable">
+											<label class="item-label">详细地址：</label>
+										</div>
+										<div class="address-select">
+											<div>
+												<select id="sheng"></select> <select id="city"></select> <select
+													id="xian"></select>
+											</div>
+											<div>
+												<input readonly="readonly" class="cmao_input sf-width"
+													value="请输入详细地址" />
+											</div>
+										</div>
+									</div>
+									<div class="goods-type">
+										<div>
+											<label class="item-label">主存放物资类别：</label>
+										</div>
+										<div>
+											<div>
+												<div class="goods-type-l">
+													<select id="goods_type1"></select> <select id="goods_type2"></select>
+												</div>
+												<div class="goods-type-r">
+													<div onclick="add(this);" class="add-png"></div>
+												</div>
+											</div>
+											<div id="wuzi-type"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+
+				<div class="operate">
+					<div class="oper-l"></div>
+					<div class="oper-r">
+						<button id="add-again" class="btn btn-blue btn-w120 ml26"
+							type="button">继续添加</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	
+	$(function() {
+		//添加产生原生dom
+		var add_btn = $('#add');
+		var edit = $('.btn btn-blue btn-w80');
+		var div1 = $("div[data-cmd='div1']");
+		var div2 = $("div[data-cmd='div2']");
+		add_btn.on('click', function() {
+			$(this).closest('#tab1').find('.sf-content').first().clone(true)
+					.insertAfter('.content');
+			//添加之后重新对select 进行重新初始化
+			var cloneDom = $(this).closest('#tab1').find('.sf-content').last();
+			var obj = new Array();
+			obj[0] = cloneDom.find("select[data-cmd='address_city']");
+			obj[1] = cloneDom.find("select[data-cmd='address_city']");
+			obj[2] = cloneDom.find("select[data-cmd='address_region']");
+			obj[3] = cloneDom.find("select[data-cmd='stock_name']");
+			selectinit(obj);
+		});
+		shousuo(div1);
+		fangda(div2);
+		//配置地区
+		var obj = new Array();
+		obj[0] = $("select[data-cmd='address_province']");
+		obj[1] = $("select[data-cmd='address_city']");
+		obj[2] = $("select[data-cmd='address_region']");
+		obj[3] = $("select[data-cmd='stock_name']");
+		selectinit(obj);
+
+		// 		页面二
+		//用于单选框的生成-省
+		var sheng = [ {
+			label : '请选择',
+			title : '请选择',
+			value : '0'
+		}, {
+			label : '四川省',
+			value : '1'
+		}, {
+			label : '云南省',
+			value : '2'
+		} ];
+		//用于单选框的生成-市
+		var city = [ {
+			label : '请选择',
+			title : '请选择',
+			value : '0'
+		}, {
+			label : '成都市',
+			value : '1'
+		}, {
+			label : '贵阳市',
+			value : '2'
+		} ];
+		//用于单选框的生成-县
+		var xian = [ {
+			label : '请选择',
+			title : '请选择',
+			value : '0'
+		}, {
+			label : '双流县',
+			value : '1'
+		}, {
+			label : '金堂',
+			value : '2'
+		} ];
+		//用于单选框的生成-物资类别
+		var goods_type1 = [ {
+			label : '请选择',
+			title : '请选择',
+			value : '0'
+		}, {
+			label : '圆钢',
+			value : '1'
+		}, {
+			label : '脚钢',
+			value : '2'
+		} ];
+		//用于单选框的生成-物资类别小类
+		var goods_type2 = [ {
+			label : '请选择',
+			title : '请选择',
+			value : '0'
+		}, {
+			label : '水泥',
+			value : '1'
+		}, {
+			label : '河沙',
+			value : '2'
+		} ];
+		$('#sheng').multiselect('dataprovider', sheng);
+		$('#city').multiselect('dataprovider', city);
+		$('#xian').multiselect('dataprovider', xian);
+		$('#goods_type1').multiselect('dataprovider', goods_type1);
+		$('#goods_type2').multiselect('dataprovider', goods_type2);
+		$("#add-again").click(function() {
+
+			$(".content2>ul").append($(".content2>ul>li:last").clone());
+
+		});
+
+	});
+	//对缩放方法进行处理
+	function shousuo(obj) {
+		//对缩放进行处理
+		obj.on('click', function() {
+			$(this).next().removeClass('hide');
+			$(this).addClass('hide');
+			if ($(this).attr('class') == 'head-text1 w8') {
+				$(this).closest('.sf-head').next().slideDown(220);
+				$(this).closest('.sf-head').removeClass('head-bott');
+				$(this).closest('.sf-head').find('.head-text').css(
+						'border-bottom', '');
+			} else {
+				$(this).closest('.sf-head').next().slideUp(220);
+				$(this).closest('.sf-head').addClass('head-bott');
+				$(this).closest('.sf-head').find('.head-text').css(
+						'border-bottom', '1px solid #4996C5');
+			}
+		});
+
+	}
+	function fangda(obj) {
+		obj.on('click', function() {
+			$(this).closest('.sf-head').find('div :eq(1)').removeClass('hide');
+			$(this).addClass('hide');
+			if ($(this).attr('class') == 'head-text1 w7 hide') {
+				$(this).closest('.sf-head').next().slideDown(220);
+				$(this).closest('.sf-head').removeClass('head-bott');
+				$(this).closest('.sf-head').find('.head-text').css(
+						'border-bottom', '');
+			} else {
+				$(this).closest('.sf-head').next().slideUp(220);
+				$(this).closest('.sf-head').addClass('head-bott');
+				$(this).closest('.sf-head').find('.head-text').css(
+						'border-bottom', '1px solid #4996C5');
+			}
+		});
+	}
+	//抽取方法
+	function lock(domsel) {
+		domsel.find("select[data-cmd='address_province']").multiselect(
+				'disable');
+		domsel.find("select[data-cmd='address_city']").multiselect('disable');
+		domsel.find("select[data-cmd='address_region']").multiselect('disable');
+		domsel.find("select[data-cmd='stock_name']").multiselect('disable');
+		var input = domsel.find("input[type='text']");
+		input.each(function(i, v) {
+			$(v).attr('readonly', 'readonly');
+		});
+	}
+	function unlock(domsel) {
+		domsel.find("select[data-cmd='address_province']")
+				.multiselect('enable');
+		domsel.find("select[data-cmd='address_city']").multiselect('enable');
+		domsel.find("select[data-cmd='address_region']").multiselect('enable');
+		domsel.find("select[data-cmd='stock_name']").multiselect('enable');
+		var input = domsel.find("input");
+		input.each(function(i, v) {
+			$(v).attr('readonly', false);
+		});
+	}
+	function selectinit(obj) {
+		var address_province = [ {
+			label : '请选择',
+			title : '请选择',
+			value : '0'
+		}, {
+			label : '四川',
+			value : '2'
+		}, {
+			label : '山东',
+			value : '1'
+		}, {
+			label : '湖北',
+			value : '3'
+		} ];
+		//配置城市
+		var address_city = [ {
+			label : '请选择',
+			title : '请选择',
+			value : '0'
+		}, {
+			label : '成都',
+			value : '2'
+		}, {
+			label : '北京',
+			value : '1'
+		}, {
+			label : '上海',
+			value : '3'
+		} ];
+		//配置区域
+		var address_region = [ {
+			label : '请选择',
+			title : '请选择',
+			value : '0'
+		}, {
+			label : '高新区',
+			value : '2'
+		}, {
+			label : '成华区',
+			value : '1'
+		}, {
+			label : '金牛区',
+			value : '3'
+		} ];
+		var stock_name = [ {
+			label : '成都市郫县仓库',
+			value : '成都市郫县仓库'
+		}, {
+			label : '成都市新津仓库',
+			value : '成都市新津仓库'
+		}, {
+			label : '成都市龙泉仓库',
+			value : '成都市龙泉仓库'
+		} ];
+		$(obj[0]).multiselect('dataprovider', address_province);
+		$(obj[1]).multiselect('dataprovider', address_city);
+		$(obj[2]).multiselect('dataprovider', address_region);
+		$(obj[3]).multiselect('dataprovider', stock_name);
+		//将下拉框设置为锁定
+		$(obj[0]).multiselect('disable');
+		$(obj[1]).multiselect('disable');
+		$(obj[2]).multiselect('disable');
+		$(obj[3]).multiselect('disable');
+	}
+	function del(obj) {
+		$(obj).parent("div").remove();
+
+	}
+	function add(obj) {
+		var content = "<div class='crumb-select-item'><span>水泥</span><i onclick='del(this);'></i></div>";
+		$(obj).parent().parent().next().append(content);
+	}
+	function show(obj) {
+		if ($(obj).find('.detail-r div').attr("class") == "slide-inactive") {
+			$(obj).parent().next().slideUp(220);
+			$(obj).find('.detail-r div').removeClass("slide-inactive");
+			$(obj).find('.detail-r div').addClass("slide-active");
+			$(obj).find('.detail-r div').closest('.cangku').addClass(
+					'head-bott');
+			$(obj).find('.detail-text').addClass('hide');
+			$(obj).find('div').last().removeClass('hide');
+			;
+		} else {
+			$(obj).parent().next().slideDown(220);
+			$(obj).find('.detail-r div').removeClass("slide-active");
+			$(obj).find('.detail-r div').addClass("slide-inactive");
+			$(obj).find('.detail-text').removeClass('hide');
+			$(obj).find('div').last().addClass('hide');
+			;
+			$(obj).find('.detail-r div').closest('.cangku').removeClass(
+					'head-bott');
+
+		}
+	}
+	function bianji() {
+		$("#btn-div1").removeClass("btn-show").addClass("btn-hide");
+		$("#btn-div2").removeClass("btn-hide").addClass("btn-show");
+	}
+	function bianji() {
+		$("#btn-div1").removeClass("btn-show").addClass("btn-hide");
+		$("#btn-div2").removeClass("btn-hide").addClass("btn-show");
+	}
+	function edit(obj) {
+		var temp = $(obj).closest('.sf-content');
+		alert('编辑');
+		if ($(obj).attr('class') == 'sf-edit') {
+			unlock(temp);
+			$(obj).closest('div').find('span:hidden').removeClass('hide');
+			$(obj).parent().addClass('hide');
+		} else {
+			var temp = $(obj).closest('.detail');
+			unlock(temp);
+			$(obj).closest('div').find('span:hidden').removeClass('hide');
+			$(obj).parent().addClass('hide');
+		}
+	}
+	function deldom(obj) {
+		alert('删除');
+		if ($(obj).attr('class') == 'sf-delete') {
+			var temp = $(obj).closest('.sf-content');
+			if ($('.sf-content').length > 1) {
+				temp.remove();
+			}
+		} else {
+			var temp = $(obj).closest('.detail');
+			if ($('.detail').length > 1) {
+				temp.remove();
+			}
+		}
+	}
+	function cancel(obj) {
+		alert('取消');
+		if ($(obj).attr('class') == 'sf-cancel') {
+			var temp = $(obj).closest('.sf-content');
+			lock(temp);
+			$(obj).closest('div').find('span:hidden').removeClass('hide');
+			$(obj).parent().addClass('hide');
+		} else {
+			var temp = $(obj).closest('.detail');
+			lock(temp);
+			$(obj).closest('div').find('span:hidden').removeClass('hide');
+			$(obj).parent().addClass('hide');
+		}
+	}
+	function save(obj) {
+		alert('保存');
+		if ($(obj).attr('class') == 'sf-save') {
+			var temp = $(obj).closest('.sf-content');
+			lock(temp);
+			var stock_name = temp.find("select[data-cmd='stock_name']").val();
+			var name = temp.find('.sf-r-1 input').val();
+			if (name) {
+				temp.find('.sf-head label')
+						.html(stock_name + ',' + name + '承包');
+			} else {
+				temp.find('.sf-head label').html(stock_name);
+			}
+			$(obj).closest('div').find('span:hidden').removeClass('hide');
+			$(obj).parent().addClass('hide');
+		} else {
+			var temp = $(obj).closest('.detail');
+			lock(temp);
+			var stock_name = temp.find('.firstdiv-l input').val();
+			var name = temp.find("input[data-cmd='name']").val();
+			console.debug(stock_name);
+			console.debug(name)
+			if (name) {
+				temp.find('.detail-l label')
+						.html(stock_name + ',' + name + '承包');
+			} else {
+				temp.find('.detail-l label').html(stock_name);
+			}
+			$(obj).closest('div').find('span:hidden').removeClass('hide');
+			$(obj).parent().addClass('hide');
+		}
+	}
+</script>

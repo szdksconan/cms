@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.maoyi.GoodsAttrMapper" >
+<resultMap id="goodsAttrResultMap" type="com.cms.model.maoyi.CmsGoodsAttr">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+	<result column="goodsId" property="goodsId" jdbcType="VARCHAR" />
+	<result column="productId" property="productId" jdbcType="VARCHAR" />
+	<result column="attrId" property="attrId" jdbcType="VARCHAR" />
+	<result column="attrNameCn" property="attrNameCn" jdbcType="VARCHAR" />
+	<result column="valId" property="valId" jdbcType="VARCHAR" />
+	<result column="valNameCn" property="valNameCn" jdbcType="VARCHAR" />
+	</resultMap>
+  <select id="getGoodsAttrValByGoodsId" resultMap="goodsAttrResultMap"
+		parameterType="java.lang.String">
+		select av.id, v.id as valId,v.attrKeyId as attrId,v.attrValueCn as valNameCn,
+		t.attrNameCn as attrNameCn,p.productId as productId
+		 from cms_product_t_attr_value v
+		left join cms_product_t_attr t on v.attrKeyId=t.id
+		left join cms_product_t_product_attrval av on av.attrValueId=v.id
+		left join cms_product_t_product p on p.productId=av.productId
+		left join cms_product_t_goods g on g.id=p.goodsId
+		where g.id=#{id}
+	</select>
+</mapper>

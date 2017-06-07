@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+    
+    <dubbo:application name="${dubbo.application.name}" owner="${dubbo.application.owner}" organization="cms"/>
+    
+   <dubbo:registry address="${dubbo.registry.address}"/>
+  
+   <dubbo:protocol  port="20883" name="${dubbo.protocol.name}" serialization="kryo" optimizer="com.cms.optimizer.SerializationOptimizerImpl"/>
+   
+   <dubbo:service interface="com.cms.iservice.shengchan.CompanyService" ref="companyService" protocol="dubbo" version="1.0.0" owner="company" group="company"/>
+   <bean id="companyService" class="com.cms.company.CompanyServiceImpl"/>
+   
+   <dubbo:service interface="com.cms.iservice.shengchan.CompanyRuleSV" ref="companyRuleSV" protocol="dubbo" version="1.0.0" owner="company" group="company"/>
+   <bean id="companyRuleSV" class="com.cms.company.CompanyRuleSVImpl"/>
+   
+     <dubbo:service interface="com.cms.iservice.shengchan.CompanyOutService" ref="companyOutService" protocol="dubbo" version="1.0.0" owner="company" group="company"/>
+      <bean id="companyOutService" class="com.cms.company.out.CompanyOutServiceImpl"/>
+      		
+     
+     <dubbo:reference id="mainProductService" interface="com.cms.iservice.shengchan.MainProductService" protocol="dubbo" version="1.0.0" owner="ryan" group="shengchan" timeout="6000" retries="0"/>
+     
+     <dubbo:reference id="globalIdService" interface="com.cms.iservice.common.GlobalIdService" protocol="dubbo" version="1.0.0" owner="ryan" group="common" timeout="6000" retries="0"/>
+		
+	<dubbo:service interface="com.cms.iservice.shengchan.StorageService" ref="storageService" protocol="dubbo" version="1.0.0" owner="company" group="company"/>
+      <bean id="storageService" class="com.cms.storage.StorageServiceImpl"/>	
+   
+     
+</beans>

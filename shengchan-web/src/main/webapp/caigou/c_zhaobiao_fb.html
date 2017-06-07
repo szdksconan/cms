@@ -1,0 +1,451 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>招标单发布</title>
+    <meta charset="utf-8">
+ 	<script src="../js/common/tabs.js"></script>
+    <style>
+        .text{line-height:22px;padding:0 6px;color:#666;border:solid 1px #066FAF}
+        .sc_jy table tr td{width:20%;}
+    </style>
+</head>
+<div class="bei">
+    <form id="_purchaseTenderForm" enctype="multipart/form-data">
+        <input type="hidden" id="purchaseTenderDetailArrayStr" name="purchaseTenderDetailArrayStr"/>
+        <input type="hidden" id="companyId" name="companyId" value="1312312313"/>
+        <input type="hidden" id="purchaseTenderOrderId" name="id" value=""/>
+        <input type="hidden" id="state" name="state" />
+        <input type="hidden" name="orderCode" />
+        <input type="hidden" name="purchaseTenderOrderSupplierStr" id="purchaseTenderOrderSupplierStr"/>
+        <div class="cfw_x">
+            <ul class="nav nav-tabs" role="tablist" id="tab-list">
+                <li ><a href="#" >招标单</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="sc_cgd" style="margin-left: 20px;margin-top: 10px">
+                    <div style="float: left">
+                        招标单名称 ：
+                        <input type="text" id="orderName" name="orderName" class="cmao_inplg viewReadOnly" value=""/>
+                    </div>
+                    <div id="_divDis" style="float: left;display: none">
+                        招标单号 ：
+                        <input type="text" class="cmao_inplg" id="orderCode" name="orderCode" style="width:170px;" value="" disabled/>
+                        发布时间 ：
+                        <input class="laydate-icon" id="createTime" name="createTime" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" >
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab_zbdmx" data-toggle="tab" style="color:black;">招标明细</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active tab_border" id="tab_zbdmx">
+                    <a href="javascript:void(0);" style="float: right;margin-top: 10px;margin-right: 10px;" id="expend"  onclick="showDetaiAdd();">∨展开</a>
+                    <div id="_detail" style="display: none;">
+                        <div>
+                            <div id="_ProductDiv">
+                                <input type="hidden" id="purchaseTenderDetailDocName" name="purchaseTenderDetailDocName"/>
+                                <input type="hidden" id="purchaseTenderDetailId" />
+                                <input type="hidden" id="delFileKeys" name="delFileKeys"/>
+                                <div class="sc_cgd" style="margin-top: inherit;margin-left: 10px">
+                                    <p>&nbsp;</p>
+                                    <div style="margin-top: 10px;">
+                                        <span class="ml20">产品名称：<input type="text" name="productName" class="cmao_inplg viewReadOnly" value=""/></span>
+                                    <span class="ml20">
+                                        <span>物资类别：</span>
+                                        <div id="wzlbDiv" style="display: inline-block;">
+                                            <div id="element_id">
+                                                <select class="materials1 selelct viewReadOnly" id="productTypeId_1" name="productTypeId"></select>
+                                                <select class="materials2 selelct viewReadOnly" id="productTypeId_2" name="productTypeId"></select>
+                                                <select class="materials3 selelct viewReadOnly" id="productTypeId_3" name="productTypeId"></select>
+                                                <select class="materials4 selelct viewReadOnly" id="productTypeId_4" name="productTypeId"></select>
+                                            </div>
+                                        </div>
+                                    </span>
+                                    </div>
+                                    <div style="margin-top: 10px;">
+                                        <span class="ml20">规格型号：<input type="text" class="cmao_inplg viewReadOnly" name="productModelSize" value=""/></span>
+                                    <span class="ml20"><span>采购数量： </span><input type="text" class="cmao_inplg viewReadOnly" style="display: inline-block" name="count" value=""/>
+                                            <div id="unitDiv" style="display: inline-block">
+                                                <select class="unitSelect select viewReadOnly" id="unitId" name="unitId"></select>
+                                            </div>
+                                    </span>
+                                    </div>
+                                </div>
+                                <div class="sc_cgd">
+                                    <span class="ml26" style="width: 30%">
+                                        <span>产品描述：</span>
+                                        <textarea name="description" class="sc_tarea viewReadOnly" cols="25" style="min-width: 25%;" placeholder=""></textarea>
+                                    </span>
+                                </div>
+                                <div id="_FileDiv" style="border-bottom:1px solid lightgray">
+                                    <div class="upload-box" id="upload-box" style="padding:0px 20px 20px">
+                                        <div class="statusBar clearBtn">
+                                            <button type="button" class="btn btn-blue upload-btn clearBtn" name="upload">上传文件</button>
+                                        </div>
+                                        <ul class="uploadList clearfix" id="uploadList">
+                                        </ul>
+                                        <div class="placeholder">
+                                            <p>您还没有上传任何图片，快去上传吧</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>&nbsp;</p>
+                        <div class="sc_cgd" style="text-align: center">
+                            <span>
+                                <button class="btn btn-blue btn-w100 clearBtn" type="button" id="btn_mx_add">确定</button>
+                                <button class="btn btn-darkgray btn-w100 clearBtn" type="button" id="btn_mx_reset">清空</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div>
+                        <div id="toolbar">
+                            <button id="btn_ch_1" class="btn btn-blue btn-w150 ml26 clearBtn" type="button" >从物资需求中选择</button>
+                            <!--<button id="btn_ch_2" class="btn btn-blue btn-w150 clearBtn" type="button" >从物资库存明细选择</button>-->
+                        </div>
+                        <table id="table_1">
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p>&nbsp;</p>
+
+        <div class="container" >
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab_fushu" data-toggle="tab" style="color:black;">招标附属信息</a></li>
+            </ul>
+            <div class="tab-content" >
+                <div class="tab-pane active tab_border" id="tab_fushu">
+                    <div class="sc_cgd" style="padding-bottom:10px;padding-top:10px;margin-left: 35px">
+                        <span>
+                            投标保证金：
+                            <input type="text" class="cmao_inplg viewReadOnly" id="deposit" name="deposit" value=""/> 万元
+                        </span>
+                                </div>
+                    <div class="sc_cgd" style="padding-bottom:10px;margin-left: 35px">
+                        <span style="width: 15%">
+                            投标截止日：
+                            <input placeholder="请输入日期" class="laydate-icon viewReadOnly" id="endTime" name="endTime" >
+                        </span>
+                        <span style="width: 15%">
+                            中标结果公布：
+                            <input placeholder="请输入日期" class="laydate-icon viewReadOnly" id="resultReleaseTime" name="resultReleaseTime" >
+                        </span>
+                    </div>
+                    <div class="sc_cgd" style="padding-bottom:10px;margin-left: 35px">
+                        <span class="select-group-item-lable" style="width: 75px;">联系人：</span>
+                        <input type="text" class="cmao_input viewReadOnly" id="linkMan" name="linkMan" value=""/>
+                        <span class="ml26">联系电话 ：</span>
+                        <input type="text" class="cmao_input viewReadOnly" id="linkTel" name="linkTel" value=""/>
+                        <span class="ml26">传真 ：</span>
+                        <input type="text" class="cmao_input viewReadOnly" id="faxNumber" name="faxNumber" value=""/>
+                        <span class="ml26">电子邮件 ：</span>
+                        <input type="text" class="cmao_input viewReadOnly" id="email" name="email" value=""/>
+                    </div>
+                    <div class="sc_cgd" style="padding-bottom:10px;margin-left: 35px">
+                        <span class="select-group-item-lable" style="width: 75px;">交货地址：</span>
+                        <input type="hidden" id="deliverAddressId" name="deliverAddressId"/>
+                        <input type="text" class="cmao_input viewReadOnly" style="width: 15%;" id="deliverAddress" name="deliverAddress" readonly/>
+                        <input type="text" class="cmao_input viewReadOnly" id="deliverAddressDetail" name="deliverAddressDetail" value=""/>
+                        <!--<a href="javascript:void(0)" class="a_css">选择交货地址</a>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p>&nbsp;</p>
+
+        <div class="container" >
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab_jygz" data-toggle="tab" style="color:black;">交易规则</a></li>
+            </ul>
+            <div class="tab-content" >
+                <div class="tab-pane active tab_border" id="tab_jygz"></div>
+            </div>
+        </div>
+
+        <p>&nbsp;</p>
+
+        <div class="container" >
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab_gyslb" data-toggle="tab" style="color:black;">已选择供应商列表</a></li>
+                <li><a href="#tab_cytj" data-toggle="tab" style="color:black;">平台会员参与条件设置</a></li>
+            </ul>
+            <div class="tab-content" >
+                <div class="tab-pane active tab_border" id="tab_gyslb" >
+                    <div id="table_2_toolbar">
+                        <table>
+                            <tr>
+                                <td align="left">
+                                    <a class="btn btn-red btn-w150 ml20" type="button" id="selectVendor">选择供应商</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <table id="table_2">
+                    </table>
+                </div>
+                <div class="tab-pane tab_border" id="tab_cytj" >
+                    <p>&nbsp;</p>
+                    <table style="margin-left: 20px">
+                        <tr >
+                            <td>
+                                <label><input id="cytj_1" type="radio" class="viewReadOnly" value="false" name="cyxz" checked/>只限于我邀请的供应商参与</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label><input id="cytj_2" type="radio" class="viewReadOnly" value="true" name="cyxz" />允许产贸送其他供应商参与</label>
+                            </td>
+                        </tr>
+                        <tr class="cyxz" style="display: none">
+                            <td style="width: 18%">
+                                <span style="display: inline-block">
+                                    企业性质 ：
+                                </span>
+                                <div id="companyPropertyDiv" style="display: inline-block">
+                                    <select class="companyPropertySelelct selelct viewReadOnly" id="companyProperty" name="companyProperty"></select>
+                                </div>
+                            </td>
+                            <td style="width: 15%">
+                                <span style="display: inline-block">
+                                    经营模式 ：
+                                </span>
+                                <div id="operationModelDiv" style="display: inline-block">
+                                    <select class="operationModelSelelct selelct viewReadOnly" id="operationModel" name="operationModel"></select>
+                                </div>
+                            </td>
+                            <td style="width: 15%">
+                                <span style="display: inline-block">
+                                    诚信等级 ：
+                                </span>
+                                <div id="creditGradeDiv" style="display: inline-block">
+                                    <select class="creditGradeSelelct selelct viewReadOnly" id="creditGrade" name="creditGrade"></select>
+                                </div>
+                            </td>
+                            <td style="width: 28%">
+                                地区要求 ：
+                                <input type="hidden" id="purchaseTenderSourceId" name="purchaseTenderSourceId" value=""/>
+                                <input type="hidden" id="purchaseTenderSourceName" name="purchaseTenderSourceName" value=""/>
+                                <input type="text" class="cmao_input viewReadOnly" city="true" readonly/>
+                            </td>
+                        </tr>
+                        <tr class="cyxz" style="display: none">
+                            <td colspan="4">
+                                <div style="width: 100%;height: 100%;" id="_areas">
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <p>&nbsp;</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="sc_daig tex_m sc-daig-item" id="footpanel">
+            <a href="javascript:void(0)" class="btn btn-blue  btn-w80" type="button" id="btn_review">评审</a>&nbsp;
+            <button class="btn btn-blue btn-w100 clearBtn" type="button" id="btn_zc">暂存</button> &nbsp;
+            <button class="btn btn-blue btn-w100 clearBtn" type="button" id="btn_fb">发布</button>
+        </div>
+
+        <div id="content" style="display: none;"></div>
+    </form>
+</div>
+<script>
+    $('#createTime').val(laydate.now());
+    var _purchaseTenderDetailDivId='_ProductDiv'+new Date().getTime();//当前detailDivId
+    var _EmptyDetailDiv=_purchaseTenderDetailDivId;//随时记录空壳DivId
+    var _FileId='fileId'+new Date().getTime();
+    $('#_ProductDiv').attr('id',_purchaseTenderDetailDivId);
+    var _purchaseTenderDetailDocName='purchaseTenderDetailDoc'+new Date().getTime();
+    $('#'+_purchaseTenderDetailDivId+' #purchaseTenderDetailDocName').val(_purchaseTenderDetailDocName);
+    $("#"+_purchaseTenderDetailDivId+" button[name=upload]").uploadPreview({
+        ListId : "#"+_purchaseTenderDetailDivId+" #uploadList",
+        fileId:_FileId,
+        fileName : _purchaseTenderDetailDocName
+    });
+    var btn_mx_addRnd = Math.floor(Math.random()*100000);
+    $('#btn_mx_add').attr('id','btn_mx_add'+btn_mx_addRnd);
+
+    $('#table_1').bootstrapTable({
+        pagination: true,//是否显示分页
+        toolbar:'#toolbar',
+        height:'500',
+        sidePagination: "client",//分页方式：client客户端分页，server服务端分页
+        uniqueId: "id",//每一行的唯一标识，一般为主键列
+        columns: [{
+            field: 'Number',
+            title: '序号',
+            formatter: function (value, row, index) {
+                return index+1;
+            }
+        },{
+            title : '产品名称',
+            field : 'productName'
+        },{
+            title : '物资类别',
+            width : '200px',
+            field : 'productTypeName'
+        },{
+            title : '规格型号',
+            field : 'productModelSize'
+        },{
+            title : '采购数量',
+            field : '',
+            formatter:function(value, row, index){
+                return row.count+row.unitName;
+            }
+        },{
+            title : '产品描述',
+            field : 'description'
+        },{
+            title : '文档附件',
+            visible:false,
+            field : 'doc'
+        },{
+            title: '操作',
+            field : 'action',
+            formatter: function (value, row, index) {
+                return $.formatString('<a class="a_css clearBtn" href="javascript:void(0)" onclick="editProduct(\'{0}\')">编辑</a><span class="clearBtn"> | </span>' +
+                '<a class="a_css clearBtn" href="javascript:void(0)" onclick="delProduct(\'{1}\')">删除</a>' +
+                '<a class="a_css a_view" style="display: none" href="javascript:void(0)" onclick="viewProduct(\'{2}\')">查看</a>',row.id,row.id,row.id);
+            }
+        }]
+    });
+</script>
+<script>
+    var purchaseTender;
+    var _ruleObj;
+    var _visible=true;
+    try{
+        purchaseTender=$.parseJSON('${map.purchaseTender}');
+        _ruleObj=purchaseTender;
+        if (purchaseTender!=null){
+            $.each($('#_purchaseTenderForm input[name!=purchaseTenderDetailDocName][type!=radio]'), function(index) {
+                $(this).val(purchaseTender[$(this).attr('name')]);
+            });
+            $('#purchaseTenderOrderId').val(purchaseTender.id);
+            $('#deliverAddress').attr('data-id',purchaseTender.deliverAddressId);
+            $('#companyProperty').val(purchaseTender.companyProperty);
+            $('#operationModel').val(purchaseTender.operationModel);
+            $('#creditGrade').val(purchaseTender.creditGrade);
+            var tipcon = '<div class="area-tip-input">' +
+                    '<span class="rule-tip" value="{0}" data-id="{1}">{2}</span>' +
+                    '<span class="del"></span>' +
+                    '</div>';
+            var sourceIdArray = purchaseTender.purchaseTenderSourceId.split(',');
+            var sourceNameArray = purchaseTender.purchaseTenderSourceName.split(',');
+            for (var i=0;i<sourceIdArray.length;i++){
+                if (sourceIdArray[i]!=''){
+                    $('#_areas').append($.formatString(tipcon,sourceNameArray[i],sourceIdArray[i],sourceNameArray[i]));
+                }
+            }
+            if ($('.del').length>0){
+                $('.del').click(function () {
+                    $(this).parent().remove();
+                });
+            }
+            var _purchaseTenderDetailList=purchaseTender.purchaseTenderDetailList;
+            for (var i=0;i<_purchaseTenderDetailList.length;i++){
+                var _obj = _purchaseTenderDetailList[i];
+                var DetailDivId = '_ProductDiv'+new Date().getTime();
+                _obj.DetailDivId = DetailDivId;
+                var _newDetailDiv=$('#'+_purchaseTenderDetailDivId).clone(true);
+                _newDetailDiv.hide();
+                $('#'+_purchaseTenderDetailDivId).parent().append(_newDetailDiv);
+                $(_newDetailDiv).attr('id',_obj.DetailDivId);
+                var _purchaseTenderDetailDocName='purchaseTenderDetailDoc'+new Date().getTime();
+                $('#'+DetailDivId+' #purchaseTenderDetailDocName').val(_purchaseTenderDetailDocName);
+                $('#'+DetailDivId+' input[type=text],#'+DetailDivId+' textarea').val('');
+                $("#"+DetailDivId+" button[name=upload]").remove();
+                $("#"+DetailDivId+" .statusBar").append('<button type="button" class="btn btn-blue upload-btn" name="upload">上传文件</button>');
+                _FileId='fileId'+new Date().getTime();
+                $("#"+DetailDivId+" button[name=upload]").uploadPreview({
+                    ListId : "#"+DetailDivId+" #uploadList",
+                    fileId:_FileId,
+                    fileName : _purchaseTenderDetailDocName
+                });
+                $('#'+DetailDivId+' #unitDiv').children().remove();
+                $('#'+DetailDivId+' #wzlbDiv').children().remove();
+                $('#'+DetailDivId+' #unitDiv').append('<select class="unitSelect selelct viewReadOnly" id="unitId" name="unitId"></select>');
+                $('#'+DetailDivId+' #wzlbDiv').append('<div id="element_id">' +
+                '<select class="materials1 selelct viewReadOnly" id="productTypeId_1" name="productTypeId"></select>' +
+                '<select class="materials2 selelct viewReadOnly" id="productTypeId_2" name="productTypeId"></select>' +
+                '<select class="materials3 selelct viewReadOnly" id="productTypeId_3" name="productTypeId"></select>' +
+                '<select class="materials4 selelct viewReadOnly" id="productTypeId_4" name="productTypeId"></select>' +
+                '</div>');
+                $('#'+DetailDivId+' input[name=productName]').val(_obj.productName);
+                $('#'+DetailDivId+' input[name=productModelSize]').val(_obj.productModelSize);
+                $('#'+DetailDivId+' input[name=count]').val(_obj.count);
+                $('#'+DetailDivId+' textarea[name=description]').val(_obj.description);
+                $.cxSelect.defaults.emptyStyle = 'none';
+                $('#'+DetailDivId+' #unitId').attr('data-value',_obj.unitId);
+                $('#'+DetailDivId+' #unitDiv').cxSelect({
+                    data:_zNodes,
+                    selects:['unitSelect']
+                });
+                var _productTypeIdArray=_obj.productTypeId.split(',');
+                for (var j=0;j<_productTypeIdArray.length;j++){
+                    $("#"+DetailDivId+" #productTypeId_"+(j+1)).attr('data-value',_productTypeIdArray[j]);
+                }
+                $("#"+DetailDivId+" #element_id").cxSelect({
+                    url:'../js/common/productJson.json',
+                    selects : ['materials1','materials2','materials3','materials4'],
+                    nodata: 'none'
+                });
+                var _productDetailDocArray=_obj.purchaseTenderDetailDocList;
+                var _detaildocArray = new Array();
+                var _detailkeyArray = new Array();
+                for (var j=0;j<_productDetailDocArray.length;j++){
+                    var _doc=_productDetailDocArray[j];
+                    _detaildocArray.push(_doc.fileUrl);
+                    _detailkeyArray.push(_doc.id);
+                }
+                $('#'+DetailDivId+' #uploadList').children().remove();
+                if (_detaildocArray.length!=0){
+                    $('#'+DetailDivId+' #uploadList').loadPreview({
+                        imgArray:_detaildocArray,
+                        keyArray:_detailkeyArray,
+                        update:true,
+                        delObject:$('#'+DetailDivId+' #delFileKeys')
+                    });
+                }
+                $('#'+DetailDivId+' #purchaseTenderDetailId').val(_obj.id);
+            }
+            $('#table_1').bootstrapTable('load',purchaseTender.purchaseTenderDetailList);
+            if (purchaseTender.cyxz){
+                $('#cytj_2').attr('checked','checked');
+                $('.cyxz').show();
+            }
+            if (purchaseTender.state==202){
+                _visible=false;
+                setTimeout(function(){
+                    $('#_divDis').show();
+                    $('.clearBtn').remove();
+                    $('.file-panel').remove();
+                    $('.viewReadOnly').attr('disabled',true);
+                    $('.a_view').show();
+                    $('.del').remove();
+                },100);
+                if (purchaseTender.saleBidNum==0||purchaseTender.reviewFlag){
+                    $('#btn_review').remove();
+                }
+            }else {
+                $('#btn_review').remove();
+            }
+        }else {
+            $('#btn_review').remove();
+        }
+    }catch (e){}
+</script>
+<script src="../js/purchase/zhaobiao_fb.js?rnd="+Math.random()></script>
+</html>

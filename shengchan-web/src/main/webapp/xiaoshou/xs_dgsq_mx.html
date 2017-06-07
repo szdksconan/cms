@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>代工申请单明细</title>
+<meta charset="utf-8">
+<script src="../js/common/tabs.js"></script>
+<style>
+.text {
+	line-height: 22px;
+	padding: 0 6px;
+	color: #666;
+	border: solid 1px #066FAF
+}
+
+.sc_jy table tr td {
+	width: 20%;
+}
+/*#footpanel {*/
+/*position: fixed;*/
+/*z-index: 9999; */ /*--Keeps the panel on top of all other elements--*/
+/*width: 94%;*/
+/*margin: 0 3%;*/
+/*}*/
+</style>
+</head>
+<body class="bei">
+	<!-- <span class="ml27">生产企业>物资采购>委托代工单</span> -->
+
+	<div class="cfw_x">
+		<ul class="nav nav-tabs" role="tablist" id="tab-list">
+			<li><a href="#">代工申请单明细</a></li>
+		</ul>
+	</div>
+	<div class="tab-content">
+		<!--基本信息-->
+		<div class="tab-pane active" id="cfw_cs">
+			<div class="sc_tool">
+
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;委托代工单号： <input type="text" class="cmao_inplg" disabled="disabled"
+					value="DGD-00000001" /> 委托代工标题： <input type="text"
+					class="cmao_inplg" value="盖乐实" /> 申请日期： <input type="text"
+					class="cmao_inplg" disabled="disabled" value="2016.04.14" /> 发布时间:
+				<input type="text" class="cmao_inplg" disabled="disabled"
+					value="2016.04.14" /> 申请截止日期： <input type="text"
+					class="cmao_inplg" disabled="disabled" value="2016.04.14" />
+			</div>
+			<div class="container" style="margin-top: 30px;">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#tab4" data-toggle="tab"
+						style="color: black;">代工产品信息</a></li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="tab1">
+						<p>&nbsp;</p>
+						<div>
+							<table id="table_1">
+							</table>
+						</div>
+						<div class="sc_tool">
+							<span> 委托产品介绍： <textarea name="textarea"
+									class="sc_tarea ml26" cols="80" rows="17" placeholder="望产品尽快发货"></textarea>
+							</span>
+
+						</div>
+						<div class="sc_tool" style="margin-top: 22px;">
+							<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;制造要求： <textarea
+									name="textarea" class="sc_tarea ml26" cols="80" rows="17"
+									placeholder="望产品尽快发货"></textarea>
+							</span
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="container" style="margin-top: 70px;">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#tab4" data-toggle="tab"
+						style="color: black;">交易规则</a></li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="tab1">
+						<!--基本信息-->
+
+						<table>
+							<tr>
+								<td>
+									<div class="sc_jy ">
+										<table>
+											<tr>
+												<td>交易规则名称： <input type="text" class="cmao_inplg"
+													disabled="disabled" value="规则1" />
+												</td>
+											</tr>
+											<tr>
+												<td>交货日期： <input type="text" class="cmao_inplg"
+													disabled="disabled" value="按合同约定" />
+												</td>
+											</tr>
+											<tr>
+												<td>支付方式： <input type="text" class="cmao_inplg"
+													disabled="disabled" value="货到付款" /> &nbsp; &nbsp; 付款约定： <input
+													type="text" class="cmao_inplg" disabled="disabled"
+													value="按合同规定" />
+
+												</td>
+											</tr>
+											<tr>
+												<td>发票类型： <input type="text" class="cmao_input"
+													disabled="disabled" value="普票" />
+												</td>
+											</tr>
+											<tr>
+												<td>自定规则： <input type="text" class="cmao_input"
+													disabled="disabled" value="无" />
+												</td>
+											</tr>
+											<tr>
+												<td>期望合作企业性质： <input type="text" class="cmao_input"
+													disabled="disabled" value="无" /> &nbsp;&nbsp; 注册资金： <input
+													type="text" class="cmao_input" disabled="disabled"
+													value="1800000" />
+												</td>
+											</tr>
+											<tr>
+												<td>联系人： <input type="text" class="cmao_input "
+													disabled="disabled" value="盖乐实" /> &nbsp;&nbsp; 联系电话： <input
+													type="text" class="cmao_input" disabled="disabled"
+													value="186-860-56234" />
+												</td>
+											</tr>
+											<tr>
+												<td><input type="text" class="cmao_input"
+													disabled="disabled" value="123道4566区56663路" /></td>
+											</tr>
+										</table>
+									</div>
+								</td>
+								<td>
+									<div class="sc_sy">
+										<ul>
+											<li>规则适用物资： <input type="text" class="cmao_input"
+												disabled="disabled" value="产品颜色为蓝色" />
+											</li>
+											<li>包装标准： <input type="text" class="cmao_input "
+												disabled="disabled" value="十五一捆正方形" /> &nbsp;&nbsp; 验收标准： <input
+												type="text" class="cmao_input " disabled="disabled"
+												value="十五一捆正方形，无次品" />
+											</li>
+											<li>运输负责： <input type="text" class="cmao_input "
+												disabled="disabled" value="供房负责" /> &nbsp;&nbsp; 运费承担： <input
+												type="text" class="cmao_input " disabled="disabled"
+												value="供房负责" />
+											</li>
+											<li>补充约定： <textarea name="textarea"
+													class="sc_tarea ml26" cols="80" rows="17"
+													disabled="disabled" placeholder="望产品尽快发货"></textarea>
+											</li>
+											<li>经营模式： <input type="text" class="cmao_input "
+												disabled="disabled" value="无" />
+											</li>
+											<li>传真： <input type="text" class="cmao_input "
+												disabled="disabled" value="028-6325894" />
+												&nbsp;&nbsp;电子邮件： <input type="text" class="cmao_input "
+												disabled="disabled" value="sdfd@163.com" />
+											</li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+						</table>
+					</div>
+
+
+				</div>
+
+			</div>
+			<div class="container" style="margin-top: 50px;">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#tab4" data-toggle="tab"
+						style="color: black;">我的代工能力</a></li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="tab1">
+						<div class="sc_jy" style="margin-top: 17px;">
+							<table style="width: 79%;">
+								<tr>
+									<td>公司性质：<select id="gsxz"></select>
+									</td>
+									<td>所在地区： <input type="text" class="cmao_input "
+										value="南京市秦淮区夫子庙" /></td>
+									<td>厂房面积：<input type="text" class="cmao_input "
+										value="1500平" /></td>
+									<td>企业人数：<input type="text" class="cmao_input " value="40" /></td>
+								</tr>
+								<tr>
+									<td>企业年限：<input type="text" class="cmao_input " value="5" /></td>
+									<td>从业能力：<input type="text" class="cmao_input "
+										value="中级制造" /></td>
+									<td colspan="2">资质及认证体系： <input type="text"
+										class="cmao_input " style="width: 70%;" value="ISO9001" />
+									</td>
+
+								</tr>
+								<tr>
+									<td colspan="2">设备要求： <input type="text"
+										class="cmao_input " value="具备委托方要求设备" /></td>
+									<td colspan="2">交付能力： <input type="text"
+										class="cmao_input " value="按时交货" /></td>
+								</tr>
+								<tr>
+
+									<td colspan="2">生产能力： <input type="text"
+										class="cmao_input " value="全产" /></td>
+									<td colspan="2">其他要求： <input type="text"
+										class="cmao_input " value="无" /></td>
+								</tr>
+								<tr>
+									<td>联系人： <input type="text" class="cmao_input " value="刘鑫" /></td>
+									<td>联系电话： <input type="text" class="cmao_input "
+										value="18782935261" /></td>
+									<td>传真号码： <input type="text" class="cmao_input "
+										value="9090950" /></td>
+									<td>邮箱： <input type="text" class="cmao_input "
+										value="724594249@qq.com" /></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="sc_daig tex_m" id="footpanel">
+				<a class="btn btn-hui btn-w80" type="button">暂存</a> &nbsp; <a
+					class="btn btn-blue  btn-w80" type="button">确认</a>
+			</div>
+			<script>
+				$('#table_1').bootstrapTable({
+					data : [ {
+						"wzName" : "产品名称",
+						"industry" : "所属行业",
+						"size" : "规格型号",
+						"purchaseCount" : "1111",
+						"deliverTime" : "2016.1.30",
+						"supply" : "委托方提供",
+						"cooperationMode" : "长期合作",
+						"doc" : "<a href='#'>浏览</a>"
+					}, {
+						"wzName" : "产品名称",
+						"industry" : "所属行业",
+						"size" : "规格型号",
+						"purchaseCount" : "2222",
+						"deliverTime" : "2016.1.30",
+						"supply" : "代工方自备",
+						"cooperationMode" : "短期合作",
+						"doc" : "<a href='#'>上传</a>"
+					}, {
+						"wzName" : "产品名称",
+						"industry" : "所属行业",
+						"size" : "规格型号",
+						"purchaseCount" : "3333",
+						"deliverTime" : "2016.1.30",
+						"supply" : "代工方自备",
+						"cooperationMode" : "长期合作",
+						"doc" : "<a href='#'>上传</a>"
+					} ],
+					pagination : true,//是否显示分页
+					queryParamsType : '',//传递参数
+					sidePagination : "client",//分页方式：client客户端分页，server服务端分页
+					uniqueId : "id",//每一行的唯一标识，一般为主键列
+					columns : [ {
+						field : 'Number',
+						title : '序号',
+						formatter : function(value, row, index) {
+							return index + 1;
+						}
+					}, {
+						title : '产品名称',
+						field : 'wzName'
+					}, {
+						title : '所属行业',
+						field : 'industry'
+					}, {
+						title : '规格型号',
+						field : 'size'
+					}, {
+						title : '采购数量',
+						field : 'purchaseCount'
+					}, {
+						title : '交货日期',
+						field : 'deliverTime'
+					}, {
+						title : '材料供应',
+						field : 'supply'
+					}, {
+						title : '合作模式',
+						field : 'cooperationMode'
+					}, {
+						title : '文档附件',
+						field : 'doc'
+					}, {
+						title : '操作',
+						field : 'action',
+						formatter : function(value, row, index) {
+							return '<a href="#">编辑</a> | <a href="#">删除</a>';
+						}
+					} ]
+				});
+
+				//发布类型加载
+				var optionsgsxz = [ {
+					label : '私企',
+					value : '1'
+				}, {
+					label : '合资',
+					value : '2'
+				}, {
+					label : '国企',
+					value : '3'
+				} ];
+
+				$('#gsxz').multiselect('dataprovider', optionsgsxz);
+			</script>
+</body>
+</html>

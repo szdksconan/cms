@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.maoyi.NetworkMapper" >
+    <resultMap id="BaseResultMap" type="com.cms.model.maoyi.Network" >
+    <id column="id" property="id" jdbcType="DECIMAL" />
+    <result column="ent_id" property="entId" jdbcType="DECIMAL" />
+    <result column="network_id" property="networkId" jdbcType="DECIMAL" />
+    <result column="temp_network_id" property="tempNetworkId" jdbcType="DECIMAL" />
+    <result column="cooperate_type" property="cooperateType" jdbcType="INTEGER" />
+    <result column="record_state" property="recordState" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, ent_id, network_id, temp_network_id, cooperate_type, record_state
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="long" >
+    select 
+    <include refid="Base_Column_List" />
+    from network
+    where id = #{id}
+  </select>
+  
+  <select id="findPage" parameterType="long" resultType="com.cms.model.maoyi.NetworkBean">
+  	SELECT 
+	n.id as id,
+	n.ent_id as entId,
+	n.network_id as networkId,
+	n.temp_network_id as tempNetworkId,
+	n.cooperate_type as cooperateType,
+	n.record_state as recordState,
+
+  	e.name as entName,
+	e.reg_add_ac	as entAc,
+	e.reg_add_an as entAn,
+	e.reg_add_al as entAl,
+	e.register_detail as entAd,
+	
+	e.contact_person as contactPerson,
+	e.contact_tel as tel
+	from network n,  enterprise_info e  where  n.network_id = e.id and n.ent_id = #{entId} and n.record_state = 0 and n.network_id is not null
+	
+	union all
+	
+	SELECT 
+	n.id as id,
+	n.ent_id as entId,
+	n.network_id as networkId,
+	n.temp_network_id as tempNetworkId,
+	n.cooperate_type as cooperateType,
+	n.record_state as recordState,
+
+  	t.ent_name as entName,
+	t.ent_ac as entAc,
+  	t.ent_an as entAn,
+	t.ent_al as entAl,
+	t.ent_ad as entAd,
+
+	t.contact_person as contactPerson,
+	t.tel as tel
+	
+	from network n,network_temp t where n.temp_network_id = t.id and n.ent_id = #{entId} and n.record_state = 0 and n.network_id is null  and n.temp_network_id is not null
+  </select>
+  
+   <insert id="insert" parameterType="com.cms.model.maoyi.Network" >
+    insert into network (id, ent_id, network_id, 
+      temp_network_id, cooperate_type, record_state
+      )
+    values (#{id,jdbcType=DECIMAL}, #{entId,jdbcType=DECIMAL}, #{networkId,jdbcType=DECIMAL}, 
+      #{tempNetworkId,jdbcType=DECIMAL}, #{cooperateType,jdbcType=INTEGER}, #{recordState,jdbcType=INTEGER}
+      )
+  </insert>
+  
+  <select id="findNetwork" parameterType="long" resultType="int">
+  select count(1) from network where 1=1 and ent_id=#{0} and network_id= #{1} and record_state = 0
+  </select>
+  
+  <update id="delete" parameterType="long">
+  		update network set  record_state = 1 where id = #{id}
+  </update>
+  
+  <update id="update" parameterType="com.cms.model.maoyi.Network" >
+    update network
+    <set >
+      <if test="entId != null" >
+        ent_id = #{entId,jdbcType=DECIMAL},
+      </if>
+      <if test="networkId != null" >
+        network_id = #{networkId,jdbcType=DECIMAL},
+      </if>
+      <if test="tempNetworkId != null" >
+        temp_network_id = #{tempNetworkId,jdbcType=DECIMAL},
+      </if>
+      <if test="cooperateType != null" >
+        cooperate_type = #{cooperateType,jdbcType=INTEGER},
+      </if>
+      <if test="recordState != null" >
+        record_state = #{recordState,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=DECIMAL}
+  </update>
+  
+</mapper>

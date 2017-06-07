@@ -1,0 +1,44 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>物资需求</title>
+    <meta charset="utf-8">
+</head>
+<div class="bei">
+<!--<div class="sc_cg" >-->
+<!--<span ><i onclick="xioshi()" class="fa fa-times" ></i>  </span>-->
+<!--发布呢你的物资需求，以便于供应商能主动与您联系和平台为你推荐优质供应商和产品，从而实现采购效益和效率的最大化。-->
+<!--</div>-->
+<table class="-querytable">
+    <tr>
+        <td align="right">需求单号：</td>
+        <td><input type="text" class="cmao_inplg" id="purchaseNeedNo" /></td>
+        <td align="right">需求名称：</td>
+        <td><input type="text" class="cmao_inplg" id="purchaseNeedName"  /></td>
+        <td align="right">发布状态：</td>
+        <td><select id="purchaseNeedState">	</select></td>
+        <td align="right">需求类型：</td>
+        <td><select id="purchaseNeedType">	</select></td>
+    </tr>
+</table>
+<div style="margin-left: 12px">
+ <p>&nbsp;</p>
+    <div id="toolbar" style="width: 100%">
+        <table style="width: 100%">
+            <tr>
+                <td align="left"><button  class="btn btn-blue btn-w120" onclick="changeContent('../caigou/c_wuzixuqiu_fb.html','right')" type="button" >新增物资需求</button></td>
+                <td align="right">
+                    <button class="btn btn-blue btn-w100" id="btn_query" type="button" >查询</button>
+                    <button class="btn btn-darkgray btn-w100" type="button" >清空</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <p>&nbsp;</p>
+    <table id="table"></table>
+</div>
+</div>
+</html>
+<script src="../js/purchase/c_wuzixuqiu.js"></script>

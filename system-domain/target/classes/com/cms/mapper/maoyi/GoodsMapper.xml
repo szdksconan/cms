@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.maoyi.GoodsMapper" >
+  <resultMap id="goodsResultMap" type="com.cms.model.maoyi.CmsGoods" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="companyId" property="companyId" jdbcType="VARCHAR" />
+    <result column="companyName" property="companyName" jdbcType="VARCHAR" />
+     <result column="oemId" property="oemId" jdbcType="VARCHAR" />
+    <result column="oemName" property="oemName" jdbcType="VARCHAR" />
+    <result column="kindId" property="kindId" jdbcType="VARCHAR" />
+    <result column="kindName" property="kindName" jdbcType="VARCHAR" />
+    <result column="brandId" property="brandId" jdbcType="VARCHAR" />
+    <result column="brandName" property="brandName" jdbcType="VARCHAR" />
+    <result column="GoodsCode" property="GoodsCode" jdbcType="VARCHAR" />
+    <result column="GoodsNameCn" property="GoodsNameCn" jdbcType="VARCHAR" />
+    <result column="GoodsNameEn" property="GoodsNameEn" jdbcType="VARCHAR" />
+    <result column="GoodsIntroduction" property="GoodsIntroduction" jdbcType="VARCHAR" />
+    <result column="GoodPlace" property="GoodPlace" jdbcType="INTEGER" />
+    <result column="GoodsCreator" property="GoodsCreator" jdbcType="INTEGER" />
+    <result column="GoodsCreateTime" property="GoodsCreateTime" jdbcType="DATE"/>
+    <collection property="cmsProduct"  javaType="ArrayList"   ofType="com.cms.model.maoyi.CmsProduct"    resultMap="com.cms.mapper.maoyi.ProductCenterMapper.productCenterRMap"/>
+    <collection property="cmsImages"  javaType="ArrayList"    ofType="com.cms.model.maoyi.CmsImages"   	resultMap="com.cms.mapper.maoyi.ImagesMapper.imgResultMap"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id,companyId,companyName,oemId,oemName,kindId,kindName,brandId,brandName,
+	GoodsCode,GoodsNameCn,GoodsNameEn,GoodsIntroduction,GoodPlace,
+	GoodsCreator,GoodsCreateTime
+    
+  </sql>
+  <select id="getGoodsList" parameterType="com.cms.model.maoyi.CmsGoods" resultMap="goodsResultMap">
+			select * from cms_product_t_goods g 
+			left join cms_product_t_images i on g.id=i.productId
+			where 1=1
+            <if test="companyId!=null and companyId!=''">
+                and g.companyId = #{companyId}
+            </if>
+            <if test="id!=null and id!=''">
+                and g.id=#{id}
+            </if>
+            <if test="brandId!=null and brandId!=''">
+                and g.brandId=#{brandId}
+            </if>
+            <if test="kindId!=null and kindId!=''">
+                and g.kindId=#{kindId}
+            </if>
+            <if test="GoodsNameCn!=null and GoodsNameCn!=''">
+                and g.GoodsNameCn like concat('%',#{GoodsNameCn},'%')
+            </if>
+	</select>
+	<select id="selectGoodsInfoById" resultMap="goodsResultMap" parameterType="java.lang.String">
+  	select * from cms_product_t_goods g 
+  	left join cms_product_t_images i on g.id=i.productId
+  	<!-- left join cms_product_t_product t on g.id=t.goodsId -->
+  	where g.id = #{id}
+  </select>
+ <insert id="insert" parameterType="com.cms.model.maoyi.CmsGoods" >
+    insert into cms_product_t_goods (id,companyId,companyName,oemId,oemName,kindId,kindName,brandId,brandName,
+	GoodsCode,GoodsNameCn,GoodsNameEn,GoodsIntroduction,GoodPlace,
+	GoodsCreator,GoodsCreateTime)
+    values (#{id},#{companyId},#{companyName},#{oemId},#{oemName},#{kindId},#{kindName},#{brandId},#{brandName},#{
+	GoodsCode},#{GoodsNameCn},#{GoodsNameEn},#{GoodsIntroduction},#{GoodPlace},#{
+	GoodsCreator},#{GoodsCreateTime})
+  </insert>
+</mapper>

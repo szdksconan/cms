@@ -1,0 +1,247 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>代工申请单明细</title>
+    <meta charset="utf-8">
+    <script src="../js/common/tabs.js"></script>
+    <style>
+    .text {
+        line-height: 22px;
+        padding: 0 6px;
+        color: #666;
+        border: solid 1px #066FAF
+    }
+
+    .sc_jy table tr td {
+        width: 20%;
+    }
+    </style>
+</head>
+<div class="bei">
+	<!-- <span class="ml27">生产企业>物资采购>委托代工单</span> -->
+    <form id="BidForm">
+        <input type="hidden" id="purchaseTenderId" name="purchaseTenderId"/>
+        <input type="hidden" id="saleBidId" name="id"/>
+        <input type="hidden" id="details" name="details"/>
+        <input type="hidden" id="endTime2" name="endTime"/>
+        <input type="hidden" id="orderName2" name="orderName"/>
+        <input type="hidden" id="delDetailIds" name="delDetailIds"/>
+        <div class="cfw_x">
+            <ul class="nav nav-tabs" role="tablist" id="tab-list">
+                <li><a href="#">投标单明细</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <!--基本信息-->
+                <div class="tab-pane active" id="cfw_cs">
+                    <table class="-querytable">
+                        <tr>
+                            <td align="right" style="display: none" class="updateTime">投标时间：</td>
+                            <td style="display: none" class="updateTime"><input type="text" class="cmao_inplg tender" id="updateTime" value="" /></td>
+                            <td align="right">招标单号：</td>
+                            <td><input type="text" class="cmao_inplg tender" style="width: 180px"  id="orderCode" value="" /></td>
+                            <td align="right">招标标题：</td>
+                            <td><input type="text" class="cmao_inplg tender" style="width: 180px" value=""  id="orderName"/></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="container" style="margin-top: 20px;">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab1" data-toggle="tab"
+                                      style="color: black;">投标物品</a></li>
+                <li><a href="#tab2" data-toggle="tab" style="color: black;">报价说明</a></li>
+                <li><a href="#tab3" data-toggle="tab" style="color: black;">联系信息</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tab1">
+                    <p>&nbsp;</p>
+                    <div>
+                        <table id="table_1">
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane " id="tab2">
+                    <div class="" style="margin-top: 17px;">
+                        <table style="width: 79%;border-collapse: separate;border-spacing: 5px">
+                            <tr>
+                                <td align="right">价格有效期：
+                                </td>
+                                <td>
+                                    <input type="text" class="cmao_inplg laydate-icon saleBid" value="" id="priceExpiryTime" name="priceExpiryTime"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">其他说明：
+                                </td>
+                                <td>
+                                <textarea name="otherDescription" class="sc_tarea saleBid" id="otherDescription"
+                                          cols="80" rows="17" placeholder=""></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" align="center">
+                                    <button id="btn_add" class="btn btn-blue btn-w150" type="button">上传附件</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane " id="tab3">
+                    <div class="sc_jy" style="margin-top: 17px;">
+                        <table style="width: 79%;">
+                            <tr>
+                                <td>联系人：<input type="text" class="cmao_input saleBid" value="xxxxx" id="linkMan" name="linkMan"/>
+                                </td>
+                                <td>联系电话：<input type="text" class="cmao_input saleBid" value="186-860-56234" id="linkTel" name="linkTel"/>
+                                </td>
+                                <td>传真：<input type="text" class="cmao_input saleBid" value="028-6325894" id="faxNumber" name="faxNumber"/>
+                                </td>
+                                <td>电子邮件：<input type="text" class="cmao_input saleBid" value="sdfd@163.com" id="email" name="email"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="container" style="margin-top: 10px;">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab4" data-toggle="tab" style="color: black;">投标保证金</a></li>
+                <li><a href="#tab5" data-toggle="tab" style="color: black;">双方交易规则</a></li>
+                <li><a href="#tab6" data-toggle="tab" style="color: black;">联系方式</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tab4">
+                    <div class="sc_jy" style="margin-top: 17px;">
+                        <table>
+                            <tr>
+                                <td>投标保证金： <input type="text" class="cmao_inplg tender"  id="deposit" value="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>投标截止日：
+                                    <input type="text" class="cmao_inplg tender"  value="" id="endTime"/>
+                                </td>
+                                <td>中标公布日：
+                                    <input type="text" class="cmao_inplg tender" id="resultReleaseTime"  value="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>企业性质：
+                                    <input type="text" class="cmao_inplg tender"  value="" id="companyPropertyName"/>
+                                </td>
+                                <td>经营模式：
+                                    <input type="text" class="cmao_inplg tender"  value="" id="operationModelName"/>
+                                </td>
+                                <td>诚信等级：
+                                    <input type="text" class="cmao_inplg tender"  value="" id="creditGradeName"/>
+                                </td>
+                                <td>地区要求：
+                                    <input type="text" class="cmao_inplg tender"  value="" id="purchaseTenderSourceName"/>
+                                </td>
+
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane " id="tab5"></div>
+                <div class="tab-pane " id="tab6">
+                    <div class="sc_jy" style="margin-top: 17px;">
+                        <table>
+                            <tr>
+                                <td>联系人：<input type="text" class="cmao_input tender" value="" id="tenderLinkMan"/>
+                                </td>
+                                <td>联系电话： <input type="text" class="cmao_input tender" value="" id="tenderLinkTel"/>
+                                </td>
+                                <td>传真： <input type="text" class="cmao_input tender" value="" id="tenderFaxNumber"/>
+                                </td>
+                                <td>电子邮件： <input type="text" class="cmao_input tender" value="" id="tenderEmail"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">交货地址：<input type="text" class="cmao_input tender" style="width: 332px;" value="" id="deliverAddress"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sc_daig tex_m" id="footpanel">
+            <a class="btn btn-hui btn-w80" type="button" id="btn_zc">暂存</a> &nbsp;<a class="btn btn-blue  btn-w80" type="button" id="btn_submit">确定投标</a>
+        </div>
+    </form>
+</div>
+<div id="viewImgDiv" style="display: none"></div>
+<script src="../js/sale/xs_tbd_mx.js"></script>
+<script>
+    var _cggzCompId='1313131313';//采购规则企业id
+    $('.tender').attr('disabled','disabled');
+    var tender={};
+    var saleBidOrder={};
+    var _ruleObj;
+    $(document).ready(function(){
+        try{
+            tender=$.parseJSON('${map.purchaseTender}');
+            _ruleObj=tender;
+            saleBidOrder=$.parseJSON('${map.saleBidOrder}');
+            $('#endTime').val(tender.endTime);
+            $('#endTime2').val(tender.endTime);
+            $('#orderCode').val(tender.orderCode);
+            $('#orderName').val(tender.orderName);
+            $('#orderName2').val(tender.orderName);
+            $('#purchaseTenderId').val(tender.id);
+            $('#deposit').val(tender.deposit);
+            $('#resultReleaseTime').val(tender.resultReleaseTime);
+            $('#companyPropertyName').val(tender.companyPropertyName);
+            $('#operationModelName').val(tender.operationModelName);
+            $('#creditGradeName').val(tender.creditGradeName);
+            $('#purchaseTenderSourceName').val(tender.purchaseTenderSourceName);
+            $('#tenderLinkMan').val(tender.linkMan);
+            $('#tenderLinkTel').val(tender.linkTel);
+            $('#tenderFaxNumber').val(tender.faxNumber);
+            $('#tenderEmail').val(tender.email);
+            $('#deliverAddress').val(tender.deliverAddress+tender.deliverAddressDetail);
+            if (saleBidOrder.id!=undefined){
+                $('#updateTime').val(saleBidOrder.updateTime);
+                $('#otherDescription').val(saleBidOrder.otherDescription);
+                $('#saleBidId').val(saleBidOrder.id);
+                $('#priceExpiryTime').val(saleBidOrder.priceExpiryTime);
+                $('#linkMan').val(saleBidOrder.linkMan);
+                $('#linkTel').val(saleBidOrder.linkTel);
+                $('#faxNumber').val(saleBidOrder.faxNumber);
+                $('#email').val(saleBidOrder.email);
+                $('#table_1').bootstrapTable('load',saleBidOrder.saleBidOrderDetailList);
+                if (saleBidOrder.state==202){
+                    $('#table_1').bootstrapTable('hideColumn','action');
+                    $('#table_1').find('td').unbind('click');
+                    $('.updateTime').show();
+                    $('.saleBid').attr('disabled','disabled');
+                    $('[type=button]').remove();
+                }
+            }else {
+                var _rows = tender.purchaseTenderDetailList;
+                for (var i=0;i<_rows.length;i++){
+                    _rows[i].purchaseTenderDetailId=_rows[i].id;
+                    _rows[i].id=Math.floor(Math.random()*100000);
+                    var _docArray = _rows[i].purchaseTenderDetailDocList;
+                    var _docs = '';
+                    for (var j=0;j<_docArray.length;j++){
+                        _docs+=_docArray[j].fileUrl+',';
+                    }
+                    _docs=_docs.length!=0?_docs.substr(0,_docs.length-1):'';
+                    _rows[i].docs=_docs;
+                }
+                $('#table_1').bootstrapTable('load',_rows);
+            }
+            $('#tab5').load('../guize/cggz.html');
+        }catch (e){}
+    });
+</script>
+</html>

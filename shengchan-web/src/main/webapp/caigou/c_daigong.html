@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>委托代工单</title>
+    <meta charset="utf-8">
+</head>
+<div class="bei">
+    <table class="-querytable" style="width: 85%">
+        <tr>
+            <td align="right">
+                委托代工单号：
+            </td>
+            <td>
+                <input type="text" class="cmao_inplg" value="201602157"/>
+            </td>
+            <td align="right">
+                委托标题：
+            </td>
+            <td>
+                <input type="text" class="cmao_input" value="2016年度物资采购需求"/>
+            </td>
+            <td align="right">
+                物资摘要：
+            </td>
+            <td>
+                <input type="text" class="cmao_input" value="2016年度物资采购需求"/>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                合作模式：
+            </td>
+            <td>
+                <select id="hzms">	</select>
+            </td>
+            <td align="right">
+                申请情况：
+            </td>
+            <td>
+                <select id="sqqk">	</select>
+            </td>
+            <td align="right">
+                处理状态：
+            </td>
+            <td>
+                <select id="clzt">	</select>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                发布日期：
+            </td>
+            <td>
+                <input placeholder="请输入日期" class="laydate-icon" onclick="laydate()"> - <input placeholder="请输入日期" class="laydate-icon" onclick="laydate()">
+            </td>
+            <td align="right">
+                截止日期：
+            </td>
+            <td colspan="">
+                <input placeholder="请输入日期" class="laydate-icon" onclick="laydate()"> - <input placeholder="请输入日期" class="laydate-icon" onclick="laydate()">
+            </td>
+        </tr>
+    </table>
+<div>
+ <p>&nbsp;</p>
+    <div id="toolbar" style="width: 100%">
+        <table style="width: 100%">
+            <tr>
+                <td align="left">
+                      <button  class="btn btn-blue btn-w120" onclick="changeContent('../caigou/c_daigongfb.html','right')" type="button" >新增委托带工单</button>
+                </td>
+                <td align="right">
+                    <button  class="btn btn-blue btn-w100" type="button" >查询</button>
+                    <button  class="btn btn-darkgray btn-w100" type="button" >清空</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <p>&nbsp;</p>
+    <table id="table" >
+    </table>
+</div>
+
+<p class="sc_p">优秀代工企业推荐</p>
+<div class="sc_daigong">
+<div style="width: 45%">
+    <img src="../images/shenchans/sc_glie2.jpg">
+    <ul >
+        <li>
+            成都阿迪达斯服装有限公司
+        </li>
+        <li>
+            所属行业：服装服饰
+        </li>
+        <li>
+            企业性质：外商独资
+        </li>
+        <li>
+            主加工产品：衣服，裤子，鞋
+        </li>
+        <li>
+            所在地区：成都市高新区
+        </li>
+        <li>
+            经营模式：生产制造
+        </li>
+        <li>
+            <a class="a_css" href="javascript:void(0);">更多详情》</a>
+        </li>
+    </ul>
+
+</div>
+    <div style="width: 45%">
+        <img src="../images/shenchans/sc_glie2.jpg">
+        <ul >
+            <li>
+                成都阿迪达斯服装有限公司
+            </li>
+            <li>
+                所属行业：服装服饰
+            </li>
+            <li>
+                企业性质：外商独资
+            </li>
+            <li>
+                主加工产品：衣服，裤子，鞋
+            </li>
+            <li>
+                所在地区：成都市高新区
+            </li>
+            <li>
+                经营模式：生产制造
+            </li>
+            <li>
+                <a class="a_css" href="javascript:void(0);">更多详情》</a>
+            </li>
+        </ul>
+
+    </div>
+    <div style="width: 45%">
+        <img src="../images/shenchans/sc_glie2.jpg">
+        <ul >
+            <li>
+                成都阿迪达斯服装有限公司
+            </li>
+            <li>
+                所属行业：服装服饰
+            </li>
+            <li>
+                企业性质：外商独资
+            </li>
+            <li>
+                主加工产品：衣服，裤子，鞋
+            </li>
+            <li>
+                所在地区：成都市高新区
+            </li>
+            <li>
+                经营模式：生产制造
+            </li>
+            <li>
+                <a class="a_css" href="javascript:void(0);">更多详情》</a>
+            </li>
+        </ul>
+
+    </div>
+    <div style="width: 45%">
+        <img src="../images/shenchans/sc_glie2.jpg">
+        <ul >
+            <li>
+                成都阿迪达斯服装有限公司
+            </li>
+            <li>
+                所属行业：服装服饰
+            </li>
+            <li>
+                企业性质：外商独资
+            </li>
+            <li>
+                主加工产品：衣服，裤子，鞋
+            </li>
+            <li>
+                所在地区：成都市高新区
+            </li>
+            <li>
+                经营模式：生产制造
+            </li>
+            <li>
+                <a class="a_css" href="javascript:void(0);">更多详情》</a>
+            </li>
+        </ul>
+
+    </div>
+</div>
+<div class="sc_gym" style="float: left"><img src="../images/fanye.jpg"></div>
+<script>
+
+    var options = [
+        {label: '长期合作',  value: '1'},
+        {label: '短期合作',  value: '2'}
+    ];
+
+    $('#hzms').multiselect('dataprovider', options);
+    options = [
+        {label: '处理中',  value: '1'},
+        {label: '申请通过',  value: '2'},
+        {label: '未通过',  value: '3'}
+    ];
+    $('#sqqk').multiselect('dataprovider', options);
+    options = [
+        {label: '未发布',  value: '1'},
+        {label: '已发布',  value: '2'},
+        {label: '过期',  value: '3'}
+    ];
+    $('#clzt').multiselect('dataprovider', options);
+
+    $('#table').bootstrapTable({
+//          url:'purchase/test',//请求后台的URL（*）
+        data:[{
+            "wtNo":"JHND-20162233",
+            "wtName": "2016年度物资采购需求",
+            "wtAbstract": "摘要",
+            "createTime": "2016.1.30",
+            "endTime": "2016.1.30",
+            "cooperationMode": "长期合作",
+            "applicationSituation": "申请情况",
+            "state":"未发布"
+        },
+            {
+            "wtNo":"JHND-20162233",
+            "wtName": "2016年度物资采购需求",
+            "wtAbstract": "摘要",
+            "createTime": "2016.1.30",
+            "endTime": "2016.1.30",
+            "cooperationMode": "长期合作",
+            "applicationSituation": "申请情况",
+            "state":"已发布"
+        },
+            {
+            "wtNo":"JHND-20162233",
+            "wtName": "2016年度物资采购需求",
+            "wtAbstract": "摘要",
+            "createTime": "2016.1.30",
+            "endTime": "2016.1.30",
+            "cooperationMode": "长期合作",
+            "applicationSituation": "申请情况",
+            "state":"过期"
+        }],
+        pagination: true,//是否显示分页
+        queryParamsType:'',//传递参数
+        sidePagination: "client",//分页方式：client客户端分页，server服务端分页
+        uniqueId: "id",//每一行的唯一标识，一般为主键列
+        columns: [{
+            field: 'Number',
+            title: '序号',
+            formatter: function (value, row, index) {
+                return index+1;
+            }
+        },{
+            title : '委托代工单号',
+            field : 'wtNo'
+        },{
+            title : '委托标题',
+            field : 'wtName'
+        },{
+            title : '物资摘要',
+            field : 'wtAbstract'
+        },{
+            title : '发布日期',
+            field : 'createTime'
+        },{
+            title : '截止日期',
+            field : 'endTime'
+        },{
+            title : '合作模式',
+            field : 'cooperationMode'
+        },{
+            title : '申请情况',
+            field : 'applicationSituation'
+        },{
+            title : '状态',
+            field : 'state'
+        },{
+            title: '操作',
+            field : 'action',
+            formatter: function (value, row, index) {
+                return '<a class="a_css" href="#">编辑</a> | <a class="a_css" href="#">删除</a>';
+            }
+        }]
+    });
+
+    $("input").each(function(){
+        $(this).focus(function(){
+            if( $(this).val() == $(this).get(0).defaultValue ){
+                $(this).val("");
+            }
+        });
+        $(this).blur(function(){
+            if( $(this).val() == "" ){
+                $(this).val( $(this).get(0).defaultValue );
+            }
+        })
+    });
+</script>
+</div>
+</html>

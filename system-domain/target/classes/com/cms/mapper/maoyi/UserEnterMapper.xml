@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.maoyi.UserEnterMapper" >
+  <resultMap id="BaseResultMap" type="com.cms.model.maoyi.UserEnter" >
+    <id column="id" property="id" jdbcType="DECIMAL" />
+    <result column="uid" property="uid" jdbcType="DECIMAL" />
+    <result column="enter_id" property="enterId" jdbcType="DECIMAL" />
+    <result column="relate_time" property="relateTime" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="getEnterId" resultType="long" parameterType="long" >
+    select enter_id  from user_enter 
+    where uid = #{id}
+  </select>
+</mapper>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.xiaofei.type.TCmsBaseProductMapper" >
+  <resultMap id="BaseResultMap" type="com.cms.model.xiaofei.type.TCmsBaseProduct" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="superid" property="superid" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="keywords" property="keywords" jdbcType="VARCHAR" />
+    <result column="spell" property="spell" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <!-- 一级查询获取到属于消费的 -->
+  <select id="getProductLevel1ById" resultMap="BaseResultMap">
+  	SELECT * FROM t_cms_base_product WHERE code=10 and level=1;
+  </select>
+  <!-- 下拉二级 -->
+  <select id="getProduct2LevelById" resultType="map" parameterType="map">
+  	SELECT * FROM t_cms_base_product WHERE superid=#{id} and level=3 ORDER BY CODE ASC;
+  </select>
+  <!-- 下拉三级 -->
+  <select id="getProduct3LevelById" resultType="map" parameterType="map">
+  	SELECT * FROM t_cms_base_product WHERE superid=#{id} and level=4 ORDER BY CODE ASC;
+  </select>
+  <!-- 一级需要首次展示在页面上的数据 -->
+  <select id="getProductLevel2ById" resultType="map" parameterType="map">
+  	SELECT * FROM t_cms_base_product WHERE superid=#{id} and level=2 ORDER BY CODE ASC;
+  </select>
+  <!-- 二级和三级 -->
+  <select id="getProductCodeOrderAsc" resultType="map" parameterType="map">
+  	SELECT * FROM t_cms_base_product WHERE CODE LIKE #{0} OR CODE LIKE #{1} ORDER BY CODE ASC
+  </select>
+  
+  <select id="industry0" resultType="map" parameterType="map">
+  	SELECT name,code FROM v_cms_base_product WHERE 
+		CODE=#{0} 
+  </select>
+  <select id="industry1" resultType="map" parameterType="map">
+  	SELECT name,code FROM v_cms_base_product WHERE 
+		CODE LIKE #{0}
+  </select>
+  
+  
+</mapper>

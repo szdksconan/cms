@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cms.mapper.shengchan.PurchaseNeedMapper">
+        <sql id="NEEDDOC">
+        	  id,
+			  purchase_need_no as purchaseNeedNo,
+			  company_id as companyId,
+			  purchase_rule_id as purchaseRuleId,
+			  purchase_need_state as purchaseNeedState,
+			  purchase_need_type as purchaseNeedType,
+			  purchase_need_name as purchaseNeedName,
+			  purchase_need_linkstate as purchaseNeedLinkstate,
+			  create_user as createUser,
+			  create_time as createTimeByString,
+			  create_time as createTime
+        </sql> 
+        <sql id="RULEDOC">
+        	  id,
+  			  rule_id as ruleId,
+  			  create_user as createUser,
+              need_rule_name as needRuleName,
+  			  create_time as createTime,
+  			  need_rule_apply as needRuleApply,
+              need_rule_paytype asneedRulePaytype,
+              need_rule_desc as needRuleDesc
+        </sql>
+        <sql id="DETAILDOC">
+			  id ,
+			  need_detail_name as needDetailName,
+			  need_detail_no as needDetailNo,
+			  need_detail_num as needDetailNum,
+			  need_detail_unit as needDetailUnit,
+			  need_detail_type as needDetailType,
+			  need_detail_industry as needDetailIndustry,
+			  need_detail_mantr as needDetailMantr,
+			  need_detail_delivery_time as needDetailDeliveryTime,
+			  need_detail_industry_name as needDetailIndustryName,
+			  need_detail_mantr_name as needDetailMantrName,
+			  need_detail_unit_name as needDetailUnitName,
+			  pid as pid,
+			  need_detail_name as productName,
+			  need_detail_unit as unitId,
+			  need_detail_unit_name as unitName,
+              need_detail_type as productModelSize,
+              need_detail_num as count,
+              need_detail_mantr as productTypeId,
+              need_detail_mantr_name as productTypeName
+        </sql>
+        <sql id="LINKDOC">
+	          id ,
+			  need_linkman_name as needLinkmanName,
+			  need_linkman_phone as needLinkmanPhone,
+			  need_linkman_fax as needLinkmanFax,
+			  need_linkman_email as needLinkmanEmail,
+			  pid as pid,
+			  purchase_need_id as purchaseNeedId
+        </sql>
+	    <sql id="PRODUCT">
+	        id,
+	        product_code as productCode,
+	        product_name as productName,
+	        product_model_size as productModelSize,
+	        main_product_id as mainProductId,
+	        company_id as companyId,
+	        industry_id as industryId,
+	        industry_name as industryName,
+	        DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s') as createTime,
+	        DATE_FORMAT(update_time,'%Y-%m-%d %H:%i:%s') as updateTime,
+	        DATE_FORMAT(ipo_time,'%Y-%m-%d') as ipoTime,
+	        warehouse_balance as warehouseBalance,
+	        unit_id as unitId,
+	        unit_name as unitName
+	    </sql>
+        <select id="getPurchaseNeedList" parameterType="com.cms.model.shengchang.PurchaseNeedBean" resultType="com.cms.model.shengchang.PurchaseNeedBean">
+        	      select <include refid="NEEDDOC"/>,fail_time as failTime  from purchase_need where 1=1
+		        <if test="purchaseNeedNo!=null and purchaseNeedNo!=''">
+		             and purchase_need_no like concat('%',#{purchaseNeedNo},'%')
+		        </if>
+		        <if test="purchaseNeedName!=null and purchaseNeedName!=''">
+		            and purchase_need_name like concat('%',#{purchaseNeedName},'%')
+		        </if>
+		        <if test="purchaseNeedState!=null and purchaseNeedState!=''">
+		            and purchase_need_state=#{purchaseNeedState}
+		        </if>
+		        <if test="purchaseNeedType!=null and purchaseNeedType!=''">
+		            and purchase_need_type=#{purchaseNeedType}
+		        </if>
+		        <if test="companyId!=null and companyId!=''">
+		            and company_id=#{companyId}
+		        </if>
+		        <if test="failTime!=null and failTime!=''">
+		            and fail_time &lt; date_sub(#{failTime},interval 1 day) 
+		        </if>
+		        <if test="orderStr!=null and orderStr!=''">
+		            ${orderStr}
+		        </if>
+        </select>
+        <select id="getPurchaseNeedListNum" parameterType="com.cms.model.shengchang.PurchaseNeedBean" resultType="int">
+        	      select count(1) from purchase_need where 1=1
+		        <if test="purchaseNeedNo!=null and purchaseNeedNo!=''">
+		             and purchase_need_no like concat('%',#{purchaseNeedNo},'%')
+		        </if>
+		        <if test="purchaseNeedName!=null and purchaseNeedName!=''">
+		            and purchase_need_name like concat('%',#{purchaseNeedName},'%')
+		        </if>
+		        <if test="purchaseNeedState!=null and purchaseNeedState!=''">
+		            and purchase_need_state=#{purchaseNeedState}
+		        </if>
+		        <if test="purchaseNeedType!=null and purchaseNeedType!=''">
+		            and purchase_need_type=#{purchaseNeedType}
+		        </if>
+		        <if test="failTime!=null and failTime!=''">
+		            and fail_time &lt; #{failTime}
+		        </if>
+		           <if test="companyId!=null and companyId!=''">
+		            and company_id=#{companyId}
+		        </if>
+        </select>
+        
+        <delete id="delPurchaseNeedById" parameterType="String" >
+        	delete from purchase_need where id=#{id}
+        </delete>
+        
+         <select id="getPurchaseNeedById" parameterType="String" resultType="com.cms.model.shengchang.PurchaseNeedBean">
+        	    select <include refid="NEEDDOC"/> from purchase_need where id=#{id}
+        </select>
+        
+       	<update id="editPurchaseNeedMain" parameterType="com.cms.model.shengchang.PurchaseNeedBean">
+       			 update purchase_need  set purchase_need_no = #{purchaseNeedNo},purchase_need_state = #{purchaseNeedState},purchase_need_type = #{purchaseNeedType},
+       					
+       					purchase_need_name = #{purchaseNeedName},purchase_need_linkstate = #{purchaseNeedLinkstate},create_user = #{createUser},create_time = #{createTime}
+       				
+       					,fail_time=#{failTime} where id=#{id}
+
+       	</update>
+        
+        <insert id="addPurchaseNeedLinkman" parameterType="com.cms.model.shengchang.PurchaseNeedLinkman">
+        		
+        		insert into purchase_need_linkman(id,need_linkman_name,need_linkman_phone,need_linkman_fax,need_linkman_email,pid,purchase_need_id)
+        		
+        		values(#{id},#{needLinkmanName},#{needLinkmanPhone},#{needLinkmanFax},#{needLinkmanEmail},#{pid},#{purchaseNeedId})
+        		
+        </insert>
+        
+        <delete id="delAllPurchaseNeedLinkman" parameterType="String">
+        
+        		delete from purchase_need_linkman where purchase_need_id = #{purchaseNeedId}
+        
+        </delete>
+        
+        <insert id="addPurchaseNeedRuleBean" parameterType="com.cms.model.shengchang.PurchaseNeedRuleBean">
+        
+        		insert into purchase_need_rule(id,rule_id,create_user,need_rule_name,create_time,need_rule_apply,need_rule_paytype,
+  					
+  				need_rule_desc) values(#{id},#{ruleId},#{createUser},#{needRuleName},#{createTime},#{needRuleApply},#{needRulePaytype},
+  				
+  				#{needRuleDesc})
+  		
+        
+        </insert>
+        
+        <update id="editPurchaseNeedRuleBean" parameterType="com.cms.model.shengchang.PurchaseNeedRuleBean">
+        
+        		update purchase_need_rule set rule_id = #{ruleId},create_user = #{createUser},need_rule_name = #{needRuleName},
+        		
+        		create_time = #{createTime},need_rule_apply = #{needRuleApply},need_rule_paytype = #{needRulePaytype},
+  					
+  				need_rule_desc = #{needRuleDesc} where id = #{id}
+  				
+        </update>
+        
+        <insert id="addPurchaseNeedDetailBean" parameterType="com.cms.model.shengchang.PurchaseNeedDetailBean">
+        
+        		insert into purchase_need_detail(id,need_detail_name,need_detail_no,need_detail_num,need_detail_unit,need_detail_type,
+        		
+        		need_detail_industry,need_detail_mantr,need_detail_delivery_time,need_detail_industry_name,need_detail_mantr_name,
+  					
+  				need_detail_unit_name,pid,company_id,fail_time) values(#{id},#{needDetailName},#{needDetailNo},#{needDetailNum},#{needDetailUnit},#{needDetailType},
+  				
+  				#{needDetailIndustry},#{needDetailMantr},#{needDetailDeliveryTime},#{needDetailIndustryName},#{needDetailMantrName},
+  				
+  				#{needDetailUnitName},#{pid},#{companyId},#{failTime})
+        	
+        </insert>
+        
+        <delete id="delAllPurchaseNeedDetailBean" parameterType="String">
+        
+        		delete from purchase_need_detail where pid=#{purchaseNeedId}
+        		
+        </delete>
+        
+        <insert id="addPurchaseNeedMain" parameterType="com.cms.model.shengchang.PurchaseNeedBean">
+        
+        		 insert into purchase_need(id,purchase_need_no,purchase_need_state,purchase_need_type,
+       					
+       					purchase_need_name,purchase_need_linkstate,company_id,create_user,create_time,purchase_rule_id,fail_time) values(
+       					
+       					#{id},#{purchaseNeedNo},#{purchaseNeedState},#{purchaseNeedType},#{purchaseNeedName},
+       					
+       					#{purchaseNeedLinkstate},#{companyId},#{createUser},#{createTime},#{purchaseRuleId},#{failTime})
+
+        </insert>
+        
+        <select id="getPurchaseNeedRuleBeanById" parameterType="String" resultType="com.cms.model.shengchang.PurchaseNeedRuleBean">
+        	
+        		select <include refid="RULEDOC"/> from purchase_need_rule where id = #{id}
+        		
+        </select>
+        
+        <select id="getPurchaseNeedDetailBeanByPid" parameterType="String" resultType="com.cms.model.shengchang.PurchaseNeedDetailBean">
+        	
+        		select <include refid="DETAILDOC"/> from purchase_need_detail where pid = #{pid}
+        		
+        </select>
+        
+        <select id="getPurchaseNeedLinkmanByPurchaseNeedId" parameterType="String" resultType="com.cms.model.shengchang.PurchaseNeedLinkman">
+        	
+        		select <include refid="LINKDOC"/> from purchase_need_linkman where purchase_need_id = #{purchaseNeedId} order by pid desc 
+        		
+        </select>
+        
+        <select id="getPurchaseNeedDetailDocBeanByPid" parameterType="String" resultType="com.cms.model.shengchang.PurchaseNeedDetailDocBean">
+        	
+        		select file_key as fileKey,file_path as filePath from purchase_need_detail_doc where pid = #{pid} 
+        		
+        </select>
+        
+        <insert id="addPurchaseNeedDetailDocBean" parameterType="com.cms.model.shengchang.PurchaseNeedDetailDocBean">
+        
+        		insert into purchase_need_detail_doc(id,file_path,file_key,pid) values(#{id},#{filePath},#{fileKey},#{pid})
+        		
+        </insert>
+        
+        <delete id="delPurchaseNeedDetailDocBeanByPid" parameterType="String">
+        
+        		delete from purchase_need_detail_doc where pid=#{pid}
+        
+        </delete>
+        
+          <delete id="delPurchaseNeedRuleBean" parameterType="String">
+        
+        		delete from purchase_need_rule where id=#{id}
+        
+        </delete>
+
+        <select id="getPurchaseNeedDetail" parameterType="com.cms.model.shengchang.PurchaseNeedDetailBean" resultType="com.cms.model.shengchang.PurchaseNeedDetailBean">
+            select <include refid="DETAILDOC"/> from purchase_need_detail where 1=1
+            <if test="companyId!=null and companyId!=''">
+                and company_id=#{companyId}
+            </if>
+            <if test="failTimeBak!=null and failTimeBak!=''">
+                and fail_time &gt;= #{failTimeBak}
+            </if>
+            <if test="productModelSize!=null and productModelSize!=''">
+                and need_detail_type like concat('%',#{productModelSize},'%')
+            </if>
+            <if test="needDetailNo!=null and needDetailNo!=''">
+                and need_detail_no=#{needDetailNo}
+            </if>
+            <if test="filterMantr!=null">
+                    <foreach item="item" index="index" collection="filterMantr" >  
+					 	or need_detail_mantr concat('%',#{item},'%')
+					</foreach> 
+            </if>
+            <if test="orderStr!=null and orderStr!=''">
+                ${orderStr}
+            </if>
+        </select>
+
+        <select id="getPurchaseNeedDetailCot" parameterType="com.cms.model.shengchang.PurchaseNeedDetailBean" resultType="int">
+            select count(*) from purchase_need_detail where 1=1
+            <if test="companyId!=null and companyId!=''">
+                and company_id=#{companyId}
+            </if>
+            <if test="failTimeBak!=null and failTimeBak!=''">
+                and fail_time &gt;= #{failTimeBak}
+            </if>
+            <if test="productModelSize!=null and productModelSize!=''">
+                and need_detail_type like concat('%',#{productModelSize},'%')
+            </if>
+            <if test="needDetailNo!=null and needDetailNo!=''">
+                and need_detail_no=#{needDetailNo}
+            </if>
+        </select>
+
+        <select id="getProductTypeCot" parameterType="com.cms.model.shengchang.PurchaseNeedDetailBean" resultType="int">
+            select count(*) from purchase_need_detail where need_detail_no=#{needDetailNo}
+        </select>
+        
+        <insert id="addPurchaseNeedRuleArea" parameterType="com.cms.model.shengchang.PurchaseNeedRuleAreaBean">
+        		
+        		insert into purchase_need_rule_area(id,rule_id,province,city,area,province_id,city_id,area_id,company_id)
+        		
+        		values(#{id},#{ruleId},#{province},#{city},#{area},#{provinceId},#{cityId},#{areaId},#{companyId})
+        		
+        </insert>
+        
+        <delete id="delPurchaseNeedRuleArea" parameterType="String" >
+        
+        		delete from purchase_need_rule_area where rule_id = #{ruleId}
+        
+        </delete>
+        
+        <select id="getPurchaseNeedRuleAreaBeanBy" parameterType="com.cms.model.shengchang.PurchaseNeedRuleAreaBean" resultType="com.cms.model.shengchang.PurchaseNeedRuleAreaBean">
+            
+           select id,rule_id as ruleId,province_id as provinceId,city_id as cityId,area_id as areaId,province,city,area from purchase_need_rule_area where 1=1
+           
+            <if test="companyId!=null and companyId!=''">
+                and company_id = #{companyId}
+            </if>
+            <if test="ruleId!=null and ruleId!=''">
+                and rule_id = #{ruleId}
+            </if>
+        </select>
+        
+        
+       <select id="getPurchaseNeedRuleBeanByFilter" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.shengchang.PurchaseNeedRuleBean">
+            
+           select a.rule_id as id from purchase_need_rule_area a left join purchase_need_rule b on a.rule_id =  b.id where 1=1
+           
+            <if test="areaId!=null and areaId!=''">
+            	
+            	 and area_id =  #{areaId}
+            
+            </if>
+            
+            <if test="cityId!=null and cityId!='C'">
+            
+                 
+                 	and city_id = #{cityId}
+            
+            </if>
+        	<if test="provinceId!=null and provinceId!=''">
+                 
+                 	and province_id = #{provinceId}
+            	  
+           	</if>
+       
+        </select>
+        
+        <select id="getPurchaseNeedDetailBeanByFilter" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.shengchang.PurchaseNeedDetailBean">
+            
+        	select  
+        	  a.id as id,b.create_time as createTime from purchase_need_detail a left join purchase_need b on a.pid = b.id where 1=1
+           
+	           	 <if test="list!=null and list!=''">
+	       			 <foreach collection="list" index="index" item="rulId" open="and pruchase_rule_id in ('"
+							    separator="','" close="')">
+							    
+							 #{rulId}
+							   
+					</foreach>
+	            </if>
+    			<if test="orderStr!=null and orderStr!=''">
+                 
+                	${orderStr}
+            	  
+         		</if>
+        
+       
+        </select>
+        
+        
+        <select id="getPurchaseNeedDetailBeanByMantr" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.shengchang.PurchaseNeedDetailBean">
+            
+					select a.id as id,b.create_time as createTime from purchase_need_detail a left join purchase_need b on a.pid = b.id where 1=1
+           
+	     		 	<if test="filter!=null and filter!=''">
+	                 	
+	                 	<foreach collection="filter" index="index" item="mantr" open="and  "
+						    separator="or" close="">
+						    
+						 need_detail_mantr like   concat('%', #{mantr},'%')
+						   
+						</foreach>
+						  
+					</if>	  
+					
+					<if test="companyId!=null and companyId!=''">
+	                 	
+	                     and company_id = #{companyId}
+						  
+					</if>	
+					
+					<if test="orderStr!=null and orderStr!=''">
+                 
+                 	${orderStr}
+            	  
+         			</if>
+	        
+        </select>
+        
+       <select id="getMainProductBeanByMantr" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.shengchang.MainProductBean">
+        	
+        		select id, company_id as companyId  from main_product where 1=1
+        	
+        			<if test="filter!=null and filter!=''">
+	                 	
+	                 	<foreach collection="filter" index="index" item="mantr" open="and "
+						    separator="or" close="">
+						    
+							product_type_id like   concat('%', #{mantr},'%')
+						   
+						</foreach>
+						  
+					</if>	
+					
+					group by id
+					
+					<if test="orderStr!=null and orderStr!=''">
+                 
+                 		${orderStr}
+            	  
+         			</if>
+
+    </select>
+    
+     <select id="getProductBeanByMantr" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.shengchang.ProductBean">
+        	
+        		select id,create_time as createTime from product where 1=1
+        	
+        			<if test="filter!=null and filter!=''">
+	                 	
+	                 	<foreach collection="filter" index="index" item="mainProduct" open="and  main_product_id in( "
+						    separator="," close=")">
+						    
+						    #{mainProduct}
+						   
+						</foreach>
+						  
+					</if>	
+					
+					<if test="orderStr!=null and orderStr!=''">
+                 
+                 		${orderStr}
+            	  
+         			</if>
+
+    </select>
+    
+    
+    
+    <select id="getProductBeanByArea" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.shengchang.ProductBean">
+        	
+        		select company_id as companyId from product where 1=1  
+
+				<if test="filter!=null and filter!=''">
+	                 	
+	                 	<foreach collection="filter" index="index" item="area" open="and  "
+						    separator="or" close="">
+						    
+						  industry_id like concat('%',#{area},'%')
+						   
+						</foreach>
+						  
+				</if>	
+					
+				<if test="orderStr!=null and orderStr!=''">
+                 
+                 	${orderStr}
+            	  
+         		</if>
+    </select>
+	<select id="getMainProductBeanByArea" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.shengchang.MainProductBean">
+        	
+        		select main_product_id as  id  from product_sell_rule where 1=1
+        	
+        			<if test="filter!=null and filter!=''">
+	                 	
+	                 	<foreach collection="filter" index="index" item="mantr" open="and "
+						    separator="or" close="">
+						    
+							rule_area_code like   concat('%', #{mantr},'%')
+						   
+						</foreach>
+						  
+					</if>	
+
+					
+
+    </select>
+    
+    <select id="getCompanyIdBySaleArea" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.shengchang.MainProductBean">
+        	
+        		select company_id as  companyId  from product_sell_rule_area where 1=1
+        	
+        			<if test="filter!=null and filter!=''">
+	                 	
+	                 	<foreach collection="filter" index="index" item="area" open="and "
+						    separator="or" close="">
+						    
+						    city_id like concat('%', #{area},'%') or area_id like concat('%', #{area},'%') or province_id like concat('%', #{area},'%')
+						    
+				
+						</foreach>
+						  
+					</if>	
+					
+		
+				<if test="orderStr!=null and orderStr!=''">
+                 
+                 	${orderStr}
+            	  
+         		</if>
+					
+
+    </select>
+    
+     <select id="getProductPriceByProductIdAndAreaId" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.shengchang.ProductPriceBean">
+        	
+        		select product_id as id,main_product_id  as mainProductId,price from product_price a left join product_sell_rule b on a.product_sell_rule_id = b.id where 1=1
+        		
+        		and product_id = #{productId} and rule_area_code like  concat('%', #{areaId},'%')
+
+    </select>
+    
+  </mapper>

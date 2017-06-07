@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+      http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://code.alibabatech.com/schema/dubbo
+      http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+  	
+  	<dubbo:application name="${dubbo.application.name}" owner="${dubbo.application.owner}" organization="cms"/>
+  	
+  	<dubbo:registry address="${dubbo.registry.address}" />
+  	<dubbo:monitor protocol="registry"/>
+	<dubbo:reference id="carOnlineService" interface="com.cms.iservice.wuliu.CarOnlineService" protocol="dubbo" version="1.0.0" owner="ryan" group="wuliu" timeout="6000" retries="0"/>
+	<dubbo:reference id="commonService" interface="com.cms.iservice.wuliu.CommonService" protocol="dubbo" version="1.0.0" owner="ryan" group="wuliu" timeout="6000" retries="0"/>
+	<dubbo:reference id="infoHallService" interface="com.cms.iservice.wuliu.InfoHallService" protocol="dubbo" version="1.0.0" owner="ryan" group="wuliu" timeout="6000" retries="0"/>
+	<dubbo:reference id="infoPublishService" interface="com.cms.iservice.wuliu.InfoPublishService" protocol="dubbo" version="1.0.0" owner="ryan" group="wuliu" timeout="6000" retries="0"/>
+	<dubbo:reference id="vaServiceService" interface="com.cms.iservice.wuliu.VaServiceService" protocol="dubbo" version="1.0.0" owner="ryan" group="wuliu" timeout="6000" retries="0"/>
+	<dubbo:reference id="globalIdService" interface="com.cms.iservice.common.GlobalIdService" protocol="dubbo" version="1.0.0" owner="ryan" group="common" timeout="6000" retries="0"/>
+	<dubbo:reference id="myCarService" interface="com.cms.iservice.wuliu.MyCarService" protocol="dubbo" version="1.0.0" owner="ryan" group="wuliu" timeout="6000" retries="0"/>
+
+    <dubbo:reference id="ssoAuthService" interface="com.cms.iservice.sso.SsoAuthService" protocol="dubbo" version="1.0.0"   owner="caojun" group="jiagou" timeout="2000" retries="3"/>
+    <dubbo:reference id="dealUserInfoOnLogin" interface="com.cms.iservice.sso.DealUserInfoOnLogin" protocol="dubbo" version="1.0.0"   owner="caojun" group="jiagou" timeout="2000" retries="3"/>
+</beans>

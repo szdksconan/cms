@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.xiaofei.CmsXAttachmentMapper" >
+  <resultMap id="BaseResultMap" type="com.cms.model.xiaofei.CmsXAttachment" >
+    <id column="ATT_ID" property="attId" jdbcType="VARCHAR" />
+    <result column="BUSI_CODE" property="busiCode" jdbcType="VARCHAR" />
+    <result column="ATT_NAME" property="attName" jdbcType="VARCHAR" />
+    <result column="BUSI_TYPE" property="busiType" jdbcType="VARCHAR" />
+    <result column="ATT_LOC" property="attLoc" jdbcType="VARCHAR" />
+    <result column="ATT_TYPE" property="attType" jdbcType="VARCHAR" />
+    <result column="ATT_SIZE" property="attSize" jdbcType="VARCHAR" />
+    <result column="ATT_STA" property="attSta" jdbcType="VARCHAR" />
+    <result column="UP_TIME" property="upTime" jdbcType="VARCHAR" />
+    <result column="ATT_PREVIEW" property="attPreview" jdbcType="INTEGER" />
+    <result column="ATT_IMG_CODE" property="attImgCode" jdbcType="INTEGER" />
+  </resultMap>
+ <!-- 添加附件信息 -->
+  <insert id="addShopApplyAndUploadGetAttachmentInfo" parameterType="com.cms.model.xiaofei.CmsXAttachment" >
+    insert into cms_x_attachment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="attId != null" >
+        ATT_ID,
+      </if>
+      <if test="busiCode != null" >
+        BUSI_CODE,
+      </if>
+      <if test="attName != null" >
+        ATT_NAME,
+      </if>
+      <if test="busiType != null" >
+        BUSI_TYPE,
+      </if>
+      <if test="attLoc != null" >
+        ATT_LOC,
+      </if>
+      <if test="attType != null" >
+        ATT_TYPE,
+      </if>
+      <if test="attSize != null" >
+        ATT_SIZE,
+      </if>
+      <if test="attSta != null" >
+        ATT_STA,
+      </if>
+      <if test="upTime != null" >
+        UP_TIME,
+      </if>
+      <if test="attPreview != null" >
+        ATT_PREVIEW,
+      </if>
+      <if test="attImgCode != null" >
+        ATT_IMG_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="attId != null" >
+        #{attId,jdbcType=VARCHAR},
+      </if>
+      <if test="busiCode != null" >
+        #{busiCode,jdbcType=VARCHAR},
+      </if>
+      <if test="attName != null" >
+        #{attName,jdbcType=VARCHAR},
+      </if>
+      <if test="busiType != null" >
+        #{busiType,jdbcType=VARCHAR},
+      </if>
+      <if test="attLoc != null" >
+        #{attLoc,jdbcType=VARCHAR},
+      </if>
+      <if test="attType != null" >
+        #{attType,jdbcType=VARCHAR},
+      </if>
+      <if test="attSize != null" >
+        #{attSize,jdbcType=VARCHAR},
+      </if>
+      <if test="attSta != null" >
+        #{attSta,jdbcType=VARCHAR},
+      </if>
+      <if test="upTime != null" >
+        #{upTime,jdbcType=VARCHAR},
+      </if>
+      <if test="attPreview != null" >
+        #{attPreview,jdbcType=INTEGER},
+      </if>
+      <if test="attImgCode != null" >
+        #{attImgCode,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <!-- 根据code查询相关附件信息 -->
+  <select id="selectGetCodeAndAttachment" resultMap="BaseResultMap">
+  	SELECT * FROM cms_x_attachment a WHERE a.BUSI_CODE=#{code} AND a.ATT_PREVIEW=1 AND a.ATT_IMG_CODE=0
+  </select>
+  
+  <!-- 根据ID查询开店关联的附件信息并且推送给贸易平台 -->
+  <select id="selectGetByIdAndmentInfo" resultMap="BaseResultMap">
+  	SELECT * FROM cms_x_attachment a WHERE a.BUSI_CODE=#{Id}
+  </select>
+</mapper>

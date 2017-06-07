@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>销售订单</title>
+    <meta charset="utf-8">
+    <script src="../js/common/tabs.js"></script>
+    <style>
+    </style>
+</head>
+<div class="bei">
+<div class="cfw_x">
+    <div style="margin-top: 5px;border-bottom: 1px solid #dddddd">
+        <ul class="nav nav-tabs" role="tablist" id="tab-list">
+            <li ><a href="#" >销售订单</a></li>
+        </ul>
+    </div>
+    <div class="tab-content" style="margin-top: 5px;border-top: 0px">
+        <div class="net_tab" style="padding: 0px">
+            <div class="tab-pane active" id="cfw_cs">
+                <div  style="width: 100%;float: left">
+                    <table  class="-querytable" style="width: 100%;">
+                    	<tr>
+			    			<td align="right">交易日期：</td>
+			    			<td><input type="text" class="cmao_inplg" value="2016.04.23" disabled/></td>
+			    			<td align="right">交易单号：</td>
+			    			<td> <input type="text" class="cmao_inplg" value="JHD-123456" disabled/></td>
+			    			<td align="right">    交易状态：</td>
+			    			<td> <input type="text" class="cmao_inplg" value="已付款 待发货" disabled/></td>
+		    			</tr>
+                        <tr>
+                            <td align="right">采购方名称：</td>
+                            <td>
+                                <input  type="text" class="cmao_inplg" value="重庆山城好贸易有限公司" disabled/>
+                            </td>
+                            <td align="right">经营地址：</td>
+                            <td>
+                                <input  type="text" class="cmao_inplg" value="成都市高新区天府大道北段茂业中心" disabled/>
+                            </td>
+                            <td align="right">联系人：</td>
+                            <td>
+                                <input type="text" class="cmao_inplg" value="王小三" disabled/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">联系电话：</td>
+                            <td>
+                                <input type="text" class="cmao_inplg" value="13912345678" disabled/>
+                            </td>
+                            <td align="right">传真：</td>
+                            <td>
+                                <input type="text" class="cmao_inplg" value="028-12345678" disabled/>
+                            </td>
+                            <td align="right">邮箱：</td>
+                            <td>
+                                <input type="text" class="cmao_inplg" value="12345678@136.com" disabled/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">收货人：</td>
+                            <td>张小三</td>
+                            <td align="right">收货地址：</td>
+                            <td>成都市天府大道北段28号茂业中心</td>
+                            <td align="right">联系电话：</td>
+                            <td>13812345678</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+	<div class="container" style="margin-top: 20px;">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#tab4" data-toggle="tab" style="color: black;">销售产品信息</a></li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="tab1" style="margin-top: 20px;">
+            <table id="table">
+            </table>
+        </div>
+    </div>
+	</div>
+	<div class="container" style="margin-top: 20px;">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#jygz" data-toggle="tab"
+				style="color: black;">交易规则</a></li>
+		</ul>
+		<div class="tab-content">
+            <div class="tab-pane active" id="jygz" style="border-left: 1px solid #4996C4;border-right: 1px solid #4996C4;border-bottom: 1px solid #4996C4">
+            </div>
+        </div>
+		<div class="container" style="margin-top: 40px;">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#tab5" data-toggle="tab"
+						style="color: black;">收款信息</a></li>`
+					<li ><a href="#tab2" data-toggle="tab"
+						style="color: black;">物流运输信息</a></li>
+				</ul>
+				<div class="tab-content">
+			    <div class="tab-pane active" id="tab5" style="margin-top: 20px;">
+                <table style="width: 85%;border-collapse: separate;border-spacing: 3px">
+                    <tr>
+                        <td>
+                            已收款金额：
+                            <input type="text" class="cmao_inplg" value="10000.00元" />
+                        </td>
+                        <td>
+                            未收款金额：
+                            <input type="text" class="cmao_inplg" value="5000.00元" />
+                        </td>
+                        <td>
+                            应收款金额：
+                            <input type="text" class="cmao_inplg" value="5000.00元" />
+                        </td>
+                        <td>
+                            <button class="btn btn-blue btn-w120 " type="button" >提醒对方付款</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-blue btn-w120 " type="button" >收款详情</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            已开票金额：
+                            <input type="text" class="cmao_inplg" value="10000.00元" />
+                        </td>
+                        <td>
+                            未开票金额：
+                            <input type="text" class="cmao_inplg" value="10000.00元" />
+                        </td>
+                        <td>
+                            应开票金额：
+                            <input type="text" class="cmao_inplg" value="10000.00元" />
+                        </td>
+                        <td>
+                            <button class="btn btn-blue btn-w120 " type="button" >提请财务开票</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-blue btn-w120 " type="button" >开票详情</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="tab-pane " id="tab2" style="margin-top: 20px;">
+                物流运输信息
+            </div>
+    </div>
+	</div>
+    <div class="sc_cgd" style="float: left;width: 100%;text-align: center">
+        <button class="btn btn-blue btn-w120 " type="button" >确定</button>
+    </div>
+    </div>
+<script>
+    $('#jygz').load('../guize/xsgz.html');
+
+    $('#table').bootstrapTable({
+        data:[{
+            "productCode":"AM123456789",
+            "productBrand": "开山牌",
+            "productSet": "AM系列",
+            "productName": "10T挖掘机",
+            "size": "AM-1250",
+            "count": "5",
+            "unit": "台",
+            "price":"10000.00",
+            "amount":"500000.00",
+            "deliverTime":"2016.04.28",
+            "unDeliverCount":"3",
+            "deliverCount":"1",
+            "submitCount":"1"
+        },{
+            "productCode":"AM123456789",
+            "productBrand": "开山牌",
+            "productSet": "AM系列",
+            "productName": "10T挖掘机",
+            "size": "AM-1250",
+            "count": "6",
+            "unit": "台",
+            "price":"10000.00",
+            "amount":"600000.00",
+            "deliverTime":"2016.04.28",
+            "unDeliverCount":"4",
+            "deliverCount":"2",
+            "submitCount":"2"
+        }],
+        editable:true,//开启编辑模式
+        pagination: true,//是否显示分页
+        FooterHtml:'<span style="margin-right: 1%;margin-top:5px;">总金额：<font color="red">150000.00元</font></span>' +
+        '<button style="margin-right: 1%;margin-top:5px;" class="btn btn-blue btn-w120 " type="button" >提请发货</button>',
+        queryParamsType:'',//传递参数
+        sidePagination: "client",//分页方式：client客户端分页，server服务端分页
+        uniqueId: "id",//每一行的唯一标识，一般为主键列
+        columns: [{
+            field: 'Number',
+            title: '序号',
+            formatter: function (value, row, index) {
+                return index+1;
+            }
+        },{
+            title : '产品编码',
+            field : 'productCode'
+        },{
+            title : '产品品牌',
+            field : 'productBrand'
+        },{
+            title : '产品系列',
+            field : 'productSet'
+        },{
+            title : '产品名称',
+            field : 'productName'
+        },{
+            title : '规格型号',
+            field : 'size'
+        },{
+            title : '数量',
+            field : 'count'
+        },{
+            title : '单位',
+            field : 'unit'
+        },{
+            title : '单价',
+            editable:true,
+            field : 'price'
+        },{
+            title : '小计金额',
+            editable:true,
+            field : 'amount'
+        },{
+            title : '交货日期',
+            field : 'deliverTime'
+        },{
+            title : '未交付数量',
+            editable:true,
+            field : 'unDeliverCount'
+        },{
+            title : '已提请发货数量',
+            editable:true,
+            field : 'deliverCount'
+        },{
+            title : '本次提请',
+            editable:true,
+            field : 'submitCount'
+        }]
+    });
+</script>
+</div>
+</html>

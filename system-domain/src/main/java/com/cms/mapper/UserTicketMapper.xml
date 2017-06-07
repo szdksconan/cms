@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.cms.mapper.UserTicketMapper">
+	<select id="getUserTicket" parameterType="com.cms.model.UserTicket" 
+		resultType="com.cms.model.UserTicket">
+		select * from user_ticket where 1=1
+		<if test="id!=null">
+			and id=#{id}
+		</if>
+		<if test="loginName!=null and loginName!=''">
+			and loginname=#{loginName}
+		</if>
+		<if test="createTime!=null">
+			and createTime &lt;=#{createTime}
+		</if>
+		<if test="true">
+			limit 0,1
+		</if>
+	</select>
+	
+	<insert id="saveUserTicket" parameterType="com.cms.model.UserTicket">
+		insert into user_ticket(loginname, ticketvalue, createtime) values(#{loginName},#{ticketValue},now())
+	</insert>
+	
+	<delete id="deleteUserTicket" parameterType="com.cms.model.UserTicket">
+		delete from user_ticket where 1=1
+		<if test="id!=null">
+			and id=#{id}
+		</if>
+		<if test="loginName!=null and loginName!=''">
+			and loginName=#{loginName}
+		</if>
+		<if test="createTime!=null">
+			and createTime &lt;=#{createTime}
+		</if>
+	</delete>
+</mapper>	

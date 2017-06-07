@@ -1,0 +1,12 @@
+.drop{width:150px;float: left;margin-top: 10px;}
+.dropdown p{height:42px; line-height:42px; padding-left:5px; padding-right:15px; background:url(../image/arrow.gif) no-repeat right 5px top 12px; color:#333333; cursor:pointer;background-color: #DBDBDB;}
+.dropul{width: 150px; margin-top:-13px; border:1px solid #DFDFDF; position:absolute; display:none;height: auto;max-height: 120px;overflow: auto;background-color: #FFFFFF;}
+.dropdown ul li{height:30px; line-height:30px;margin-left: -40px;}
+.dropdown ul li a{display:block; height:30px; color:#807a62;text-decoration:none;float: left;padding-left: 5px;}
+.dropdown ul li:hover{background:#1E90FF;}
+/*所属部门ul*/
+.dropul_bumen{width:330px;z-index: 1;margin-top:-13px; border:1px solid #DFDFDF; position:absolute; display:none;height: auto;max-height: 120px;overflow: auto;background-color: #FFFFFF;}
+/*职位ul*/
+.dropul_zhiwei{width:194px;margin-top:-13px; border:1px solid #DFDFDF; position:absolute; display:none;height: auto;max-height: 120px;overflow: auto;background-color: #FFFFFF;}
+/*手机号*/
+.dropul_numselect{width:137px;margin-top:-13px; border:1px solid #DFDFDF; position:absolute; display:none;height: auto;max-height: 120px;overflow: auto;background-color: #FFFFFF;}

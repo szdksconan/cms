@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.manager.baseInfo.mileageMapper" >
+  				<sql id="MILEAGE-PARAM">
+		    startid,
+		    startcid,
+		    endid,
+		    endcid,
+		    mileage
+	</sql>
+	
+	<select id="dataGrid" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.manager.mileageBean">
+	  SELECT <include refid="MILEAGE-PARAM"/> 
+	  from t_sys_mileage  where 1=1
+	      <if test="startid!=null and startid!=''">
+	          and startid like concat('%',#{startid},'%')
+	    </if>
+	    <if test="endid!=null and endid!=''">
+	           and endid like concat('%',#{endid},'%')
+	    </if>
+	    <if test="order!=null and order!=''">
+	        ${order}
+	    </if>
+	</select>
+	
+	<select id="dataGridCot" parameterType="com.alibaba.fastjson.JSONObject" resultType="int">
+	  SELECT count(1) from t_sys_mileage  where 1=1
+	      <if test="startid!=null and startid!=''">
+	          and startid like concat('%',#{startid},'%')
+	    </if>
+	    <if test="endid!=null and endid!=''">
+	           and endid like concat('%',#{endid},'%')
+	    </if>
+	</select>
+	
+			
+	<update id="edit" parameterType="com.cms.model.manager.mileageBean">
+	    update t_sys_mileage set startcid=#{startcid},endcid=#{endcid},mileage=#{mileage}
+	      where startid=#{startid} and endid=#{endid}
+	</update>
+	
+	<insert id="add" parameterType="com.cms.model.manager.mileageBean">
+	    insert into t_sys_mileage (startid,startcid,endid,endcid,mileage) values (
+	    #{startid},#{startcid},#{endid},#{endcid},#{mileage})
+	</insert>
+	
+	<delete id="delete" parameterType="com.alibaba.fastjson.JSONObject">
+	    delete from t_sys_mileage   where startid=#{startid} and endid=#{endid}
+	</delete>
+	
+	<select id="get" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.manager.mileageBean">
+	    select <include refid="MILEAGE-PARAM"/> from t_sys_mileage where startid=#{startid}
+	    and endid=#{endid}
+	</select>
+</mapper>

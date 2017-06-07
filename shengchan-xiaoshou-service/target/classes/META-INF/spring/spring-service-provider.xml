@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+  
+
+   <dubbo:application name="cms" owner="ryan" organization="cms"/>
+    
+   <dubbo:registry  address="zookeeper://localhost:2181"/>
+  
+   <dubbo:protocol name="dubbo"  port="20884"  serialization="kryo" optimizer="com.cms.optimizer.SerializationOptimizerImpl"/>
+
+    <bean id="mainProductService" class="com.cms.service.shengchan.MainProductServiceImpl"/>
+    <dubbo:service interface="com.cms.iservice.shengchan.MainProductService" ref="mainProductService" protocol="dubbo" version="1.0.0"   owner="ryan" group="shengchan" delay="-1" timeout="6000" retries="0"/>
+
+    <bean id="shengchanOrderIdService" class="com.cms.service.shengchan.ShengchanOrderIdServiceImpl"/>
+    <dubbo:service interface="com.cms.iservice.shengchan.ShengchanOrderIdService" ref="shengchanOrderIdService" protocol="dubbo" version="1.0.0"   owner="ryan" group="shengchan" delay="-1" timeout="6000" retries="0"/>
+
+    <bean id="saleBidService" class="com.cms.service.shengchan.SaleBidServiceImpl"/>
+    <dubbo:service interface="com.cms.iservice.shengchan.SaleBidService" ref="saleBidService" protocol="dubbo" version="1.0.0"   owner="ryan" group="shengchan" delay="-1" timeout="6000" retries="0"/>
+
+    <dubbo:reference id="shengchanRecommendService" interface="com.cms.iservice.shengchan.ShengchanRecommendService" protocol="dubbo" version="1.0.0" owner="ryan" group="shengchan"/>
+    <dubbo:reference id="globalIdService" interface="com.cms.iservice.common.GlobalIdService" protocol="dubbo" version="1.0.0" owner="ryan" group="common" timeout="6000" retries="0"/>
+</beans>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.dict.BaseProductMapper">
+	<sql id="BASEPRODUCT">
+        id,
+        code,
+        name,
+        superid,
+        level,
+        keywords,
+        spell,
+        status,
+        remark,
+        name as label,
+        id as value
+	</sql>
+
+    <select id="getBaseProductList" parameterType="com.cms.model.dict.BaseProduct" resultType="com.cms.model.dict.BaseProduct">
+        select <include refid="BASEPRODUCT"/> from t_cms_base_product where 1=1
+        <if test="level!='' and level!=null">
+          and level=#{level}
+        </if>
+        <if test="superid!='' and superid!=null">
+          and superid=#{superid}
+        </if>
+    </select>
+
+    <select id="getBaseIndustryList" resultType="com.cms.model.dict.BaseIndustry">
+        select <include refid="BASEPRODUCT"/> from t_cms_base_industry where 1=1 ORDER BY code
+    </select>
+</mapper>

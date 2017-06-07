@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>销售规则</title>
+    <meta charset="utf-8">
+    <style>
+        .area-tip-input{
+            margin:inherit;
+        }
+    </style>
+</head>
+<table class="table_xsgz" style="width: 900px;border-collapse: separate;border-spacing: 5px;">
+    <tr>
+        <td align="right">
+            规则名称：
+        </td>
+        <td>
+            <select id="xsgz">
+            </select>
+        </td>
+        <td align="right">
+            指定人：
+        </td>
+        <td>
+            <input type="text" class="cmao_input" value="张三" disabled/>
+        </td>
+        <td align="right">
+            制定时间：
+        </td>
+        <td>
+            <input type="text" class="cmao_input" value="2016.01.05" disabled/>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            适用产品：
+        </td>
+        <td colspan="5">
+            <div class="area-tip-input">
+                <input type="text" class="area-tip" value="建材-水泥" disabled/>
+            </div>
+            <div class="area-tip-input">
+                <input type="text" class="area-tip" value="建材-地砖" disabled/>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            适用地区：
+        </td>
+        <td colspan="5">
+            <div class="area-tip-input">
+                <input type="text" class="area-tip" value="四川-成都" disabled/>
+            </div>
+            <div class="area-tip-input">
+                <input type="text" class="area-tip" value="陕西-西安" disabled/>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            销售类型：
+        </td>
+        <td colspan="5">
+            <input type="radio" name="radio2" id="xslx1" value="radio2" checked disabled/> <label for="xslx1">代理</label>
+            <input type="radio" name="radio2" id="xslx2" value="radio2" disabled/> <label for="xslx2">经销</label>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            合作保证金：
+        </td>
+        <td>
+            <input type="text" class="cmao_input" value="10000.00" disabled/>元
+        </td>
+        <td align="right">
+            协议签订期限：
+        </td>
+        <td>
+            <input type="text" class="cmao_input" value="面议" disabled/>
+        </td>
+        <td colspan="2">
+
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            生产企业的权利和义务：
+        </td>
+        <td colspan="5">
+            生产企业不承担任何责任。
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            渠道商的权利和义务：
+        </td>
+        <td colspan="5">
+            生产企业无条件回收库存和挤压产品。
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            产品售后服务：
+        </td>
+        <td colspan="5">
+            生产企业不负责产品售后服务问题。
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            其他规则：
+        </td>
+        <td colspan="5">
+
+        </td>
+    </tr>
+</table>
+<script>
+    var options = [
+        {label: '苹果牌手机销售规则1',  value: '1'},
+        {label: '苹果牌手机销售规则2',  value: '2'},
+        {label: '三星牌手机销售规则1',  value: '3'},
+        {label: '三星牌手机销售规则2',  value: '6'}
+    ];
+    $('#xsgz').multiselect('dataprovider', options);
+</script>
+</html>

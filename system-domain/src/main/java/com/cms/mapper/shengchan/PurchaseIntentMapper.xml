@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cms.mapper.shengchan.PurchaseIntentMapper">
+    <sql id="PURCHASEINTENT">
+        id,
+        product_type_id as productTypeId,
+        product_type_name as productTypeName,
+        product_model_size as productModelSize,
+        intent_type as intentType,
+        intent_type_id as intentTypeId,
+        count,
+        unit_id as unitId,
+        unit_name as unitName,
+        price,
+        DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s') as createTime,
+        DATE_FORMAT(end_time,'%Y-%m-%d') as endTime
+    </sql>
+    <sql id="PURCHASEINTENTAREA">
+        id,
+        purchase_intent_id as purchaseIntentId,
+        province_id as provinceId,
+        city_id as cityId,
+        area_id as areaId,
+        province_name as provinceName,
+        city_name as cityName,
+        area_name as areaName
+    </sql>
+
+    <select id="getPurchaseIntentList" parameterType="com.cms.model.shengchang.PurchaseIntentBean" resultType="com.cms.model.shengchang.PurchaseIntentBean">
+        select <include refid="PURCHASEINTENT"/> from purchase_intent where delete_flag != true
+        <if test="companyId!=null and companyId!=''">
+            and company_id=#{companyId}
+        </if>
+        <if test="count!=null and count!=''">
+            and count=#{count}
+        </if>
+        <if test="unitId!=null and unitId!=''">
+            and unit_id=#{unitId}
+        </if>
+        <if test="intentType!=null and intentType!=''">
+            and intent_type=#{intentType}
+        </if>
+        <if test="productModelSize!=null and productModelSize!=''">
+            and product_model_size like concat('%',#{productModelSize},'%')
+        </if>
+        <if test="productTypeId!=null and productTypeId!=''">
+            and product_type_id like concat('%',#{productTypeId},'%')
+        </if>
+        <if test="price1!=null and price1!=''">
+            and price &gt;=#{price1}
+        </if>
+        <if test="price2!=null and price2!=''">
+            and price &lt;=#{price2}
+        </if>
+        <if test="sourceId!=null and sourceId!=''">
+            and source_id like concat('%',#{sourceId},'%')
+        </if>
+        <if test="endTime!=null and endTime!=''">
+            and end_time &lt;= #{endTime}
+        </if>
+        <if test="orderStr!=null and orderStr!=''">
+            ${orderStr}
+        </if>
+    </select>
+
+    <select id="getPurchaseIntentListCot" parameterType="com.cms.model.shengchang.PurchaseIntentBean" resultType="int">
+        select count(*) from purchase_intent where delete_flag != true
+        <if test="companyId!=null and companyId!=''">
+            and company_id=#{companyId}
+        </if>
+        <if test="count!=null and count!=''">
+            and count=#{count}
+        </if>
+        <if test="unitId!=null and unitId!=''">
+            and unit_id=#{unitId}
+        </if>
+        <if test="intentType!=null and intentType!=''">
+            and intent_type=#{intentType}
+        </if>
+        <if test="productModelSize!=null and productModelSize!=''">
+            and product_model_size like concat('%',#{productModelSize},'%')
+        </if>
+        <if test="productTypeId!=null and productTypeId!=''">
+            and product_type_id=#{productTypeId}
+        </if>
+        <if test="price1!=null and price1!=''">
+            and price &gt;=#{price1}
+        </if>
+        <if test="price2!=null and price2!=''">
+            and price &lt;=#{price2}
+        </if>
+        <if test="sourceId!=null and sourceId!=''">
+            and source_id like concat('%',#{sourceId},'%')
+        </if>
+        <if test="endTime!=null and endTime!=''">
+            and end_time &lt;= #{endTime}
+        </if>
+    </select>
+
+    <select id="getPurchaseIntentAreaList" parameterType="com.cms.model.shengchang.PurchaseIntentAreaBean" resultType="map">
+        select GROUP_CONCAT(concat(province_id,IFNULL(CONCAT('-', city_id), ''),IFNULL(CONCAT('-', area_id), ''))) courceId,
+        GROUP_CONCAT(concat(province_name,IFNULL(CONCAT('-', city_name), ''),IFNULL(CONCAT('-', area_name), ''))) courceName from purchase_intent_area where 1=1
+        <if test="purchaseIntentId!=null and purchaseIntentId!=''">
+          and purchase_intent_id=#{purchaseIntentId}
+        </if>
+    </select>
+
+    <insert id="savePurchaseIntent" parameterType="com.cms.model.shengchang.PurchaseIntentBean">
+        replace into purchase_intent (id,product_type_id,product_type_name,product_model_size,intent_type,intent_type_id,count,unit_id,
+        unit_name,price,company_id,create_time,delete_flag,source_id,source_name,end_time) values (#{id},#{productTypeId},#{productTypeName},#{productModelSize},
+        #{intentType},#{intentTypeId},#{count},#{unitId},#{unitName},#{price},#{companyId},#{createTime},#{deleteFlag},#{sourceId},#{sourceName},#{endTime})
+    </insert>
+
+    <insert id="savePurchaseIntentArea" parameterType="com.cms.model.shengchang.PurchaseIntentAreaBean">
+        replace into purchase_intent_area (id,purchase_intent_id,province_id,city_id,area_id,province_name,city_name,area_name) values
+        <foreach collection="list" item="area" index="index" separator="," >
+            (#{area.id},#{area.purchaseIntentId},#{area.provinceId},#{area.cityId},#{area.areaId},#{area.provinceName},#{area.cityName},#{area.areaName})
+        </foreach>
+    </insert>
+
+    <update id="delPurchaseIntent" parameterType="com.cms.model.shengchang.PurchaseIntentBean">
+        update purchase_intent set delete_flag=true where id=#{id}
+    </update>
+
+    <delete id="delPurchaseIntentArea" parameterType="com.cms.model.shengchang.PurchaseIntentBean">
+        delete from purchase_intent_area where purchase_intent_id=#{id}
+    </delete>
+</mapper>

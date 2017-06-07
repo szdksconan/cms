@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.cms.mapper.shengchan.ProductBeanMapper">
+    <sql id="PRODUCT">
+        id,
+        product_code as productCode,
+        product_name as productName,
+        product_model_size as productModelSize,
+        main_product_id as mainProductId,
+        company_id as companyId,
+        industry_id as industryId,
+        industry_name as industryName,
+        DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s') as createTime,
+        DATE_FORMAT(update_time,'%Y-%m-%d %H:%i:%s') as updateTime,
+        DATE_FORMAT(ipo_time,'%Y-%m-%d') as ipoTime,
+        warehouse_balance as warehouseBalance,
+        unit_id as unitId,
+        unit_name as unitName
+    </sql>
+    <sql id="PRODUCTDOC">
+        id,
+        product_id as productId,
+        file_url as fileUrl,
+        file_key as fileKey,
+        file_type as fileType,
+        is_main as isMain,
+        sort as sort,
+        DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s') as createTime
+    </sql>
+    <sql id="PRODUCTPARA">
+        id,
+        product_id as productId,
+        parameter_name as parameterName,
+        parameter_value as parameterValue,
+        DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s') as createTime
+    </sql>
+
+    <delete id="delProduct" parameterType="com.cms.model.shengchang.ProductBean">
+        delete from product where 1=1
+        <if test="id!=null and id!=''">
+            and id=#{id}
+        </if>
+        <if test="mainProductId!=null and mainProductId!=''">
+            and main_product_id=#{mainProductId}
+        </if>
+    </delete>
+
+    <insert id="saveProduct" parameterType="java.util.List">
+        replace into product (id,product_code,product_name,product_model_size,main_product_id,company_id,industry_id,industry_name,create_time,
+        update_time,ipo_time,warehouse_balance,unit_id,unit_name) values
+        <foreach collection="list" item="product" index="index" separator="," >
+            (#{product.id},#{product.productCode},#{product.productName},#{product.productModelSize},#{product.mainProductId},#{product.companyId},#{product.industryId},
+            #{product.industryName},#{product.createTime},#{product.updateTime},#{product.ipoTime},#{product.warehouseBalance},#{product.unitId},#{product.unitName})
+        </foreach>
+    </insert>
+
+    <select id="getProductById" parameterType="com.cms.model.shengchang.ProductBean" resultType="com.cms.model.shengchang.ProductBean">
+        select <include refid="PRODUCT"/> from product where 1=1
+        <if test="id!=null and id!=''">
+            and id=#{id}
+        </if>
+        <if test="mainProductId!=null and mainProductId!=''">
+            and main_product_id=#{mainProductId}
+        </if>
+    </select>
+
+    <insert id="saveProductDoc" parameterType="java.util.List">
+        replace into product_doc (id,product_id,file_url,file_key,file_type,is_main,sort,create_time) values
+        <foreach collection="list" item="product" index="index" separator="," >
+            (#{product.id},#{product.productId},#{product.fileUrl},#{product.fileKey},#{product.fileType},#{product.isMain},#{product.sort},#{product.createTime})
+        </foreach>
+    </insert>
+
+    <select id="getProductDocListByProductId" parameterType="com.cms.model.shengchang.ProductDocBean" resultType="com.cms.model.shengchang.ProductDocBean">
+        select <include refid="PRODUCTDOC"/> from product_doc where 1=1
+        <if test="productId!=null and productId!=''">
+          and product_id=#{productId}
+        </if>
+    </select>
+
+    <insert id="saveProductParameter" parameterType="java.util.List">
+        replace into product_parameter (id,product_id,parameter_name,parameter_value,create_time) values
+        <foreach collection="list" item="productPara" index="index" separator="," >
+            (#{productPara.id},#{productPara.productId},#{productPara.parameterName},#{productPara.parameterValue},#{productPara.createTime})
+        </foreach>
+    </insert>
+
+    <select id="getProductParameter" parameterType="com.cms.model.shengchang.ProductParameterBean" resultType="com.cms.model.shengchang.ProductParameterBean">
+        select <include refid="PRODUCTPARA"/> from product_parameter where 1=1
+        <if test="productId!=null and productId!=''">
+            and product_id=#{productId}
+        </if>
+    </select>
+
+    <delete id="delProductParameter" parameterType="com.cms.model.shengchang.ProductBean">
+        delete from product_parameter where product_id=#{id}
+    </delete>
+
+    <delete id="delProductDoc" parameterType="java.util.List">
+        delete from product_doc
+        <where>
+            id in
+            <foreach collection="list" item="doc" index="index" open="(" separator="," close=")">
+                #{doc.id}
+            </foreach>
+        </where>
+    </delete>
+
+    <delete id="delProductList" parameterType="java.util.List">
+        delete from product
+        <where>
+            id='' or id in
+            <foreach collection="list" item="pro" index="index" open="(" separator="," close=")">
+                #{pro.id}
+            </foreach>
+        </where>
+    </delete>
+    
+</mapper>

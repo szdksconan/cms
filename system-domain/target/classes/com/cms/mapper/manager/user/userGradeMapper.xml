@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.manager.user.userGradeMapper" >
+ 	<sql id="USERGRADE-PARAM">
+ 		name,
+ 		delay_time delayTime,
+	    id
+	</sql>
+	
+	<select id="dataGrid" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.manager.userGradeBean">
+	    select <include refid="USERGRADE-PARAM"/> from t_sys_user_grade  where 1=1 
+	    <if test="order!=null and order!=''">
+	        ${order}
+	    </if>
+	</select>
+	<select id="dataGridCot" parameterType="com.alibaba.fastjson.JSONObject" resultType="int">
+	    select count(1) from t_sys_user_grade  where 1=1 
+	    <if test="order!=null and order!=''">
+	        ${order}
+	    </if>
+	</select>
+	
+	<delete id="delete" parameterType="long">
+		delete from t_sys_user_grade where id=#{id}
+	</delete>
+	
+	<insert id="add" parameterType="com.cms.model.manager.userGradeBean">
+		insert into t_sys_user_grade (name,delay_time) values (#{name},#{delayTime})
+	</insert>
+	
+	<update id="edit" parameterType="com.cms.model.manager.userGradeBean">
+		update t_sys_user_grade set name=#{name},delay_time=#{delayTime} where id=#{id}
+	</update>
+	
+	<select id="get" parameterType="long" resultType="com.cms.model.manager.userGradeBean">
+		select <include refid="USERGRADE-PARAM"/> from t_sys_user_grade where id=#{id}
+	</select>
+</mapper>

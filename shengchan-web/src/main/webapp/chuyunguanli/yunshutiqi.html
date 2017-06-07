@@ -1,0 +1,367 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>运输提前管理</title>
+<link rel="stylesheet" type="text/css"
+	href="../css/laydate/skins/molv/laydate.css" />
+<link rel="stylesheet" type="text/css"
+	href="../css/common/chuyunguanli.css" />
+</head>
+<body>
+	<div class="container">
+		<div class="lside clearfix">
+			<div class="yunshutiqi">
+				<div class="yunshuti-tg">提请部门：</div>
+				<span class="item1"><span style="margin-top:10px;">采购部</span>
+					<span style="margin-top:10px;">销售部</span>
+				</span>
+			</div>
+			<div class="yunshutiqi">
+				<span>提请日期 ：<input type="text" class="laydate-icon"
+					id="start">-<input type="text" class="laydate-icon"
+					id="end">
+				</span>
+			</div>
+			<div class="yunshutiqi">
+				<span>客户企业名称：</span><select id="combo"></select>
+			</div>
+
+			<div class="yunshutiqi">
+				&emsp;订单号： <input type="text" class="cmao_input m126">
+			</div>
+			<div class="yunshutiqi">
+				物资摘要：<input type="text" class="cmao_input m126">
+			</div>
+			<div class="yunshutiqi">
+				&emsp;&emsp;&emsp;&emsp;状态：<select id="status" style="width: 50px;"></select>
+			</div>
+			<div class="yunshutiqi-area">
+				所在地区： </span><select id="province" style="width: 50px;"></select> 
+				<select id="city" style="width: 50px;"></select> 
+				<select id="area" style="width: 50px;"></select>
+				<div class="yunshutiqi-qb">
+					<span style="float:right;"><button class="btn btn-blue btn-w100 ml26" type="button">查询</button>
+					<button class="btn btn-gray btn-w100 ml26" type="button">清空</button></span>
+				</div>
+				
+			</div>
+			<table id="table"></table>
+				<!-- 	右边预留百分之五 -->
+			<div class="rside"></div>
+	</div>
+	</div>
+</body>
+
+</html>
+<script type="text/javascript">
+	$(function() {
+		//对两个选择按钮进行控制
+	$(".item1 span").click(function(){
+				if($(this).attr('class')=='selected1' || $(this).attr('class')=='selected1 seach'){
+					$(this).removeClass("selected1").removeClass('seach');
+				}else{
+					$(this).addClass("selected1").addClass('seach');
+				}
+			});
+		//用于单选框的生成
+		var options = [ {
+			label : '请选择',
+			title : '请选择',
+			value : '0'
+		}, {
+			label : '生产',
+			value : '2'
+		}, {
+			label : '贸易',
+			value : '1'
+		}, {
+			label : '物流',
+			value : '3'
+		}, {
+			label : '消费',
+			value : '6',
+			disabled : true
+		} ];
+		//配置地区
+		var province = [ {
+			label : '请选择',
+			title : '请选择',
+			value : '0'
+		}, {
+			label : '四川',
+			value : '2'
+		}, {
+			label : '山东',
+			value : '1'
+		}, {
+			label : '湖北',
+			value : '3'
+		} ];
+		//配置城市
+		var city = [ {
+			label : '请选择',
+			title : '请选择',
+			value : '0'
+		}, {
+			label : '成都',
+			value : '2'
+		}, {
+			label : '北京',
+			value : '1'
+		}, {
+			label : '上海',
+			value : '3'
+		} ];
+		//配置区域
+		var area = [ {
+			label : '请选择',
+			title : '请选择',
+			value : '0'
+		}, {
+			label : '高新区',
+			value : '2'
+		}, {
+			label : '成华区',
+			value : '1'
+		}, {
+			label : '金牛区',
+			value : '3'
+		} ];
+		//配置状态
+		var status = [ {
+			label : '请选择',
+			title : '请选择',
+			value : '0'
+		}, {
+			label : '正常',
+			value : '2'
+		}, {
+			label : '作废',
+			value : '1'
+		} ];
+
+		$('#combo').multiselect('dataprovider', options);
+		//日历控件的使用
+		laydate({
+			elem : '#start',
+			event : 'focus'
+		});
+		laydate({
+			elem : '#end',
+			event : 'focus'
+		});
+		//配置状态下拉框
+		$('#status').multiselect('dataprovider', status);
+		//所在地区
+		$('#province').multiselect('dataprovider', province);
+		$('#city').multiselect('dataprovider', city);
+		$('#area').multiselect('dataprovider', area);
+		$('#table')
+				.bootstrapTable(
+						{ //	        url:'purchase/test',//请求后台的URL（*）
+							editable : true, //开启编辑模式
+							clickToSelect : true,
+							data : [ //json数据
+							{
+								"id" : 1,
+								"department" : "采购部",
+								"toDate" : "2016/04/20",
+								"ordernum" : '<a href="#" >CG-2016001-0001</a>',
+								"customer" : '<a href="#">重庆市牛山制造有限公司</a>',
+								"region" : "重庆市江北地区",
+								"goods" : "核电配套踏板",
+								"arrDate" : "2016/04/30",
+								"status" : "待找物流"
+							}, {
+								"id" : 2,
+								"department" : "采购部",
+								"toDate" : "2016/04/20",
+								"ordernum" : '<a href="#" >CG-2016001-0001</a>',
+								"customer" : '<a href="#">重庆市牛山制造有限公司</a>',
+								"region" : "重庆市江北地区",
+								"goods" : "核电配套踏板",
+								"arrDate" : "2016/04/30",
+								"status" : "待找物流"
+							}, {
+								"id" : 3,
+								"department" : "采购部",
+								"toDate" : "2016/04/20",
+								"ordernum" : '<a href="#" >CG-2016001-0001</a>',
+								"customer" : '<a href="#">重庆市牛山制造有限公司</a>',
+								"region" : "重庆市江北地区",
+								"goods" : "核电配套踏板",
+								"arrDate" : "2016/04/30",
+								"status" : "待找物流"
+							}, {
+								"id" : 4,
+								"department" : "采购部",
+								"toDate" : "2016/04/20",
+								"ordernum" : '<a href="#" >CG-2016001-0001</a>',
+								"customer" : '<a href="#">重庆市牛山制造有限公司</a>',
+								"region" : "重庆市江北地区",
+								"goods" : "核电配套踏板",
+								"arrDate" : "2016/04/30",
+								"status" : "已发送运输信息"
+							}, {
+								"id" : 5,
+								"department" : "采购部",
+								"toDate" : "2016/04/20",
+								"ordernum" : '<a href="#" >CG-2016001-0001</a>',
+								"customer" : '<a href="#">重庆市牛山制造有限公司</a>',
+								"region" : "重庆市江北地区",
+								"goods" : "核电配套踏板",
+								"arrDate" : "2016/04/30",
+								"status" : "待找物流"
+							}, {
+								"id" : 6,
+								"department" : "采购部",
+								"toDate" : "2016/04/20",
+								"ordernum" : '<a href="#" >CG-2016001-0001</a>',
+								"customer" : '<a href="#">重庆市牛山制造有限公司</a>',
+								"region" : "重庆市江北地区",
+								"goods" : "核电配套踏板",
+								"arrDate" : "2016/04/30",
+								"status" : "待运输"
+							}, {
+								"id" : 7,
+								"department" : "采购部",
+								"toDate" : "2016/04/20",
+								"ordernum" : '<a href="#" >CG-2016001-0001</a>',
+								"customer" : '<a href="#">重庆市牛山制造有限公司</a>',
+								"region" : "重庆市江北地区",
+								"goods" : "核电配套踏板",
+								"arrDate" : "2016/04/30",
+								"status" : "已取消"
+							}, {
+								"id" : 8,
+								"department" : "采购部",
+								"toDate" : "2016/04/20",
+								"ordernum" : '<a href="#" >CG-2016001-0001</a>',
+								"customer" : '<a href="#">重庆市牛山制造有限公司</a>',
+								"region" : "重庆市江北地区",
+								"goods" : "核电配套踏板",
+								"arrDate" : "2016/04/30",
+								"status" : "已取消"
+							}, {
+								"id" : 9,
+								"department" : "采购部",
+								"toDate" : "2016/04/20",
+								"ordernum" : '<a href="#" >CG-2016001-0001</a>',
+								"customer" : '<a href="#">重庆市牛山制造有限公司</a>',
+								"region" : "重庆市江北地区",
+								"goods" : "核电配套踏板",
+								"arrDate" : "2016/04/30",
+								"status" : "已取消"
+							}, {
+								"id" : 10,
+								"department" : "采购部",
+								"toDate" : "2016/04/20",
+								"ordernum" : '<a href="#" >CG-2016001-0001</a>',
+								"customer" : '<a href="#">重庆市牛山制造有限公司</a>',
+								"region" : "重庆市江北地区",
+								"goods" : "核电配套踏板",
+								"arrDate" : "2016/04/30",
+								"status" : "已取消"
+							} ],
+							method : 'post', //请求方式（*）
+							striped : true, //是否显示行间隔色
+							cache : false, //是否使用缓存
+							pagination : true, //是否显示分页
+							queryParamsType : '', //传递参数
+							sortable : false, //是否启用排序
+							// 							sortOrder : "asc", //排序方式
+							sidePagination : "client", //分页方式：client客户端分页，server服务端分页
+							pageNumber : 1, //初始化加载第一页，默认第一页
+							/*pageSize : 5, //每页的记录行数*/
+							/*pageList : [ 5, 15 ], //可供选择的每页的行数*/
+							search : false, //是否显示表格搜索，此搜索是客户端搜索，不会进服务端
+							showColumns : false, //是否显示所有的列
+							showRefresh : false, //是否显示刷新按钮
+							minimumCountColumns : 2, //最少允许的列数
+							clickToSelect : true, //是否启用点击选中行
+							height : 500, //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+							width : 'auto',
+							uniqueId : "id", //每一行的唯一标识，一般为主键列
+							showToggle : false, //是否显示详细视图和列表视图的切换按钮
+							cardView : false, //是否显示详细视图
+							detailView : false, //是否显示父子表
+							paginationHAlign : 'right', //分页组件显示位置
+							paginationVAlign : 'bottom', //分页信息显示位置
+							paginationDetailHAlign : 'left', //right, left
+							columns : [
+									{
+										title : '序号',
+										field : 'id',
+										sortable : true
+									},
+									{
+										title : '部门',
+										field : 'department',
+										sortable : true
+									},
+									{
+										title : '提请日期',
+										field : 'toDate',
+										sortable : true
+									},
+									{
+										title : '订单号',
+										field : 'ordernum',
+										sortable : true
+									},
+									{
+										title : '客户企业名称',
+										field : 'customer',
+										sortable : true
+									},
+									{
+										title : '所在地区',
+										field : 'region',
+										sortable : true
+									},
+									{
+										title : '物资摘要',
+										field : 'goods',
+										sortable : true
+									},
+									{
+										title : '要求到货日期',
+										field : 'arrDate',
+										sortable : true
+									},
+									{
+										title : '状态',
+										field : 'status',
+										sortable : true
+									},
+									{
+										title : '操作',
+										edit : false,
+										field : 'action',
+										formatter : function(value, row, index) {
+											if (row.status == '待找物流') {
+												return '<a href="javascript:void(0)" onclick="view(\''
+														+ row.id
+														+ '\')">发布物流需求</a>|<a href="javascript:void(0)" onclick="view(\''
+														+ row.id
+														+ '\')">查看</a>|<a href="javascript:void(0)" onclick="del(\''
+														+ row.id
+														+ '\')">删除</a>';
+											}
+											return '<a href="javascript:void(0)" onclick="view(\''
+													+ row.id
+													+ '\')">查看</a>|<a href="javascript:void(0)" onclick="del(\''
+													+ row.id + '\')">删除</a>';
+										}
+									} ]
+						});
+	});
+	function view(value){
+		alert('当前选中的行:'+value);
+	}
+	function del(value){
+		alert('当前删除的行:'+value);
+	}
+</script>

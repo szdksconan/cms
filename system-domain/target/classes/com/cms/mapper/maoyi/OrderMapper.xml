@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.maoyi.OrderMapper">
+	<resultMap id="orderResultMap" type="com.cms.model.maoyi.CmsOrder">
+		<id column="orderId" property="orderId" jdbcType="VARCHAR" />
+		<result column="entId" property="entId" jdbcType="VARCHAR" />
+		<result column="entName" property="entName" jdbcType="VARCHAR" />
+		<result column="entLogo" property="entLogo" jdbcType="VARCHAR" />
+		<result column="entPerson" property="entPerson" jdbcType="VARCHAR" />
+		<result column="entTel" property="entTel" jdbcType="VARCHAR" />
+		<result column="entMail" property="entMail" jdbcType="VARCHAR" />
+		<result column="entGPS" property="entGPS" jdbcType="VARCHAR" />
+		<result column="entArea" property="entArea" jdbcType="VARCHAR" />
+		<result column="entAdress" property="entAdress" jdbcType="VARCHAR" />
+		<result column="customerId" property="customerId" jdbcType="VARCHAR" />
+		<result column="customerName" property="customerName" jdbcType="VARCHAR" />
+		<result column="customerTel" property="customerTel" jdbcType="VARCHAR" />
+		<result column="customerMail" property="customerMail" jdbcType="VARCHAR" />
+		<result column="customerGPS" property="customerGPS" jdbcType="VARCHAR" />
+		<result column="customerArea" property="customerArea" jdbcType="VARCHAR" />
+		<result column="customerAdress" property="customerAdress" jdbcType="VARCHAR" />
+		<result column="orderTime" property="orderTime" jdbcType="DATE" />
+		<result column="payType" property="payType" jdbcType="INTEGER" />
+		<result column="payTime" property="payTime" jdbcType="DATE" />
+		<result column="payId" property="payId" jdbcType="VARCHAR" />
+		<result column="discountRemark" property="discountRemark" jdbcType="VARCHAR" />
+		<result column="totalPrice" property="totalPrice" jdbcType="DECIMAL" />
+		<result column="endTime" property="endTime" jdbcType="DATE" />
+		<result column="createdId" property="createdId" jdbcType="VARCHAR" />
+		<result column="createdUser" property="createdUser" jdbcType="VARCHAR" />
+		<result column="createdOrgId" property="createdOrgId" jdbcType="VARCHAR" />
+		<result column="modifyTime" property="modifyTime" jdbcType="DATE" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="type" property="type" jdbcType="INTEGER" />
+		<result column="emsType" property="emsType" jdbcType="INTEGER" />
+		<result column="emsId" property="emsId" jdbcType="VARCHAR" />
+		<result column="emsPrice" property="emsPrice" jdbcType="DECIMAL" />
+		<result column="memo" property="memo" jdbcType="VARCHAR" />
+		<result column="recordState" property="recordState" jdbcType="INTEGER" />
+		<result column="refundStatus" property="refundStatus" jdbcType="INTEGER" />
+		<result column="reviewsStatus" property="reviewsStatus" jdbcType="INTEGER" />
+		<result column="billStatus" property="billStatus" jdbcType="INTEGER" />
+		<collection property="cmsOrderItem"  javaType="ArrayList"   ofType="com.cms.model.maoyi.CmsOrderItem"    resultMap="com.cms.mapper.maoyi.OrderItemMapper.orderItemRMap"/>
+	</resultMap>
+	<sql id="Base_Column_List">
+		orderId,entId,entName,entLogo,entPerson,entTel,entMail,entGPS,entArea,entAdress,customerId,
+		customerName,customerTel,customerMail,customerGPS,customerArea,customerAdress,orderTime,payType,
+		payTime,payId,discountRemark,totalPrice,endTime,createdId,createdUser,createdOrgId,modifyTime,status,type,
+		emsType,emsId,emsPrice,memo,recordState,refundStatus,reviewsStatus,billStatus
+	</sql>
+	<sql id="Bm_Column_List">
+		t.orderId,t.entId,t.entName,t.entLogo,t.entPerson,t.entTel,t.entMail,t.entGPS,t.entArea,t.entAdress,t.customerId,
+		t.customerName,t.customerTel,t.customerMail,t.customerGPS,t.customerArea,t.customerAdress,
+		t.orderTime,t.payType,t.payTime,t.payId,t.discountRemark,t.totalPrice,t.endTime,t.createdId,t.createdUser,t.createdOrgId,
+		t.modifyTime,t.status,t.type,t.emsType,t.emsId,t.emsPrice,t.memo,t.recordState,t.refundStatus,t.reviewsStatus,t.billStatus
+	</sql>
+	<select id="getOrderInfoList" resultMap="orderResultMap"
+	parameterType="java.util.HashMap">
+		select
+		<include refid="Bm_Column_List" />
+		,i.*
+		from cms_t_order t
+		left join cms_t_order_item i on t.orderId=i.orderId
+		where 1=1
+		<if test="orderId!=null and orderId!=''">
+			and t.orderId=#{orderId}
+		</if>
+		<if test="productId!=null and productId!=''">
+			and i.productId=#{productId}
+		</if>
+		<if test="productTitle!=null and productTitle!=''">
+			and i.productTitle like concat('%',#{productTitle},'%')
+		</if>
+		<if test="entName!=null and entName!=''">
+			and t.entName like concat('%',#{entName},'%')
+		</if>
+		<if test="status!=null and status!=''">
+			and t.status=#{status}
+		</if>
+		<if test="startTime!=null and startTime!='' and endTime!=null and endTime!=''">
+			and t.orderTime between startTime and endTime
+		</if>
+		<if test="createdOrgId!=null and createdOrgId!=''">
+			and t.createdOrgId=#{createdOrgId}
+		</if>
+		<if test="createdId!=null and createdId!=''">
+			and t.createdId=#{createdId}
+		</if>
+		<if test="entId!=null and entId!=''">
+			and t.entId=#{entId}
+		</if>
+		<if test="customerId!=null and customerId!=''">
+			and t.customerId=#{customerId}
+		</if>
+	</select>
+	<insert id="insertOrder" parameterType="com.cms.model.maoyi.CmsOrder">
+		insert into cms_t_order
+		(<include refid="Base_Column_List"/>)
+		values
+		(#{orderId},#{entId},#{entName},#{entLogo},#{entPerson},#{entTel},#{entMail},#{entGPS},#{entArea},#{entAdress},#{customerId},
+		#{customerName},#{customerTel},#{customerMail},#{customerGPS},#{customerArea},#{customerAdress},#{orderTime},#{payType},
+		#{payTime},#{payId},#{discountRemark},#{totalPrice},#{endTime},#{createdId},#{createdUser},#{createdOrgId},#{modifyTime},#{status},#{type},
+		#{emsType},#{emsId},#{emsPrice},#{memo},#{recordState},#{refundStatus},#{reviewsStatus},#{billStatus})
+	</insert>
+	<update id="updateOrderStatus" parameterType="java.util.HashMap">
+	  	 update cms_t_order set entMail=entMail
+	  	 <if test="recordState!=null and recordState!=''">
+	  	 	,recordState=#{recordState}
+	  	 </if>
+	  	 <if test="status!=null and status!=''">
+	  	 	,status=#{status}
+	  	 </if>
+	  	 where orderId in 
+	    <foreach collection="orderIds" index="index" item="item" open="(" separator="," close=")">   
+	        #{item}   
+	    </foreach>  
+  	</update>
+  	<update id="updatePayInfo" parameterType="java.util.HashMap">
+	  	 update cms_t_order set entMail=entMail
+	  	 <if test="payType!=null and payType!=''">
+	  	 	,payType=#{payType}
+	  	 </if>
+	  	 <if test="payTime!=null and payTime!=''">
+	  	 	,payTime=#{payTime}
+	  	 </if>
+	  	 <if test="payId!=null and payId!=''">
+	  	 	,payId=#{payId}
+	  	 </if>
+	  	 where orderId in 
+	    <foreach collection="orderIds" index="index" item="item" open="(" separator="," close=")">   
+	        #{item}   
+	    </foreach>  
+  	</update>
+  	<update id="updateEmsInfo" parameterType="java.util.HashMap">
+	  	 update cms_t_order set entMail=entMail
+	  	 <if test="emsType!=null and emsType!=''">
+	  	 	,emsType=#{emsType}
+	  	 </if>
+	  	 <if test="emsId!=null and emsId!=''">
+	  	 	,emsId=#{emsId}
+	  	 </if>
+	  	 <if test="emsPrice!=null and emsPrice!=''">
+	  	 	,emsPrice=#{emsPrice}
+	  	 </if>
+	  	 where orderId in 
+	    <foreach collection="orderIds" index="index" item="item" open="(" separator="," close=")">   
+	        #{item}   
+	    </foreach>  
+  	</update>
+  	<update id="updateEndInfo" parameterType="java.util.HashMap">
+	  	 update cms_t_order set entMail=entMail
+	  	 <if test="endTime!=null and endTime!=''">
+	  	 	,endTime=#{endTime}
+	  	 </if>
+	  	 where orderId in 
+	    <foreach collection="orderIds" index="index" item="item" open="(" separator="," close=")">   
+	        #{item}   
+	    </foreach>  
+  	</update>
+  	<update id="updateTotalPrice" parameterType="java.util.HashMap">
+	  	 update cms_t_order set entMail=entMail
+	  	 <if test="discountRemark!=null and discountRemark!=''">
+	  	 	,discountRemark=#{discountRemark}
+	  	 </if>
+	  	 <if test="totalPrice!=null and totalPrice!=''">
+	  	 	,totalPrice=#{totalPrice}
+	  	 </if>
+	  	 where orderId=#{orderId}
+  	</update>
+  	<update id="updateRefund" parameterType="java.util.HashMap">
+	  	 update cms_t_order set entMail=entMail
+	  	 <if test="refundStatus!=null and refundStatus!=''">
+	  	 	,refundStatus=#{refundStatus}
+	  	 </if>
+	  	 where orderId=#{orderId}
+  	</update>
+  	<update id="updateReviews" parameterType="java.util.HashMap">
+	  	 update cms_t_order set entMail=entMail
+	  	 <if test="reviewsStatus!=null and reviewsStatus!=''">
+	  	 	,reviewsStatus=#{reviewsStatus}
+	  	 </if>
+	  	 where orderId=#{orderId}
+  	</update>
+</mapper>

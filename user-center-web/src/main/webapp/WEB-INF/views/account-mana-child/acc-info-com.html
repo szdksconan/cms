@@ -1,0 +1,245 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>账户管理-账户信息</title>
+<link href="../css/account-mana.css" rel="stylesheet"/>	
+<!--[if lt IE 9]>
+<script src="js/html5shiv.js"></script>
+<script src="js/respond.min.js"></script>
+<![endif]-->
+</head>
+<div class="acc-info">       		 
+    <ul class="nav nav-tabs" role="tablist" id="tab-list">
+	    <li class="active"><a href="#tab-basicinfo" role="tab" data-toggle="tab">基本信息</a></li>
+	    <li><a href="#tab-cominfo" role="tab" data-toggle="tab">企业信息</a></li>
+	    <li><a href="#tab-intelinfo" role="tab" data-toggle="tab">资质信息</a></li>
+	    <li><a href="#tab-comintro" role="tab" data-toggle="tab">企业介绍</a></li>
+	</ul>
+	<div class="tab-content">
+		<!--基本信息-->
+		<div class="tab-pane active" id="tab-basicinfo">
+			<p class="acc-mes-p">*表示该项必填</p>
+			<table class="acc-cbasicinfo">
+				<tr>
+					<td width="10%" align="right">账户名：</td>
+					<td width="90%">
+						<input type="text" name="username" value="cms001" disabled="false" class="acc-basicinfoinput"/>
+					</td>
+				</tr>
+				<tr>
+					<td align="right" ><span>*</span>真实姓名：</td>
+					<td>
+						<input type="text" name="realname" placeholder="张三" class="acc-basicinfoinput"/>
+					</td>
+				</tr>
+				<tr>
+					<td align="right"><span>*</span>证件类型：</td>
+					<td>
+						<select class="acc-basicinfoselect"><option>身份证</option></select>
+					</td>
+				</tr>
+				<tr>
+					<td align="right"><span>*</span>证件号：</td>
+					<td>
+						<input type="text" placeholder='654222100007250715' class="acc-basicinfoinput"/>
+					</td>
+				</tr>
+				<tr>
+					<td align="right"><span>*</span>手机号：</td>
+					<td>
+						<input type="text" placeholder='188-9966-8866' class="acc-basicinfoinput"/>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">固定电话：</td>
+					<td>
+						<input type="text" placeholder='0991-7330073' class="acc-basicinfoinput"/>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">邮箱地址：</td>
+					<td>
+						<input type="text" placeholder="cmswl@.163.com" class="acc-basicinfoinput"/>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">企业联系人</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td align="right">姓名：</td>
+					<td>
+						<input type="text" placeholder="请填写联系人姓名" class="acc-contactname"/>
+						<input type="radio" name="sex" />先生
+						<input type="radio" name="sex" />女士
+					</td>
+				</tr>
+				<tr>
+					<td align="right">所属部门：</td>
+					<td>
+						<select class="acc-basicinfoselect"><option></option></select>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">职位：</td>
+					<td>
+						<select class="acc-basicinfoselect"><option></option></select>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">手机号：</td>
+					<td>
+						<select class="acc-cphone1"><option>中国大陆 +86</option></select>
+						<input type="text" class="acc-cphone2"/>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">固定电话：</td>
+					<td>
+						<input type="text" value="+86" class="acc-cnum1">&nbsp;-
+						<input type="text" placeholder="区号" class="acc-cnum2">&nbsp;-
+						<input type="text" placeholder="电话号码" class="acc-cnum3">	
+					</td>
+				</tr>
+				<tr>
+					<td align="right">证件类型：</td>
+					<td>
+						<select class="acc-basicinfoselect"><option>身份证</option></select>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">证件号：</td>
+					<td>
+						<input type="text" class="acc-basicinfoinput"/>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="submit" class="acc-savebtn" value="保存"></td>
+				</tr>
+			</table>
+		</div>
+		<!--企业信息-->
+		<div class="tab-pane" id="tab-cominfo">
+			<p class="acc-mes-p">*表示该项必填</p>
+			<table class="acc-ccominfo">
+				<tr>
+					<td width="10%" align="right">企业名称：</td>
+					<td width="90%">
+						<input type="text" name="realname" value="cms001" disabled="false"/>
+					</td>
+				</tr>
+				<tr>
+					<td align="right" >企业标志：</td>
+					<td>
+						<div class="acc-comlogo"></div>
+						<div class="acc-comlogoword">
+							<div class="acc-updiv">您目前还没有标志，请<input type="button" value="上传" class="acc-upbtn"><input type="file" value="上传" class="acc-upfilebtn"></div>
+							<p>上传图片要求：</p>
+							<span>请使用真实标志，展示风格支持JPG，JPEG，GIF，PNG风格，支持2M以内的图片。</span>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">行业分类：</td>
+					<td>
+						<select><option>物流配送</option></select>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">经营范围：</td>
+					<td>
+						<textarea placeholder='企业经营范围，多个请用","分隔'></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">我的产品：</td>
+					<td>
+						<input type="text" placeholder='企业主营产品(或服务)，多个请用","分隔'/>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">注册资金：</td>
+					<td>
+						<select><option>1000-3000万</option></select>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">注册日期：</td>
+					<td>
+						<input type="text" placeholder="1992年7月25日" />
+					</td>
+				</tr>
+				<tr>
+					<td align="right">会员身份：</td>
+					<td>
+						<input type="radio" name="shenfen"/>生产厂家
+						<input type="radio" name="shenfen"/>经销商
+						<input type="radio" name="shenfen"/>物流商
+						<input type="radio" name="shenfen"/>个人经营
+						<input type="radio" name="shenfen"/>其他
+					</td>
+				</tr>
+				<tr>
+					<td align="right">是否提供加工/定制服务：</td>
+					<td>
+						<input type="radio" name="serv" />是,提供
+						<input type="radio" name="serv" />不提供
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="submit" class="acc-savebtn" value="保存"></td>
+				</tr>
+			</table>
+		</div>
+		<!--资质信息-->
+		<div class="tab-pane" id="tab-intelinfo">
+			<table class="acc-intel">
+				<tr>
+					<td>
+						<div class="acc-inimg">
+							<img src="../image/acc-intel.png" width="186px" height="121px"/>
+						</div>
+						<div class="acc-inword">
+							<span>营业执照</span>
+							<input type="button" class="acc-inlook" value="浏览" />
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="acc-comlogoword">
+							<div class="acc-updiv">您目前还没有标志，请<input type="button" value="上传" class="acc-upbtn"><input type="file" value="上传" class="acc-upfilebtn"></div>
+							<p>上传图片要求：</p>
+							<span>请使用真实标志，展示风格支持JPG，JPEG，GIF，PNG风格，支持2M以内的图片。</span>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<!--企业介绍-->
+		<div class="tab-pane" id="tab-comintro">
+			<div class="acc-intbtn">
+				<input type="button" value="保存" />
+				<input type="button" value="存草稿" />
+			</div>
+			<div class="acc-inttitle">
+				<input type="text" placeholder="请输入标题" />
+			</div>
+			<div class="acc-intcon">
+				<textarea></textarea>
+			</div>
+		</div>
+	</div>
+</div>						
+<script src="../js/jquery.1.11.3.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/account-mana.js"></script>
+</html>
+
+
+

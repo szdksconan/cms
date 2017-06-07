@@ -1,0 +1,130 @@
+<html>
+<head>
+    <title>售后管理</title>
+    <meta charset="utf-8">
+</head>
+<div class="bei">
+    	   <table  class="-querytable" style="width: 76%;">
+	   		<tr>
+	   			<td align="right">     产品品牌：</td>
+	   			<td>   <select id="cppp"></select></td>
+	   			<td align="right">    产品系列：</td>
+	   			<td>   <select id="cpxl"></select></td>
+	   			<td align="right">   产品名称：</td>
+	   			<td> <input  type="text" class="cmao_input" value=""/></td>
+	   		</tr>
+	   		<tr>
+	   			<td align="right">         售后类型：</td>
+	   			<td>      <select id="shlx"></select></td>
+	   			<td align="right">            申请日期：</td>
+	   			<td colspan="2"> <input type="text" class="laydate-icon" onclick="laydate()"/>-
+                <input type="text" class="laydate-icon" onclick="laydate()"/></td>
+	   		</tr>
+	   </table>
+  
+<div>
+	<p>&nbsp;</p>
+    <div id="toolbar" style="width: 100%">
+        <table style="width: 100%">
+            <tr>
+                <td align="right">
+                    <button  class="btn btn-blue btn-w100" type="button" >查询</button>
+                    <button  class="btn btn-darkgray btn-w100" type="button" >清空</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <table id="table" >
+    </table>
+</div>
+<script>
+    var options=[
+        {label:'开山牌',value:1},
+        {label:'铁匠牌',value:2},
+        {label:'铁牛牌',value:3}
+    ];
+    $('#cppp').multiselect('dataprovider', options);
+
+    options=[
+        {label:'轻型挖掘机系列',value:1},
+        {label:'重型挖掘机系列',value:2}
+    ];
+    $('#cpxl').multiselect('dataprovider', options);
+
+    options=[
+        {label:'退货',value:1},
+        {label:'换货',value:2},
+        {label:'维修',value:3}
+    ];
+    $('#shlx').multiselect('dataprovider', options);
+</script>
+<script>
+    $('#table').bootstrapTable({
+        data:[{
+            "customerName":"四川铁路建设3公司",
+            "productName": "开上牌-轻型挖掘机系列-10吨型柴油机",
+            "serviceType": "维修",
+            "applyTime": "2016.01.23",
+            "state": "处理中",
+            "attention": "张三"
+        },{
+            "customerName":"德阳造船厂",
+            "productName": "开上牌-轻型挖掘机系列-10吨型柴油机",
+            "serviceType": "退货",
+            "applyTime": "2016.01.23",
+            "state": "运输中",
+            "attention": "李四"
+        }],
+        toolbar: '#toolbar',
+        toolbarWidth:'100%',
+        editable:false,
+        pagination: true,//是否显示分页
+        queryParamsType:'',//传递参数
+        sidePagination: "client",//分页方式：client客户端分页，server服务端分页
+        uniqueId: "id",//每一行的唯一标识，一般为主键列
+        columns: [{
+                title : '售后申请用户',
+                field : 'customerName'
+            },{
+                title : '产品名称',
+                
+                field : 'productName'
+            },{
+                title : '售后类型',
+                field : 'serviceType'
+            },{
+                title : '申请日期',
+                field : 'applyTime'
+            },{
+                title : '处理状态',
+                field : 'state'
+            },{
+                title : '经办人',
+                field : 'attention'
+            },{
+                title: '操作',
+                field : 'action',
+                formatter: function (value, row, index) {
+                    return '<a class="a_css" onclick="changeContent(\'../xiaoshou/xs_shd_mx.html\',\'right\')" href="#">查看</a> | <a class="a_css" href="#">删除</a>';
+                }
+        }]
+    });
+
+    $("input").each(function(){
+        $(this).focus(function(){
+            if( $(this).val() == $(this).get(0).defaultValue ){
+                $(this).val("");
+            }
+        });
+        $(this).blur(function(){
+            if( $(this).val() == "" ){
+                $(this).val( $(this).get(0).defaultValue );
+            }
+        })
+    });
+
+
+
+</script>
+</div>
+</html>

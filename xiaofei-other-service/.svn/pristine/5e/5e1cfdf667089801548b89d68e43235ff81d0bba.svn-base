@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+  
+  
+   <dubbo:application name="${dubbo.application.name}" owner="${dubbo.application.owner}" organization="cms"/>
+    
+   <dubbo:registry address="${dubbo.registry.address}"/>
+  
+   <dubbo:protocol port="20885" name="${dubbo.protocol.name}" serialization="kryo" optimizer="com.cms.optimizer.SerializationOptimizerImpl"/>
+	<!-- 主键ID -->
+	<dubbo:reference id="globalIdService" interface="com.cms.iservice.common.GlobalIdService" protocol="dubbo" version="1.0.0" owner="zz" group="common"/>
+	
+	<!-- 添加开店申请信息 -->
+	<dubbo:service interface="com.cms.iservice.xiaofei.CmsXShopApplyService" ref="cmsXShopApplyService" protocol="dubbo" version="1.0.0" owner="zz" group="xiaofei"/>
+	<bean id ="cmsXShopApplyService" class="com.cms.service.xiaofei.openShop.CmsXShopApplyServiceImpl"></bean>	
+	<!-- 附件信息 -->
+	<dubbo:service interface="com.cms.iservice.xiaofei.CmsXAttachmentService" ref="cmsXAttachmentService" protocol="dubbo" version="1.0.0" owner="zz" group="xiaofei"/>
+	<bean id ="cmsXAttachmentService" class="com.cms.service.xiaofei.openShop.CmsXAttachmentServiceImpl"></bean>	
+	<!-- 获取地理位置code -->
+	<dubbo:service interface="com.cms.iservice.xiaofei.CmsXLocalDictService" ref="cmsXLocalDictService" protocol="dubbo" version="1.0.0" owner="zz" group="xiaofei"/>
+	<bean id ="cmsXLocalDictService" class="com.cms.service.xiaofei.openShop.CmsXLocalDictServiceImpl"></bean>	
+	<!-- 创新定制 -->
+	<dubbo:service interface="com.cms.iservice.xiaofei.CmsXReqRecService" ref="cmsXReqRecService" protocol="dubbo" version="1.0.0" owner="zz" group="xiaofei"/>
+	<bean id ="cmsXReqRecService" class="com.cms.service.xiaofei.innovativecustom.CmsXReqRecServiceImpl"></bean>	
+	<!-- 商品分类 -->
+	<dubbo:service interface="com.cms.iservice.xiaofei.type.TCmsBaseProductService" ref="tCmsBaseProductService" protocol="dubbo" version="1.0.0" owner="zz" group="xiaofei"/>
+	<bean id ="tCmsBaseProductService" class="com.cms.service.xiaofei.type.TCmsBaseProductServiceImpl"></bean>	
+	<!-- 注册登录 -->
+	<dubbo:service interface="com.cms.iservice.xiaofei.logon.CmsXLogonService" ref="cmsXLogonService" protocol="dubbo" version="1.0.0" owner="zz" group="xiaofei"/>
+	<bean id ="cmsXLogonService" class="com.cms.service.xiaofei.logon.CmsXLogonServiceImpl"></bean>	
+	<!-- 物流需求信息 -->
+	<dubbo:service interface="com.cms.iservice.xiaofei.LogisticalXiaofeiService" ref="logisticalXiaofeiService" protocol="dubbo" version="1.0.0" owner="zz" group="xiaofei"/>
+	<bean id ="logisticalXiaofeiService" class="com.cms.service.xiaofei.wuliu.CmsLogistcalServiceImpl"></bean>	
+	<!-- 招募信息 -->
+	<dubbo:service interface="com.cms.iservice.xiaofei.CmsXRecruitService" ref="cmsXRecruitService" protocol="dubbo" version="1.0.0" owner="zz" group="xiaofei"/>
+	<bean id ="cmsXRecruitService" class="com.cms.service.xiaofei.recruit.CmsXRecruitServiceImpl"></bean>	
+	<!-- 平台消息 -->
+	<dubbo:service interface="com.cms.iservice.xiaofei.CmsXUserMsgService" ref="cmsXUserMsgService" protocol="dubbo" version="1.0.0" owner="zz" group="xiaofei"/>
+	<bean id ="cmsXUserMsgService" class="com.cms.service.xiaofei.logon.CmsXUserMsgServiceImpl"></bean>	
+   <!-- 
+   <dubbo:protocol name="${dubbo.protocol.name}" serialization="kryo" optimizer="com.cms.optimizer.SerializationOptimizerImpl"     />
+   
+    -->
+   
+    <!--
+    <dubbo:registry id="registry" address="10.20.141.150:9090" username="admin" password="hello1234" />
+     -->
+
+    <!--
+   if  have two network-adapter 
+    <dubbo:protocol host="10.1.22.2" name="dubbo" port="20881" />
+     -->
+<!--
+    <task:scheduled-tasks>
+        <task:scheduled ref="commonService" method="update_task" cron="0 0/30 * * * ?" />
+    </task:scheduled-tasks>
+ -->
+ <!--  
+    <dubbo:service interface="com.cms.iservice.wuliu.CommonService" ref="commonService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="commonService" class="com.cms.service.wuliu.CommonServiceImpl"/>
+    
+    <dubbo:service interface="com.cms.iservice.wuliu.CarOnlineService" ref="carOnlineService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="carOnlineService" class="com.cms.service.wuliu.CarOnlineServiceImpl"/>
+    
+    <dubbo:service interface="com.cms.iservice.wuliu.InfoHallService" ref="infoHallService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="infoHallService" class="com.cms.service.wuliu.InfoHallServiceImpl"/>
+    
+    <dubbo:service interface="com.cms.iservice.wuliu.InfoPublishService" ref="infoPublishService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="infoPublishService" class="com.cms.service.wuliu.InfoPublishServiceImpl"/>
+
+    <dubbo:service interface="com.cms.iservice.wuliu.VaServiceService" ref="vaServiceService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="vaServiceService" class="com.cms.service.wuliu.VaServiceServiceImpl"/>
+
+    <dubbo:service interface="com.cms.iservice.wuliu.MyCarService" ref="myCarService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="myCarService" class="com.cms.service.wuliu.MyCarServiceImpl"/>
+    
+    <dubbo:reference id="globalIdService" interface="com.cms.iservice.common.GlobalIdService" protocol="dubbo" version="1.0.0" owner="ryan" group="common" timeout="6000" retries="0"/>
+   -->
+   
+   
+   
+   
+   
+    <!-- <dubbo:protocol name="dubbo" connections="2" accepts="1000"/> dubbo协议使用长连接和nio，这里connections=2表示同时建立两个长连接（要在provier和consumer同时写上）
+        accepts=1000  表示为了防止同时过来大量连接而被干掉，限制最大为1000
+    <dubbo:protocol name="dubbo" port="20880" dispatcher="all" threadpool="fixed" threads="100" />
+    -->
+    
+</beans>

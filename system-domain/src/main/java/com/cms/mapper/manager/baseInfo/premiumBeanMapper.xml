@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cms.mapper.manager.baseInfo.premiumMapper">
+	<sql id="PREMIUM-PARAM">
+	    id,
+	    name,
+	    no,
+	    type,
+	    note,
+	    rate,
+	    seq,
+	    typename
+	</sql>
+	
+	<select id="getUserInfo" parameterType="com.cms.model.manager.premiumBean" resultType="com.cms.model.manager.premiumBean">
+	    select <include refid="PREMIUM-PARAM"/> from t_sys_premium where id=#{id}
+	</select>
+	
+	<select id="dataGrid" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.manager.premiumBean">
+	    select <include refid="PREMIUM-PARAM"/> from t_sys_premium where 1=1
+	    <if test="no!=null and no!=''">
+	       	  and no like concat('%',#{no},'%')
+	    </if>
+	    <if test="order!=null and order!=''">
+	        ${order}
+	    </if>
+	</select>
+	
+	<select id="dataGridCot" parameterType="com.alibaba.fastjson.JSONObject" resultType="int">
+	    select count(1) from t_sys_premium where 1=1
+	    <if test="no!=null and no!=''">
+	       	  and no like concat('%',#{no},'%')
+	    </if>
+	</select>
+	
+		
+	<update id="edit" parameterType="com.cms.model.manager.premiumBean">
+	    update t_sys_premium set name=#{name},no=#{no},type=#{type},typename=#{typename},
+	    note = #{note}, rate = #{rate},seq=#{seq} where id=#{id}
+	</update>
+	
+	<insert id="add" parameterType="com.cms.model.manager.premiumBean">
+	    insert into t_sys_premium ( 
+	    name,
+	    no,
+	    type,
+	    note,
+	    rate,
+	    seq,
+	    typename) values (#{name},#{no},#{type},
+	    #{note},#{rate},#{seq},#{typename})
+	</insert>
+	
+	<delete id="delete" parameterType="long">
+	    delete from t_sys_premium where id=#{id}
+	</delete>
+	
+	<select id="get" parameterType="com.cms.model.manager.premiumBean" resultType="com.cms.model.manager.premiumBean">
+	    select <include refid="PREMIUM-PARAM"/> from t_sys_premium where id=#{id}
+	</select>
+</mapper>

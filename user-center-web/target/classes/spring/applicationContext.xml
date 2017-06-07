@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://code.alibabatech.com/schema/dubbo
+      http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="user-center-consumer" owner="user-center" organization="cms"/>
+
+    <dubbo:registry address="zookeeper://127.0.0.1:2181" />
+
+	<dubbo:reference id="accountComInfoService" interface="com.cms.iservice.userCenter.com.IAccountComInfoService" protocol="dubbo" version="1.0.0" owner="penglei" group="user-center" timeout="6000" retries="0"/>
+	<dubbo:reference id="sysUserService" interface="com.cms.iservice.userCenter.SysUserService" protocol="dubbo" version="1.0.0" owner="weibo" group="user-center"/>
+<!-- 	个人账户模块 -->
+	<dubbo:reference id="sysUserSingelInfoService" interface="com.cms.iservice.userCenter.SysUserSingelInfoService" protocol="dubbo" version="1.0.0" owner="tangping" group="user-center" timeout="6000" retries="0"/>
+	<dubbo:reference id="sysUserTradeAccountService" interface="com.cms.iservice.userCenter.SysUserTradeAccountService" protocol="dubbo" version="1.0.0" owner="tangping" group="user-center" timeout="6000" retries="0"/>
+	<dubbo:reference id="sysUserTradeService" interface="com.cms.iservice.userCenter.SysUserTradeService" protocol="dubbo" version="1.0.0" owner="tangping" group="user-center" timeout="6000" retries="0"/>
+	<dubbo:reference id="sysUserGoodsAddressService" interface="com.cms.iservice.userCenter.SysUserGoodsAddressService" protocol="dubbo" version="1.0.0" owner="tangping" group="user-center" timeout="6000" retries="0"/>
+	
+	<dubbo:reference id="checkRegisterService" interface="com.cms.iservice.userCenter.CheckRegisterService"  protocol="dubbo" version="1.0.0" owner="wangjian" group="user_center"/>
+	  <bean id="captchaProducer" class="com.google.code.kaptcha.impl.DefaultKaptcha">  
+        <property name="config">  
+            <bean class="com.google.code.kaptcha.util.Config">  
+                <constructor-arg>  
+                    <props>  
+                        <prop key="kaptcha.border">yes</prop>  
+                        <prop key="kaptcha.border.color">105,179,90</prop>  
+                        <prop key="kaptcha.textproducer.font.color">blue</prop>  
+                        <prop key="kaptcha.image.width">125</prop>  
+                        <prop key="kaptcha.image.height">40</prop>  
+                        <prop key="kaptcha.textproducer.font.size">40</prop>  
+                        <prop key="kaptcha.session.key">code</prop>  
+                        <prop key="kaptcha.textproducer.char.length">4</prop>  
+                        <prop key="kaptcha.textproducer.font.names">宋体,楷体,微软雅黑</prop>  
+                    </props>  
+                </constructor-arg>  
+            </bean>  
+        </property>  
+    </bean> 
+    <bean id="exceptionHandler" class="com.cms.controller.userCenter.exception.MyExceptionHandler"/>
+	<!-- 拿到生成唯一id服务 -->
+	<dubbo:reference id="globalIdService" interface="com.cms.iservice.common.GlobalIdService" protocol="dubbo" version="1.0.0" owner="weibo" group="common" timeout="6000" retries="0"/>
+</beans>

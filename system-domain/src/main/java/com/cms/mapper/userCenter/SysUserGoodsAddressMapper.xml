@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.userCenter.SysUserGoodsAddressMapper">
+	<sql id="SYSUSERGOODS-ADDRESS">
+		user_name,
+		address_province,address_city,address_county,
+		address_detail,
+		post_code,
+		phone,
+		tel,
+		is_default
+	</sql>
+	<!-- 添加收货地址 -->
+	<insert id="add" parameterType="com.cms.model.userCenter.SysUserGoodsAddress">
+		insert into sys_user_goods_address
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null and id != ''">id,</if>
+			<if test="uid != null and uid != ''">uid,</if>
+			<if test="userName != null and userName != ''">user_name,</if>
+			<if test="addressProvince != null and addressProvince != ''">address_province,</if>
+			<if test="addressCity != null and addressCity != ''">address_city,</if>
+			<if test="addressCounty != null">address_county,</if>
+			<if test="addressDetail != null">address_detail,</if>
+			<if test="postCode != null">post_code,</if>
+			<if test="phone != null">phone,</if>
+			<if test="tel != null">tel,</if>
+			<if test="type != null">type,</if>
+			<if test="isDefault != null">is_default,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="id != null">#{id},</if>
+			<if test="uid != null">#{uid},</if>
+			<if test="userName != null">#{userName},</if>
+			<if test="addressProvince != null">#{addressProvince},</if>
+			<if test="addressCity != null">#{addressCity},</if>
+			<if test="addressCounty != null">#{addressCounty},</if>
+			<if test="addressDetail != null">#{addressDetail},</if>
+			<if test="postCode != null">#{postCode},</if>
+			<if test="phone != null">#{phone},</if>
+			<if test="tel != null">#{tel},</if>
+			<if test="type != null">#{type},</if>
+			<if test="isDefault != null">#{isDefault},</if>
+		</trim>
+	</insert>
+	<!-- 查询已保存地址 -->
+	<select id="selectSysUserGoodsAddress" parameterType="map" resultType="map">
+		select <include refid="SYSUSERGOODS-ADDRESS"/> from sys_user_goods_address where type=1
+	</select>
+</mapper>

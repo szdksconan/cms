@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+      http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://code.alibabatech.com/schema/dubbo
+      http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+  	
+  	<dubbo:application name="${dubbo.application.name}" owner="${dubbo.application.owner}" organization="cms"/>
+  	
+  	<dubbo:registry address="${dubbo.registry.address}" />
+  	<!-- 
+	<dubbo:reference id="carOnlineService" interface="com.cms.iservice.wuliu.CarOnlineService" protocol="dubbo" version="1.0.0" owner="ryan" group="wuliu" timeout="6000" retries="0"/>
+	<dubbo:reference id="commonService" interface="com.cms.iservice.wuliu.CommonService" protocol="dubbo" version="1.0.0" owner="ryan" group="wuliu" timeout="6000" retries="0"/>
+	<dubbo:reference id="infoHallService" interface="com.cms.iservice.wuliu.InfoHallService" protocol="dubbo" version="1.0.0" owner="ryan" group="wuliu" timeout="6000" retries="0"/>
+	<dubbo:reference id="infoPublishService" interface="com.cms.iservice.wuliu.InfoPublishService" protocol="dubbo" version="1.0.0" owner="ryan" group="wuliu" timeout="6000" retries="0"/>
+	<dubbo:reference id="vaServiceService" interface="com.cms.iservice.wuliu.VaServiceService" protocol="dubbo" version="1.0.0" owner="ryan" group="wuliu" timeout="6000" retries="0"/>
+	<dubbo:reference id="globalIdService" interface="com.cms.iservice.common.GlobalIdService" protocol="dubbo" version="1.0.0" owner="ryan" group="common" timeout="6000" retries="0"/>
+	<dubbo:reference id="myCarService" interface="com.cms.iservice.wuliu.MyCarService" protocol="dubbo" version="1.0.0" owner="ryan" group="wuliu" timeout="6000" retries="0"/>
+
+
+    <dubbo:reference id="ssoAuthService" interface="com.cms.iservice.sso.SsoAuthService" protocol="dubbo" version="1.0.0"   owner="caojun" group="jiagou"/>
+    <dubbo:reference id="dealUserInfoOnLogin" interface="com.cms.iservice.sso.DealUserInfoOnLogin" protocol="dubbo" version="1.0.0"   owner="caojun" group="jiagou"/>
+     -->
+     <!-- 拿到生成唯一id服务 -->
+     <dubbo:reference id="globalIdService" interface="com.cms.iservice.common.GlobalIdService" protocol="dubbo" version="1.0.0" owner="zz" group="common" timeout="6000" retries="0"/>
+     <!-- 申请我要开店 -->
+     <dubbo:reference id="cmsXShopApplyService" interface="com.cms.iservice.xiaofei.CmsXShopApplyService" protocol="dubbo" version="1.0.0" owner="zz" group="xiaofei" timeout="6000" retries="0"/>
+     <!-- 上传附件信息 -->
+     <dubbo:reference id="cmsXAttachmentService" interface="com.cms.iservice.xiaofei.CmsXAttachmentService" protocol="dubbo" version="1.0.0" owner="zz" group="xiaofei" timeout="6000" retries="0"/>
+     <!-- 获取地理位置code -->
+     <dubbo:reference id="cmsXLocalDictService" interface="com.cms.iservice.xiaofei.CmsXLocalDictService" protocol="dubbo" version="1.0.0" owner="zz" group="xiaofei" timeout="6000" retries="0"/>
+     <!-- 创新定制 -->
+     <dubbo:reference id="cmsXReqRecService" interface="com.cms.iservice.xiaofei.CmsXReqRecService" protocol="dubbo" version="1.0.0" owner="zz" group="xiaofei" timeout="6000" retries="0"/>
+     <!-- 商品分类 -->
+     <dubbo:reference id="tCmsBaseProductService" interface="com.cms.iservice.xiaofei.type.TCmsBaseProductService" protocol="dubbo" version="1.0.0" owner="zz" group="xiaofei" timeout="6000" retries="0"/>
+     <!-- 购物车 -->
+     <dubbo:reference id="cmsXShoppingcartService" interface="com.cms.iservice.xiaofei.CmsXShoppingcartService" protocol="dubbo" version="1.0.0" owner="zz" group="xiaofei" timeout="6000" retries="0"/>
+     <!-- 用户收货地址 -->
+     <dubbo:reference id="cmsXGoodsAddressService" interface="com.cms.iservice.xiaofei.CmsXGoodsAddressService" protocol="dubbo" version="1.0.0" owner="zz" group="xiaofei" timeout="6000" retries="0"/>
+     <!-- 收藏商品 -->
+     <dubbo:reference id="cmsXProduceCollectService" interface="com.cms.iservice.xiaofei.CmsXProduceCollectService" protocol="dubbo" version="1.0.0" owner="zz" group="xiaofei" timeout="6000" retries="0"/>
+     <!-- 收藏店铺 -->
+     <dubbo:reference id="cmsXStoreCollectionService" interface="com.cms.iservice.xiaofei.CmsXStoreCollectionService" protocol="dubbo" version="1.0.0" owner="zz" group="xiaofei" timeout="6000" retries="0"/>
+     <!-- 招募信息 -->
+     <dubbo:reference id="cmsXRecruitService" interface="com.cms.iservice.xiaofei.CmsXRecruitService" protocol="dubbo" version="1.0.0" owner="zz" group="xiaofei" timeout="6000" retries="0"/>
+     <!-- 注册登录 -->
+     <dubbo:reference id="cmsXLogonService" interface="com.cms.iservice.xiaofei.logon.CmsXLogonService" protocol="dubbo" version="1.0.0" owner="zz" group="xiaofei" timeout="6000" retries="0"/>
+     <!-- 贸易提供 -->
+     <dubbo:reference id="productCenterService" interface="com.cms.iservice.maoyi.ProductCenterService" protocol="dubbo" version="1.0.0" owner="ryan" group="maoyi" timeout="6000" retries="0"/>
+     <!-- 贸易提供 -->
+     <dubbo:reference id="goodsCenterService" interface="com.cms.iservice.maoyi.GoodsCenterService" protocol="dubbo" version="1.0.0" owner="ryan" group="maoyi" timeout="6000" retries="0"/>
+     <!-- 贸易提供 -->
+     <dubbo:reference id="enterpriseToOutService" interface="com.cms.iservice.maoyi.EnterpriseToOutService" protocol="dubbo" version="1.0.0" owner="ryan" group="maoyi" timeout="6000" retries="0"/>
+     <!-- 贸易提供 -->
+     <dubbo:reference id="enterpriseInfoService" interface="com.cms.iservice.maoyi.EnterpriseInfoService" protocol="dubbo" version="1.0.0" owner="ryan" group="maoyi" timeout="6000" retries="0"/>
+    <!--  搜索引擎 -->
+      <dubbo:reference id="queryProduceService"  interface="com.cms.elasticsearch.produce.IQueryProduceService" protocol="dubbo" version="1.0.0" timeout="1200000" owner="caojun" group="jiagou"/>
+      <!-- 商品订单 贸易提供 -->
+      <dubbo:reference id="orderService"  interface="com.cms.iservice.maoyi.OrderService" protocol="dubbo" version="1.0.0" owner="ryan" group="maoyi" timeout="6000" retries="0"/>
+      <!-- 商品订单 消费提供 -->
+      <dubbo:reference id="logisticalXiaofeiService"  interface="com.cms.iservice.xiaofei.LogisticalXiaofeiService" protocol="dubbo" version="1.0.0" owner="zz" group="xiaofei" timeout="6000" retries="0"/>
+      <!-- 平台消息 -->
+      <dubbo:reference id="cmsXUserMsgService"  interface="com.cms.iservice.xiaofei.CmsXUserMsgService" protocol="dubbo" version="1.0.0" owner="zz" group="xiaofei" timeout="6000" retries="0"/>
+       
+      <!-- 生产提供申请加盟 -->
+      <dubbo:reference id="shengchanOverseasService"  interface="com.cms.iservice.shengchan.ShengchanOverseasService" protocol="dubbo" version="1.0.0" owner="ryan" group="shengchan" timeout="6000" retries="0"/>
+      
+</beans>

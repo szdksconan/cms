@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.manager.baseInfo.areaMapper" >
+	<sql id="AREA-PARAM">
+		    id,
+		    code,
+		    name,
+		    pid
+	</sql>
+	
+	<select id="dataGrid" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.wuliu.AreaBean">
+	    select a.id as id,a.name as name,b.name as pidname,a.pid,a.code from t_sys_area a,t_sys_province b where a.pid = b.id
+	      <if test="name!=null and name!=''">
+	          and (a.name like concat('%',#{name},'%') or a.name like concat('%',#{name},'%'))
+	    </if>
+	    <if test="pid!=null and pid!=''">
+	          and a.pid = #{pid}
+	    </if>
+	    <if test="order!=null and order!=''">
+	        ${order}
+	    </if>
+	</select>
+	
+	<select id="dataGridCot" parameterType="com.alibaba.fastjson.JSONObject" resultType="int">
+	    select count(1) from t_sys_area a,t_sys_province b where a.pid = b.id
+	      <if test="name!=null and name!=''">
+	          and (a.name like concat('%',#{name},'%') or a.name like concat('%',#{name},'%'))
+	    </if>
+	    <if test="pid!=null and pid!=''">
+	          and a.pid = #{pid}
+	    </if>
+	</select>
+	
+			
+	<update id="edit" parameterType="com.cms.model.wuliu.AreaBean">
+	    update t_sys_area set name=#{name},pid=#{pid},code=#{code}  where id=#{id}
+	</update>
+	
+	<insert id="add" parameterType="com.cms.model.wuliu.AreaBean">
+	    insert into t_sys_area (code,name,pid) values (#{code},#{name},#{pid})
+	</insert>
+	
+	<delete id="delete" parameterType="com.alibaba.fastjson.JSONObject">
+	    delete from t_sys_area where id=#{id}
+	</delete>
+	
+	<select id="get" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.wuliu.AreaBean">
+	    select <include refid="AREA-PARAM"/> from t_sys_area where id=#{id}
+	</select>
+	
+	<select id="selectAreaJson" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.wuliu.AreaBean">
+	    select id ,name,pid,code from t_sys_area where 1=1
+	      <if test="q!=null and q!=''">
+	          and (name like concat('%',#{q},'%') or code like concat('%',#{q},'%'))
+	    </if>
+	    <if test="pid!=null and pid!=''">
+	          and pid = #{pid}
+	    </if>
+	    <if test="order!=null and order!=''">
+	        ${order}
+	    </if>
+	</select>
+</mapper>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cms.mapper.manager.company.subCompanyMapper">
+	<sql id="SUBCOMPANY-PARAM">
+		id as id,
+		pid as pid,
+		company_id as companyId,
+		floor as floor,
+		name as name,
+		manage_type as manageType,
+		solicitation as solicitation,
+		province_id as provinceId,
+		area_id as areaId,
+		city_id as cityId,
+		`add` as `add`,
+		person as person,
+		person_tel as personTel,
+		com_tel as comTel,
+		longitude as longitude,
+		latitude as latitude,
+		platform_show as platformShow,
+		substance_show as substanceShow,
+		seq as seq,
+		DATE_FORMAT(create_time,'%Y-%d-%m %H:%i') as createTime,
+		DATE_FORMAT(update_time,'%Y-%d-%m %H:%i') as updateTime
+	</sql>
+	
+	<select id="dataGrid" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.manager.subCompanyBean">
+	    select <include refid="SUBCOMPANY-PARAM"/> from t_sys_subcompany sub where 1=1 
+	    <if test="order!=null and order!=''">
+	        ${order}
+	    </if>
+	    <if test="order==null or order==''">
+	    	order by seq
+	    </if>
+	</select>
+	
+	<select id="get" parameterType="long" resultType="com.cms.model.manager.subCompanyBean">
+		select <include refid="SUBCOMPANY-PARAM"/> from t_sys_subcompany dept where id=#{id}
+	</select>
+	
+	<update id="update" parameterType="com.cms.model.manager.subCompanyBean">
+		update t_sys_subcompany set name=#{name},pid=#{pid},seq=#{seq} where id=#{id}
+	</update>
+	
+	<update id="delete" parameterType="long" statementType="CALLABLE">
+	    {call delTree(#{id},3)}
+	</update>
+	
+	<insert id="add" parameterType="com.cms.model.manager.subCompanyBean">
+		insert into t_sys_subcompany (name,create_time,pid,seq) values (#{name},now(),#{pid},#{seq})
+	</insert>
+	
+	<select id="getRelationDataRole" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.alibaba.fastjson.JSONObject">
+		select * from t_sys_subcompany_datarole where 1=1 
+		<if test="subcompanyId!=null and subcompanyId!=''">
+			and subcompany_id=#{subcompanyId}
+		</if>
+	</select>
+</mapper>

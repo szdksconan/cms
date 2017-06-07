@@ -1,0 +1,136 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>账户管理-账户信息</title>
+<link href="../css/account-mana.css" rel="stylesheet"/>	
+<!--[if lt IE 9]>
+<script src="js/html5shiv.js"></script>
+<script src="js/respond.min.js"></script>
+<![endif]-->
+</head>
+<div class="acc-caddress">
+   <ul class="nav nav-tabs" role="tablist" id="tab-list">
+	    <li class="active"><a href="#tab-shaddress" role="tab" data-toggle="tab">收货地址</a></li>
+	    <li><a href="#tab-fhaddress" role="tab" data-toggle="tab">发货地址</a></li>
+  </ul>
+  <div class="tab-content">
+		<!--收货地址-->
+		<div class="tab-pane active" id="tab-shaddress">
+		  <div class="acc-ads-con">
+		  	<div class="acc-ads-title">
+		  	 	<span class="acc-adst-icon"></span>
+		  	 	<span class="acc-adst-word">已保存的地址</span>
+		  	 	<label class="acc-ads-label">最多保存10个有效地址</label>
+		  	</div>
+		  	<table class="acc-ads-table1">
+		  	 	<thead>
+		  	 		<tr class="acc-ads-theadtr">
+		  	 			<td class="padding-l-20">收货人</td>
+		  	 			<td>所在地区</td>
+		  	 			<td>街道地址</td>
+		  	 			<td>邮编</td>
+		  	 			<td>电话/手机</td>
+		  	 			<td>操作</td>
+		  	 		</tr>
+		  	 	</thead>
+		  	 	<tbody class="acc-ads-tbody">
+		  	 		<tr>
+		  	 			<td class="padding-l-20">张三丰</td>
+		  	 			<td>四川省成都市金牛区</td>
+		  	 			<td>桂西路012号</td>
+		  	 			<td>610000</td>
+		  	 			<td>188-6688-9966</td>
+		  	 			<td><a href="javascript:;" class="acc-ads-selectlink">默认地址</a><span>删除</span></td>
+		  	 		</tr>
+		  	 		<tr>
+		  	 			<td class="padding-l-20">安玲安玲</td>
+		  	 			<td>四川省成都市武侯区</td>
+		  	 			<td>天府大道A段007号</td>
+		  	 			<td>610000</td>
+		  	 			<td>188-6688-9966</td>
+		  	 			<td><a href="javascript:;" class="acc-ads-link">设为地址</a><span>删除</span></td>
+		  	 		</tr>
+		  	 		<tr>
+		  	 			<td class="padding-l-20">王大锤</td>
+		  	 			<td>陕西省延安市枣园镇</td>
+		  	 			<td>桂西路012号</td>
+		  	 			<td>610000</td>
+		  	 			<td>188-6688-9966</td>
+		  	 			<td><a href="javascript:;" class="acc-ads-link">设为地址</a><span>删除</span></td>
+		  	 		</tr>
+		  	 		<tr>
+		  	 			<td class="padding-l-20">许三多</td>
+		  	 			<td>新疆维吾尔自治区</td>
+		  	 			<td>桂西路012号</td>
+		  	 			<td>610000</td>
+		  	 			<td>188-6688-9966</td>
+		  	 			<td><a href="javascript:;" class="acc-ads-link">设为地址</a><span>删除</span></td>
+		  	 		</tr>
+		  	 		<tr>
+		  	 			<td class="padding-l-20">王大治</td>
+		  	 			<td>北京市</td>
+		  	 			<td>桂西路012号</td>
+		  	 			<td>610000</td>
+		  	 			<td>188-6688-9966</td>
+		  	 			<td><a href="javascript:;" class="acc-ads-link">设为地址</a><span>删除</span></td>
+		  	 		</tr>
+		  	 	</tbody>
+		  	</table>
+		  	<div class="acc-ads-title margin-t-30">
+		  	 	<span class="acc-adst-icon"></span>
+		  	 	<span class="acc-adst-word">添加收货地址</span>
+		  	</div>
+		  	<table class="acc-ads-table2">
+		  		<tr>
+		  			<td align="right" width="10%"><span>*</span>收货人姓名：</td>
+		  			<td width="90%"><input type="text" class="acc-ads-input"/></td>
+		  		</tr>
+		  		<tr>
+		  			<td align="right"><span>*</span>所在地区：</td>
+		  			<td><input type="text" class="acc-ads-input"/></td>
+		  		</tr>
+		  		<tr>
+		  			<td align="right"><span>*</span>街道地址：</td>
+		  			<td><textarea class="acc-ads-textarea"></textarea></td>
+		  		</tr>
+		  		<tr>
+		  			<td align="right"><span>*</span>邮编：</td>
+		  			<td><input type="text" class="acc-ads-input"/></td>
+		  		</tr>
+		  		<tr>
+		  			<td align="right">手机号码：</td>
+		  			<td><input type="text" class="acc-ads-input"/></td>
+		  		</tr>
+		  		<tr>
+		  			<td align="right">固定电话：</td>
+		  			<td><input type="text" class="acc-ads-input"/></td>
+		  		</tr>
+		  		<tr>
+		  			<td></td>
+		  			<td>
+		  				<span class="margin-l-10"><input type="radio"/>设为默认地址</span>
+		  				<label class="acc-ads-msg">设置后系统将在下单时自动选中为该收货地址</label>
+		  			</td>
+		  		</tr>
+		  		<tr>
+		  			<td></td>
+		  			<td><input type="button" value="保存" class="acc-ads-savebtn"></td>
+		  		</tr>
+		  	</table>
+		  </div>
+		</div>
+		<!--发货地址-->
+		<div class="tab-pane" id="tab-fhaddress">
+		</div>	
+	</div>	
+</div>					
+<script src="../js/jquery.1.11.3.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/account-mana.js"></script>
+</html>
+
+
+

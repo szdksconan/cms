@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://code.alibabatech.com/schema/dubbo
+      http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="cms" owner="ryan" organization="cms"/>
+
+    <dubbo:registry address="zookeeper://localhost:2181" />
+
+    <dubbo:reference id="areaService" interface="com.cms.iservice.manager.baseInfo.areaService" protocol="dubbo" version="1.0.0" owner="ryan" group="manager" timeout="6000" retries="0"/>
+<!-- 
+    <dubbo:reference id="baseDicService" interface="com.cms.iservice.manager.baseInfo.baseDicService" protocol="dubbo" version="1.0.0" owner="ryan" group="manager" timeout="6000" retries="0"/>
+    <dubbo:reference id="carService" interface="com.cms.iservice.manager.baseInfo.carService" protocol="dubbo" version="1.0.0" owner="ryan" group="manager" timeout="6000" retries="0"/>
+    <dubbo:reference id="comboService" interface="com.cms.iservice.manager.baseInfo.comboService" protocol="dubbo" version="1.0.0" owner="ryan" group="manager" timeout="6000" retries="0"/>
+    <dubbo:reference id="cityService" interface="com.cms.iservice.manager.baseInfo.cityService" protocol="dubbo" version="1.0.0" owner="ryan" group="manager" timeout="6000" retries="0"/>
+    <dubbo:reference id="carStyleService" interface="com.cms.iservice.manager.baseInfo.carStyleService" protocol="dubbo" version="1.0.0" owner="ryan" group="manager" timeout="6000" retries="0"/>
+    <dubbo:reference id="lineService" interface="com.cms.iservice.manager.baseInfo.lineService" protocol="dubbo" version="1.0.0" owner="ryan" group="manager" timeout="6000" retries="0"/>
+    <dubbo:reference id="menuService" interface="com.cms.iservice.manager.baseInfo.menuService" protocol="dubbo" version="1.0.0" owner="ryan" group="manager" timeout="6000" retries="0"/>
+    <dubbo:reference id="messageLogService" interface="com.cms.iservice.manager.baseInfo.messageLogService" protocol="dubbo" version="1.0.0" owner="ryan" group="manager" timeout="6000" retries="0"/>
+    <dubbo:reference id="mileageService" interface="com.cms.iservice.manager.baseInfo.mileageService" protocol="dubbo" version="1.0.0" owner="ryan" group="manager" timeout="6000" retries="0"/>
+    <dubbo:reference id="premiumService" interface="com.cms.iservice.manager.baseInfo.premiumService" protocol="dubbo" version="1.0.0" owner="ryan" group="manager" timeout="6000" retries="0"/>
+    <dubbo:reference id="quoteService" interface="com.cms.iservice.manager.baseInfo.quoteService" protocol="dubbo" version="1.0.0" owner="ryan" group="manager" timeout="6000" retries="0"/>
+   
+    <dubbo:reference id="webRoleService" interface="com.cms.iservice.manager.baseInfo.webRoleService" protocol="dubbo" version="1.0.0" owner="ryan" group="manager" timeout="6000" retries="0"/>
+ -->
+    <dubbo:reference id="accountService" interface="com.cms.iservice.manager.cargoods.accountService" protocol="dubbo" version="1.0.0" owner="ryan" group="manager" timeout="6000" retries="0"/>
+    <dubbo:reference id="loginUserService" interface="com.cms.iservice.manager.cargoods.loginUserService" protocol="dubbo" version="1.0.0" owner="ryan" group="manager" timeout="6000" retries="0"/>
+    <dubbo:reference id="companyService" interface="com.cms.iservice.manager.company.companyService" protocol="dubbo" version="1.0.0" owner="ryan" group="manager" timeout="6000" retries="0"/>
+    <dubbo:reference id="subCompanyService" interface="com.cms.iservice.manager.company.subCompanyService" protocol="dubbo" version="1.0.0" owner="ryan" group="manager" timeout="6000" retries="0"/>
+    <dubbo:reference id="departmentService" interface="com.cms.iservice.manager.department.departmentService" protocol="dubbo" version="1.0.0" owner="ryan" group="manager" timeout="6000" retries="0"/>
+    <dubbo:reference id="driverService" interface="com.cms.iservice.manager.driver.driverService" protocol="dubbo" version="1.0.0" owner="ryan" group="manager" timeout="6000" retries="0"/>
+    <dubbo:reference id="loginService" interface="com.cms.iservice.manager.login.loginService" protocol="dubbo" version="1.0.0" owner="ryan" group="manager" timeout="6000" retries="0"/>
+   <dubbo:reference id="orderDicService" interface="com.cms.iservice.manager.orderDic.orderDicService" protocol="dubbo" version="1.0.0" owner="ryan" group="manager" timeout="6000" retries="0"/>
+    <dubbo:reference id="provinceService" interface="com.cms.iservice.manager.province.provinceService" protocol="dubbo" version="1.0.0" owner="ryan" group="manager" timeout="6000" retries="0"/>
+    <dubbo:reference id="accessService" interface="com.cms.iservice.manager.role.accessService" protocol="dubbo" version="1.0.0" owner="ryan" group="manager" timeout="6000" retries="0"/>
+    <dubbo:reference id="stationService" interface="com.cms.iservice.manager.station.stationService" protocol="dubbo" version="1.0.0" owner="ryan" group="manager" timeout="6000" retries="0"/>
+    <dubbo:reference id="userGradeService" interface="com.cms.iservice.manager.user.userGradeService" protocol="dubbo" version="1.0.0" owner="ryan" group="manager" timeout="6000" retries="0"/>
+<!-- 
+	    <dubbo:reference id="userService" interface="com.cms.iservice.manager.user.userService" protocol="dubbo" version="1.0.0" owner="ryan" group="manager" timeout="6000" retries="0"/>
+		 <dubbo:reference id="roleService" interface="com.cms.iservice.manager.role.roleService" protocol="dubbo" version="1.0.0" owner="ryan" group="manager" timeout="6000" retries="0"/>
+   	<dubbo:reference id="dataRoleService" interface="com.cms.iservice.manager.role.dataRoleService" protocol="dubbo" version="1.0.0" owner="ryan" group="manager" timeout="6000" retries="0"/>
+      <dubbo:reference id="userShortcutMenuService" interface="com.cms.iservice.manager.login.userShortcutMenuService" protocol="dubbo" version="1.0.0" owner="ryan" group="manager" timeout="6000" retries="0"/>
+   
+ -->
+
+</beans>

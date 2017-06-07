@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cms.mapper.manager.baseInfo.menuMapper">
+	<sql id="ACCESS-PARAM">
+	    ca.id as id,
+	    ca.name as name,
+	    ca.pid as pid,
+	    ca.url as url,
+	    ca.icon as icon,
+	    ca.seq as seq,
+	    ca.status as status,
+	    ca.access_type as accessType,
+	    ca.description as description,
+        DATE_FORMAT(ca.create_time,'%Y-%m-%d %H:%i:%s') as createTime
+	</sql>
+	
+	<select id="getAccessListForUser" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.manager.menuBean">
+	    select distinct <include refid="ACCESS-PARAM"/> from  t_sys_menu aa INNER JOIN t_sys_role_access ra on ra.access_id=aa.id 
+ 		INNER JOIN t_sys_user u on u.role_id=ra.role_id where aa.access_type=#{accessType} and 
+	    u.id=#{userId}
+	    <if test="urlFlag!=null and urlFlag!=''">
+			and IFNULL(url,'') != ''
+		</if>
+	</select>
+	
+	<select id="getAllAccess" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.manager.menuBean">
+		select distinct <include refid="ACCESS-PARAM"/> from chppweb_access ca where ca.status = 1
+		<if test="flag==0">
+		    and access_type = 1
+		</if>
+		<if test="urlFlag!=null and urlFlag!=''">
+			and IFNULL(url,'') != ''
+		</if>
+		order by ca.seq
+	</select>
+	
+	<select id="accessList" parameterType="string" resultType="String">
+		select aa.url from chppweb_access ca
+		<if test="_parameter !=null and _parameter != '' and _parameter != 1">
+			INNER JOIN t_sys_role_access ra on ra.access_id=ca.id
+			INNER JOIN t_sys_user u on u.role_id=ra.role_id 
+			where u.id=#{_parameter}
+		</if>
+	</select>
+	
+	<update id="delete" parameterType="long" statementType="CALLABLE">
+	    {call delMenu(#{id})}
+	</update>
+	
+	<select id="getAccessById" parameterType="long" resultType="com.cms.model.manager.menuBean">
+	    select <include refid="ACCESS-PARAM"/> from chppweb_access ca where id=#{id}
+	</select>
+	
+	<update id="update" parameterType="com.cms.model.manager.menuBean">
+	    update chppweb_access set name=#{name},pid=#{pid},url=#{url},icon=#{icon},seq=#{seq},
+	    access_type=#{accessType},description=#{description} where id=#{id}
+	</update>
+	
+	<insert id="add" parameterType="com.cms.model.manager.menuBean">
+	    insert into chppweb_access (name,pid,url,icon,seq,access_type,description,create_time) values
+	    (#{name},#{pid},#{url},#{icon},#{seq},#{accessType},#{description},now())
+	</insert>
+	
+	<select id="userAccessGrid" parameterType="long" resultType="com.cms.model.manager.menuBean">
+		<if test="_parameter!='1' and _parameter!=1">
+			select distinct <include refid="ACCESS-PARAM"/> from chppweb_access aa INNER JOIN t_sys_role_access ra on ra.access_id=aa.id
+ 			INNER JOIN t_sys_user u on u.role_id=ra.role_id INNER JOIN t_sys_user_shortcut_menu tsm on tsm.access_menu_id=ra.access_id 
+ 			where aa.access_type=0 and tsm.user_id=#{_parameter} and IFNULL(url,'') != ''
+		</if>
+	    <if test="_parameter=='1' or _parameter==1">
+	    	select distinct <include refid="ACCESS-PARAM"/> from chppweb_access aa INNER JOIN t_sys_user_shortcut_menu tsm on aa.id=tsm.access_menu_id
+	    	where aa.status = 0 and aa.access_type = 0 and IFNULL(aa.url,'') != '' order by aa.seq
+	    </if>
+	</select>
+</mapper>

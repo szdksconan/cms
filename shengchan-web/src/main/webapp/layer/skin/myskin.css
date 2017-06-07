@@ -1,0 +1,10 @@
+.layui-layer-cms .layui-layer-title {
+    background: rgba(6, 111, 175, 0.73);
+    color: #fff;
+    border: none;
+}
+.layui-layer-cms .layui-layer-btn0{
+    border-color:rgba(6, 111, 175, 0.73); ;
+    background-color: rgba(6, 111, 175, 0.73); ;
+    /*color: #fff;*/
+}

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cms.mapper.basicinfo.IndustryMapper">
+	<resultMap type="com.cms.model.basicinfo.IndustryEntity" id="industry">
+		<id column="id"                 property="id"/>
+		<result column="code"           property="code"/>
+		<result column="name"       property="name"/>
+		<result column="keywords"         property="keywords"/>
+		<result column="spell"           property="spell"/>
+		<result column="status"           property="status"/>
+		<result column="level"           property="level"/>
+		<result column="superid"           property="superid"/>
+		<result column="remark"           property="remark"/>
+	</resultMap>
+	
+	<select id="getIndustrys" resultMap="industry">
+		select 
+			id,concat(code,'-',name) as name,code,superid,level,keywords,status,remark,spell
+		from t_cms_base_industry t 
+		<if test="superid!=null">
+			where t.superid = #{superid}
+		</if>
+		order by code asc
+	</select>
+	
+	<select id="getIndustryByID" resultMap="industry">
+		select 
+			id,concat(code,'-',name) as name,code,superid,level,keywords,status,remark,spell
+		from t_cms_base_industry t 
+		<if test="id!=null">
+			where t.id = #{id}
+		</if>
+		
+	</select>
+	
+	<insert id="addIndustry">
+		insert into t_cms_base_industry (id,code,name,keywords,spell,status,level,superid,remark) 
+		values (#{id},#{code},#{name},#{keywords},#{spell},#{status},#{level},#{superid},#{remark})
+	</insert>
+	
+	<update id="updateIndustry" >
+		update t_cms_base_industry set
+			code = #{code},
+			name = #{name},
+            keywords = #{keywords},
+            spell = #{spell},
+            status = #{status},
+			remark = #{remark}
+		<where>
+			id = #{id}
+		</where>
+	</update>
+
+	<!-- ********************* -->
+
+	<delete id="deleteIndustryByIds">
+		delete
+		from t_cms_base_industry
+		where id in
+		<foreach collection="array" item="item" open="(" close=")" separator=", ">
+			#{item}
+		</foreach>
+	</delete>
+</mapper>

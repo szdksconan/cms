@@ -1,0 +1,499 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>我的产品</title>
+    <meta charset="utf-8">
+    <script src="../js/common/tabs.js"></script>
+</head>
+<body class="bei">
+    <div class="cfw_x">
+   	<form method="post" id="purchaseNeedForm" >
+    <input type="hidden" id="id" name="id" value="${needBean.id}">
+   	<input type="hidden" id="needDetailId" > 
+   	<input type="hidden" id="needDetailDoc">
+   	<input type="hidden" id="needDetailJson" name="needDetailJson"  /> 
+   	<input type="hidden" id="needRuleJson" name="needRuleJson"   /> 
+   	<input type="hidden" id="needLinkJson" name="needLinkJson"   /> 
+   	<input type="hidden" id="purchaseNeedLinkstate" name="purchaseNeedLinkstate" />
+   	<input type="hidden" id="purchaseNeedState" name="purchaseNeedState" />
+   	<input type="hidden" id="delFileKeys"/>
+   	<input type="hidden" id="purchaseNeedType" name="purchaseNeedType" value="${needBean.purchaseNeedType}" /> 
+   	
+        <ul class="nav nav-tabs" role="tablist" id="tab-list">
+            <li ><a href="#" >物资需求发布</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="sc_tool" style="margin-left: 20px">
+                需求名称 ：
+                <input type="text" class="cmao_inplg" id="purchaseNeedName" name="purchaseNeedName"  style="width: 255px;"  value="${needBean.purchaseNeedName}" />
+                物资需求单号 ：
+                <input type="text" class="cmao_inplg" id="purchaseNeedNo" name="purchaseNeedNo" value="${needBean.purchaseNeedNo}"/>
+                
+               需求类型 ：
+                <select id="purchaseNeedTypeCombo"></select>
+
+            </div>
+        </div>
+    </form>
+    </div>
+    <div class="container">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab1" data-toggle="tab" style="color:black;">物资需求明细</a></li>
+        </ul>
+        <div class="tab-content">           
+           	<a href="javascript:void(0);" style="float: right;margin-top: 10px;margin-right: 10px;" id="expend"  onclick="showDetaiAdd();">∨展开</a>
+            <div class="tab-pane active tab_border">
+		            <div  id="tab1"  style="display: none;">
+		                <p>&nbsp;</p>
+		                <div class="sc_cgd" style="margin-top: inherit;margin-left: 20px">
+		                    <span>物资名称：<input type="text" id="needDetailName" class="cmao_inplg" /></span>
+		                    <span class="ml20">所属行业：<select id="needDetailIndustry"></select>
+		                    	<input type="hidden" id="needDetailIndustryName" />
+		                    </span>
+		                    <span class="ml20">物资类别：
+		                    	<span id="apply_goods"> 
+									  <select  class="materials1 selelct" id="type5" name="productTypeId"></select>
+									  <select  class="materials2 selelct" id="type6" name="productTypeId"></select>
+									  <select  class="materials3 selelct" id="type7" name="productTypeId"></select>
+									  <select  class="materials4 selelct" id="type8" name="productTypeId"></select>
+									  <input type="hidden" id="needDetailUnitName" />
+									</span>
+		
+		                    </span>
+		                </div>
+		                <div class="sc_cgd" style="margin-left: 20px">
+		                     <span >物资类型：<select id="needDetailNo"></select>
+		                     <input type="hidden" id="needDetailNo1" class="cmao_inplg"/></span>
+		                     <span class="ml20">规格型号：<input type="text" id="needDetailType" class="cmao_inplg" /></span>
+		                    <span class="ml20">采购数量：<input type="number" id="needDetailNum" class="cmao_inplg" min="0" /></span>
+		                   	<div id="unitDiv2" style="display: inline-block">
+		                    	<select class="unitSelect select" id="needDetailUnit" onchange="changeUnit();" ></select>
+		                	</div>
+		                </div>
+		                <div class="sc_cgd" style="margin-left: 20px">
+		                    <span>交货日期：<input type="text" id="needDetailDeliveryTime"  class="laydate-icon" onclick="laydate()"/> </span>
+		                    <span> <button class="btn btn-blue btn-w100" type="button" onclick="addOrUpdateNeedDetail();">保存</button></span>
+		                </div>
+		                <div class="sc_cgd clearfix" style="margin-left: 20px">
+		                	<span class="pull-left">文件附件：</span>
+		                	<form method="post" id="uploadForm" enctype="multipart/form-data">
+								<div class="upload-box tab-upload">
+									<div class="statusBar">
+										<button type="button" class="btn btn-blue upload-btn" id="uploadID">上传图片</button>
+									</div>
+									<ul class="uploadList clearfix" id="List">
+									</ul>
+									<div class="placeholder">
+										<p>您还没有上传任何图片，快去上传吧</p>
+									</div>
+								</div>
+							</form>	
+		                </div>
+					</div>	
+				<div>
+                <p>&nbsp;</p>
+                <p >&nbsp;</p>
+                <p>&nbsp;</p>
+                <table id="table" class="table1 mt10">
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--交易规则-->
+    <div class="container" style="margin-top: 20px;">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab_jygz" data-toggle="tab" style="color:black;">交易规则</a></li>
+            <li><a href="#tab_lxxx" data-toggle="tab" style="color:black;">联系信息</a></li>
+        </ul>
+        <div class="tab-content" >
+            <div class="tab-pane active tab_border tab430" id="tab_jygz">
+                <div class="sc_jy" style="float: inherit;margin-left: 20px">
+                    <table>
+                        <tr>
+                            <td>
+	                            <span>交易规则名称:<select id="ruleIdCombo"></select>
+	                            	     <input type="hidden" id="ruleId" >
+	                            		 <input type="hidden" id="needRuleName" >
+	                            		  <input type="hidden" id="needRuleId" >
+	                            </span>
+	                            <span style="margin-left: 26px;">编制人:<input id="createUser" type="text" class="cmao_input"  disabled="disabled"/></span>
+	                            <span>编制时间:<input id="createTime" type="text"  class="laydate-icon" onclick="laydate()"  disabled="disabled"/></span>
+                            </td>
+                        </tr>
+                        <tr>
+                    		<td >
+		                    	<span>适用物资:<input id="needRuleApply" type="hidden" class="cmao_input" /></span>
+		                    		
+		      					<div id="ruleApply">
+		      			
+		      					
+		      					 </div>	
+		      					 
+		                    </td>
+                        </tr>   
+                        <tr>
+                    		<td >
+		                    	<span>物资来源:<input type="text" city="true" class="cmao_input" id="sellCity" style="width: 140px;"/></span>
+		                   			<div class="detail-product-r-down clearfix" id="_areas"></div>
+		                    </td>
+                        </tr>      
+                        <tr>
+                            <td>
+                                 <span>
+                                    付款方式:
+                                    <input id="needRulePaytype" type="text" class="cmao_input"  disabled="disabled"/>
+                                     </span>
+                             
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <span>
+                                 交易规则描述：
+                                <textarea id="needRuleDesc"  class="sc_tarea" cols="80" rows="17"
+                                          ></textarea>
+                                          </span>
+                            </td>
+                        </tr>
+                    </table>
+                    <p>&nbsp;</p>
+                </div>
+
+
+            </div>
+            <div class="tab-pane tab_border tab430" id="tab_lxxx">
+                <div class="sc_lx" style="float: inherit">
+                    <ul id="linkManList">
+                        <li id="linkManDetail">
+                            <span>联系人 ：<select id="needLinkmanPidCombo"></select> 
+                            <input type="hidden" id="needLinkmanId"/>
+                            <input type="hidden" id="needLinkmanName"/>
+                            <input type="hidden" id="needLinkmanPid"/>
+                            </span>
+                            <span class="ml26">联系电话 ：</span>
+                            <input type="text" class="cmao_input" id="needLinkmanPhone"/>
+                            <span class="ml26">传真 ：</span>
+                            <input type="text" class="cmao_input " id="needLinkmanFax" />
+                            <span class="ml26">电子邮件 ：</span>
+                            <input type="text" class="cmao_input " id="needLinkmanEmail" />
+                            <img src="../images/k-4.jpg" onclick="addLinkMan();">
+                        </li>
+                        <li id="linkManDetail2" style="display: none;">
+                        	<span>联系人 ： <input type="text" class="cmao_input" id="needLinkmanName2" />
+                        		 <input type="hidden" id="needLinkmanId2"/>
+                        	 </span>
+                            <span class="ml10">联系电话 ：</span>
+                            <input type="text" class="cmao_input" id="needLinkmanPhone2"/>
+                            <span class="ml26">传真 ：</span>
+                            <input type="text" class="cmao_input " id="needLinkmanFax2"/>
+                            <span class="ml26">电子邮件 ：</span>
+                            <input type="text" class="cmao_input "  id="needLinkmanEmail2"/>
+                            <img src="../images/k-5.jpg" onclick="delLinkMan('linkManDetail2');">
+                        </li>
+                        <li id="linkManDetail3" style="display: none;">
+                        	<span>联系人 ： <input type="text" class="cmao_input" id="needLinkmanName3"/> 
+                        		 <input type="hidden" id="needLinkmanId3"/>
+                        	</span>
+                            <span class="ml10">联系电话 ：</span>
+                            <input type="text" class="cmao_input" id="needLinkmanPhone3"/>
+                            <span class="ml26">传真 ：</span>
+                            <input type="text" class="cmao_input " id="needLinkmanFax3"/>
+                            <span class="ml26">电子邮件 ：</span>
+                            <input type="text" class="cmao_input " id="needLinkmanEmail3"/>
+                            <img src="../images/k-5.jpg" onclick="delLinkMan('linkManDetail3');">
+                        </li>
+                        <li>
+                         
+                                                                      联系信息是否公开：
+                                &nbsp;
+                                <input type="radio" name="radio3"  value="1"/>
+                                <label for="radio3">是</label>
+                                &nbsp;
+                                <input type="radio" name="radio3"  value="0"/>
+                                <label for="radio4">否</label>
+                     
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <ul class="tex_m sc_daig sc-daig-item">
+      <li>
+          <button class="btn btn-gray  btn-w100" type="button" onclick="purchaseNeedFb(5);">暂存</button>&nbsp;
+          <button class="btn btn-blue btn-w100" type="button" onclick="purchaseNeedFb(6);">发布</button>
+      </li>
+    </ul>
+    <p>&nbsp;</p>
+    <div class="container">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab-basicinfo" data-toggle="tab" style="color:black;">供应商</a></li>
+                    <li><a href="#tab-cominfo" data-toggle="tab" style="color:black;">物资</a></li>
+                </ul>
+                <div class="tab-content" >
+                    <div class="tab-pane active tab_border" id="tab-basicinfo">
+                        <div class="sc_gy" >
+                            <p class="sc_f">广州很远包装材料公司</p>
+                            <p class="sc_la"><img src="../images/shenchans/sc_g1.jpg">广州很远包装材料公司<img src="../images/shenchans/sc_g2.jpg"><a class="red">6年</a> <img src="../images/shenchans/sc_g3.jpg"></p>
+                            <ul >
+                                <li>
+                                    主营产品：橡胶泡沫
+                                </li>
+                                <li>
+                                    所在地：广州市 白云区 太和镇
+                                </li>
+                                <li>
+                                    员工人数：51-100人
+                                </li>
+                                <li>
+                                    资质证书>厂房设备图>更多公司信息
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="sc_gy sc_gy1" >
+
+                            <ul >
+                                <li>
+                                    主营产品：橡胶泡沫
+                                </li>
+                                <li>
+                                    所在地：广州市 白云区 太和镇
+                                </li>
+                                <li>
+                                    员工人数：51-100人
+                                </li>
+                                <li>
+                                    资质证书>厂房设备图>更多公司信息
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="sc_gy" >
+                            <p class="sc_f">广州很远包装材料公司</p>
+                            <p class="sc_la"><img src="../images/shenchans/sc_g1.jpg">广州很远包装材料公司<img src="../images/shenchans/sc_g2.jpg"><a class="red">6年</a> <img src="../images/shenchans/sc_g3.jpg"></p>
+                            <ul >
+                                <li>
+                                    主营产品：橡胶泡沫
+                                </li>
+                                <li>
+                                    所在地：广州市 白云区 太和镇
+                                </li>
+                                <li>
+                                    员工人数：51-100人
+                                </li>
+                                <li>
+                                    资质证书>厂房设备图>更多公司信息
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="sc_gy sc_gy1" >
+
+                            <ul >
+                                <li>
+                                    主营产品：橡胶泡沫
+                                </li>
+                                <li>
+                                    所在地：广州市 白云区 太和镇
+                                </li>
+                                <li>
+                                    员工人数：51-100人
+                                </li>
+                                <li>
+                                    资质证书>厂房设备图>更多公司信息
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="sc_gy " >
+                            <p class="sc_f">广州很远包装材料公司</p>
+                            <p class="sc_la"><img src="../images/shenchans/sc_g1.jpg">广州很远包装材料公司<img src="../images/shenchans/sc_g2.jpg"><a class="red">6年</a> <img src="../images/shenchans/sc_g3.jpg"></p>
+                            <ul >
+                                <li>
+                                    主营产品：橡胶泡沫
+                                </li>
+                                <li>
+                                    所在地：广州市 白云区 太和镇
+                                </li>
+                                <li>
+                                    员工人数：51-100人
+                                </li>
+                                <li>
+                                    资质证书>厂房设备图>更多公司信息
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="sc_gy sc_gy1" >
+
+                            <ul >
+                                <li>
+                                    主营产品：橡胶泡沫
+                                </li>
+                                <li>
+                                    所在地：广州市 白云区 太和镇
+                                </li>
+                                <li>
+                                    员工人数：51-100人
+                                </li>
+                                <li>
+                                    资质证书>厂房设备图>更多公司信息
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="sc_gy " >
+                            <p class="sc_f">广州很远包装材料公司</p>
+                            <p class="sc_la"><img src="../images/shenchans/sc_g1.jpg">广州很远包装材料公司<img src="../images/shenchans/sc_g2.jpg"><a class="red">6年</a> <img src="../images/shenchans/sc_g3.jpg"></p>
+                            <ul >
+                                <li>
+                                    主营产品：橡胶泡沫
+                                </li>
+                                <li>
+                                    所在地：广州市 白云区 太和镇
+                                </li>
+                                <li>
+                                    员工人数：51-100人
+                                </li>
+                                <li>
+                                    资质证书>厂房设备图>更多公司信息
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="sc_gy sc_gy1" >
+
+                                <ul >
+                                    <li>
+                                        主营产品：橡胶泡沫
+                                    </li>
+                                    <li>
+                                        所在地：广州市 白云区 太和镇
+                                    </li>
+                                    <li>
+                                        员工人数：51-100人
+                                    </li>
+                                    <li>
+                                        资质证书>厂房设备图>更多公司信息
+                                    </li>
+                                </ul>
+                            </div>
+                    </div>
+                    <div class="tab-pane tab_border" id="tab-cominfo">
+                        物资内容
+                    </div>
+                </div>
+    </div>
+    <div class="sc_gym"><img src="../images/fanye.jpg"></div>
+</body>
+</html>
+<script src="../js/purchase/c_wuzixuqiu_fb.js"></script>
+<script>
+	$(function () {
+		
+		var id = $('#id').val();
+		
+		
+		
+// 		setTimeout(function(){
+				if(id != ''){
+// 					console.info(id);
+				var reciveNeedDetailJson =  $.parseJSON('${needBean.needDetailJson}');
+				
+				var reciveNeedRuleJson =  $.parseJSON('${needBean.needRuleJson}');
+				
+				var reciveNeedLinkJson =  $.parseJSON('${needBean.needLinkJson}');
+				
+				var reciveLinkstate = $.parseJSON('${needBean.purchaseNeedLinkstate}');
+				
+		// 		console.info(reciveNeedDetailJson);
+		// 		console.info(reciveNeedRuleJson);
+		// 		console.info(reciveNeedLinkJson);
+		// 		console.info(reciveLinkstate);
+				
+			    //返还物资明细数据
+			
+				$('#table').bootstrapTable('load',reciveNeedDetailJson);
+			  
+			  	//返还联系人信息数据
+			  	for(var i=0;i<reciveNeedLinkJson.length;i++){
+			  		
+			  		var linkman = reciveNeedLinkJson[i];
+			  		
+			  		if(linkman.pid != undefined){
+			  			
+			  			$("#needLinkmanId").val(linkman.id);
+			  			
+			  			$("#needLinkmanPid").val(linkman.pid);
+			  			
+			  			$("#needLinkmanName").val(linkman.needLinkmanName);
+			  			
+			  			$("#needLinkmanPhone").val(linkman.needLinkmanPhone);
+			  			
+			  			$("#needLinkmanFax").val(linkman.needLinkmanFax);
+			  			
+			  			$("#needLinkmanEmail").val(linkman.needLinkmanEmail);
+			  		}
+			  		else{
+			  				var num = i+1
+			  				
+			  			
+			  				
+			  				$('#linkManDetail'+num).css('display','block');
+			  				
+			  				$("#needLinkmanId"+num).val(linkman.id);
+				  			
+				  			$("#needLinkmanName"+num).val(linkman.needLinkmanName);
+				  			
+				  			$("#needLinkmanPhone"+num).val(linkman.needLinkmanPhone);
+				  			
+				  			$("#needLinkmanFax"+num).val(linkman.needLinkmanFax);
+				  			
+				  			$("#needLinkmanEmail"+num).val(linkman.needLinkmanEmail);
+			  			
+			  		}
+			  			
+			  			
+			  	}
+			  	
+			  	//返还采购规则信息
+			  	
+				$("#needRuleId").val(reciveNeedRuleJson.id);
+				
+				$('#ruleId').val(reciveNeedRuleJson.ruleId);
+				
+				$('#needRuleName').val(reciveNeedRuleJson.needRuleName);
+		  	  
+		  	  	$("#createUser").val(reciveNeedRuleJson.createUser);
+		  	  
+		  	 	$("#createTime").val(reciveNeedRuleJson.createTime);
+		  	  
+		  	  	$("#needRuleApply").val(reciveNeedRuleJson.needRuleApply);
+		  	  
+		  	 	$("#needRulePaytype").val(reciveNeedRuleJson.needRulePaytype);
+		  	  
+		     	$("#needRuleDesc").val(reciveNeedRuleJson.needRuleDesc);
+		
+				for(var i=0;i<reciveNeedRuleJson.areaList.length;i++){
+					
+					var area = reciveNeedRuleJson.areaList[i];
+					
+					var lyd = '<div class="area-tip-input"><span class="rule-tip" data-id="'+area.provinceId+'-'+area.cityId+'-'+area.areaId+'">'+area.province+'-'+area.city+'-'+area.area+'</span><span class="del" onclick="delobj(this)"></span></div>'
+					
+    				$('#_areas').append(lyd);
+				
+				}
+		     	$('[name="radio3"]').each(function(i) {
+		            var value = $(this).val();
+		            if (value == reciveLinkstate)
+		                $(this).attr("checked", "checked");
+		            else
+		                $(this).attr("checked", false);
+		        });
+		     	
+				}
+		
+			});
+// 	}, 1000);
+</script>

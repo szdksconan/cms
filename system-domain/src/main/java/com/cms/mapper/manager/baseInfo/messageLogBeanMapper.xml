@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.manager.baseInfo.messageLogMapper" >
+	<sql id="MESSAGELOG-PARAM">
+		  create_date as createDate,
+		  login,
+		  tel,
+		  car_no as carNo,
+		  order_desc as orderDesc ,
+		  message_desc as messageDesc
+	</sql>
+	
+	<select id="dataGrid" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.manager.messageLogBean">
+	  SELECT <include refid="MESSAGELOG-PARAM"/> 
+	  from t_sys_message_log  where 1=1
+	     <if test="login!=null and login!=''">
+	          and login like concat('%',#{login},'%')
+	    </if>
+	    <if test="tel!=null and tel!=''">
+	           and tel like concat('%',#{tel},'%')
+	    </if>
+	    <if test="createDate1!=null and createDate1!=''">
+	           and create_date &gt;= #{createDate1}
+	    </if>
+	      <if test="createDate2!=null and createDate2!=''">
+	           and create_date  &lt;= #{createDate2}
+	    </if>
+	    <if test="order!=null and order!=''">
+	        ${order}
+	    </if>
+	</select>
+	
+	<select id="dataGridCot" parameterType="com.alibaba.fastjson.JSONObject" resultType="int">
+	  SELECT count(1) from t_sys_message_log  where 1=1
+	     <if test="login!=null and login!=''">
+	          and login like concat('%',#{login},'%')
+	    </if>
+	    <if test="tel!=null and tel!=''">
+	           and tel like concat('%',#{tel},'%')
+	    </if>
+	    <if test="createDate1!=null and createDate1!=''">
+	           and create_date &gt;= #{createDate1}
+	    </if>
+	      <if test="createDate2!=null and createDate2!=''">
+	           and create_date  &lt;= #{createDate2}
+	    </if>
+	</select>
+</mapper>

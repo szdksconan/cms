@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cms.mapper.manager.role.dataRoleMapper">
+	<sql id="DATAROLE-PARAM">
+	    tar.id as id,
+	    tar.name as name,
+	    tar.seq as seq,
+	    tar.status as status,
+	    tar.description as description,
+	    tar.company_id as companyId
+	</sql>
+	
+	<select id="dataGrid" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.manager.dataRoleBean">
+	    select <include refid="DATAROLE-PARAM"/> from t_sys_datarole tar where 1=1 
+	    <if test="status!=null and status!=''">
+	    	and status=#{status}
+	    </if>
+	    <if test="order!=null and order!=''">
+	        ${order}
+	    </if>
+	</select>
+	
+	<select id="dataGridCot" parameterType="com.alibaba.fastjson.JSONObject" resultType="int">
+	    select count(1) from t_sys_datarole tar where 1=1 
+	    <if test="status!=null and status!=''">
+	    	and status=#{status}
+	    </if>
+	</select>
+	
+	<select id="get" parameterType="long" resultType="com.cms.model.manager.dataRoleBean">
+	    select <include refid="DATAROLE-PARAM"/>,GROUP_CONCAT(tsd.subcompany_id) subIds from t_sys_datarole tar left join t_sys_subcompany_datarole tsd on tar.id=tsd.datarole_id where tar.id=#{id}
+	</select>
+	
+	<update id="update" parameterType="com.cms.model.manager.dataRoleBean">
+	    update t_sys_datarole set name=#{name},description=#{description} where id=#{id}
+	</update>
+	
+	<insert id="add" parameterType="com.cms.model.manager.dataRoleBean">
+	    insert into t_sys_datarole (name,description) values (#{name},#{description})
+	</insert>
+	
+	<delete id="delete" parameterType="long">
+	    delete from t_sys_datarole where id=#{id}
+	</delete>
+	
+	<delete id="delGrant" parameterType="com.alibaba.fastjson.JSONObject">
+	    <if test="type=='dataRole'">
+	        delete from t_sys_subcompany_datarole where datarole_id=#{id}
+	    </if>
+	    <if test="type=='subcompany'">
+	        delete from t_sys_subcompany_datarole where subcompany_id=#{id}
+	    </if>
+	</delete>
+	
+	<update id="addGrant" parameterType="com.alibaba.fastjson.JSONObject">
+	    replace into t_sys_subcompany_datarole (datarole_id,subcompany_id) values 
+	    <foreach collection="array" index="index" item="item" separator=",">
+	        (#{id},#{item})
+	    </foreach>
+	</update>
+</mapper>

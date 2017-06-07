@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cms.mapper.manager.cargoods.loginUserMapper">
+	<sql id="LOGINUSER-PARAM">
+		id as id,
+		login_pwd as loginPwd,
+		pay_pwd as payPwd,
+		can_consume as canConsume,
+		check_date as checkDate,
+		register_date as registerDate,
+		update_flag as upateFlag,
+		user_create as userCreater,
+		sys_create as sysCreater,
+		status,
+		name as name,
+		sex as sex
+	</sql>
+	
+	<select id="getInfo" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.manager.loginUserBean">
+		select <include refid="LOGINUSER-PARAM"/> from t_sys_loginuser where id=#{id}
+	</select>
+	
+	<insert id="insert" parameterType="com.cms.model.manager.loginUserBean">
+		insert into t_sys_loginuser (id,login_pwd,check_date,register_date,update_flag,sys_create) values (#{id},#{loginPwd},now(),now(),1,#{sysCreater})
+	</insert>
+	
+	<update id="update" parameterType="com.alibaba.fastjson.JSONObject">
+		<if test="updateType=='status'">
+			update t_sys_loginuser set status=#{status} where id=#{id}
+		</if>
+		<if test="updateType=='pwd'">
+			update t_sys_loginuser set login_pwd=#{pwd} where id=#{id}
+		</if>
+	</update>
+	
+	<select id="get" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.alibaba.fastjson.JSONObject">
+		select login.id as id,
+		login.pay_pwd as payPwd,login.login_pwd as loginPwd,login.name as name,login.sex as sex,
+		acc.account_type as accountType,dri.tel1,dri.tel2,dri.address as `add`,dri.qq,
+		com.company_add as companyAdd,com.company_tel1 as companyTel1,
+		com.company_tel2 as companyTel2,com.company_garden as garden 
+		from t_sys_loginuser login LEFT JOIN t_sys_account acc on login.id=acc.id 
+		LEFT JOIN t_sys_driver dri on login.id=dri.id 
+		LEFT JOIN t_sys_company com on login.id=com.id 
+		where login.id=#{id}
+	</select>
+	
+	<update id="updateAudit" parameterType="com.alibaba.fastjson.JSONObject">
+		update t_sys_loginuser set status=#{status},remark=#{remark} where id=#{id}
+	</update>
+	
+	<update id="updateInfo" parameterType="com.alibaba.fastjson.JSONObject">
+		update t_sys_loginuser set name=#{name},sex=#{sex} where id=#{id}
+	</update>
+	
+	<update id="updateLoginPwd" parameterType="com.alibaba.fastjson.JSONObject">
+		update t_sys_loginuser set login_pwd=#{loginPwd} where id=#{id}
+	</update>
+	
+	<update id="updatePayPwd" parameterType="com.alibaba.fastjson.JSONObject">
+		update t_sys_loginuser set pay_pwd=#{payPwd} where id=#{id}
+	</update>
+	
+	<update id="updateTel" parameterType="com.alibaba.fastjson.JSONObject">
+		update t_sys_driver set tel1=#{tel1},tel2=#{tel2} where login=#{id}
+	</update>
+</mapper>

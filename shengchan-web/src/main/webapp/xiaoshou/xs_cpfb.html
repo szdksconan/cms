@@ -1,0 +1,292 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<link rel="stylesheet" type="text/css" href="../css/common/qiyezhongxin.css" />
+<!DOCTYPE html>
+<html>
+<head>
+<title>产品发布</title>
+<meta charset="utf-8">
+<style>
+.text {
+	line-height: 22px;
+	padding: 0 6px;
+	color: #666;
+	border: solid 1px #066FAF
+}
+
+.sc_jy table tr td {
+	width: 15%;
+}
+</style>
+</head>
+<div class="bei">
+	<!-- <span class="ml27">生产企业>物资采购>委托代工单</span> -->
+	<form method="post" id="cpxsform" enctype="multipart/form-data">
+        <input type="hidden" id="productBeanStr" name="productBeanStr" />
+        <input type="hidden" id="productSellRuleStr" name="productSellRuleStr" />
+        <input type="hidden" id="mainProductPicName" name="mainProductPicName" value="mainProductPic" />
+        <input type="hidden" id="mainProductPicNameTrue" name="mainProductPicNameTrue" value="mainProductPicTrue" />
+        <input type="hidden" id="state" name="state" value="201" />
+        <input type="hidden" id="brandName" name="brandName" value="" />
+        <input type="hidden" id="productSetName" name="productSetName" value="" />
+        <input type="hidden" id="delMainFileKeys" name="delMainFileKeys"/>
+        <input type="hidden" id="delProductIds" name="delProductIds"/>
+        <input type="hidden" id="delProductRuleIds" name="delProductRuleIds"/>
+        <input type="hidden" id="mainProductId" name="id"/>
+        <input type="hidden" id="companyId" name="companyId" value="1312312313"/>
+        <input type="hidden" id="productTypeName" name="productTypeName"/>
+        <input type="hidden" id="setIntroduce2" name="setIntroduce"/>
+        <input type="hidden" id="productStyleName" name="productStyleName"/>
+	    <div class="container">
+            <ul class="nav nav-tabs" role="tablist" id="tab-list">
+                <li class="active"><a href="#" data-toggle="tab" style="color: black;">产品基本信息</a></li>
+            </ul>
+            <div class="tab-content tab-cpfb">
+			<!--基本信息-->
+			    <div class="tab-pane active" id="cfw_cs">
+                    <div class="select-group clearfix">
+                    	<div class="pull-left" style="width: 50%;">
+                    		<p class="select-group-item">
+                    			<span class="select-group-item-lable">品牌：</span>
+                    			<select id="brandId" name="brandId"></select>
+                                <button type="button" class="btn btn-blue btn-sm" id="brandEdit">编辑</button>
+                    		</p>
+                    		<p class="select-group-item">
+                    			<span class="select-group-item-lable">产品名称：</span>
+                    			<input name="productName" id="productName" type="text" class="cmao_inplg " style="width: 400px;" value=""/>
+                    		</p>
+                    		<p class="select-group-item" style="display: inline-block">
+                    			<span class="select-group-item-lable">产品类别：</span>
+                                <div id="element_id" style="display: inline-block">
+                                    <select class="materials1 selelct" id="productTypeId_1" name="productTypeId"></select>
+                                    <select class="materials2 selelct" id="productTypeId_2" name="productTypeId"></select>
+                                    <select class="materials3 selelct" id="productTypeId_3" name="productTypeId"></select>
+                                    <select class="materials4 selelct" id="productTypeId_4" name="productTypeId"></select>
+                                </div>
+                    		</p>
+                    		<p class="select-group-item" style="display: inline-block">
+                    			<span class="select-group-item-lable">物资类型：</span>
+                                <select class="selelct" id="productStyleId" name="productStyleId">
+                                    <option value="44">成品</option>
+                                    <option value="45">半成品</option>
+                                    <option value="46">原材料</option>
+                                    <option value="47">配套件</option>
+                                </select>
+                    		</p>
+                    		<p class="select-group-item">
+                    			<span class="select-group-item-lable">产品介绍：</span>
+                    			<textarea id="setIntroduce" class="sc_tarea " style="width: 400px;height: 100px;" cols="80" rows="17" placeholder=""></textarea>
+                    		</p>
+                    	</div>
+						<div class="upload-box singleUpload">
+							<div class="placeholder">
+								<p>请上传图片</p>
+							</div>
+							<ul class="uploadList clearfix" id="uploadList2">
+							</ul>
+							<div class="statusBar">
+								<button type="button" class="btn btn-blue upload-btn" id="upload2">上传图片</button>
+							</div>
+						</div>
+                    </div>
+                </div>
+            </div>
+	    </div>
+		<div class="container" style="margin-top: 20px;">
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="#cptwjs" data-toggle="tab" style="color: black;">宣传图片</a></li>
+			</ul>
+			<div class="tab-content tab-cpfb">
+				<div class="tab-pane active" id="cptwjs">
+					<div class="sc_jy">
+						<div class="upload-box" id="main">
+							<div class="statusBar">
+								<button type="button" class="btn btn-blue upload-btn" name="upload">上传图片</button>
+							</div>
+							<ul class="uploadList clearfix" id="uploadList">
+							</ul>
+							<div class="placeholder">
+								<p>您还没有上传任何图片，快去上传吧</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>	
+        <div class="container" style="margin-top: 20px;">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#cplb" data-toggle="tab" style="color: black;">规格型号</a></li>
+                <div class="tab-title">
+                    <button id="btn_addproduct" class="btn btn-blue btn-w100" type="button">录入</button>
+                </div>
+            </ul>
+            <div class="tab-content tab-cpfb">
+                <div class="tab-pane active" id="cplb">
+                    <table id="table_1"></table>
+                </div>
+            </div>
+        </div>
+        <div class="container" style="margin-top: 20px;">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#cplb" data-toggle="tab" style="color: black;">销售规则</a></li>
+                <div class="tab-title" id="toolbar">
+                   	<button id="btn_addrule" class="btn btn-blue btn-w100" type="button">录入</button>
+                </div>
+            </ul>
+            <div class="tab-content tab-cpfb">
+                <div class="tab-pane active">
+                    <table id="table_2" >
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="sc_daig sc-daig-item tex_m" id="footpanel">
+            <a class="btn btn-hui btn-w80" type="button" id="cpzc">暂存</a> &nbsp;
+            <button class="btn btn-blue btn-w80" type="button" id="cpfb">发布</button>
+            <a class="btn btn-hui btn-w80" type="button" id="btn_close">取消</a>
+        </div>
+    </form>
+    <form  id="ruleform">
+
+    </form>
+	 <div id="brandBox" class="layer-sm-box">
+
+
+    </div>
+<!--     <div id="productBox" class="layer-sm-box" style="display: none;"> -->
+<!-- 		<p style="margin-bottom: 20px;"><span>系列名称：</span><input type="text" class="cmao_inplg"/></p> -->
+<!-- 		<table id="tabProduct"></table> -->
+<!--     </div> -->
+</div>
+</html>
+<script src="../js/xiaoshou/xs_cpfb.js"></script>
+<script>
+    var obj;
+    $(document).ready(function() {
+        $.cxSelect.defaults.emptyStyle = 'none';
+        $("#element_id").cxSelect({
+            url:'../js/common/productJson.json',
+            selects : ['materials1','materials2','materials3','materials4'],
+            nodata: 'none'
+        });
+        try{
+            obj=$.parseJSON('${mainProductBean.json}');
+            if (obj.state!=201){
+                $('#cpzc').remove();
+            }
+            $('#brandId').multiselect('select',obj.brandId);
+            $('#productName').val(obj.productName);
+            $('#setIntroduce').val(obj.setIntroduce);
+            $('#mainProductId').val(obj.id);
+            $('#productStyleId').val(obj.productStyleId);
+            $('#productStyleName').val(obj.productStyleName);
+            var _productTypeIdArray = obj.productTypeId.split(',');
+            for (var i=0;i<_productTypeIdArray.length;i++){
+                if (_productTypeIdArray[i]!=''){
+                    $('#productTypeId_'+(i+1)).attr('data-value',_productTypeIdArray[i]);
+                }
+            }
+            var _docArray = new Array();
+            var _mainDocArray = new Array();
+            var _keyArray = new Array();
+            var _mainKeyArray = new Array();
+            for (var i=0;i<obj.mainDocList.length;i++){
+                var mainDoc = obj.mainDocList[i];
+                if (mainDoc.isMain){
+                    _mainDocArray.push(mainDoc.fileUrl);
+                    _mainKeyArray.push(mainDoc.id);
+                }else {
+                    _docArray.push(mainDoc.fileUrl);
+                    _keyArray.push(mainDoc.id);
+                }
+            }
+            if (_docArray.length!=0){
+                $('#uploadList').loadPreview({
+                    imgArray:_docArray,
+                    keyArray:_keyArray,
+                    update:true,
+                    delObject:$('#delMainFileKeys')
+                });
+            }
+            if (_mainDocArray.length!=0){
+                $('#uploadList2').loadPreview({
+                    imgArray:_mainDocArray,
+                    keyArray:_mainKeyArray,
+                    update:true,
+                    delObject:$('#delMainFileKeys')
+                });
+            }
+            for (var i=0;i<obj.productBeanList.length;i++){
+                var product = obj.productBeanList[i];
+                var _para = iteratorPara(product.productParameterBeanList);
+                var row = {id:product.id,productCode:product.productCode,productModelSize:product.productModelSize,unitName:product.unitName,unitId:product.unitId,
+                    warehouseBalance:product.warehouseBalance,productConfig: (_para.str.length==0 ?_para.str:_para.str.substr(1,_para.str.length)),
+                    productConfigObj:_para.productConfigObj,industryId:product.industryId,industryName:product.industryName,ipoTime:product.ipoTime,
+                    createTime:product.createTime,productDocBeanList:product.productDocBeanList
+                };
+                $('#table_1').bootstrapTable('insertRow',{index:i,row:row});
+            }
+            for (var i=0;i<obj.productSellRuleBeanList.length;i++){
+                var sellRule = obj.productSellRuleBeanList[i];
+                var sellRuleAreaList = obj.productSellRuleBeanList[i].productSellRuleAreaBeanList;
+                var _area = iteratorArea(sellRuleAreaList);
+                var row = {id:sellRule.id,sellType:sellRule.sellType,ruleArea:_area.ruleArea,payType:sellRule.payType,ruleAreaCode:_area.ruleAreaCode,
+                    rulePrice:iteratorPrice(sellRule.productPriceBeanList),productPriceBeanList:sellRule.productPriceBeanList,deposit:sellRule.deposit,
+                    updateTime:sellRule.updateTime,updator:sellRule.updator,applyProductType:sellRule.applyProductType,produceDutyExplain:sellRule.produceDutyExplain,
+                    traderDutyExplain:sellRule.traderDutyExplain,aftermarketExplain:sellRule.aftermarketExplain,ruleId:sellRule.ruleId,
+                    ruleName:sellRule.ruleName,sellRuleAreaList:sellRuleAreaList
+                };
+                $('#table_2').bootstrapTable('insertRow',{index:i,row:row});
+            }
+        }catch(e){}
+    });
+
+    function iteratorPara(array){
+        var obj={};
+        var str='';
+        var key='';
+        var productConfigObj={};
+        for (var i=0;i<array.length;i++){
+            str+=','+array[i].parameterName+':'+array[i].parameterValue;
+            key+=','+array[i].parameterName;
+            productConfigObj[array[i].parameterName]=array[i].parameterValue;
+        }
+        key = key.length==0?key:key.substr(1,key.length);
+        productConfigObj.key=key;
+        obj.str=str;
+        obj.productConfigObj=productConfigObj;
+        return obj;
+    }
+
+    function iteratorArea(array){
+        var _area={};
+        var ruleArea='';
+        var ruleAreaCode='';
+        for (var i=0;i<array.length;i++){
+            var provinceName = array[i].provinceName||'';
+            var provinceId = array[i].provinceId||'';
+            var cityName = array[i].cityName||'';
+            var cityId = array[i].cityId||'';
+            var areaName = array[i].areaName||'';
+            var areaId = array[i].areaId||'';
+            ruleArea+=','+(provinceName==''?'':provinceName)+(cityName==''?'':'-'+cityName)+(areaName==''?'':'-'+areaName);
+            ruleAreaCode+=','+(provinceId==''?'':provinceId)+(cityId==''?'':'-'+cityId)+(areaId==''?'':'-'+areaId);
+        }
+        _area.ruleArea=ruleArea.length!=0?ruleArea.substr(1,ruleArea.length):ruleArea;
+        _area.ruleAreaCode=ruleAreaCode.length!=0?ruleAreaCode.substr(1,ruleAreaCode.length):ruleAreaCode;
+        return _area;
+    }
+
+    function iteratorPrice(array){
+        var _obj={};
+        for (var i=0;i<array.length;i++){
+            _obj[array[i].productCode]=array[i].price;
+        }
+        return _obj;
+    }
+
+    $('#btn_close').click(function(){
+        changeContent('../xiaoshou/xs_cpxxgl.html','right');
+    });
+</script>
+

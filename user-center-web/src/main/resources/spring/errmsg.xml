@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<errmsgs>
+
+	<errmsg><key>SYS_ROLE_ROLENAME_EXIST</key><msg>角色名{0}已经存在</msg></errmsg>
+	<errmsg><key>DATA_REFERED</key><msg>{1}（{0}）已经被使用,请勿删除</msg></errmsg>
+	<errmsg><key>SYS_USERNO_EXIST</key><msg>用户编号{0}已经存在</msg></errmsg>
+	<errmsg><key>BRANCH_INNERNO_EXIST</key><msg>核心机构号{0}已经存在</msg></errmsg>
+	
+	<errmsg><key>SRV_ERR_001</key><msg>服务层默认异常</msg></errmsg>
+	<errmsg><key>DAO_ERR_001</key><msg>dao层默认异常</msg></errmsg>
+
+	
+	<!-- userCenterService 异常 -->
+	
+	<errmsg><key>USERCENTER_XXX_ERROR</key><msg>XXX</msg></errmsg>
+	<errmsg><key>USERCENTER_YYY_ERROR</key><msg>YYY</msg></errmsg>
+	<errmsg><key>USERCENTER_regist_ERROR</key><msg>用户注册失败</msg></errmsg>
+	
+	
+	
+	<!--saleService 异常-->
+	
+	<!-- productService 异常 -->
+	
+	<!-- saleService 异常-->
+	
+	
+	<!-- wuliuService 异常-->
+	
+
+	 
+</errmsgs>

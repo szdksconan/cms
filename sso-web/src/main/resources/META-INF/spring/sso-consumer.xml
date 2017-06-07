@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+					  http://www.springframework.org/schema/beans/spring-beans-3.2.xsd  
+					  http://www.springframework.org/schema/context  
+					  http://www.springframework.org/schema/context/spring-context-3.2.xsd
+					       http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd	  
+					  ">
+
+	<!-- 配置注解扫描的包路径 -->
+	<context:component-scan base-package="com.cms.sso.action"></context:component-scan>
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+	</bean>
+	<!-- 
+	<context:annotation-config/>
+	<context:property-placeholder location="classpath:META-INF/spring/local.properties"/>
+	 -->
+	<bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean"> 
+		<property name="locations">
+			<list> 
+				<value>classpath:META-INF/spring/config.properties</value> 
+			</list> 
+		</property> 
+	</bean> 
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer"> 
+		<property name="properties" ref="configProperties" /> 
+	</bean>
+	
+	<!-- 开始配置Dubbo接收 -->
+	<dubbo:application name="${dubbo.application.name}" owner="${dubbo.application.owner}" organization="cms"/>
+    <dubbo:registry address="${dubbo.registry.address}"/>
+	<dubbo:monitor protocol="registry"/>
+	<!-- dubbo暴露地址 -->
+	<!-- 生成远程服务代理，可以和本地bean一样使用demoService -->
+	<dubbo:reference id="ssoAuthService" interface="com.cms.iservice.sso.SsoAuthService" protocol="dubbo" version="1.0.0" owner="caojun" group="jiagou"  timeout="2000" retries="3" loadbalance="roundrobin"/>
+	
+</beans>

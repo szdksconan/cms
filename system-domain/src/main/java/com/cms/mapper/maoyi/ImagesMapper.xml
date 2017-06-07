@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.maoyi.ImagesMapper">
+	<resultMap id="imgResultMap" type="com.cms.model.maoyi.CmsImages">
+		<id column="imgId" property="imgId" jdbcType="VARCHAR" />
+		<result column="productId" property="productId" jdbcType="VARCHAR" />
+		<result column="brandId" property="brandId" jdbcType="VARCHAR" />
+		<result column="imgUrl" property="imgUrl" jdbcType="VARCHAR" />
+		<result column="imgType" property="imgType" jdbcType="INTEGER" />
+		<result column="imgOrder" property="imgOrder" jdbcType="INTEGER" />
+		<result column="imgCreateTime" property="imgCreateTime"
+			jdbcType="DATE" />
+		<result column="imgCreator" property="imgCreator" jdbcType="INTEGER" />
+		<result column="imgStatus" property="imgStatus" jdbcType="INTEGER" />
+		<result column="isMain" property="isMain" jdbcType="VARCHAR" />
+		<result column="memo" property="memo" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		imgId,productId,brandId,imgUrl,imgType,imgOrder,imgCreateTime,
+		imgCreator,imgStatus,isMain,memo
+	</sql>
+	<select id="getImagesByProductId" resultMap="imgResultMap"
+		parameterType="java.lang.String">
+		select * from cms_product_t_images where productId = #{productId}
+	</select>
+	<insert id="insert" parameterType="java.util.HashMap">
+		replace into cms_product_t_images(
+		<include refid="Base_Column_List" />
+		) values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.imgId},#{item.productId},#{item.brandId},#{item.imgUrl},#{item.imgType},#{item.imgOrder},#{item.imgCreateTime},#{item.
+			imgCreator},#{item.imgStatus},#{item.isMain},#{item.memo})
+		</foreach>
+	</insert>
+</mapper>

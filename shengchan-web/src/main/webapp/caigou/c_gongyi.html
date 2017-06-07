@@ -1,0 +1,193 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<title>供应商名录</title>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<script src="../js/common/tabs.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/common/gongyiminglu.css" />
+<script type="text/javascript" src="../js/caogou/c_gongying.js" ></script>
+</head>
+<div class="bei">
+	<!--顶部工具条-->
+	<table class="-querytable">
+		<tr>
+			<td align="right">所在地区：</td>
+			<td><input type="text" id="address" class="cmao_inplg" placeholder="成都"
+				value="" /></td>
+			<td align="right">所属行业：</td>
+			<td>
+				<span id="apply_goods"> 
+				  <select class="materials1 selelct" id="type5" name="productTypeId"></select>
+				  <select class="materials2 selelct" id="type6" name="productTypeId"></select>
+				  <select class="materials3 selelct" id="type7" name="productTypeId"></select>
+				  <select class="materials4 selelct" id="type8" name="productTypeId"></select>
+				</span>
+			</td>
+			<td>
+				<button class="btn btn-blue btn-w100" type="button"  onclick="querySupplier();" >查询</button>
+				<button class="btn btn-gray btn-w100" type="button" id="clear">清空</button>
+			</td>
+		</tr>
+	</table>
+
+	<div style="width: 100%">
+		<div class="container">
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="#gyslb" data-toggle="tab"
+					style="color: black;">供应商列表</a></li>
+				<li><a href="#yxqytj" data-toggle="tab" style="color: black;">优秀企业推荐</a></li>
+				<li id="beixuan"><a href="#bxgys" data-toggle="tab" style="color: black;" id="beixuan">关注的供应商</a></li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane active" id="gyslb">
+					<ul class="nav nav-tabs" style="text-align: right">
+						<li class="pull-right" id="dt"><a href="#dtms_1" data-toggle="tab" style="color: black;">地图模式</a></li>
+<!-- 						<li class="pull-right"><a href="#tbms_1" data-toggle="tab" style="color: black;">图表模式</a></li> -->
+						<li class="pull-right active"><a href="#lbms_1" data-toggle="tab" style="color: black;">列表模式</a></li>
+						<!--<button class="btn btn-blue btn-w100" type="button" >导出</button>-->
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane" id="dtms_1" style="position: relative;">
+							<div id="tubiaomoshi"></div>
+<!-- 							<div class="gy-pfl"> -->
+<!-- 								<div class="pfl-u clearfix"> -->
+<!-- 									<div class="plf-l"> -->
+<!-- 										<div class="gy-logo-l"> -->
+<!-- 											<img src="" id="logo"> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 									<div class="plf-r"> -->
+<!-- 										<div class="gy-hang pd32"> -->
+<!-- 											主营产品：<span id="mainProduct"></span> -->
+<!-- 										</div> -->
+<!-- 										<div class="gy-hang pd32"> -->
+<!-- 											所在地区：<span id="readress"></span> -->
+<!-- 										</div> -->
+<!-- 										<div class="gy-hang pd32"> -->
+<!-- 											企业性质：<span id="compType"></span> -->
+<!-- 										</div> -->
+<!-- 										<div class="gy-hang pd32"> -->
+<!-- 											经营模式：<span id="bussiness"></span> -->
+<!-- 										</div> -->
+<!-- 										<div class="gy-hang pd32"> -->
+<!-- 											所属行业：<span id="hangye"></span> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 								<div class="gy-hang pd20"> -->
+<!-- 									交易次数：<span id="tradeNum"></span> -->
+<!-- 								</div> -->
+<!-- 								<div class="gy-hang pd20"> -->
+<!-- 									交易总金额：<span id="tradeMoney"></span> -->
+<!-- 								</div> -->
+<!-- 								<div class="gy-hang pd20"> -->
+<!-- 									联系人：<span id="owner"></span> -->
+<!-- 								</div> -->
+<!-- 								<div class="gy-hang pd20"> -->
+<!-- 									联系电话：<span id="tel"></span> -->
+<!-- 								</div> -->
+<!-- 								<div class="gy-hang pd20"> -->
+<!-- 									邮箱：<span id="email"></span> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+							<div class="gy-pfr" >
+								<div class="gy-right-shrink">
+									<span class="gy-shrink-text" id="shrink"></span>
+								</div>
+								<div class="gy-right-shrink-content" id="gyml">
+<!-- 									<dl class="zoom-list"> -->
+<!-- 										<dt><a href="javascript:;"><i class="zoom-btn zoom-out"></i>四川省</a></dt> -->
+<!-- 										<dd><a href="javascript:;">成都天湖机械有限公司</a></dd> -->
+<!-- 									</dl> -->
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane" id="tbms_1">
+							<div class="minlu-list clearfix">
+								<div class="minlu-li" style="width: 33%;">供应商基本信息</div>
+								<div class="minlu-li" style="width: 30%;">生产能力加工</div>
+								<div class="minlu-li" style="width: 30%;">明星产品</div>
+							</div>
+							<div class="minlu-group">
+	                        	<div class="minlu-group-item border-bottom clearfix">
+	                        		<div class="pull-left">
+	                        			<label class="item">戴尔(中国)有限公司  </label>
+		                        		<label>联系人:<span>张三</span></label>
+		                        		<label>联系电话:<span>15828422572</span></label>
+	                        		</div>
+	                        		<div class="pull-right">
+	                        			<label>客户评级：<span>优</span></label>
+	                        		</div>
+	                        	</div>
+	                        	<div class="minlu-group-after clearfix">
+	                        		<div class="minlu-group-lg-box clearfix" style="width: 33%;">
+	                        			<div class="minlu-box minlu-logo">
+	                        				<img src="../images/20160418.png" class="minlu-group-prop"/>
+	                        				<a href="javascript:;" class="minlu-group-prop a_css">查看详情</a>
+	                        			</div>
+	                        			<div class="minlu-box box-content">
+	                        				<p><span>主营产品：</span><span>钢材、铝材</span></p>
+	                        				<p><span>经营地址：</span><span>四川省成都市高新区</span></p>
+	                        				<p><span>企业类型：</span><span>民营企业</span></p>
+	                        				<p><span>注册资金：</span><span>500万</span></p>
+	                        				<p><span>经营模式：</span><span>生产代加工</span></p>
+	                        			</div>
+	                        		</div>
+	                        		<div class="minlu-group-lg-box box-content" style="width: 30%;">
+	                    				<p><span>从业年限：</span><span>20年</span></p>
+	                    				<p><span>经营地址：</span><span>2000平米</span></p>
+	                    				<p><span>员工数量：</span><span>200名</span></p>
+	                    				<p><span>企业能力：</span><span>研发、按图加工、产品设计</span></p>
+	                    				<p><span>主营加工：</span><span>轴承、工程机械</sSpan></p>
+	                    			</div>
+	                    			<div class="minlu-group-lg-box minlu-chanping-tab" style="width: 30%;">
+	                    				<div class="minlu-chanping-box">
+	                    					<img src="../images/20160418.png"/>
+	                    				</div>
+	                    				<div class="minlu-chanping-box">
+	                    					<img src="../images/20160418.png"/>
+	                    				</div>
+	                    				<div class="minlu-chanping-box">
+	                    					<img src="../images/20160418.png"/>
+	                    				</div>
+	                    				<div class="minlu-chanping-box">
+	                    					<img src="../images/20160418.png"/>
+	                    				</div>
+	                    			</div>
+	                    			<div class="minlu-group-lg-box">
+	                    				<a href="javascript:;" class="a_css">删除</a>
+	                    			</div>
+	                        	</div>
+	                        	<div class="minlu-group-item border-top clearfix">
+	                        		<div class="pull-right">
+	                        			<label>交易次数：<span>30次</span></label>
+	                        			<label>交易总额：<span>300万</span></label>
+	                        		</div>
+	                        	</div>
+                        	</div>
+						</div>
+						<div class="tab-pane active" id="lbms_1">
+							<table id="table_1">
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane" id="yxqytj">优秀企业推荐-参照供应商列表</div>
+				<div class="tab-pane" id="bxgys">
+					<div class="container">
+						<ul class="gy-head clearfix">
+							<li class="gy-2rd">企业简介</li>
+							<li class="gy-3nd">企业代工能力</li>
+							<li class="gy-1th">明星产品</li>
+						</ul>
+						<div id="bei_con"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</html>

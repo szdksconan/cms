@@ -1,0 +1,143 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+</head>
+<div class="sc_cgd" style="margin-left: 10px;margin-right: 10px">
+    <form id="wzyxForm">
+        <input type="hidden" id="sourceId" name="sourceId"/>
+        <input type="hidden" id="sourceName" name="sourceName"/>
+        <input type="hidden" id="productTypeName" name="productTypeName"/>
+        <input type="hidden" id="unitName" name="unitName"/>
+        <input type="hidden" id="intentId" name="id"/>
+        <input type="hidden" id="intentType" name="intentType"/>
+        <input type="hidden" id="companyId" name="companyId" value="1312312313"/>
+        <input type="hidden" id="endTime" name="endTime" value=""/>
+        <div class="layer-grup">
+        	<div class="layer-grup-item">
+        		<span class="layer-grup-label">物资类别：</span>
+        		<div id="element_id" class="layer-grup-element">
+                    <select class="materials1 selelct" id="productTypeId_1" name="productTypeId"></select>
+                    <select class="materials2 selelct" id="productTypeId_2" name="productTypeId"></select>
+                    <select class="materials3 selelct" id="productTypeId_3" name="productTypeId"></select>
+                    <select class="materials4 selelct" id="productTypeId_4" name="productTypeId"></select>
+                </div>
+        	</div>
+        	<br />
+        	<div class="layer-grup-item" style="width: 350px;">
+        		<span class="layer-grup-label">意向类型：</span>
+                <div id="intentTypeIdDiv" class="layer-grup-element">
+                    <select class="intentTypeId selelct" id="intentTypeId" name="intentTypeId"></select>
+                </div>
+        	</div>
+        	<div class="layer-grup-item">
+        		<span class="layer-grup-label">主要规格型号：</span>
+        		<input type="text" class="cmao_input" value="" id="productModelSize" name="productModelSize"/>
+        	</div>
+        	<br />
+        	<div class="layer-grup-item" style="width: 350px;">
+        		<span class="layer-grup-label">采购数量：</span>
+        		<input type="text" class="cmao_input" value="" id="count" name="count"/>
+                <div id="unitBox">
+                	<select class="unit select" id="unitId" name="unitId"></select>
+                </div>
+        	</div>
+        	<div class="layer-grup-item">
+        		<span class="layer-grup-label">采购金额：</span>
+        		<input type="text" class="cmao_input" value="" id="price" name="price"/> 万元
+        	</div>
+        	<br />
+        	<div class="layer-grup-item">
+        		<span class="layer-grup-label">物资来源：</span>
+        		<input type="text" city="true" multiple="true" class="cmao_input"  readonly/>
+        	</div>
+        	<div id="_areas"></div>
+        </div>
+    </form>
+</div>
+<script>
+    $("input[city=true][multiple=true]").click(function (e) {
+        var tipcon = '<div class="area-tip-input">' +
+                '<span class="rule-tip" value="{0}" data-id="{1}">{2}</span>' +
+                '<span class="del"></span>' +
+                '</div>';
+        SelCity(this,e,{
+            'divId':'_areas',
+            'appendHtml':tipcon
+        });
+    });
+
+    var date = new Date;
+    var month2 = date.getMonth()+1;
+    var year2 = date.getFullYear();
+    var options2 = new Array;
+    if (month2<=6){
+        options2.push({n:year2+'年上半年',value:1,data:year2+'-06-30'});
+        options2.push({n:year2+'年第1季度',value:2,data:year2+'-03-31'});
+        options2.push({n:year2+'年第2季度',value:3,data:year2+'-06-30'});
+        options2.push({n:year2+'年下半年',value:4,data:year2+'-12-31'});
+        options2.push({n:year2+'年第3季度',value:5,data:year2+'-09-30'});
+        options2.push({n:year2+'年第4季度',value:6,data:year2+'-12-31'});
+    }else {
+        options2.push({n:year2+'年下半年',value:7,data:year2+'-12-31'});
+        options2.push({n:year2+'年第3季度',value:8,data:year2+'-09-30'});
+        options2.push({n:year2+'年第4季度',value:9,data:year2+'-12-31'});
+        options2.push({n:year2+1+'年上半年',value:10,data:year2+1+'-06-30'});
+        options2.push({n:year2+1+'年第1季度',value:11,data:year2+1+'-03-31'});
+        options2.push({n:year2+1+'年第2季度',value:12,data:year2+1+'-06-30'});
+    }
+    $('#wzyxForm #intentTypeIdDiv').cxSelect({
+        data:options2,
+        selects:['intentTypeId']
+    });
+</script>
+<script>
+    $('#wzyxForm #unitBox').cxSelect({
+        data:_zNodes,
+        selects:['unit']
+    });
+
+    $("#wzyxForm #element_id").cxSelect({
+        url:'../js/common/productJson.json',
+        selects : ['materials1','materials2','materials3','materials4'],
+        nodata: 'none'
+    });
+</script>
+<script>
+    try{
+        $('#wzyxForm #sourceId').val(intentObj.sourceId);
+        $('#wzyxForm #sourceName').val(intentObj.sourceName);
+        $('#wzyxForm #productTypeName').val(intentObj.productTypeName);
+        $('#wzyxForm #unitName').val(intentObj.unitName);
+        $('#wzyxForm #unitId').multiselect('select',intentObj.unitId);
+        $('#wzyxForm #intentId').val(intentObj.id);
+        $('#wzyxForm #intentType').val(intentObj.intentType);
+        $('#wzyxForm #productModelSize').val(intentObj.productModelSize);
+        $('#wzyxForm #count').val(intentObj.count);
+        $('#wzyxForm #price').val(intentObj.price);
+        $('#wzyxForm #intentTypeId').val(intentObj.intentTypeId);
+        $('#wzyxForm #endTime').val(intentObj.endTime);
+        var _productTypeIdArray = intentObj.productTypeId.split(',');
+        for (var i=0;i<_productTypeIdArray.length;i++){
+            if (_productTypeIdArray[i]!=''){
+                $('#productTypeId_'+(i+1)).attr('data-value',_productTypeIdArray[i]);
+            }
+        }
+        var tipcon = '<div class="area-tip-input">' +
+                '<span class="rule-tip" value="{0}" data-id="{1}">{2}</span>' +
+                '<span class="del"></span>' +
+                '</div>';
+        var sourceIdArray = intentObj.sourceId.split(',');
+        var sourceNameArray = intentObj.sourceName.split(',');
+        for (var i=0;i<sourceIdArray.length;i++){
+            $('#wzyxForm #_areas').append($.formatString(tipcon,sourceNameArray[i],sourceIdArray[i],sourceNameArray[i]));
+        }
+        if ($('.del').length>0){
+            $('.del').click(function () {
+                $(this).parent().remove();
+            });
+        }
+    }catch (e){}
+</script>
+</html>

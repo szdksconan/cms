@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cms.mapper.shengchan.PurchaseTenderMapper">
+    <sql id="PURCHASETENDERORDER">
+        id,
+        company_id as companyId,
+        company_name as companyName,
+        order_code as orderCode,
+        order_name as orderName,
+        DATE_FORMAT(create_time,'%Y-%m-%d') as createTime,
+        deposit as deposit,
+        DATE_FORMAT(end_time,'%Y-%m-%d') as endTime,
+        DATE_FORMAT(result_release_time,'%Y-%m-%d') as resultReleaseTime,
+        DATE_FORMAT(price_view_time,'%Y-%m-%d') as priceViewTime,
+        DATE_FORMAT(update_time,'%Y-%m-%d %H:%i:%s') as updateTime,
+        link_man as linkMan,
+        link_tel as linkTel,
+        fax_number as faxNumber,
+        email as email,
+        deliver_address as deliverAddress,
+        deliver_address_id as deliverAddressId,
+        deliver_address_detail as deliverAddressDetail,
+        tender_type as tenderType,
+        registered_funds as registeredFunds,
+        company_property as companyProperty,
+        operation_model as operationModel,
+        credit_grade as creditGrade,
+        pay_type as payType,
+        deal_rule_description as dealRuleDescription,
+        supplement_require as supplementRequire,
+        delete_flag as deleteFlag,
+        state as state,
+        source_id as purchaseTenderSourceId,
+        source_name as purchaseTenderSourceName,
+        cyxz,
+        comp_buy_rule_id as compBuyRuleId,
+        rule_name as ruleName,
+        rule_time as ruleTime,
+        creator,
+        apply_type_id as applyTypeId,
+        apply_type_name as applyTypeName,
+        rule_source_id as ruleSourceId,
+        rule_source_name as ruleSourceName,
+        jiesuan_type as jiesuanType,
+        description,
+        review_flag as reviewFlag
+    </sql>
+    <sql id="PURCHASETENDERAREA">
+        id,
+        purchase_tender_id as purchaseTenderId,
+        province_id as provinceId,
+        province_name as provinceName,
+        city_id as cityId,
+        city_name as cityName,
+        area_id as areaId,
+        area_name as areaName
+    </sql>
+    <sql id="PURCHASESUPPLIER">
+        id,
+        purchase_tender_order_id as purchaseTenderOrderId,
+        purchase_company_id as purchaseCompanyId,
+        purchase_company_name as purchaseCompanyName,
+        traders_id as tradersId,
+        traders_name as tradersName,
+        comp_type_id as compTypeId,
+        comp_type as compType,
+        main_industry_id as mainIndustryId,
+        main_industry as mainIndustry,
+        business_model_id as businessModelId,
+        business_model as businessModel,
+        address,
+        state,
+        info_source as infoSource,
+        company_id as companyId,
+        company_name as companyName,
+        address
+    </sql>
+
+    <insert id="savePurchaseTender" parameterType="com.cms.model.shengchang.PurchaseTenderOrder">
+        replace into purchase_tender_order (id,company_id,company_name,order_code,order_name,create_time,deposit,end_time,
+        result_release_time,price_view_time,link_man,link_tel,fax_number,email,deliver_address,deliver_address_id,deliver_address_detail,tender_type,
+        registered_funds,company_property,operation_model,credit_grade,pay_type,deal_rule_description,supplement_require,state,update_time,source_id,source_name,
+        cyxz,comp_buy_rule_id,rule_name,rule_time,creator,apply_type_id,apply_type_name,rule_source_id,rule_source_name,jiesuan_type,description) values
+        (#{id},#{companyId},#{companyName},#{orderCode},#{orderName},#{createTime},#{deposit},#{endTime},#{resultReleaseTime},#{priceViewTime},
+        #{linkMan},#{linkTel},#{faxNumber},#{email},#{deliverAddress},#{deliverAddressId},#{deliverAddressDetail},#{tenderType},#{registeredFunds},#{companyProperty},#{operationModel},
+        #{creditGrade},#{payType},#{dealRuleDescription},#{supplementRequire},#{state},#{updateTime},#{purchaseTenderSourceId},#{purchaseTenderSourceName},#{cyxz},#{compBuyRuleId},
+        #{ruleName},#{ruleTime},#{creator},#{applyTypeId},#{applyTypeName},#{ruleSourceId},#{ruleSourceName},#{jiesuanType},#{description})
+    </insert>
+
+    <insert id="savePurchaseTenderArea" parameterType="java.util.List">
+        replace into purchase_tender_area (id,purchase_tender_id,province_id,province_name,city_id,city_name,area_id,area_name) values
+        <foreach collection="list" item="area" index="index" separator="," >
+            (#{area.id},#{area.purchaseTenderId},#{area.provinceId},#{area.provinceName},#{area.cityId},#{area.cityName},#{area.areaId},#{area.areaName})
+        </foreach>
+    </insert>
+
+    <update id="delPurchaseTender" parameterType="com.cms.model.shengchang.PurchaseTenderOrder">
+        update purchase_tender_order set delete_flag=true,update_time=#{updateTime} where id=#{id}
+    </update>
+
+    <select id="getPurchaseTender" parameterType="com.cms.model.shengchang.PurchaseTenderOrder" resultType="com.cms.model.shengchang.PurchaseTenderOrder">
+        select <include refid="PURCHASETENDERORDER"/> from purchase_tender_order where delete_flag!=true
+        <if test="orderCode!=null and orderCode!=''">
+            and order_code like concat('%',#{orderCode},'%')
+        </if>
+        <if test="orderName!=null and orderName!=''">
+            and order_name like concat('%',#{orderName},'%')
+        </if>
+        <if test="state!=null and state!=''">
+            and state=#{state}
+        </if>
+        <if test="createTimeStart!=null and createTimeStart!=''">
+            and DATE_FORMAT(create_time,'%Y-%m-%d') &gt;= #{createTimeStart}
+        </if>
+        <if test="createTimeEnd!=null and createTimeEnd!=''">
+            and DATE_FORMAT(create_time,'%Y-%m-%d') &lt;= #{createTimeEnd}
+        </if>
+        <if test="endTimeStart!=null and endTimeStart!=''">
+            and DATE_FORMAT(end_time,'%Y-%m-%d') &gt;= #{endTimeStart}
+        </if>
+        <if test="endTimeEnd!=null and endTimeEnd!=''">
+            and DATE_FORMAT(end_time,'%Y-%m-%d') &lt;= #{endTimeEnd}
+        </if>
+        <if test="orderStr!=null and orderStr!=''">
+            ${orderStr}
+        </if>
+    </select>
+
+    <select id="getPurchaseTenderCot" parameterType="com.cms.model.shengchang.PurchaseTenderOrder" resultType="int">
+        select count(*) from purchase_tender_order where delete_flag!=true
+        <if test="orderCode!=null and orderCode!=''">
+            and order_code like concat('%',#{orderCode},'%')
+        </if>
+        <if test="orderName!=null and orderName!=''">
+            and order_name like concat('%',#{orderName},'%')
+        </if>
+        <if test="state!=null and state!=''">
+            and state=#{state}
+        </if>
+        <if test="createTimeStart!=null and createTimeStart!=''">
+            and DATE_FORMAT(create_time,'%Y-%m-%d') &gt;= #{createTimeStart}
+        </if>
+        <if test="createTimeEnd!=null and createTimeEnd!=''">
+            and DATE_FORMAT(create_time,'%Y-%m-%d') &lt;= #{createTimeEnd}
+        </if>
+        <if test="endTimeStart!=null and endTimeStart!=''">
+            and DATE_FORMAT(end_time,'%Y-%m-%d') &gt;= #{endTimeStart}
+        </if>
+        <if test="endTimeEnd!=null and endTimeEnd!=''">
+            and DATE_FORMAT(end_time,'%Y-%m-%d') &lt;= #{endTimeEnd}
+        </if>
+    </select>
+
+    <select id="getPurchaseTenderOrderById" parameterType="com.cms.model.shengchang.PurchaseTenderOrder" resultType="com.cms.model.shengchang.PurchaseTenderOrder">
+        select <include refid="PURCHASETENDERORDER"/> from purchase_tender_order
+        <where>
+            1=1
+            <if test="id!=null and id!=''">
+                and id=#{id}
+            </if>
+        </where>
+    </select>
+
+    <select id="getPurchaseTenderArea" parameterType="com.cms.model.shengchang.PurchaseTenderOrder" resultType="com.cms.model.shengchang.PurchaseTenderArea">
+        select <include refid="PURCHASETENDERAREA"/> from purchase_tender_area
+        <where>
+            1=1
+            <if test="id!=null and id!=''">
+               and purchase_tender_id=#{id}
+            </if>
+        </where>
+    </select>
+
+    <delete id="delPurchaseTenderArea" parameterType="com.cms.model.shengchang.PurchaseTenderOrder">
+        delete from purchase_tender_area where purchase_tender_id=#{id}
+    </delete>
+
+    <insert id="savePurchaseTenderSupplier" parameterType="java.util.List">
+        replace into purchase_tender_order_supplier (id,purchase_tender_order_id,purchase_company_id,purchase_company_name,traders_id,traders_name,comp_type_id,comp_type,
+        main_industry_id,main_industry,business_model_id,business_model,state,info_source,company_id,company_name,address) values
+        <foreach collection="list" item="supplier" index="index" separator="," >
+            (#{supplier.id},#{supplier.purchaseTenderOrderId},#{supplier.purchaseCompanyId},#{supplier.purchaseCompanyName},#{supplier.tradersId},#{supplier.tradersName},#{supplier.compTypeId},
+            #{supplier.compType},#{supplier.mainIndustryId},#{supplier.mainIndustry},#{supplier.businessModelId},#{supplier.businessModel},#{supplier.state},#{supplier.infoSource}
+            ,#{supplier.companyId},#{supplier.companyName},#{supplier.address})
+        </foreach>
+    </insert>
+
+    <select id="getPurchaseSupplierList" parameterType="com.cms.model.shengchang.PurchaseTenderOrderSupplier" resultType="com.cms.model.shengchang.PurchaseTenderOrderSupplier">
+        select <include refid="PURCHASESUPPLIER"/> from purchase_tender_order_supplier
+        <where>
+            purchase_tender_order_id=#{purchaseTenderOrderId}
+        </where>
+        <if test="orderStr!=null and orderStr!=''">
+            ${orderStr}
+        </if>
+    </select>
+
+    <select id="getPurchaseSupplierListCot" parameterType="com.cms.model.shengchang.PurchaseTenderOrderSupplier" resultType="int">
+        select count(*) from purchase_tender_order_supplier
+        <where>
+            purchase_tender_order_id=#{purchaseTenderOrderId}
+        </where>
+    </select>
+
+    <delete id="delPurchaseTenderSupplier" parameterType="com.cms.model.shengchang.PurchaseTenderOrder">
+        delete from purchase_tender_order_supplier where purchase_tender_order_id=#{id}
+    </delete>
+
+    <select id="getSaleBidNum" parameterType="com.cms.model.shengchang.PurchaseTenderOrder" resultType="int">
+        select count(*) from sale_bid_order where purchase_tender_id=#{id}
+    </select>
+
+    <select id="getTenderRecommendList" parameterType="java.util.List" resultType="com.cms.model.shengchang.PurchaseTenderOrder">
+        select <include refid="PURCHASETENDERORDER"/> from purchase_tender_order
+        <where>
+            and id in
+            <foreach collection="list" item="id" index="index" separator="," open="(" close=")">
+                #{id}
+            </foreach>
+        </where>
+    </select>
+
+    <update id="saveReview" parameterType="com.cms.model.shengchang.PurchaseTenderOrder">
+        update purchase_tender_order set review_flag=#{reviewFlag} where id=#{id}
+    </update>
+</mapper>

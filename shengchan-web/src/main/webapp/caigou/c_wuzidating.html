@@ -1,0 +1,225 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>物资大厅</title>
+    <meta charset="utf-8">
+</head>
+<body >
+<!-- <span class="ml27">物资采购>物资大厅 </span>&nbsp; -->
+<div class="bei" style="height: auto;">
+	<div>
+		<div class="shenchan-content" >
+		<span class="sc_lg ml27 clearm" >  <a class="a_css" href="#" >物资</a> &nbsp;|&nbsp;<a class="a_css" href="#" >供应商</a></span>
+		</div>
+		<div class="shenchan-content clearfix" style="width: 100%;">
+  			<input class="cmao_inplg cmao_inwz"  type="text" style="width: 50%;border-color: #066FAF;" id="brandName">
+  			<input type="text" id="purchaseTypeId" />
+  			<input type="text" id="areaId" />
+  			<button class="btn btn-blue btn-w100 btn-wz-search" id="search" type="button">搜索</button>
+		</div>
+		<div class="shenchan-content filter-content">
+			<dl class="filter-list clearfix">
+				<dt class="filter-address">物资类别</dt>
+				  <div id="element_id" style="display: inline-block">
+                                    <select class="materials1 selelct" id="productTypeId_1" name="productTypeId"></select>
+                                    <select class="materials2 selelct" id="productTypeId_2" name="productTypeId"></select>
+                                    <select class="materials3 selelct" id="productTypeId_3" name="productTypeId"></select>
+                                    <select class="materials4 selelct" id="productTypeId_4" name="productTypeId"></select>
+               	</div>
+			</dl>           
+        </div>
+		<div class="shenchan-content filter-content" id="filter">
+		</div>
+		<div class="shenchan-content filter-content">
+			<dl class="filter-list clearfix">
+				<dt class="filter-address">自选来源地</dt>
+				<div class="filter-list-li">
+					<dd>
+						<input class="cmao_input address-input" id="address" placeholder="请选择所在地" readonly="readonly"/>
+					</dd>
+				</div>
+			</dl>
+		</div>
+		<div class="shenchan-content">
+		    <div class="row" id="commodity">
+			</div>  
+		</div>
+	<div class="sc_gym">
+		 <ul class="pagination" id="pagination"></ul>
+	</div>
+	</div>
+</div>
+<script>
+	//初始化物资类别
+	$.cxSelect.defaults.emptyStyle = 'none';
+        $("#element_id").cxSelect({
+            url:'../js/common/productJson.json',
+            selects : ['materials1','materials2','materials3','materials4'],
+            nodata: 'none'
+        });
+	//初始化所在地空间
+	$('#address').click(function(e){
+		SelCity(this,e);
+		//点击时清空推荐来源地所选项
+		
+		//点击时清空areaId隐藏框
+	})
+	
+	//初始化搜索按钮
+	$('#search').click(function(e){
+	
+		var area = $('#areaId').val();
+		
+		console.info(area);
+		
+		var purchaseTypeId = $('#purchaseTypeId').val();
+		
+		var brandName =  $('#brandName').val();
+		
+		var mater = '';
+		
+		var materials1 = $('.materials1').val();
+		
+		var materials2 = $('.materials2').val();
+		
+		var materials3 = $('.materials3').val();
+		
+		var materials4 = $('.materials4').val();
+				
+		if(materials1 != null && materials1  !=''){
+			
+			mater += materials1;
+			
+				}
+		
+		if(materials2 != null && materials2  !=''){
+					
+			mater += ','+materials2;
+			
+				}
+				
+		if(materials3 != null && materials3  !=''){
+			
+			mater += ','+materials3;
+			
+		}
+		
+		if(materials4 != null && materials4  !=''){
+			
+			mater += ','+materials4;
+			
+		}
+		
+		
+		//console.info(purchaseTypeId);
+		
+		//console.info(brandName);
+	
+		$('#filter').empty();
+		
+		loadPurchase(area,brandName,purchaseTypeId,1,mater);
+	})
+
+	$(function(){
+		$.ajax({
+            type: "POST",     //提交方式
+            dataType: "json",     //类型
+            async:false, 
+            url: _commonUrl+'/purchase/getFilterList',    //提交的页面，方法名
+//             data:{delKeys:delKeys},    //参数，如果没有，可以为null
+            success: function (data) { 
+           	// closeLoading();
+           	 //如果执行成功，那么执行此方法
+	     		$('#filter').listFilterGoods({
+	    			data:data,
+	    			onClick:function(value,obj){
+	    				if(value.length == 2){
+	    					
+	    					$('#purchaseTypeId').val(value);
+	    					
+	    				}
+	    				else{
+	    					
+	    					$('#areaId').val(value);
+	    				
+	    				}
+	    			
+	    			}
+	    		});
+           	
+            },
+            error: function (err) { //如果执行不成功，那么执行此方法
+               // alert("err:" + err);
+            }
+        });
+		
+// 		loadPurchase('','','',1,'');
+		
+		$('#commodity').listGoods({type:1,rows:50})
+
+	});
+	
+	//产品加载方法
+	function loadPurchase(area,brandName,productType,page,mater){
+// 		"001023-001023001001-001023001002"
+		$.ajax({
+            type: "POST",     //提交方式
+            dataType: "json",     //类型
+            async:false, 
+            url: _commonUrl+'/purchase/getPurchaseList',    //提交的页面，方法名
+            data:{area:area,brandName:brandName,productType:productType,page:page,mater:mater},    //参数，如果没有，可以为null
+            success: function (data) { 
+           	// closeLoading();
+           	 //如果执行成功，那么执行此方法
+        		$('#commodity').listGoods({
+        			data:data.list
+        		});
+           	 
+           	 	console.info(data.page);
+        		//调用分页插件
+        		if(data.page != '0'){
+        			
+        			$('#pagination').show();
+	        		$.jqPaginator('#pagination', {
+	        		    totalPages: data.totalPage,
+	//         		    visiblePages: 10,
+	        		    currentPage: data.page,
+	        		    onPageChange: function (num, type) {
+	        		    	if(type == 'change'){
+	        		    		
+	        		    		var area = $('#address').attr('data-id');
+	        		    		
+	        		    		var purchaseTypeId = $('#purchaseTypeId').val();
+	        		    		
+	        		    		var brandName =  $('#brandName').val();
+	        		    		
+	        		    		if(area = 'undefined'){
+	        		    			
+	        		    			area = '';
+	        		    			
+	        		    		}
+	        		    		
+	        		    		loadPurchase(area,brandName,purchaseTypeId,num,mater);
+	        		    	}
+	        		    	
+	        		    }
+	        		});
+        		}
+        		else{
+        			
+        			$('#pagination').hide();
+        		}
+           	
+            },
+            error: function (err) { //如果执行不成功，那么执行此方法
+               // alert("err:" + err);
+            }
+        });
+	}
+
+
+</script>
+</body>
+</html>

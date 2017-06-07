@@ -1,0 +1,515 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<!-- <meta name="viewport" content="initial-scale=1.0, user-scalable=no" /> -->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />-->
+<title>企业管理</title>
+<link rel="stylesheet" type="text/css" href="../css/common/chuyunguanli.css" />
+<link rel="stylesheet" type="text/css" href="../css/common/qiyezhongxin.css" />
+<script type="text/javascript" src="../js/qiyezhongxin/company.js"></script>
+<script type="text/javascript" src="../js/qiyezhongxin/comp.js"></script>
+<script charset="utf-8" type="text/javascript" src="../js/qiyezhongxin/qiye2.js"></script>
+<script type="text/javascript">
+	var compidval = "1312312313";
+</script>
+</head>
+<body>
+	
+	<div class="container">
+		<input type="hidden" id="compId"/>
+		<div class="qiye-top" style="padding-top: 5px">
+			<div class="img-desc">
+				<input type="hidden" id="qiattachId">
+				<span class="edit_img1"></span> <img id="qymh" src="" alt=""
+					width="100%" height="300px" /> <cite id="companyName"></cite>
+			</div>
+		</div>
+		<div class="qy_jiben jiben_bd">
+			<div class="qy_edit qy_edit1">
+				<span style="float: left;"><label>基本信息</label></span> <span class="edit_btn"><span class="edit_text">编辑</span> <span class="edit_img"></span>
+				</span>
+			</div>
+			<div class="content-le">
+				<div class="intro-l">
+					<div class="qy_logo">
+						<img src="" style="width: 100%; height: 100%;" />
+					</div>
+				</div>
+				<div class="intro-r">
+					<div class="intro-t">
+						<div class="hang">
+							<div class="qy_name"></div>
+							<div class="qy_zcdiv">
+								<!-- 											<span class="color_999999 ml50">成立时间：</span> <span -->
+								<!-- 												class="color_FF8432">2012年8月</span> -->
+							</div>
+						</div>
+						<div class="hang">
+							<div class="hang-l clear">
+								&emsp;&emsp;<span class="color_999999">经营地址：</span> <span
+									class="color_FF8432" id="address"></span>
+									<input type="hidden" id="sheng_id"/>
+									<input type="hidden" id="city_id"/>
+									<input type="hidden" id="xian_id"/>
+							</div>
+						</div>
+						<div class="hang">
+							<div class="hang-l">
+								&emsp;&emsp;<span class="color_999999">企业类型：</span> <span
+									class="color_FF8432" id="compType"></span>
+							</div>
+							<div class="hang-r">
+								&emsp;&emsp;<span class="color_999999">经营模式：</span> 
+								<span class="color_FF8432" id="jy_type">生产代工型</span>
+							</div>
+							<div class="hang-l">
+								&emsp;&emsp;<span class="color_999999">成立时间：</span> <span
+									id="setupTime" class="color_FF8432"></span>
+							</div>
+							<div class="hang-r">
+								&emsp;&emsp;<span class="color_999999">注册资金：</span> <span
+									id="registMoney" class="color_FF8432"></span>
+							</div>
+						</div>
+						<div class="hang">
+							<div class="hang-l">
+								&emsp;&emsp;<span class="color_999999">法人代表： </span> <span
+									id="owners" class="color_FF8432"> </span>
+							</div>
+							<div class="hang-r">
+								&emsp;&emsp;<span class="color_999999">企业官网：</span> <span
+									id="homePage" class="color_FF8432"></span>
+							</div>
+						</div>
+						<div class="hang">
+							<div class="hang-l">
+								&emsp;<span class="color_999999">工商注册号：</span> <span
+									id="registNo" class="color_FF8432"></span>
+							</div>
+							<div class="hang-r">
+								&emsp;&emsp;&emsp;&emsp;<span class="color_999999">税号：</span> <span
+									id="taxNo" class="color_FF8432"></span>
+							</div>
+						</div>
+						<div class="hang">
+							<div class="hang-l">
+								<span class="color_999999 "> 组织机构代码： </span> <span
+									id="organization" class="color_FF8432"></span>
+							</div>
+							<div class="hang-r">
+								<span class="color_999999">社会信用代码：</span> <span id="credit"
+									class="color_FF8432"></span>
+							</div>
+						</div>
+						<div class="hang">
+							<div class="hang-l">
+								<span class="color_999999"> 是否提供定制加工： </span> &nbsp;<span
+									id="customMade" class="color_FF8432"> </span>
+							</div>
+						</div>
+						<div class="hang">
+							<span class="color_999999">主营行业：</span> <span id="mainIndustry"
+								class="color_FF8432"></span>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div style="position: relative;overflow: hidden;width: 35%;">
+				<div class="intro_ditu" id="allmap"></div>
+				<span class="magnify"></span>
+			</div>
+			<input type="hidden" id="rezuobiao"/>
+			
+			<div class="intro-d">
+				<div class="hang">
+					<span class="color_999999">公司简介：<span id="comp_intro"></span></span>
+				</div>
+				<div class="hang">
+					<span class="color_999999">品牌介绍：<span id="pinpai_intro"></span></span>
+				</div>
+			</div>
+		</div>
+		<div class="output-content clearfix">
+			<div class="output-c-title">
+				<div class="qy_edit qy_edit1">
+					<span style="float: left;"><label>生产加工能力信息</label></span> <span
+						id="ablilty"> <span class="edit_text">编辑</span> <span
+						class="edit_img"></span>
+					</span>
+				</div>
+			</div>
+			<div class="output-c-detail">
+				<div class="detail-product">
+					<div class="detail-product-l clearfix">
+						<label class="lab-class">主加工产品：</label>
+						<div class="detail-describe">
+							<span id="mainProduct"></span>
+						</div>
+					</div>
+					<div class="detail-year">
+						<label class="lab-class">从业年限：</label> <span id="serviceYear"></span><span>年</span>
+					</div>
+					<div class="detail-year">
+						<label class="lab-class">厂房面积：</label> <span id="factoryArea"></span>&emsp;
+						<span style="margin-left: -14px;">M²</span>
+					</div>
+					<div class="detail-year">
+						<label class="lab-class">员工人数：</label><span class="pro_input m126"
+							id="number"></span>
+					</div>
+				</div>
+			</div>
+			<div class="swiper-container" id="conten4">
+				<div class="swiper-wrapper" id="jiagong">
+					<!-- 					<div class="swiper-slide" data="fangda" > -->
+					<!-- 						<img src="../images/qiyezhongxin/shebei/jiagong1.png"> -->
+					<!-- 					</div> -->
+				</div>
+				<div class="swiper-button-prev sides-btn"></div>
+				<div class="swiper-button-next sides-btn"></div>
+			</div>
+			<div class="detail-item detail-ab-jieshao">
+				<label class="lab-class lab-jieshao">生产能力介绍：</label>
+				<p class="jieshao-text color_999999 " id="ability"></p>
+			</div>
+			<div class="detail-item detail-shebei">
+				<label class="lab-class lab-jieshao">加工设备介绍：</label>
+				<p class="jieshao-text color_999999 " id="shebei_intro"></p>
+			</div>
+		</div>
+		<div class="qyzizhi">
+			<div class="qy_edit qy_edit1">
+				<span style="float: left;"><label>资质及荣誉信息</label></span> <span
+					id="zizhi-btn"> <span class="edit_text">编辑</span> <span
+					class="edit_img"></span>
+				</span>
+			</div>
+			<div class="swiper-container" id="conten5">
+				<div class="swiper-wrapper" id="zizhi">
+					<!-- 					<div class="swiper-slide" data="fangda"> -->
+					<!-- 						<div class="qy_img"> -->
+					<!-- 							<img src='../images/qiyezhongxin/zizhi/yingyezhizhao.png'> -->
+					<!-- 						</div> -->
+					<!-- 						<p class="qy_text">营业执照</p> -->
+					<!-- 					</div> -->
+				</div>
+				<div class="swiper-button-prev sides-btn"></div>
+				<div class="swiper-button-next sides-btn"></div>
+			</div>
+		</div>
+		<div class="qy_jiben">
+			<div class="qy_edit qy_edit1">
+				<span style="float: left;"><label>公司主营产品</label></span> <span>
+					<span class="edit_text"></span> <span class=""></span>
+				</span>
+			</div>
+			<div class="swiper-container" id="conten6">
+				<div class="swiper-wrapper" id="qyproduct">
+					<!-- 					<div class="swiper-slide"> -->
+					<!-- 						<img src="../images/qiyezhongxin/product/product1.png" u='te'> -->
+					<!-- 						<span class="thumbtext">戴尔XPS 8900PC系列 搭载第六代智能英特尔 酷睿 处理器，预装 -->
+					<!-- 							Windows 10 ，可选大容量混合硬盘，配备全新 DDR4 内存与高性能独立显卡，且具备超高的可扩展性 </span> -->
+					<!-- 					</div> -->
+				</div>
+				<div class="swiper-button-prev sides-btn"></div>
+				<div class="swiper-button-next sides-btn"></div>
+				<div class="swiper-pagination" id="myswiper"></div>
+			</div>
+		</div>
+
+		<div id="yewulianxi" class="qy_jiben boderB">
+			<div class="qy_edit qy_edit1">
+				<span style="float: left;"><label>企业联系信息</label></span> <span
+					id="qy-contact"> <span class="edit_text">编辑</span> <span
+					class="edit_img"></span>
+				</span>
+			</div>
+			<div class="content-l">
+				<div class="lianxi">
+					主营业地址：<span id="mainAddress"></span>
+				</div>
+				<div class="lianxi">
+					&emsp;企业微信： <span id="qyweixin"></span>
+				</div>
+				<div class="lianxi clear">
+					&emsp;固定电话：<span id="tel"></span>
+				</div>
+				<div class="lianxi">
+					&emsp;&emsp;&emsp;传真：<span id="fax"></span>
+				</div>
+				<div class="lianxi clear">
+					&emsp;&emsp;&emsp;邮编：<span id="post"></span>
+				</div>
+				<div class="lianxi">
+					&emsp;电子邮箱：<span id="email"></span>
+				</div>
+			</div>
+			<div class="content-r">
+				<div class="swiper-container" id="conten3">
+					<div class="swiper-wrapper" id="qy">
+						<!-- 						<div class="swiper-slide" data="fangda"> -->
+						<!-- 							<img src="../images/qiyezhongxin/gongchang/f-dell1.png"> -->
+						<!-- 						</div> -->
+					</div>
+					<div class="swiper-button-prev sides-btn"></div>
+					<div class="swiper-button-next sides-btn"></div>
+				</div>
+			</div>
+			<div class="lianxi-person clear">
+				<span style="float: left;"><label>业务联系人</label></span> <span
+					style="float: right; padding-right: 11px; cursor: pointer;"
+					id="ywcontact"> <span class="edit_text">编辑</span> <span
+					class="edit_img"></span>
+				</span>
+			</div>
+			<div class="ywlianxi">
+				<!-- 				<div class="lianxi-l1"> -->
+				<!-- 					<div class="yelianxi_text"> -->
+				<!-- 						&emsp;&emsp;联系人：<span>李四</span> -->
+				<!-- 					</div> -->
+				<!-- 					<div class="yelianxi_text"> -->
+				<!-- 						&emsp;业务类型： <span>物资销售</span> -->
+				<!-- 					</div> -->
+				<!-- 					<div class="yelianxi_text"> -->
+				<!-- 						&emsp;固定电话：<span>028-888888</span> -->
+				<!-- 					</div> -->
+				<!-- 					<div class="yelianxi_text"> -->
+				<!-- 						&emsp;&emsp;&emsp;手机：<span>028-5555555</span> -->
+				<!-- 					</div> -->
+				<!-- 					<div class="yelianxi_text"> -->
+				<!-- 						&emsp;电子邮箱：<span>5545465@qq.com</span> -->
+				<!-- 					</div> -->
+				<!-- 				</div> -->
+			</div>
+		</div>
+	</div>
+	<!-- 	修改基本信息 -->
+	<form method="post" id="cpxsform" enctype="multipart/form-data">
+	<input type="hidden" name = "deletelogo" id="deletelogo">
+	<div id="changBaseInfo" class="clearfix">
+		<div class="edit-logo clearfix">
+			<span class="edit-logo-title">企业LOGO：</span>
+			<div class="upload-box singleUpload">
+				<div class="placeholder">
+					<p>请上传图片</p>
+				</div>
+				<ul class="uploadList clearfix" id="logoList">
+				</ul>
+				<div class="statusBar">
+					<button type="button" class="btn btn-blue upload-btn" id="logoBtn">上传图片</button>
+				</div>
+			</div>
+		</div>
+		<div class="edit-hang">
+			<input type="hidden" id="zuobiao"/>
+			<span class="cmao_title">企业名称：</span><input type="text" class="cmao_input m126"
+				id="qyname" />
+		</div>
+		<div class="edit-hang">
+			<span class="cmao_title">经营地址：</span><input type="text"
+				class="cmao_input m126" style="width: 230px;" id="jingyingdizhi" /><span
+				class="position"></span>
+				<input type="hidden" id="re_shengId"/>
+				<input type="hidden" id="re_cityId"/>
+				<input type="hidden" id="re_xianId"/>
+		</div>
+		<div class="edit-hang" style="position: inherit;">
+			<span id="select-qylx"><span class="cmao_title">企业类型：</span><select class="selelct materials1" id="type" ></select></span>
+			<span class="cmao_right" id="select-jyms">经营模式：<select class="selelct materials2" id="jingyingmoshi"></select></span>	
+		</div>
+		<div class="edit-hang">
+			<span class="cmao_title">成立时间：</span><input type="text" class="laydate-icon"
+					id="createTime">
+		</div>
+		<div class="edit-hang">
+			<span class="cmao_title">注册资金：</span><input type="text" class="cmao_input m126" id="remoney" />
+		</div>
+		<div class="edit-hang">
+			<span class="cmao_title">法人代表：</span><input type="text" class="cmao_input m126" id="qyowner" />
+		</div>
+		<div class="edit-hang">
+			<span class="cmao_title">工商注册号：</span><input type="text" class="cmao_input m126" id="gongshang" />
+		</div>
+		<div class="edit-hang">
+			<span class="cmao_title">企业官网：</span><input type="text" class="cmao_input m126" id="reHomePage" />
+		</div>
+		<div class="edit-hang">
+			<span class="cmao_title">组织机构代码：</span><input type="text" class="cmao_input m126" id="orgNO" />
+		</div>
+		<div class="edit-hang">
+			<span class="cmao_title">税号：</span><input type="text" class="cmao_input m126" id="RetaxNO" />
+		</div>
+		<div class="edit-hang" id="customde">
+			是否提供定制加工：<input type="radio" name="status"  value="是" /> 是<input type="radio" name="status" value="否" /> 否
+		</div>
+		<div class="edit-hang">
+			<span class="cmao_title">社会信用代码：</span><input type="text" class="cmao_input m126" id="recridet" />
+		</div>
+		<div class="qy_intro_t clear">
+			<span class="cmao_title">主营行业：</span>
+			<textarea cols="150" rows="3" id="zhuying"></textarea>
+		</div>
+		<div class="qy_intro_t clear">
+			<span class="cmao_title">公司简介：</span>
+			<textarea cols="150" rows="5" id="qy_intr"></textarea>
+		</div>
+		<div class="qy_intro_t clear">
+			<span class="cmao_title">品牌介绍：</span>
+			<textarea cols="150" rows="5" id="brand_in"></textarea>
+		</div>
+	</div>
+	</form>
+	<!-- 修改加工能力信息 -->
+	<form id="uploadjiagong" method="post" action="#" enctype="multipart/form-data">
+	<div id="changAbility">
+		<input type="hidden" id="deletejiagong" name="deletejiagong">
+		<div class="ability-edit-l">
+			<span class="cmao_title">主加工产品：</span>
+			<span id="element_id"> 
+				  <select class="materials1 selelct" id="type1" name="productTypeId"></select>
+				  <select class="materials2 selelct" id="type2" name="productTypeId"></select>
+				  <select class="materials3 selelct" id="type3" name="productTypeId"></select>
+				  <select class="materials4 selelct" id="type4" name="productTypeId"></select>
+			</span>
+			<font class="add_text" onclick="addproduct(this);">添加</font>
+<!-- 			<div onclick="addproduct(this);" class="add-png" title="添加"></div> -->
+		</div>
+		<div class="detail-product-r-down clearfix" id="blank_theme"></div>
+		<div class="ability-edit-l">
+			<span class="cmao_title">从业年限：</span><input type="text" class="cmao_input m126" id="reserviceYear" />年
+		</div>
+		<div class="ability-edit-l">
+			<span class="cmao_title">厂房面积：</span><input type="text" class="cmao_input m126" id="refactoryArea">M²
+		</div>
+		<div class="ability-edit-l">
+			<span class="cmao_title">员工人数：</span><input type="text" class="cmao_input m126" id="renumber">人
+		</div>
+		<div class="qy_intro_t clear">
+			<span class="cmao_title">生产能力介绍：</span>
+			<textarea cols="150" rows="5" id="reability"></textarea>
+		</div>
+		<div class="qy_intro_t">
+			<span class="cmao_title">加工设备介绍：</span>
+			<textarea cols="150" rows="5" id="reshebei_intro"></textarea>
+		</div>
+		<div class="upload-box clear" id="uploadBox">
+			<div class="statusBar">
+				<button type="button" class="btn btn-blue upload-btn" id="reuploadjiagong" name="upload">上传图片</button>
+			</div>
+			<ul class="uploadList clearfix" id="jiagognlist"></ul>
+			<div class="placeholder">
+				<p>您还没有上传任何图片，快去上传吧</p>
+			</div>
+		</div>
+	</div>
+	</form>
+	<!-- 修改资质信息 -->
+	<form id="zizhiform" method="post" action="#" enctype="multipart/form-data">
+	<input type="hidden" id="zizhiFileKeys" name="zizhiFileKeys" value=""/>
+	
+	<div id="changeZizhi">
+		<div class="upload-box clear">
+			<div class="statusBar">
+				<button type="button" class="btn btn-blue upload-btn" id="reuploadzizhi" name="upload">上传图片</button>
+			</div>
+			<ul class="uploadList clearfix" id="zizhilist">
+			</ul>
+			<div class="placeholder">
+				<p>您还没有上传任何图片，快去上传吧</p>
+			</div>
+		</div>
+	</div>
+	</form>
+	<!-- 修改企业联系信息 -->
+	<form id="contactform" method="post" action="#" enctype="multipart/form-data">
+	<div id="changeContact">
+		<input type="hidden" id="delContactFileKeys" name="delContactFileKeys" value=""/>
+		<div class="ability-edit-l">
+			<span class="cmao_title">主营业地址：</span><input type="text" class="cmao_input" style="width: 300px;" id="addr" placeholder="请输入地址" />
+		</div>
+		<div class="ability-edit-r">
+			<span class="cmao_title">企业微信：</span><input type="text" class="cmao_input m126" id="weixin" />
+		</div>
+		<div class="ability-edit-l">
+			<span class="cmao_title">固定电话：</span><input type="text" class="cmao_input m126" id="retel" />
+		</div>
+		<div class="ability-edit-r">
+			<span class="cmao_title">传真：</span><input type="text" class="cmao_input m126" id="refax" />
+		</div>
+		<div class="ability-edit-l">
+			<span class="cmao_title">邮编：</span><input type="text" class="cmao_input m126" id="repost" />
+		</div>
+		<div class="ability-edit-r">
+			<span class="cmao_title">电子邮箱：</span><input type="text" class="cmao_input m126" id="reemail" />
+		</div>
+
+		<div class="upload-box clear">
+			<div class="statusBar">
+				<button type="button" class="btn btn-blue upload-btn" id="recontactUpload" name="upload">上传图片</button>
+			</div>
+			<ul class="uploadList clearfix" id="contactList">
+			</ul>
+			<div class="placeholder">
+				<p>您还没有上传任何图片，快去上传吧</p>
+			</div>
+		</div>
+	</div>
+	</form>
+	<!-- 	修改企业业务联系人 -->
+	<div id="changywlianxi">
+		<div class="lianxi_nomal clearfix">
+			<input type="hidden" id="ywid" />
+			<div class="ability-edit-l">
+				<span class="cmao_title">联系人：</span><input type="text" class="cmao_input m126" id="relianxi">
+			</div>
+			<div class="ability-edit-r">
+				<span class="cmao_title">业务类型：</span><select id="yewu_type"></select>
+			</div>
+			<div class="ability-edit-r" >
+				<span class="cmao_title">固定电话：</span><input type="text" class="cmao_input m126" id="gudingdianhua"/>
+			</div>
+			<div class="ability-edit-r">
+				<span class="cmao_title">手机：</span><input type="text" class="cmao_input" id="recellphone"/>
+			</div>
+			<div class="ability-edit-r" style="margin-bottom: 20px">
+				<span class="cmao_title">电子邮箱：</span><input type="text" class="cmao_input m126" id="emial2"/>
+			</div>
+			<div class="ability-edit-r" style="height: auto;margin-bottom: 10px;">
+				<button class="btn btn-blue btn-w80 ml26" onclick ="addContact();" type="button">确认</button>
+				<button class="btn btn-gray btn-w80 ml26" type="button" onclick ="resetContact();">取消</button>
+			</div>
+		</div>
+		<div class="all_yelianxi">
+			<table id="ywtable"></table>
+		</div>
+	</div>
+	<!-- 	修改企业门户图片 -->
+	<form id="menhuForm" action="#" method="post" enctype="multipart/form-data">
+		<div id="qymenhu">
+			<input type="hidden" id="deletelogPic">
+			<div class="upload-box singleUpload">
+					<div class="placeholder">
+						<p>请上传图片</p>
+					</div>
+					<ul class="uploadList clearfix" id="menhulist">
+					</ul>
+					<div class="statusBar">
+						<button type="button" class="btn btn-blue upload-btn" id="menhu">上传图片</button>
+					</div>
+				</div>
+		</div>
+	</form>
+	<!--提供百度地图定位功能 -->
+	<div id="ditu">
+		<div id="qy-position"></div>
+		<div class="ditu-anniu">
+			<input type="hidden" class="cmao_input m126" id="jingweidu"/>
+		</div>
+	</div>
+
+</body>
+
+</html>

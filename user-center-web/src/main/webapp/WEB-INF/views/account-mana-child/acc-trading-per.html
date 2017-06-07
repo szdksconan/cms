@@ -1,0 +1,245 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>账户管理-交易账户管理</title>
+<link href="../css/account-mana.css" rel="stylesheet"/>	
+<!--[if lt IE 9]>
+<script src="js/html5shiv.js"></script>
+<script src="js/respond.min.js"></script>
+<![endif]-->
+</head>
+<!--交易账户管理首页-->
+<div class="acc-trading show" id="acc-indexdiv">
+	<div class="acc-tradtitle">资金账户</div>
+	<div class="acc-trad-con1">
+		<div class="acc-tra-money">
+			<p class="acc-tram-title"><img src="../image/acc-trad-money-icon.png" />平台账户余额</p>
+			<div align="center" class="acc-tram-money"><span>0.00</span>&yen;</div>
+			<ul class="acc-tram-ul">
+				<li><a href="#">充值</a></li>
+				<li><a href="#">提现</a></li>
+				<li><a href="#" class="acc-moneydetail">详情</a></li>
+			</ul>
+		</div>
+		<div class="acc-tra-addBankcard">
+			<span class="glyphicon glyphicon-plus acc-tra-addicon"></span>
+			<p align="center">添加银行卡/支付宝</p>
+		</div>
+	</div>
+	<div class="acc-tradtitle">我的保证金</div>
+	<div class="acc-trad-con2">
+		<div class="acc-tradc-div">保证金：<span>2630.00</span>&yen;<a href="javascript:;" class="acc-trad-chongzhi">充值</a></div>
+		<table class="acc-tradc-table">
+			<thead class="acc-tradct-thead">
+				<tr>
+					<td width="25%" class="padding-l-40">时间</td>
+					<td width="30%">保证金交易记录</td>
+					<td width="35%">金额</td>
+					<td width="10%">操作</td>
+				</tr>
+			</thead>
+			<tbody  class="acc-tradct-tbody">
+				<tr>
+					<td class="padding-l-40">2016/01/05</td>
+					<td>产品违规</td>
+					<td>-562.30</td>
+					<td><a href="javascript:;">详情</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<!--交易账户管理--余额详情-->
+<div class="acc-trading hide" id="acc-moneydiv">
+	<div class="acc-tradtitle">资产明细
+	  <ul class="acc-trat-ul">
+	  	<li><a href="#">收支明细证明</a></li>
+	  	<li><a href="#">下查询结果</a></li>
+	  </ul>
+	</div>
+	<div class="acc-tram-detail">
+		<div class="acc-tratime-div">
+			<span>时间：</span>
+			<span><input type="text" value="2015-12-09" class="acc-tradtime-input"></span>
+			<span>-</span>
+			<span><input type="text" value="2016-01-09" class="acc-tradtime-input"></span>
+		</div>
+		<ul class="acc-tratime-ul">
+			<li>最近</li>
+			<li>1周</li>
+			<li class="acc-trad-current">1个月</li>
+			<li>1年&nbsp;|&nbsp;<select class="acc-trad-select"><option>按月份选择</option></select></li>
+		</ul>
+		<select>
+			<option>高级筛选</option>
+		</select>
+		<div class="acc-trad-income" align="center">收入：158200.00</div>
+		<div class="acc-trad-goout" align="center">支出：158200.00</div>		
+	</div>
+	<table class="acc-trad-table">
+		<thead class="acc-trad-thead">
+			<tr>
+				<td class="padding-l-10">流水号</td>
+				<td>日期</td>
+				<td>名称|备注</td>
+				<td>收入(元)</td>
+				<td>支出(元)</td>
+				<td>余额</td>
+				<td>支付方式</td>
+			</tr>
+		</thead>
+		<tbody class="acc-trad-tbody">
+			<tr class="acc-tradborder-b">
+				<td class="padding-l-10">1673010555988978907</td>
+				<td>2016/01/08</td>
+				<td>提现</td>
+				<td></td>
+				<td>1850.00</td>
+				<td>488.00</td>
+				<td>中国建设银行</td>
+			</tr>
+			<tr class="acc-tradborder-b">
+				<td class="padding-l-10">1673010555988978907</td>
+				<td>2016/01/08</td>
+				<td>提现</td>
+				<td></td>
+				<td>1850.00</td>
+				<td>488.00</td>
+				<td>中国建设银行</td>
+			</tr>
+			<tr class="acc-tradborder-b">
+				<td class="padding-l-10">1673010555988978907</td>
+				<td>2016/01/08</td>
+				<td>提现</td>
+				<td></td>
+				<td>1850.00</td>
+				<td>488.00</td>
+				<td>中国建设银行</td>
+			</tr>
+			<tr class="acc-tradborder-b">
+				<td class="padding-l-10">1673010555988978907</td>
+				<td>2016/01/08</td>
+				<td>提现</td>
+				<td></td>
+				<td>1850.00</td>
+				<td>488.00</td>
+				<td>中国建设银行</td>
+			</tr>
+			<tr class="acc-tradborder-b">
+				<td class="padding-l-10">1673010555988978907</td>
+				<td>2016/01/08</td>
+				<td>提现</td>
+				<td></td>
+				<td>1850.00</td>
+				<td>488.00</td>
+				<td>中国建设银行</td>
+			</tr>
+			<tr class="acc-tradborder-b">
+				<td class="padding-l-10">1673010555988978907</td>
+				<td>2016/01/08</td>
+				<td>提现</td>
+				<td></td>
+				<td>1850.00</td>
+				<td>488.00</td>
+				<td>中国建设银行</td>
+			</tr>
+			<tr class="acc-tradborder-b">
+				<td class="padding-l-10">1673010555988978907</td>
+				<td>2016/01/08</td>
+				<td>提现</td>
+				<td></td>
+				<td>1850.00</td>
+				<td>488.00</td>
+				<td>中国建设银行</td>
+			</tr>
+			<tr class="acc-tradborder-b">
+				<td class="padding-l-10">1673010555988978907</td>
+				<td>2016/01/08</td>
+				<td>提现</td>
+				<td></td>
+				<td>1850.00</td>
+				<td>488.00</td>
+				<td>中国建设银行</td>
+			</tr>
+			<tr class="acc-tradborder-b">
+				<td class="padding-l-10">1673010555988978907</td>
+				<td>2016/01/08</td>
+				<td>提现</td>
+				<td></td>
+				<td>1850.00</td>
+				<td>488.00</td>
+				<td>中国建设银行</td>
+			</tr>
+			<tr>
+				<td class="padding-l-10">1673010555988978907</td>
+				<td>2016/01/08</td>
+				<td>提现</td>
+				<td></td>
+				<td>1850.00</td>
+				<td>488.00</td>
+				<td>中国建设银行</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<!--交易账户管理--添加银联账户-->
+<div class="acc-trading hide" id="acc-addcarddiv">
+	<div class="acc-trad-carddiv">
+		<span class="acc-trad-msg">请绑定持卡人本人的银行卡</span>
+		<table class="acc-trad-cardtable">
+			<tr>
+				<td width="30%" align="right"><span class="must">*</span>持卡人</td>
+				<td width="36%"><span class="margin-l-20">邓安玲</span></td>
+				<td width="34%"></td>
+			</tr>
+			<tr>
+				<td align="right"><span>*</span>身份证号</td>
+				<td><input type="text" value="" class="acc-trad-input"></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td align="right"><span>*</span>银行卡卡号</td>
+				<td><input type="text" value="" class="acc-trad-input"></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td align="right"><span>*</span>卡类型</td>
+				<td><select class="acc-trad-input"><option>兴业银行  储蓄卡</option></select></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td align="right"><span>*</span>手机号</td>
+				<td><input type="text" value="" class="acc-trad-input" placeholder="请输入银行预留手机号"></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td align="right"><span>*</span>验证码</td>
+				<td>
+					<input type="text" value="" class="acc-trad-validateinput" placeholder="请输入验证码">
+				    <input type="button" class="acc-validate" value="获取短信验证码" />	
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type="button" class="acc-trad-okbtn" value="同意并确定"></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><a href="javascript:;" class="acc-trad-link">《平台快捷支付协议》</a></td>
+				<td></td>
+			</tr>
+		</table>
+	</div>
+</div>
+<script src="../js/jquery.1.11.3.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/account-mana.js"></script>
+</html>
+
+
+

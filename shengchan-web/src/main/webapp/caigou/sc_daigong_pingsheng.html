@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+
+    <script type="text/javascript">
+    $(function() {
+        $('#table').bootstrapTable({
+//          url:'purchase/test',//请求后台的URL（*）
+          editable:true,//开启编辑模式
+          clickToSelect: true,
+          data:[//json数据
+              {
+                  "mate":"阀门",
+                  "size": "600型",
+                  "count": "1个",
+                  "date": "2016.04.12",
+                  "price": "1000",
+                  "total": "1",
+                  "state": "长期合作",
+                  "remark": "需发布"
+              },
+              {
+            	    "mate":"阀门",
+                    "size": "600型",
+                    "count": "1个",
+                    "date": "2016.04.12",
+                    "price": "1000",
+                    "total": "1",
+                    "state": "长期合作",
+                    "remark": "需发布"
+              },
+              {
+            	    "mate":"阀门",
+                    "size": "600型",
+                    "count": "1个",
+                    "date": "2016.04.12",
+                    "price": "1000",
+                    "total": "1",
+                    "state": "长期合作",
+                    "remark": "需发布"
+              },
+              {
+            	    "mate":"阀门",
+                    "size": "600型",
+                    "count": "1个",
+                    "date": "2016.04.12",
+                    "price": "1000",
+                    "total": "1",
+                    "state": "长期合作",
+                    "remark": "需发布"
+              }
+          ],
+          showFooter:true,
+          method: 'post',//请求方式（*）
+          toolbar: '#toolbar',//工具栏所在div id
+          striped: true, //是否显示行间隔色
+          cache:false, //是否使用缓存
+          pagination: true,//是否显示分页
+          queryParamsType:'',//传递参数
+          sortable: true,//是否启用排序
+          sortOrder: "asc",//排序方式
+          sidePagination: "client",//分页方式：client客户端分页，server服务端分页
+          pageNumber:1,//初始化加载第一页，默认第一页
+          pageSize: 10, //每页的记录行数
+          pageList: [10, 20, 40, 100],//可供选择的每页的行数
+          search: false,//是否显示表格搜索，此搜索是客户端搜索，不会进服务端
+          showColumns: false,//是否显示所有的列
+          showRefresh: false,//是否显示刷新按钮
+          minimumCountColumns: 2,//最少允许的列数
+          clickToSelect: true,//是否启用点击选中行
+          //height: 500,//行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+          uniqueId: "id",//每一行的唯一标识，一般为主键列
+          showToggle:false,//是否显示详细视图和列表视图的切换按钮
+          cardView: false,//是否显示详细视图
+          detailView: false,//是否显示父子表
+          paginationHAlign:'right',//分页组件显示位置
+          paginationVAlign:'bottom',//分页信息显示位置
+          paginationDetailHAlign: 'left', //right, left
+          showFooter:true,
+          columns: [
+             {
+             checkbox: true
+         },
+//              {
+//                  edit:false,
+//                  field: 'Number',
+//                  title: '行号',
+//                  formatter: function (value, row, index) {
+//                      return index+1;
+//                  }
+//              },
+              {
+              title : '物资名称',
+              field : 'mate',
+              sortable : true
+          },{
+              title : '规格型号',
+              edit:false,
+              field : 'size',
+              sortable : true
+          },{
+              title : '数量',
+              field : 'count',
+              sortable : true
+          },{
+              title : '交货日期',
+              field : 'date',
+              sortable : true
+          },
+          {
+              title : '代工单价',
+              field : 'price',
+              sortable : true
+          },{
+              title : '小计',
+              field : 'total',
+              sortable : true,
+              footerFormatter:function(rows){
+                  var vi=0;
+                  for (var i=0;i<rows.length;i++){
+                      vi+=parseInt(rows[i].total);
+                  }
+                  return vi==0?'':vi;
+              }
+          },{
+              title : '合作模式',
+              field : 'state',
+              sortable : true
+          },{
+              title : '备注',
+              field : 'remark',
+              sortable : true,
+              footerFormatter: function (row) {
+                  return '合计:100000';
+              }
+          }
+          ]
+      });
+
+	});
+
+    	function sel(tag1,tag11){
+    		var tag = $('#'+tag1).val();
+    		if(tag == '0'){
+    			$("#"+tag11).attr('src','../images/right_hui.png'); 
+    			$('#'+tag1).val('1');
+    		}
+    		else{
+    			$("#"+tag11).attr('src','../images/right_lv.png'); 
+    			$('#'+tag1).val('0');
+    		}
+    	}
+    </script>
+</head>
+<body>
+    <p class="sc_p" style="margin:20px 0 0 0px">代工报名单位</p>
+    <div class="sc_daigong">
+        <ul>
+            <li class="li_1" onclick="sel('tag1','tag11');" >
+            	<input id='tag1' type="hidden" value="0">
+                <div style="background-image:../images/shenchans/sc_glie2.jpg">
+                    <img src="../images/shenchans/sc_glie2.jpg">
+                    <ul >
+                        <li>
+                            成都阿迪达斯服装有限公司
+                        </li>
+                        <li>
+                            所属行业：服装服饰
+                        </li>
+                        <li>
+                            企业性质：外商独资
+                        </li>
+                        <li>
+                            主加工产品：衣服，裤子，鞋
+                        </li>
+                        <li>
+                            所在地区：成都市高新区
+                        </li>
+                        <li>
+                            经营模式：生产制造
+                        </li>
+                        <li>
+                        	
+                            <a class="a_css" href="javascript:void(0);">更多详情》</a>
+                        </li>
+                        <li>
+                        	<img id='tag11' style="float: right;" width="83px" src="../images/right_hui.png">
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="li_1" onclick="sel('tag2','tag22');" >
+            <input id='tag2' type="hidden" value="0">
+                <div>
+                    <img src="../images/shenchans/sc_glie2.jpg">
+                    <ul >
+                        <li>
+                            成都阿迪达斯服装有限公司
+                        </li>
+                        <li>
+                            所属行业：服装服饰
+                        </li>
+                        <li>
+                            企业性质：外商独资
+                        </li>
+                        <li>
+                            主加工产品：衣服，裤子，鞋
+                        </li>
+                        <li>
+                            所在地区：成都市高新区
+                        </li>
+                        <li>
+                            经营模式：生产制造
+                        </li>
+                        <li>
+                            <a class="a_css" href="javascript:void(0);">更多详情》</a>
+                        </li>
+                            <li>
+                        	<img id='tag22' style="float: right;"  width="83px" src="../images/right_hui.png">
+                        </li>
+                    </ul>
+
+                </div>
+            </li>
+            <li class="li_1" onclick="sel('tag3','tag33');">
+               <input id='tag3' type="hidden" value="0">
+                <div>
+                    <img src="../images/shenchans/sc_glie2.jpg">
+                    <ul >
+                        <li>
+                            成都阿迪达斯服装有限公司
+                        </li>
+                        <li>
+                            所属行业：服装服饰
+                        </li>
+                        <li>
+                            企业性质：外商独资
+                        </li>
+                        <li>
+                            主加工产品：衣服，裤子，鞋
+                        </li>
+                        <li>
+                            所在地区：成都市高新区
+                        </li>
+                        <li>
+                            经营模式：生产制造
+                        </li>
+                        <li>
+                            <a class="a_css" href="javascript:void(0);">更多详情》</a>
+                        </li>
+                             <li>
+                        	<img id='tag33' style="float: right;"  width="83px" src="../images/right_hui.png">
+                        </li>
+                    </ul>
+
+                </div>
+            </li>
+            <li class="li_1" onclick="sel('tag4','tag44');">
+                <div>
+                     <input id='tag4' type="hidden" value="0">
+                    <img src="../images/shenchans/sc_glie2.jpg">
+                    <ul >
+                        <li>
+                            成都阿迪达斯服装有限公司
+                        </li>
+                        <li>
+                            所属行业：服装服饰
+                        </li>
+                        <li>
+                            企业性质：外商独资
+                        </li>
+                        <li>
+                            主加工产品：衣服，裤子，鞋
+                        </li>
+                        <li>
+                            所在地区：成都市高新区
+                        </li>
+                        <li>
+                            经营模式：生产制造
+                        </li>
+                        <li>
+                            <a class="a_css" href="javascript:void(0);">更多详情》</a>
+                        </li>
+                              <li>
+                        	<img id='tag44' style="float: right;"  width="83px" src="../images/right_hui.png">
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+     <div class="sc_gym"><img src="../images/fanye.jpg"></div>
+    
+    <p class="sc_p" style="margin:20px 0 0 0px">代工申请详情及评审</p>
+    <span class="ml27" style="margin-left: 0px;">成都市天府机械有限公司</span>
+    <table id="table" >
+        
+    </table>
+    <p class="sc_p" style="margin:20px 0 0 0px"></p>
+  
+    <div class="sc_daig tex_m">
+    <a   class="btn btn-hui btn-w80" type="button" >暂存</a> &nbsp;
+    <a   class="btn btn-red  btn-w80" type="button" >确定</a>
+	</div>
+
+</body>
+</html>

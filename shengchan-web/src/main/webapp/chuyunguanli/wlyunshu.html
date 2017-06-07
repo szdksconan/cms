@@ -1,0 +1,156 @@
+<!-- <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%> -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>物流运输需求</title>
+<link rel="stylesheet" type="text/css"
+	href="../css/laydate/skins/molv/laydate.css" />
+<link rel="stylesheet" type="text/css"
+	href="../css/common/chuyunguanli.css" />
+<script src="../js/storage/s_wlys.js"></script>	
+</head>
+<body>
+	<!-- 	外部最大容器 -->
+	<div class="container">
+		<div class="lside">
+			<div class="wlyunshu_c1th">
+				<span class="ml-37">货物名称：<input type="text"
+					class="cmao_input m126" /></span>
+			</div>
+			<div class="wlyunshu_c">
+				<span class="pt-10">所属行业：<select id="hangye"></select></span>
+			</div>
+			<div class="wlyunshu_c3th">
+				<span class="pt-10">运输方式：<select id="trans_type"></select></span>
+			</div>
+			<div class="wlyunshu_c4th">
+				<span class="pt-10">需求状态：<select id="require_status"></select></span>
+			</div>
+			<div class="wlyunshu_c1th">
+				<span class="ml-37">&emsp;始发地：<input type="text"
+					class="cmao_input m126" /></span>
+			</div>
+			<div class="wlyunshu_c">
+				<span class="pt-10">&emsp;目的地：<input type="text"
+					class="cmao_input m126" /></span>
+			</div>
+			<div class="wlyunshu_c1">
+				<span class="pt-10">截止日期：
+					<input type="text" class="laydate-icon" id="start"> - <input type="text" class="laydate-icon" id="end"></span>
+			</div>
+			<div class="wlyunshu_btn">
+				<label class="wlyunshu_btn1">
+					<button class="btn btn-blue btn-w140 ml26" id="btn_tanchu"
+						type="button">新增物流运输需求</button>
+				</label> <label class="wlyunshu_btn2"><button
+						class="btn btn-blue btn-w100 ml26" type="button">查询</button>
+					<button class="btn btn-gray btn-w100 ml26" type="button">清空</button></label>
+			</div>
+			<div>
+				<div class="comt-head">
+					<ul>
+						<li class="col14">货物基本信息</li>
+						<li class="col15">物流运输信息</li>
+						<li class="col16">联系信息</li>
+						<li class="col17">操作</li>
+					</ul>
+				</div>
+				<div class="content">
+					<ul>
+						<li>
+							<div class="wl_height">
+								<div class="top-title clearfix">
+									<div class="publishtime">
+										<label class="publishtime-first"><span class="ml20">煤炭100吨</span>，来自<span style="color:red;">&nbsp;物资采购</span>，订单号<span><a href="">&nbsp;3123123123</a></span>&emsp;&emsp;<span><a href="#">XXXXX公司</a></span></label>
+										<label class="publishtime-tow">发布时间：<span class="">2016年4月19日</span>
+										</label>
+										<label class="publishtime-last">&emsp;&emsp;截止时间：<span class="">2016年5月19日</span></label>
+									</div>
+									<div class="pingtaiwuliu">
+										<label>&emsp;&emsp;&emsp;平台标准物流:&emsp;等待接单</label>
+									</div>
+								</div>
+								<div class="clearfix">
+									<!--左 -->
+									<div class="left_goods">
+										<div class="left-l">
+											<a target="_blank" href="viewVCourse.action?courseCode=10635V007"> 
+												<img width="134" height="132" alt="" src="http://i5.hexunimg.cn/2014-01-01/161079314.jpg"/>
+											</a>
+										</div>
+										<div class="left-r">
+											<div>
+												<label>&emsp;&emsp;体积：</label><span class="wl_text">20立方</span>
+											</div>
+											<div>
+												<label>&emsp;&emsp;重量：</label><span><span class="wl_text">30吨</span></span>
+											</div>
+											<div>
+												<label>物资类别：</label><span><span class="wl_text">金属制品业</span></span>
+											</div>
+											<div>
+												<label>物资摘要：</label><span><span class="wl_text">钢材类</span></span>
+											</div>
+										</div>
+
+									</div>
+									<div class="center_wlyunshu">
+										<div>
+											<div>
+												<label>&emsp;始发地：</label><span
+													class="wl_text">四川-成都-高新区</span>
+											</div>
+											<div>
+												<label>&emsp;目的地：</label><span><span
+													class="wl_text">四川-德阳-**区</span></span>
+											</div>
+											<div>
+												<label>运输方式：</label><span><span class="wl_text">公路物流</span></span>
+											</div>
+											<div>
+												<label>期望运费：</label><span><span class="wl_text">5000元</span></span>
+											</div>
+											<div>
+												<label>&emsp;&emsp;类型：</label><span><span class="wl_text">发货</span></span>
+											</div>
+										</div>
+									</div>
+									<div class="center_lianxi">
+										<div>
+											<div>
+												<label>&emsp;联系人：</label><span><span class="wl_text">张山</span></span>
+											</div>
+											<div>
+												<label>联系电话：</label><span><span
+													class="wl_text">135000000</span></span>
+											</div>
+										</div>
+									</div>
+
+									<div class="right">
+										<div></div>
+										<div>
+											<a href="javascript:void(0)" onclick="edit(this);">编辑</a>
+										</div>
+										<div>
+											<a href="javascript:void(0)">删除</a>
+										</div>
+										<div>
+											<a href="javascript:void(0)">发布物流需求</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+		<div class="rside"></div>
+
+	</div>
+	<!-- 外部最大容器 -->
+</body>
+</html>

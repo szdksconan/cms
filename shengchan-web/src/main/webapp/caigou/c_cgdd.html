@@ -1,0 +1,313 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>采购订单</title>
+    <meta charset="utf-8">
+</head>
+<div class="bei">
+    <table class="-querytable">
+        <tr>
+            <td align="right">
+                订单编号：
+            </td>
+            <td>
+                <input type="text" class="cmao_input" value="20160416"/>
+            </td>
+            <td align="right">
+                供应商名称：
+            </td>
+            <td>
+                <input type="text" class="cmao_input" value="成都双龙木材厂"/>
+            </td>
+            <td align="right">
+                产品名称：
+            </td>
+            <td colspan="3">
+                <input type="text" class="cmao_input" value="003角边木"/>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                交付状态：
+            </td>
+            <td>
+                <select id="jfzt">	</select>
+            </td>
+            <td align="right">
+                支付状态：
+            </td>
+            <td>
+                <select id="zfzt">	</select>
+            </td>
+            <td align="right">
+                发票状态：
+            </td>
+            <td>
+                <select id="fpzt">	</select>
+            </td>
+            <td align="right">
+                交易状态：
+            </td>
+            <td>
+                <select id="jyzt">	</select>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                采购日期：
+            </td>
+            <td >
+                <input type="text"  class="laydate-icon" onclick="laydate()"/> - <input type="text"  class="laydate-icon" onclick="laydate()"/>
+            </td>
+            <td align="right">
+                约定交货期：
+            </td>
+            <td >
+                <input type="text"  class="laydate-icon" onclick="laydate()"/> - <input type="text"  class="laydate-icon" onclick="laydate()"/>
+            </td>
+        </tr>
+    </table>
+<div>
+ <p>&nbsp;</p>
+    <div id="toolbar" style="width: 100%">
+        <table style="width: 100%">
+            <tr>
+                <td align="right">
+                    <button  class="btn btn-blue btn-w100" type="button" >查询</button>
+                    <button  class="btn btn-darkgray btn-w100" type="button" >清空</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+    <table id="table" >
+    </table>
+</div>
+<script>
+    
+    var optionsjfzt = [
+                   {label: '已交付',  value: '1'},
+                   {label: '未交付',  value: '2'}
+               ];
+
+               $('#jfzt').multiselect('dataprovider', optionsjfzt);
+               
+    var optionszfzt = [
+                                  {label: '已支付',  value: '1'},
+                                  {label: '未支付',  value: '2'}
+                              ];
+
+           $('#zfzt').multiselect('dataprovider', optionszfzt);
+           var optionsfpzt = [
+                              {label: '已开票',  value: '1'},
+                              {label: '未开票',  value: '2'}
+                          ];
+
+       $('#fpzt').multiselect('dataprovider', optionsfpzt);     
+       var optionsjyzt = [
+                          {label: '完成交易',  value: '1'},
+                          {label: '交易中',  value: '2'}
+                      ];
+
+   $('#jyzt').multiselect('dataprovider', optionsjyzt);       
+
+    $('#wzlb_1').multiselect({
+        nonSelectedText:'请选择',
+        onChange : function(option, checked) {
+            $('#wzlb_2').multiselect('url',{url:'common/getBaseProductList',data:{
+                superid:$('#wzlb_1').val()
+            },cache:true});
+        },
+        onLoadSuccess:function(option, checked){
+            $('#wzlb_2').multiselect('url',{url:'common/getBaseProductList',data:{
+                superid:$('#wzlb_1').val()
+            },cache:true
+            });
+        }
+    });
+    $('#wzlb_1').multiselect('url',{url:'common/getBaseProductList',data:{
+        level:1
+    },cache:true});
+
+    $('#wzlb_2').multiselect({
+        nonSelectedText:'请选择',
+        maxHeight:'300',
+        onChange : function(option, checked) {
+            $('#wzlb_3').multiselect('url',{url:'common/getBaseProductList',data:{
+                superid:$('#wzlb_2').val()
+            },cache:true});
+        },
+        onLoadSuccess:function(option, checked){
+            $('#wzlb_3').multiselect('url',{url:'common/getBaseProductList',data:{
+                superid:$('#wzlb_2').val()
+            },cache:true});
+        }
+    });
+
+    $('#wzlb_3').multiselect({
+        nonSelectedText:'请选择',
+        maxHeight:'300'
+    });
+
+    $('#wzly_1').multiselect({
+        nonSelectedText:'请选择',
+        onChange : function(option, checked) {
+            $('#wzly_2').multiselect('url',{url:'common/getBaseProductList',data:{
+                superid:$('#wzly_1').val()
+            },cache:true});
+        },
+        onLoadSuccess:function(option, checked){
+            $('#wzly_2').multiselect('url',{url:'common/getBaseProductList',data:{
+                superid:$('#wzly_1').val()
+            },cache:true
+            });
+        }
+    });
+    $('#wzly_1').multiselect('url',{url:'common/getBaseProductList',data:{
+        level:1
+    },cache:true});
+
+    $('#wzly_2').multiselect({
+        nonSelectedText:'请选择',
+        maxHeight:'300',
+        onChange : function(option, checked) {
+            $('#wzly_3').multiselect('url',{url:'common/getBaseProductList',data:{
+                superid:$('#wzly_2').val()
+            },cache:true});
+        },
+        onLoadSuccess:function(option, checked){
+            $('#wzly_3').multiselect('url',{url:'common/getBaseProductList',data:{
+                superid:$('#wzly_2').val()
+            },cache:true});
+        }
+    });
+
+    $('#wzly_3').multiselect({
+        nonSelectedText:'请选择',
+        maxHeight:'300'
+    });
+
+    layer.config({
+        extend: ['skin/myskin.css']//加载新皮肤
+    });
+
+    $('#table').bootstrapTable({
+//          url:'purchase/test',//请求后台的URL（*）
+        data:[{
+                "xh":"001",
+                "dh": "D20160416",
+                "mc": "成都双龙布艺",
+                "zy": "窗帘10套等",
+                "cgrq": "2016.04.16",
+                "ydjh": "2016.04.26",
+                "ze": "9999",
+                "jyzt":"完成交易",
+                "wlys":"在线跟踪",
+                "fpzt":"未开票"
+            },{
+            	  "xh":"001",
+                  "dh": "D20160416",
+                  "mc": "成都双龙布艺",
+                  "zy": "窗帘10套等",
+                  "cgrq": "2016.04.16",
+                  "ydjh": "2016.04.26",
+                  "ze": "9999",
+                  "jyzt":"完成交易",
+                  "wlys":"提醒储运",
+                  "fpzt":"已开票"
+            },{
+            	  "xh":"001",
+                  "dh": "D20160416",
+                  "mc": "成都双龙布艺",
+                  "zy": "窗帘10套等",
+                  "cgrq": "2016.04.16",
+                  "ydjh": "2016.04.26",
+                  "ze": "9999",
+                  "jyzt":"交易中",
+                  "wlys":"在线跟踪",
+                  "fpzt":"已开票"
+            },{
+            	  "xh":"001",
+                  "dh": "D20160416",
+                  "mc": "成都双龙布艺",
+                  "zy": "窗帘10套等",
+                  "cgrq": "2016.04.16",
+                  "ydjh": "2016.04.26",
+                  "ze": "9999",
+                  "jyzt":"完成交易",
+                  "wlys":"在线跟踪",
+                  "fpzt":"未开票"
+            }
+        ],
+        toolbar: '#toolbar',
+        toolbarWidth:'100%',
+        pagination: true,//是否显示分页
+        queryParamsType:'',//传递参数
+        sidePagination: "client",//分页方式：client客户端分页，server服务端分页
+        uniqueId: "id",//每一行的唯一标识，一般为主键列
+        showFooter: true,
+        columns: [{
+                  field: 'xh',
+                  title: '序号',
+                  formatter: function (value, row, index) {
+                      return index+1;
+                  }
+              },{
+                title : '采购订单号',
+                field : 'dh'
+            },{
+                title : '供应商名称',
+                field : 'mc'
+            },{
+                title : '物资摘要',
+                field : 'zy'
+            },{
+                title : '总额',
+                field : 'ze'
+            },{
+                title : '采购日期',
+                field : 'cgrq'
+            },{
+                title : '约定交货期',
+                field : 'ydjh'
+            },{
+                title : '交易状态',
+                field : 'jyzt'
+            },{
+                title : '物流运输',
+                field : 'wlys',
+                	footerFormatter:function() {
+                        return '采购金额:110000 已付30000 未付80000';
+                    }
+            },{
+                title : '发票状态',
+                field : 'fpzt'
+            }, {
+                title: '操作',
+                field : 'action',
+                formatter: function (value, row, index) {
+                    return '<a href="#" onclick="changeContent(\'../caigou/c_cgddxq.html\',\'right\')" class="a_css">编辑</a> | <a href="#" class="a_css">删除</a>';
+                }
+        }]
+    });
+
+    $("input").each(function(){
+        $(this).focus(function(){
+            if( $(this).val() == $(this).get(0).defaultValue ){
+                $(this).val("");
+            }
+        });
+        $(this).blur(function(){
+            if( $(this).val() == "" ){
+                $(this).val( $(this).get(0).defaultValue );
+            }
+        })
+    });
+
+
+
+</script>
+</div>
+</html>

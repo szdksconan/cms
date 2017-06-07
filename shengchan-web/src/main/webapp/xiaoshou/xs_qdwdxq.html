@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>渠道网点详情</title>
+<meta charset="utf-8">
+</head>
+<body class="bei">
+	<div class="cfw_x">
+		<ul class="nav nav-tabs" role="tablist" id="tab-list">
+			<li><a href="javascript:void(0)">网点详情</a></li>
+		</ul>
+		</div>
+		<div class="tab-content">
+			<div class="sc_cgd">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;贸易商名称： <input type="text" class="cmao_inplg" value="" /> 合作方式： <select
+					id="hzfs"></select> 销售模式： <select id="xsms"></select>
+				<button class="btn btn-blue btn-w100" type="button">所属关系</button>
+				<button class="btn btn-blue btn-w100" type="button">加盟</button>
+			</div>
+		</div>
+		<div class="text">
+			<div class="container" style="margin-top: 30px;">
+				<ul class="nav nav-tabs">
+					<li class="active" ><a href="#tab1"
+						data-toggle="tab" style="color: black;">销售产品</a></li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="tab1">
+						<div id="toolbar" style="width: 100%; text-align: right;margin-top: 10px;margin-bottom: 10px;">
+							<button class="btn btn-blue btn-w100" type="button">添加</button>
+						</div>
+						<table id="table"></table>
+					</div>
+				</div>
+			</div>
+			<div class="sc_cgd">
+				<table >
+					<tr>
+						<td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;经营地址： <input type="text" class="cmao_input"
+							style="width: 25%;" id="city" readonly /> <input type="text"
+							class="cmao_input" style="width: 40%;" placeholder="详细地址" />
+							<button class="btn btn-blue btn-w100" type="button">添加更多</button>
+						</td>
+						<td>
+							<button class="btn btn-blue btn-w100" type="button">所属关系</button>
+							<button class="btn btn-blue btn-w100" type="button">加盟</button>
+						</td>
+					</tr>
+					<tr>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;联系人： <input type="text" class="cmao_inplg" value="" />
+							联系电话： <input type="text" class="cmao_inplg" value="" />
+						</td>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;传真： <input type="text" class="cmao_inplg" value="" />
+						</td>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮箱： <input type="text" class="cmao_inplg" value="" />
+						</td>
+					</tr>
+					<tr>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;合作开始时间： <input placeholder="请输入日期" class="laydate-icon"
+							onclick="laydate()"> 合作到期时间： <input placeholder="请输入日期"
+							class="laydate-icon" onclick="laydate()">
+						</td>
+						<td colspan="2">合作协议： <input type="text" class="cmao_inplg"
+							value="" />
+							<button class="btn btn-blue btn-w100" type="button">上传</button>
+						</td>
+					</tr>
+				</table>
+
+			</div>
+			<div class="container" style="margin-top: 30px;">
+				<ul class="nav nav-tabs">
+					<li class="active" ><a href="#tab1"
+						data-toggle="tab" style="color: black;">合作记录</a></li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="tab1" style="margin-top: 20px;">
+						<table id="table_2">
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+</body>
+<script>
+	$("#city").click(function(e) {
+		SelCity(this, e);
+	});
+	var options = [ {
+		label : '代理',
+		value : '1'
+	}, {
+		label : '直销',
+		value : '2'
+	}, {
+		label : '分销',
+		value : '3'
+	} ];
+
+	$('#hzfs').multiselect('dataprovider', options);
+
+	var options = [ {
+		label : '网络销售',
+		value : '1'
+	}, {
+		label : '电视销售',
+		value : '2'
+	}, {
+		label : '电话销售',
+		value : '3'
+	}, {
+		label : '线下实体销售',
+		value : '4'
+	} ];
+	$('#xsms').multiselect('dataprovider', options);
+
+	var tableoptions = {
+		data : [ {
+			"productLogo" : "苹果",
+			"productSet" : "iphone6",
+			"productName" : "iphone6 4.7寸 16G 银色",
+			"productSize" : "A1586"
+		}, {
+			"productLogo" : "苹果",
+			"productSet" : "iphone6 plus",
+			"productName" : "iphone6 plus 5.5寸 64G 深空灰",
+			"productSize" : "A1524"
+		}, {
+			"productLogo" : "苹果",
+			"productSet" : "iphone6 plus",
+			"productName" : "iphone6 plus 5.5寸 64G 深空灰",
+			"productSize" : "A1524"
+		}, {
+			"productLogo" : "苹果",
+			"productSet" : "iphone6 plus",
+			"productName" : "iphone6 plus 5.5寸 64G 深空灰",
+			"productSize" : "A1524"
+		} ],
+		pagination : true,//是否显示分页
+		queryParamsType : '',//传递参数
+		sidePagination : "client",//分页方式：client客户端分页，server服务端分页
+		uniqueId : "id",//每一行的唯一标识，一般为主键列
+		columns : [ {
+			field : 'Number',
+			title : '序号',
+			formatter : function(value, row, index) {
+				return index + 1;
+			}
+		}, {
+			title : '产品品牌',
+			field : 'productLogo'
+		}, {
+			title : '产品系列',
+			field : 'productSet'
+		}, {
+			title : '产品名称',
+			field : 'productName'
+		}, {
+			title : '规格型号',
+			field : 'productSize'
+		}, {
+			title : '操作',
+			field : 'action',
+			formatter : function(value, row, index) {
+				return '<a class="a_css" href="javascript:void(0)">删除</a>';
+			}
+		} ]
+	};
+	$('#table').bootstrapTable(tableoptions);
+
+	var tableoptions2 = {};
+	$.extend(tableoptions2, tableoptions);
+	tableoptions2.columns = [ {
+		title : '进货单号',
+		field : 'jhdCode'
+	}, {
+		title : '产品摘要',
+		field : 'productAbstract'
+	}, {
+		title : '进货时间',
+		field : 'jhTime'
+	}, {
+		title : '进货金额',
+		field : 'jhAmount'
+	}, {
+		title : '已收货款',
+		field : 'collectedAmount'
+	}, {
+		title : '未收货款',
+		field : 'uncollectedAmount'
+	}, {
+		title : '应收货款',
+		field : 'receivableAmount'
+	}, {
+		title : '操作',
+		field : 'action',
+		formatter : function(value, row, index) {
+			return '<a class="a_css" href="javascript:void(0)">删除</a>';
+		}
+	} ];
+	tableoptions2.data = [ {
+		"jhdCode" : "JHD-123456789",
+		"productAbstract" : "进货摘要",
+		"jhTime" : "2016.01.23",
+		"jhAmount" : "10000",
+		"collectedAmount" : "2000",
+		"uncollectedAmount" : "8000",
+		"receivableAmount" : "1000"
+	}, {
+		"jhdCode" : "JHD-123456789",
+		"productAbstract" : "进货摘要",
+		"jhTime" : "2016.01.23",
+		"jhAmount" : "10000",
+		"collectedAmount" : "2000",
+		"uncollectedAmount" : "8000",
+		"receivableAmount" : "1000"
+	}, {
+		"jhdCode" : "JHD-123456789",
+		"productAbstract" : "进货摘要",
+		"jhTime" : "2016.01.23",
+		"jhAmount" : "10000",
+		"collectedAmount" : "2000",
+		"uncollectedAmount" : "8000",
+		"receivableAmount" : "1000"
+	} ];
+	tableoptions2.FooterHtml = '<span style="margin-right: 20px">进货总金额：10000.00　已收总金额：2000.00　未收总金额：8000.00　应收总金额：10000.00</span>';
+	$('#table_2').bootstrapTable(tableoptions2);
+</script>
+</html>

@@ -1,0 +1,215 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>产品信息管理</title>
+    <meta charset="utf-8">
+</head>
+<body class="bei">
+<div class="sc_cgd">
+    <form id="queryForm">
+        <table class="-querytable" style="width: 60%">
+<!--             <tr> -->
+<!--                 <td align="right">产品系列：</td> -->
+<!--                 <td colspan="9"> -->
+<!--                     <a class="a_css" href="#">开山系列（20）</a> -->
+<!--                     <a class="a_css" href="#">铁牛系列（10）</a> -->
+<!--                     <a class="a_css" href="#">铁匠系列（0）</a> -->
+<!--                 </td> -->
+<!--             </tr> -->
+            <tr>
+                <td align="right"> 产品名称：</td>
+                <td>
+                    <input type="text" id="productName" class="cmao_input " value=""/>
+                </td>
+                <td align="right">产品品牌：</td>
+                <td>
+                 <input type="text" id="brandName" class="cmao_input " value=""/>
+              
+                    
+                </td>
+                <td align="right">产品状态： </td>
+                <td>
+                    <select id="cpzt"></select>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div>
+    <div id="toolbar" style="width: 100%">
+        <table style="width: 100%">
+            <tr>
+                <td align="left">
+                    <!--<button  class="btn btn-blue btn-w100" type="button" id="btn_query">查询</button>-->
+                    <!--<button  class="btn btn-darkgray btn-w100" type="button" id="btn_clear">清空</button>-->
+                    <button  class="btn btn-blue btn-w100" type="button" onclick="changeContent('../xiaoshou/xs_cpfb.html','right')">发布产品</button>
+                </td>
+                <td align="right">
+                    <!--<button  class="btn btn-blue btn-w100" type="button" >导出</button>-->
+                    <!--<button  class="btn btn-blue btn-w100" type="button">列表</button>-->
+                    <!--<button  class="btn btn-blue btn-w100" type="button">图表</button>-->
+                    <button  class="btn btn-blue btn-w100" type="button" id="btn_query">查询</button>
+                    <button  class="btn btn-darkgray btn-w100" type="button" id="btn_clear">清空</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <table id="table">
+    </table>
+</div>
+<script>
+    var options = [
+        {label: '请选择',  value: ''},
+        {label: '暂存',  value: 201},
+        {label: '正常销售',  value: 202},
+        {label: '下架',  value: 501}
+    ];
+    $('#cpzt').multiselect('dataprovider', options);
+
+    $('#table').bootstrapTable({
+        url:'../product/getMainProductList',
+        dataType:'json',
+//        ajaxOptions:{
+//            jsonp:'jsonpCallback'
+//        },
+        toolbar: '#toolbar',
+        toolbarWidth:'100%',
+        pagination: true,//是否显示分页
+        contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+        queryParamsType:'limit',
+        sortOrder:'desc',
+        queryParams:function(params){
+            return {
+                pageSize: params.limit,
+                sort:'createTime',
+                order:params.order,
+                pageNumber: params.pageNumber,
+                state:$('#cpzt option:selected').val()
+            };
+        },
+        sidePagination: "server",//分页方式：client客户端分页，server服务端分页
+        pageNumber:1,//初始化加载第一页，默认第一页
+        pageSize: 10, //每页的记录行数
+        pageList: [10, 20],//可供选择的每页的行数
+        uniqueId: "id",//每一行的唯一标识，一般为主键列
+        columns: [{
+            field: 'Number',
+            title: '序号',
+            formatter: function (value, row, index) {
+                return index+1;
+            }
+        },{
+            visible:false,
+            field : 'brandId'
+        },{
+            title : '产品品牌',
+            field : 'brandName'
+        },{
+            title : '产品名称',
+            field : 'productName'
+        },{
+            title : '产品状态',
+            field : 'stateName'
+        },{
+            title : '库存余量',
+            visible:false,
+            field : 'storeCount'
+        },{
+            title : '已销售数量',
+            visible:false,
+            field : 'sellCount'
+        },{
+            title : '单位',
+            visible:false,
+            field : 'unit'
+        },{
+            title : '已销售金额',
+            visible:false,
+            field : 'sellAmount'
+        },{
+            title : '',
+            visible:false,
+            field : 'createTime'
+        }, {
+            title: '操作',
+            field : 'action',
+            formatter: function (value, row, index) {
+                var str='';
+                if (row.state==501){
+                    str+= $.formatString('<a class="a_css" href="javascript:void(0)" onclick="updateState(202,\'{0}\')">上架</a> | ',row.id);
+                }
+                if (row.state==202){
+                    str+= $.formatString('<a class="a_css" href="javascript:void(0)" onclick="updateState(501,\'{0}\')">下架</a> | ',row.id);
+                }
+                str+= $.formatString('<a class="a_css" href="javascript:void(0)" onclick="updatePage(\'{0}\')">编辑</a> | ' +
+                '<a class="a_css" href="javascript:void(0)" onclick="deleteMainProduct(\'{1}\')">删除</a>',row.id,row.id);
+//                '<a class="a_css" href="javascript:void(0)">预览</a>',row.id,row.id);
+                return str;
+            }
+        }]
+    });
+
+    function updateState(state,id){
+        $.ajaxLoad({
+            url:'../product/updateMainProduct',
+            data:{
+                brandId:$('#brandId option:selected').val(),
+                productName:$('#productName').val(),
+                state:$('#cpzt option:selected').val(),
+                statebak:state,
+                id:id
+            },
+            success:function(data){
+                $('#table').bootstrapTable('load',data);
+            }
+        });
+    }
+
+    function deleteMainProduct(id){
+        layer.confirm('您确定要删除这条数据？',{btn:['是','否']},function(){
+            $.ajaxLoad({
+                url:'../product/deleteMainProduct',
+                data:{
+                    brandId:$('#brandId option:selected').val(),
+                    productName:$('#productName').val(),
+                    state:$('#cpzt option:selected').val(),
+                    statebak:12,
+                    id:id
+                },
+                success:function(data){
+                    if (data.success){
+                        layer.msg(data.msg, {icon: 1});
+                        $('#table').bootstrapTable('refresh');
+                    }else {
+                        layer.msg(data.msg, {icon: 2});
+                    }
+                }
+            });
+        });
+    }
+
+    function updatePage(id){
+        changeContent('../product/updatePage?id='+id,'right');
+    }
+
+    $('#btn_query').click(function () {
+        var queryParams={};
+        queryParams.brandName=$('#brandName').val();
+        queryParams.state=$('#cpzt option:selected').val();
+        queryParams.productName=$('#productName').val();
+        $.ajaxLoad({
+            url:'../product/getMainProductList',
+            data:queryParams,
+            success:function(data){
+                $('#table').bootstrapTable('load',data);
+            }
+        });
+    });
+
+    $('#btn_clear').click(function(){
+        $('#productName').val('');
+    });
+</script>
+</body>
+</html>

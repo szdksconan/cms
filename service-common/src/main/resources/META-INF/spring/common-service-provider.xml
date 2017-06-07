@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+    http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+  
+
+   <dubbo:application name="${dubbo.application.name}" owner="${dubbo.application.owner}" organization="cms"/>
+   <dubbo:registry address="${dubbo.registry.address}"/>
+   <dubbo:monitor protocol="registry"/>
+   <dubbo:protocol name="${dubbo.protocol.name}"  serialization="kryo" optimizer="com.cms.optimizer.SerializationOptimizerImpl"  accepts="${dubbo.protocol.accepts}" dispatcher="all" threadpool="${dubbo.protocol.threadpool}" threads="${dubbo.protocol.threads}"/>
+
+    <!-- 
+    <dubbo:registry id="registry" address="10.20.141.150:9090" username="admin" password="hello1234" />
+     -->
+
+    <bean id="globalIdService" class="com.cms.service.common.GlobalIdServiceImp" factory-method="getInstance"/>
+    <dubbo:service interface="com.cms.iservice.common.GlobalIdService" ref="globalIdService" protocol="dubbo" version="1.0.0"   owner="ryan" group="common"/>
+</beans>

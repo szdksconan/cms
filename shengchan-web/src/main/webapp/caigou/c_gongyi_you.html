@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>我的产品</title>
+    <meta charset="utf-8">
+</head>
+<body class="bei">
+<!--  需求表格-->
+<div class="cfw_c" style="width: 112%;">
+	
+    <div class="tab-content">
+        <!--基本信息-->
+        <div>
+            <table id="table_2">
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+    $('#table_2').bootstrapTable({
+        data:[{
+            "compnayName":"成都天府机械",
+            "companyNature": "私营企业",
+            "businessModel": "生产制造",
+            "industry": "装备制造业",
+            "area": "成都高新区",
+            "customerRate": "优",
+            "linkMan": "韦潇洒",
+            "telephone":"12345678901",
+            "transactionCount":"2",
+            "totalAmount":"2000"
+        },{
+            "compnayName":"成都天府机械",
+            "companyNature": "国营企业",
+            "businessModel": "生产制造",
+            "industry": "装备制造业",
+            "area": "成都高新区",
+            "customerRate": "中",
+            "linkMan": "韦潇洒",
+            "telephone":"12345678901",
+            "transactionCount":"2",
+            "totalAmount":"2000"
+        },{
+            "compnayName":"成都天府机械",
+            "companyNature": "外资企业",
+            "businessModel": "生产制造",
+            "industry": "装备制造业",
+            "area": "成都高新区",
+            "customerRate": "差",
+            "linkMan": "韦潇洒",
+            "telephone":"12345678901",
+            "transactionCount":"2",
+            "totalAmount":"2000"
+        }],
+        pagination: true,//是否显示分页
+        queryParamsType:'',//传递参数
+        sidePagination: "client",//分页方式：client客户端分页，server服务端分页
+        uniqueId: "id",//每一行的唯一标识，一般为主键列
+        columns: [{
+            field: 'Number',
+            title: '序号',
+            formatter: function (value, row, index) {
+                return index+1;
+            }
+        },{
+            title : '企业名称',
+            field : 'compnayName'
+        },{
+            title : '企业性质',
+            field : 'companyNature'
+        },{
+            title : '经营模式',
+            field : 'businessModel'
+        },{
+            title : '所属行业',
+            field : 'industry'
+        },{
+            title : '所在地区',
+            field : 'area'
+        },{
+            title : '客户评级',
+            field : 'customerRate'
+        },{
+            title : '联系人',
+            field : 'linkMan'
+        },{
+            title : '联系电话',
+            field : 'telephone'
+        },{
+            title : '交易次数',
+            field : 'transactionCount'
+        },{
+            title : '交易总金额',
+            field : 'totalAmount'
+        },{
+            title: '操作',
+            field : 'action',
+            formatter: function (value, row, index) {
+                return '<a class="a_css" href="#">编辑</a> | <a class="a_css" href="#">删除</a>';
+            }
+        }]
+    });
+
+    function xioshi() {
+        $('.sc_cg').hide();
+    }
+
+    $("input").each(function(){
+        $(this).focus(function(){
+            if( $(this).val() == $(this).get(0).defaultValue ){
+                $(this).val("");
+            }
+        });
+        $(this).blur(function(){
+            if( $(this).val() == "" ){
+                $(this).val( $(this).get(0).defaultValue );
+            }
+        })
+    });
+
+    $('.btn_left').click(function(){
+        $('#wscroll').children().first().animate({marginLeft:'-=216px'},'slow',function(){
+            $(this).appendTo($('#wscroll')).css('marginLeft','0px');
+
+        });
+
+    });
+    $('.btn_right').click(function(){
+        $('#wscroll').children().last().prependTo($('#wscroll')).css('marginLeft','-216px');
+        $('#wscroll').children().first().animate({marginLeft:'+=216px'},'slow');
+    });
+
+
+</script>
+
+
+</body>
+</html>

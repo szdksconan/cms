@@ -1,0 +1,114 @@
+@charset "utf-8";
+/* CSS Document */
+/* 产贸网站首页总站页面样式*/
+body{min-width: 1000px;overflow: auto;}
+img { max-width: 100%; }
+html { font-size:100%; }
+.shouye_top{width:1200px;text-align: center;height:60px;margin:0 auto;padding-top:10px;}
+.shouye_top a{text-decoration: none;}
+.shouye_top > div {width: 300px;height: 45px;display:inline-block;margin-right:40px;float: left;margin-top: 5px;}
+.shouye_top div:first-child{display:inline-block;width: 300px;height: 45px;font-size: 15px;}
+.shouye_top ul li {float:left;width: 100px;height: 45px;font-size:15px;padding-top: 8px;}
+.shouye_top ul li a:link{ color: #333333;cursor: pointer;}
+.shouye_top ul li a:hover{ color: #da2f2f;cursor: pointer;}
+.shouye_top ul li img{margin-left:50px;margin-top:-3px;outline:none;}
+.shouye_top ul li map area{outline: none;}
+.shouye_top .active{ cursor: pointer;color: #da2f2f;}
+.shouye_head {
+    width: 100%;
+    height: 550px;
+    background: url('../images/shouye/tu1.jpg')no-repeat center top;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.shouye_heads {
+    width: 100%;
+    height: 550px;
+    background: url('../images/shouye/tu2.jpg')no-repeat center top;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.shouye_headw {
+    width: 100%;
+    height: 550px;
+    background: url('../images/shouye/tu3.jpg')no-repeat center top;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.shouye_headm {
+    width: 100%;
+    height: 550px;
+    background: url('../images/shouye/tu4.jpg')no-repeat center top;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.shouye_headx {
+    width: 100%;
+    height: 550px;
+    background: url('../images/shouye/tu5.jpg')no-repeat center top;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.shouye_headt {
+    width: 100%;
+    height: 550px;
+    background: url('../images/shouye/tu6.jpg')no-repeat center top;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.shouye_head .shouye_m{color: #333333;text-align: center;font-size:25px;padding-top: 150px;display: none; }
+.shouye_head p{text-align: center;line-height: 60px;display: none;}
+.shouye_head p span{ padding-left: 20px; width: 100px;color: #333333;font-size: 25px;}
+.shouye_pint{width: 1200px;margin:0 auto; height:258px;padding-top:40px;text-align: center;  }
+.shouye_pint div{display: inline-block;width:190px;height:auto; }
+.shouye_pint div img{float: left}
+.shouye_pint div > p{line-height: 30px;font-size: 25px;padding-left:140px;}
+.shouye_pint div p span{ font-size: 14px;color: dddddd;display: inline-block;}
+.shouye_foot{width:100%;height: 90px;text-align: center;background-color: #494949;color: #a0a0a0;padding-top: 20px;}
+.shouye_foot div{width:600px;height:20px;margin:0 auto;font-size: 12px;}
+
+.shouye_pintx{width: 1200px;margin:0 auto; height:302px;padding-top:60px;text-align: center;  }
+.shouye_pintx div{display: inline-block;width:220px;height:auto; }
+
+/* 产贸网站生产商页面样式*/
+
+.shen_head{width: 100%;height: 398px;background-color: #dddddd;text-align: center;padding-top: 100px;}
+.shen_head p{ font-size: 50px;display: block}
+.shen_head span{font-size: 25px;margin-top:30px;display: block;}
+.shen_head button{margin-top:60px;width: 120px;height: 50px;border-radius: 6px;font-size: 18px;}
+
+/* 第二行*/
+.shen_second{width: 100%;height: 450px;background-color: #f2f2f2;text-align: center;padding-top: 30px;}
+.shen_second p{font-size: 30px;display: block}
+.shen_second span{font-size: 20px;margin-top:30px;display: block;}
+/*第三行*/
+.shen_third{width: 100%;height: 398px;background-color: #dddddd;text-align: center;padding-top: 50px;}
+.shen_third div{width: 1000px;margin:0 auto;}
+.shen_third img{float: left;}
+.shen_third .sht_l{font-size: 25px;float: left;width: 200px;margin-left: 30px;}
+.shen_third .sht_n{width:350px;height: 300px;font-size: 18px;float: left;margin-left:-180px;margin-top: 30px;text-align: left;line-height: 47px;}
+/* 第四行*/
+.shen_four{width: 100%;height:600px;background-color: #f2f2f2;text-align: center;padding-top: 30px;}
+.shen_four p{ font-size:22px;margin-top: 30px;line-height: 30px;}
+.shen_four div{width: 1200px;margin:0 auto;}
+.shen_four span{float: left;width:300px;height: 300px;display: block;line-height: 30px;margin-top:50px;}
+
+
+/*登录页面*/
+
+.login_top{margin-left: 20%;padding: 20px;}
+.login_ditu{width:100%;height: 500px; }
+.login_contain{position: fixed;top:102px;right:0;width:700px;height:501px;background-color: #eeeeee;border: 1px solid #dddddd;}
+

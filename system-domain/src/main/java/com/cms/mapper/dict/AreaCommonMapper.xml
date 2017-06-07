@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.dict.AreaCommonMapper">
+    <sql id="AREAPROVINCE">
+        aapid as id,
+        province_name as name,
+        UPPER(SUBSTR(spy,1,1)) as `index`
+    </sql>
+    <sql id="AREACITY">
+        aacid as id,
+        city_name as name,
+        aalcid as pid
+    </sql>
+
+    <select id="getProvinceList" resultType="com.cms.model.dict.AreaProvince">
+        select <include refid="AREAPROVINCE"/> from t_area_province
+    </select>
+
+    <select id="getCityList" parameterType="com.cms.model.dict.AreaCity" resultType="com.cms.model.dict.AreaCity">
+        select <include refid="AREACITY"/> from t_area_city where 1=1
+        <if test="apid!=null and apid!=''">
+            and apid=#{apid}
+        </if>
+        <if test="aalcid!=null and aalcid!=''">
+            and aalcid=#{aalcid}
+        </if>
+        <if test="cityType!=null and cityType!=''">
+            and city_type in
+            <foreach item="item" index="index" collection="cityType" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+    <select id="getCityById" parameterType="String" resultType="com.cms.model.dict.AreaCity">
+        
+        select aacid as id,apid,aalcid  from t_area_city where 1=1
+        
+        <if test="id!=null and id!=''">
+           
+            and aacid = #{id}
+        
+        </if>
+    </select>
+    <select id="getCityByProvinceId" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.dict.AreaCity">
+    	
+    		select province_name as name, aapid as id,'' as apid,'' as  provinceName from t_area_province  where 1=1
+    		
+    		 <if test="filter!=null and filter!=''">
+		        	<foreach collection="filter" index="index" item="area" open="and aapid in ( "
+								    separator="," close=")">
+								       #{area}
+					</foreach>
+		     </if>
+			
+			union all 
+			
+			select city_name as name ,a.aacid as id,apid,b.province_name as provinceName from t_area_city a
+			
+			left join t_area_province b on a.apid = b.aapid where 1=1
+			
+			<if test="filter!=null and filter!=''">
+		        	<foreach collection="filter" index="index" item="area" open="and a.aacid in ( "
+								    separator="," close=")">
+								       #{area}
+					</foreach>
+		     </if>      
+    
+    </select>
+</mapper>

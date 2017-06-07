@@ -1,0 +1,16 @@
+document.writeln("<div class=\"xf_top\">");
+document.writeln("    <div class=\"xf_head\">");
+document.writeln("    <ul>");
+document.writeln("    <li ><a href=\"../index.html\" target=\"_self\" class=\"active\">成都</a></li>");
+document.writeln("    <li ><a href=\"../wuliou.html\" target=\"_self\">消息</a></li>");
+document.writeln("    <li><a href=\"../wuliou.html\" target=\"_self\">购物车</a></li>");
+document.writeln("    <li><a href=\"../wuliou.html\" target=\"_self\">收藏夹</a></li>");
+document.writeln("    <li><a href=\"../wuliou.html\" target=\"_self\">客服中心</a></li>");
+document.writeln("    </ul>");
+document.writeln("");
+document.writeln("        <div class=\"xf_dz\">");
+document.writeln("            <a  href=\"../regist/register.html\" target=\"_self\">登录</a><a>&nbsp;/&nbsp;</a> <a  href=\"../regist/login.html\" target=\"_self\">注册</a>");
+document.writeln("        </div>");
+document.writeln("    </div>");
+document.writeln("");
+document.writeln("</div>");

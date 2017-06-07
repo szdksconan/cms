@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.maoyi.PriceMapper">
+	<resultMap id="priceResultMap" type="com.cms.model.maoyi.CmsPrice">
+		<id column="priceId" property="id" jdbcType="VARCHAR" />
+		<result column="productId" property="productId" jdbcType="VARCHAR" />
+		<result column="productCode" property="productCode" jdbcType="VARCHAR" />
+		<result column="productSellRuleId" property="productSellRuleId"
+			jdbcType="VARCHAR" />
+		<result column="price" property="price" jdbcType="DECIMAL" />
+		<result column="type" property="type" jdbcType="INTEGER" />
+	</resultMap>
+	<select id="getPriceById" resultMap="priceResultMap"
+		parameterType="java.lang.String">
+		select * from cms_product_t_price where priceId = #{id}
+	</select>
+	<insert id="insert" parameterType="java.util.List">
+		insert into
+		cms_product_t_price(priceId,productId,productCode,productSellRuleId
+		,price,type) values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.id},#{item.productId},#{item.productCode},#{item.productSellRuleId},
+			#{item.price},#{item.type})
+		</foreach>
+	</insert>
+</mapper>

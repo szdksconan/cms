@@ -1,0 +1,539 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>销售规则</title>
+<link rel="stylesheet" type="text/css" href="../css/common/chuyunguanli.css" />
+<link rel="stylesheet" type="text/css" href="../css/common/qiyezhongxin.css" />
+<script type="text/javascript" src="../js/qiyezhongxin/xiaoshourule.js"></script>
+<script type="text/javascript">
+	var companyid = "1312312313";
+
+</script>
+<style type="text/css">
+.cg1 {
+	width: 30%;
+	line-height: 40px;
+	margin: 10px 0px;
+	float: left;
+}
+
+.cg2 {
+	width: 50%;
+	line-height: 40px;
+	margin: 10px 0px;
+	float: left;
+}
+
+.cg3 {
+	width: 100%;
+	line-height: 47px;
+	margin: 10px 0px;
+}
+.cg5 {
+	width: 20%;
+	line-height: 47px;
+	margin: 10px 0px;
+	float: left;
+}
+#updateBuyRule {
+	width: 100%;
+	float: left;
+	display: none;
+}
+
+.edit-cg1 {
+	width: 39%;
+	float: left;
+	line-height: 40px;
+	padding-left: 10px;
+}
+
+.edit-cg2 {
+	width: 30%;
+	float: left;
+	line-height: 40px;
+	margin-left: 92px;
+}
+
+.edit-cg3 {
+	width: 30%;
+	float: left;
+	line-height: 40px;
+}
+
+.edit-cg4 {
+	width: 100%;
+	float: left;
+	line-height: 40px;
+	padding-left: 10px;
+	margin-left: 82px;
+}
+
+.describle-title {
+	padding-left: 10px;
+	width: 20%;
+	float: left;
+	line-height: 40px;
+	text-align: right;
+}
+
+.edit-desrible {
+	width: 80%;
+	float: left;
+	line-height: 40px;
+}
+
+.cg-apply {
+	width: 100%;
+	line-height: 40px;
+	float: left;
+	padding-left: 10px;
+}
+
+.cg-check {
+	position: relative;
+	top: 2px;
+}
+textarea{
+	width: 585px;
+	margin-bottom: 20px;
+}
+.applygoods-div{
+
+	float:left;
+/* 	width:63%; */
+}
+.add-p{
+	float: left;
+/* 	width: 4%; */
+	margin-left: 10px;
+	cursor:pointer;
+}
+.pro-show{
+	float:left;
+	width:70%;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<input type="hidden" id="compid"/>
+		<div class="cg1">
+			规则名称：<input type="text" id="rule-name" class="cmao_input m126">
+		</div>
+		<div class="cg2">
+			适用物资：<span id="apply_goods"> 
+				  <select class="materials1 selelct" id="type5" name="productTypeId"></select>
+				  <select class="materials2 selelct" id="type6" name="productTypeId"></select>
+				  <select class="materials3 selelct" id="type7" name="productTypeId"></select>
+				  <select class="materials4 selelct" id="type8" name="productTypeId"></select>
+				</span>
+		</div>
+		<div class="cg5">
+			销售类型：<select id="saletype"></select>
+		</div>
+		
+		<div class="cg3">
+			<span style="float:left;">
+				<button
+					class="btn btn-blue btn-w120 ml26" type="button" onclick="addrule();">新增销售规则</button>
+			</span>
+			<span style="float: right;"><button
+					class="btn btn-blue btn-w100 ml26" onclick="search();" type="button">查询</button>
+				<button class="btn btn-gray btn-w100 ml26" onclick="clearSearch();" type="button">清空</button></span>
+		</div>
+		<table id="caigoujiaoyi"></table>
+	</div>
+
+	<div id="updateBuyRule">
+		<input id="ruleid" type='hidden'/>
+		
+		<div class="edit-cg2" style="display: none">
+			编制时间：<input type="text" style="width: 150px;" value="2015-10-12" disabled="disabled" id="bianzhiTime" class="laydate-icon" />
+		</div>
+		<div class="edit-cg3" style="display: none">
+			编制人：<input id="updator"  value="张三" disabled="disabled" type="text" class="cmao_input m126" />
+		</div>
+		<div class="edit-cg4">
+			<span class="span-l">规则名称：<span><input id="rulename" type="text" class="cmao_input m126" />
+		</div>
+		<div class="edit-cg4">
+			<div class="applygoods-div">
+				适用物资：<span id="element_id"> 
+				  <select class="materials1 selelct" id="type1" name="productTypeId"></select>
+				  <select class="materials2 selelct" id="type2" name="productTypeId"></select>
+				  <select class="materials3 selelct" id="type3" name="productTypeId"></select>
+				  <select class="materials4 selelct" id="type4" name="productTypeId"></select>
+				</span>
+			</div>
+			<span onclick="addproduct(this);" class="add-p"><font color="#4996C5">添加</font></span>
+		</div>
+		<div class="pro-show"></div>
+		<div class="edit-cg4">
+			<div class="edit-cg3">
+				销售类型：
+				<input type="radio" value="经销" name="sellType" class="sellType" />
+				<span>经销</span>&nbsp; &nbsp; &nbsp; &nbsp;
+				<input type="radio" value="代销" name="sellType" class="sellType"/>
+				<span>代销</span>
+			</div>
+            <div class="edit-cg1 bzj" id="redeposit" style="display: none">
+            	保证金：
+            	<input type="text" id="deposit" style="width: 140px;" class="cmao_inplg" value=""/> 万元
+            </div>
+		</div>
+		<div class="edit-cg4">
+			销售区域：
+	        <input type="text" city="true" class="cmao_input" id="sellCity" style="width: 140px;" readonly/>
+		</div>
+		<div style="width: 58%;margin-left: 161px" id="ruleArea"></div>
+		<div class="edit-cg4">
+				付款方式：
+				<input type="radio" value="现款现货" name="payway" class="sellType" checked="checked"/>
+				<span>现款现货</span>&nbsp; &nbsp; &nbsp; &nbsp;
+				<input type="radio" value="分期付款" name="payway" class="sellType"/>
+				<span>分期付款</span>
+		</div>
+		<div class="describle-title">生产企业权利义务说明：</div>
+		<div class="edit-desrible">
+			<textarea class="sc_tarea" id="produceDutyExplain" cols="90" rows="5"></textarea>
+		</div>
+		<div class="describle-title">貿易商权利义务说明：</div>
+		<div class="edit-desrible">
+			<textarea class="sc_tarea" id="traderDutyExplain" cols="90" rows="5"></textarea>
+		</div>
+		<div class="describle-title">售后服务说明：</div>
+		<div class="edit-desrible">
+			<textarea class="sc_tarea" id="aftermarketExplain" cols="90" rows="5"></textarea>
+		</div>
+		
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	$(function() {
+		$("#compid").val("1312312313");
+		laydate({
+			elem : '#bianzhiTime',
+			event : 'focus'
+		});
+		
+		var saletype = [ {
+			label : '请选择',
+			title : '请选择',
+			value : ''
+		}, {
+			label : '经销',
+			value : '经销'
+		}, {
+			label : '代销',
+			value : '代销'
+		} ];
+
+		
+		$('#saletype').multiselect('dataprovider', saletype);
+		loadTable();
+		$.cxSelect.defaults.emptyStyle = 'none';
+	    $("#element_id").cxSelect({
+			url:'../js/common/productJson.json',
+			selects : ['materials1','materials2','materials3','materials4'],
+			nodata: 'none'
+		});
+	     $("#apply_goods").cxSelect({
+			url:'../js/common/productJson.json',
+			selects : ['materials1','materials2','materials3','materials4'],
+			nodata: 'none'
+		});
+		
+		
+		$('.sellType').change(function(){
+		    var _select = $('.sellType:checked').val();
+		    if (_select=='代销'){
+		    	$('.bzj').show();
+		    }else {
+		    	$('.bzj').hide();
+		    }
+		});
+		
+	});
+	layer.config({
+		extend : [ 'skin/myskin.css' ]
+	// 加载新皮肤
+	});
+	function updateRule(value) {
+		initRlue(value);
+		layer.open({
+			title : [ '编辑销售规则', 'font-size:18pt;text-align:center' ],
+			skin : 'layui-layer-cms',
+			closeBtn : 2,
+			offset : 'center', // 右下角弹出
+			type : 1,
+			area : [ '800px', '600px' ],// [width,height]
+			content : $('#updateBuyRule'),
+			btn : [ '提交', '取消' ],
+			yes : function(index, layero) {
+				var msg = saveRule();
+				if(msg == "1"){
+					layer.close(index);
+					cleanRule();
+					$('#caigoujiaoyi').bootstrapTable('refresh');
+				}
+				
+				
+			}
+		});
+	}
+	
+	function initRlue(value){
+		
+		$.ajax({
+			url : "/shengchan-web/comp/getSaleRuleById",
+			type : "POST",
+			dataType : "json",
+			data : {
+				ruleId:value,
+				compid:companyid
+			},
+			success : function(data) {
+				if(data.success){
+					$("#ruleid").val(value);
+					$('#rulename').val(data.rule.ruleName);
+					
+					$("input[name='sellType'][type=radio][value="+data.rule.saleType+"]").attr("checked",'checked');
+					if($('.edit-cg3 input:checked').val()=='经销'){
+						$('.bzj').hide();
+					}else{
+						$('.bzj').show();
+					}
+					$('#deposit').val(data.rule.bail);
+					
+					$(".pro-show").empty();
+					$.each(data.rule.applyType.split(","), function(index, val) {
+						var content = "<div class='crumb-select-item' style='margin-left:159px'><span>" +val
+						+ "</span><i onclick='del(this);'></i></div>";
+						$('.pro-show').append(content);
+					});
+					
+					$("#ruleArea").empty();
+					$.each(data.area, function(index, val) {
+						var sheng ="";
+						var	city ="";
+						var xian="";
+						var shengid ="";
+						var	cityid ="";
+						var xianid="";
+						if(val.sheng != ""){
+							sheng = val.sheng;
+							shengid = val.shengId
+						}
+						if(val.city != ""){
+							city = "-"+val.city;
+							cityid = "-"+val.cityId;
+						}
+						if(val.xian != ""){
+							
+							xian = "-"+val.xian;
+							xianid = "-"+val.xianId;
+						}
+						var area = sheng+city+xian;
+						var areacode = shengid+cityid+xianid;
+						var content = "<div class='area-tip-input'><span class='rule-tip' value='' data-id='"+areacode+"'>" +area
+						+ "</span><span class='del'></span></div>";
+						$('#ruleArea').append(content);
+					});
+					
+					$("input[name='payway'][type=radio][value="+data.rule.payWay+"]").attr("checked",'checked');
+					
+					$("#produceDutyExplain").val(data.rule.proRight);
+					$("#traderDutyExplain").val(data.rule.busiRight);
+					$("#aftermarketExplain").val(data.rule.customerService);
+				}else{
+					msg({texts:'初始化编辑页面出错！'});
+				}
+			}
+		})
+	}
+	
+	function addproduct(obj) {
+		var test = applyGoods('type1','type2','type3','type4')
+		if(!test){
+			return;
+		}
+		var content = "<div class='crumb-select-item' style='margin-left:159px'><span>" +test
+				+ "</span><i onclick='del(this);'></i></div>";
+		$(".pro-show").append(content);
+	}
+	function cleanRule(){
+		$("#ruleid").val("");
+		$('#rulename').val("");
+		$('#deposit').val("");
+		$("#sellCity").val("");
+		$("#produceDutyExplain").val("");
+		$("#traderDutyExplain").val("");
+		$("#aftermarketExplain").val("");
+	}
+	function delRule(value){
+		//通过ajax向后台
+		$.post('../comp/delSaleRule',{"ruleId":value,"compid":companyid},function(data){
+			if(data.success){
+				msg({texts:"删除成功"});
+				$('#caigoujiaoyi').bootstrapTable('refresh');
+			}else{
+				msg({texts:"删除异常"});
+			}
+		},"json");
+	}
+	function addrule(){
+		cleanRule();
+		layer.open({
+			title : [ '新增销售规则', 'font-size:18pt;text-align:center' ],
+			skin : 'layui-layer-cms',
+			closeBtn : 2,
+			offset : 'center', // 右下角弹出
+			type : 1,
+			area : [ '800px', '600px' ],// [width,height]
+			content : $('#updateBuyRule'),
+			btn : [ '提交', '取消' ],
+			yes : function(index, layero) {
+				var msg = saveRule();
+				if(msg == "1"){
+					layer.close(index);
+					$('#caigoujiaoyi').bootstrapTable('refresh');
+					cleanRule();
+				}
+				
+			}
+		});
+		
+	}
+	function loadTable(){
+		var compId = $("#compid").val();
+		$('#caigoujiaoyi').bootstrapTable(
+				{ 	
+					url : '../comp/getSaleRuleTab?compId='+compId,
+					dataType : 'json',
+					editable : false, //开启编辑模式
+					clickToSelect : true,
+					method : 'post', //请求方式（*）
+					striped : true, //是否显示行间隔色
+					cache : false, //是否使用缓存
+					pagination : true, //是否显示分页
+					queryParamsType : '', //传递参数
+					sortable : false, //是否启用排序
+//						sortOrder : "asc", //排序方式
+					sidePagination : "client", //分页方式：client客户端分页，server服务端分页
+					pageNumber : 1, //初始化加载第一页，默认第一页
+					pageSize : 5, //每页的记录行数
+					pageList : [ 5, 15 ], //可供选择的每页的行数
+					search : false, //是否显示表格搜索，此搜索是客户端搜索，不会进服务端
+					showColumns : false, //是否显示所有的列
+					showRefresh : false, //是否显示刷新按钮
+					minimumCountColumns : 2, //最少允许的列数
+					clickToSelect : true, //是否启用点击选中行
+					height : 500, //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+					width : 'auto',
+					uniqueId : "id", //每一行的唯一标识，一般为主键列
+					showToggle : false, //是否显示详细视图和列表视图的切换按钮
+					cardView : false, //是否显示详细视图
+					detailView : false, //是否显示父子表
+					paginationHAlign : 'right', //分页组件显示位置
+					paginationVAlign : 'bottom', //分页信息显示位置
+					paginationDetailHAlign : 'left', //right, left
+					columns : [
+								{	title: '序号',
+									field: 'Number',
+						            formatter: function (value, row, index) {
+						                return index+1;
+						            }
+								},
+								{
+									title : '规则名称',
+									field : 'ruleName',
+									sortable : true
+								},
+								{
+									title : '适用物资',
+									field : 'applyType',
+									sortable : true
+								},
+								{
+									title : '销售类型',
+									field : 'saleType',
+									sortable : true
+								},
+								{
+									title : '编制人',
+									field : 'creator',
+									sortable : true
+								},
+								{
+									title : '编制时间',
+									field : 'ruleTime',
+									sortable : true
+								},
+								{
+									title : '操作',
+									edit : false,
+									field : 'action',
+									formatter : function(value, row, index) {
+										return '<a href="javascript:void(0)" onclick="updateRule(\''
+												+ row.id
+												+ '\')">编辑</a>|<a href="javascript:void(0)" onclick="delRule(\''
+												+ row.id + '\')">删除</a>';
+									}
+								} ]
+				});
+		
+		
+		
+	}
+	function search(){
+        $.ajaxLoad({
+            url:'../comp/getSaleRuleByCond',
+            data:{
+            	compid:$("#compid").val(),
+            	ruleName:$("#rule-name").val(),
+            	saleType:$('#saletype').val(),
+       	   		applyType:applyGoods('type5','type6','type7','type8')
+            },
+            success:function(data){
+                $('#caigoujiaoyi').bootstrapTable('load',data);
+            }
+        });
+	}
+	$("#sellCity").click(function(e){
+		var tipcon = '<div class="area-tip-input">' +
+	            '<span class="rule-tip" value="{0}" data-id="{1}">{2}</span>' +
+	            '<span class="del"></span>' +
+	            '</div>';
+	    SelCity(this,e,{
+	        'divId':'ruleArea',
+	        'appendHtml':tipcon
+	    });
+	});
+	
+	function applyGoods(id1,id2,id3,id4){
+		var val1 = $("#"+id1+" option:selected").text()=='请选择' ? '':$("#"+id1+" option:selected").text()+"-";
+		var val2 = $("#"+id2+"  option:selected" ).text()=='请选择'|| !$("#"+id2+"  option:selected" ).text() ? '':$("#"+id2+" option:selected" ).text()+"-";
+		var val3 = $("#"+id3+"  option:selected").text()=='请选择' || !$("#"+id3+"  option:selected" ).text() ? '':$("#"+id3+" option:selected" ).text()+"-";
+		var val4 = $("#"+id4+"  option:selected").text()=='请选择' || !$("#"+id4+"  option:selected" ).text() ?  '':$("#"+id4+" option:selected" ).text();
+		var temp = val1.trim()+val2.trim()+val3.trim()+val4.trim();
+		     var test = temp.substring(0,temp.length-1);
+		if(temp.length==1 || temp.length==2){
+			test='';
+		}
+		return test;
+	}
+	function clearSearch(){
+		$('#rule-name').val("");
+		var saletype = $('#saletype').val();
+		$('#saletype').multiselect('deselect',saletype);
+		
+		
+	}
+	
+	
+</script>

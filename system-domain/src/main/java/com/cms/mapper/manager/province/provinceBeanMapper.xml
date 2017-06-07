@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.manager.province.provinceMapper" >
+ 	<sql id="PROVINCE-PARAM">
+ 		name,
+ 		code,
+	    id
+	</sql>
+	
+	<select id="dataGrid" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.wuliu.ProvinceBean">
+	    select <include refid="PROVINCE-PARAM"/> from t_sys_province  where 1=1 
+	      <if test="name!=null and name!=''">
+	          and name like concat('%',#{name},'%')
+	    </if>
+	    <if test="order!=null and order!=''">
+	        ${order}
+	    </if>
+	</select>
+	
+	<select id="dataGridCot" parameterType="com.alibaba.fastjson.JSONObject" resultType="int">
+	    select count(1) from t_sys_province  where 1=1 
+	      <if test="name!=null and name!=''">
+	          and name like concat('%',#{name},'%')
+	    </if>
+	</select>
+	
+	<select id="getProvinceByType2" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.wuliu.ProvinceBean">
+	    select <include refid="PROVINCE-PARAM"/> from t_sys_province  where 1=1 
+	       <if test="q!=null and q!=''">
+	       	  and name like concat('%',#{p},'%')
+	    </if>
+	    <if test="order!=null and order!=''">
+	        ${order}
+	    </if>
+	</select>
+	<select id="getProvinceByType" parameterType="String" resultType="com.cms.model.wuliu.ProvinceBean">
+	    select <include refid="PROVINCE-PARAM"/> from t_sys_province  where 1=1 
+	       <if test="_parameter!=null and _parameter!=''">
+	       	  and name like concat('%',#{_parameter},'%')
+	    </if>
+	</select>
+	
+			
+	<update id="edit" parameterType="com.cms.model.wuliu.ProvinceBean">
+	    update t_sys_province set name=#{name},code=#{code}  where id=#{id}
+	</update>
+	
+	<insert id="add" parameterType="com.cms.model.wuliu.ProvinceBean">
+	    insert into t_sys_province (code,name) values (#{code},#{name})
+	</insert>
+	
+	<delete id="delete" parameterType="com.alibaba.fastjson.JSONObject">
+	    delete from t_sys_province where id=#{id}
+	</delete>
+	
+	<select id="get" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.wuliu.ProvinceBean">
+	    select <include refid="PROVINCE-PARAM"/> from t_sys_province where id=#{id}
+	</select>
+</mapper>

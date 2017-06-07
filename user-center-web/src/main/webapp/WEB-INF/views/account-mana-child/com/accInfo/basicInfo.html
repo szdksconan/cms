@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>账号信息-基本信息</title>
+<link href="../../../css/account-mana.css" rel="stylesheet"/>
+<link href="../../../css/account-mana2.css" rel="stylesheet"/>
+<script src="../../../js/jquery.1.11.3.min.js"></script>
+<script src="../../../js/dropdown.js"></script>
+</head>
+<body>
+	<div class="acc-info"> 
+		<!--基本信息-->
+		<div class="acc-basinfodiv">
+			<div class="acc-ads-title">
+		  	 	<span class="acc-adst-icon"></span>
+		  	 	<span class="acc-adst-word">基本信息</span>
+		  	</div>
+		  	<table class="acc-basinfotb">
+		  		<tr>
+		  			<td width="10%" align="right"><span class="must">*</span>用户名：</td>
+		  			<td width="40%"><input type="text"/></td>
+		  			<td width="10%" align="right"><span class="must">*</span>真实姓名：</td>
+		  			<td width="40%"><input type="text"/></td>
+		  		</tr>
+		  		<tr>
+		  			<td align="right"><span class="must">*</span>证件类型：</td>
+		  			<td>
+		  				<div class="dropdown drop">
+					      	<p></p>
+					     	<ul class="dropul">
+					         	<li><a href="javascript:void(0)" rel="1">身份证</a></li>
+					      	</ul>
+					    </div>
+		  			</td>
+		  			<td align="right"><span class="must">*</span>证件号：</td>
+		  			<td><input type="text"/></td>
+		  		</tr>
+		  		<tr>
+		  			<td align="right"><span class="must">*</span>手机号：</td>
+		  			<td><input type="text"/></td>
+		  			<td align="right">固定电话：</td>
+		  			<td><input type="text"/></td>
+		  		</tr>
+		  		<tr>
+		  			<td align="right">邮箱：</td>
+		  			<td><input type="text"/></td>
+		  			<td></td>
+		  			<td></td>
+		  		</tr>
+		  	</table>
+		</div>
+		<!--企业联系人-->
+		<div class="acc-comuserdiv">
+			<div class="acc-ads-title">
+		  	 	<span class="acc-adst-icon"></span>
+		  	 	<span class="acc-adst-word">企业联系人</span>
+		  	</div>
+		  	<table class="acc-comusertb">
+		  		<tr>
+		  			<td width="10%" align="right">姓名：</td>
+		  			<td width="40%">
+		  				<input type="text" class="acccom-name"/>
+		  				<input type="radio" name="sex" checked="checked"/>先生
+		  				<input type="radio" name="sex"/>女士
+		  			</td>
+		  			<td width="10%" align="right">所属部门：</td>
+		  			<td width="40%"><!--<select class="acccom-bumen"><option></option></select>-->
+		  				<div class="dropdown acccom-bumen">
+					      	<p></p>
+					     	<ul class="dropul_bumen">
+					         	<li><a href="javascript:void(0)" rel="1">人事部</a></li>
+					         	<li><a href="javascript:void(0)" rel="2">技术部</a></li>
+					      	</ul>
+					    </div>
+		  			</td>
+		  		</tr>
+		  		<tr>
+		  			<td align="right">职位：</td>
+		  			<td><!--<select class="acc-zhiwei"><option></option></select>-->
+		  				<div class="dropdown acc-zhiwei">
+					      	<p></p>
+					     	<ul class="dropul_zhiwei">
+					         	<li><a href="javascript:void(0)" rel="1">经理</a></li>
+					         	<li><a href="javascript:void(0)" rel="2">总监</a></li>
+					      	</ul>
+					    </div>
+		  			</td>
+		  			<td align="right">手机号：</td>
+		  			<td>
+		  				<!--<select class="acc-numselect"><option>中国大陆 +86</option></select>-->
+		  				<div class="dropdown acc-numselect">
+					      	<p>中国大陆 +86</p>
+					     	<ul class="dropul_numselect">
+					         	<li><a href="javascript:void(0)" rel="1">中国大陆 +86</a></li>
+					         	<li><a href="javascript:void(0)" rel="2">中国大陆 +86</a></li>
+					      	</ul>
+					    </div>
+		  				<input type="text" class="acc-numinput"/>
+		  			</td>
+		  		</tr>
+		  		<tr>		  			
+		  			<td align="right">固定电话：</td>
+		  			<td>
+		  				<input type="text" placeholder="+86" class="acc-gdtel1"/>
+		  				<input type="text" placeholder="区号" class="acc-gdtel2"/>
+		  				<input type="text" placeholder="电话号码" class="acc-gdtel3"/>
+		  			</td>
+		  			<td align="right">证件类型：</td>
+		  			<td><!--<select  class="w-194"><option>身份证</option></select>-->
+		  				<div class="dropdown drop">
+					      	<p></p>
+					     	<ul class="dropul">
+					         	<li><a href="javascript:void(0)" rel="1">身份证</a></li>
+					      	</ul>
+					    </div>		  				
+		  			</td>
+		  		</tr>
+		  		<tr>
+		  			<td align="right">证件号码：</td>
+		  			<td><input type="text" class="acc-zjnum"/></td>
+		  			<td></td>
+		  			<td></td>
+		  		</tr>
+		  	</table>
+		</div>
+		<input type="button" value="保存" class="accinfo-savebtn"/>
+	</div>	
+</body>
+</html>

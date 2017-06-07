@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>代工单发布</title>
+    <meta charset="utf-8">
+    
+    <script src="../js/common/tabs.js"></script>
+<style>
+    .text{line-height:22px;padding:0 6px;color:#666;border:solid 1px #066FAF}
+    .sc_jy table tr td{width:20%;}
+</style>
+</head>
+<div class="bei">
+
+<div class="cfw_x">
+    <ul class="nav nav-tabs" role="tablist" id="tab-list">
+        <li ><a href="#" >委托代工单</a></li>
+    </ul>
+    <div class="tab-content">
+        <!--基本信息-->
+        <div class="tab-pane active" id="cfw_cs">
+            <div class="sc_cgd" style="margin-left: 20px">
+                委托代工标题 ：
+                 <input type="text" class="cmao_inplg" value="盖乐实"/>
+                委托代工单号 ：
+                 <input type="text" class="cmao_inplg" value="DGD-00000000"/>
+                         编制日期 ：
+                 <input type="text" class="cmao_inplg" disabled="disabled" value="2016.04.14"/>
+                           编制人 ：
+                 <input type="text" class="cmao_inplg" disabled="disabled" value="刘鑫"/>
+                           状态 ：
+                 <input type="text" class="cmao_inplg" disabled="disabled" value="已发布"/>  
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#tab_wzmx" data-toggle="tab" style="color:black;">委托代工物资明细</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active tab_border" id="tab_wzmx">
+            <div class="sc_cgd" style="margin-top: inherit">
+                <table style="width: 100%">
+                    <tr>
+                        <td align="right">
+                            产品名称：
+                        </td>
+                        <td>
+                            <input type="text" class="cmao_inplg" value="盖乐实"/>
+                        </td>
+                        <td align="right">
+                            所属行业：
+                        </td>
+                        <td>
+                            <select id="sshy"></select>
+                        </td>
+                        <td align="right">
+                            规格型号：
+                        </td>
+                        <td>
+                            <input type="text" class="cmao_inplg" value="522333333"/>
+                        </td>
+                        <td align="right">
+                            采购数量：
+                        </td>
+                        <td>
+                            <input type="text" class="cmao_inplg" value=""/>
+                            <div id="unitBox">
+                            	<select class="unit select" id="unit"></select>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="uploader orange">
+
+                                <input type="but_ton" name="file" class="but_ton" value="+上传附件"/>
+                                <input type="file" size="30"/>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">
+                            交货日期：
+                        </td>
+                        <td>
+                            <input placeholder="请输入日期" class="laydate-icon" onclick="laydate()">
+                        </td>
+                        <td align="right">
+                            截止日期：
+                        </td>
+                        <td>
+                            <input placeholder="请输入日期" class="laydate-icon" onclick="laydate()">
+                        </td>
+                        <td align="right">
+                            材料供应：
+                        </td>
+                        <td>
+                            <select id="clgy"></select>
+                        </td>
+                        <td align="right">
+                            合作模式：
+                        </td>
+                        <td>
+                            <select id="hzms"></select>
+                        </td>
+                        <td>
+                            <button   class="btn btn-blue btn-w100 " type="button" >保存</button>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+            <p>&nbsp;</p>
+            <div id="toolbar1">
+                <table>
+                    <tr>
+                        <td align="left">
+                            <button  id="btn_ch_1" class="btn btn-blue btn-w150 " type="button" >从物资需求中选择</button>
+                            <button  id="btn_ch_2" class="btn btn-blue btn-w150 " type="button" >从物资库存明细选择</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <table id="table_1">
+            </table>
+        </div>
+    </div>
+</div>
+<div class="sc_daig" style="margin-left: 20px">
+    <table style="width: 100%;border-collapse: separate;border-spacing: 3px">
+        <tr>
+            <td align="right" style="width: 92px">
+                委托产品介绍：
+            </td>
+            <td>
+                <textarea  class="sc_text1" style="width: 96%" placeholder=""></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                制造要求：
+            </td>
+            <td>
+                <textarea  class="sc_text2" style="width: 96%" placeholder=""></textarea>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="container">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#tab1" data-toggle="tab" style="color:black;">交易规则</a></li>
+        <li><a href="#tab2" data-toggle="tab" style="color:black;">联系信息</a></li>
+        <li><a href="#tab3" data-toggle="tab" style="color:black;">已选代工方列表</a></li>
+        <li><a href="#tab4" data-toggle="tab" style="color:black;">代工企业申请列表</a></li>
+    </ul>
+    <div class="tab-content" style="height: auto;float: left;width: 100%">
+        <!--基本信息-->
+        <div class="tab-pane active tab_border" id="tab1" style="float: left;">
+            <div class="sc_jy" style="width: 52%;margin-left: 20px;float: left">
+                <table>
+                    <tr>
+                        <td>
+                            交易规则名称：
+                            <select id="jygz"></select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <form>
+                                交货日期：
+                                <input type="radio" name="radio2" id="radio2" value="radio2"/>
+                                <label for="radio2">订单生成后</label>
+                                <input type="text" class="cmao_inpsm" value="180"/>&nbsp;天
+                                &nbsp;
+                                <input type="radio" name="radio3" id="radio3" value="radio3"/>
+                                <label for="radio3">按合同/订单执行</label>
+                                &nbsp;
+                                <input type="radio" name="radio4" id="radio4" value="radio4"/>
+                                <label for="radio4">自定义</label>
+                                &nbsp;
+                                <input placeholder="请输入日期" class="laydate-icon" onclick="laydate()">
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            运费承担：
+                            <select id="yfcd"></select>
+                                        <span class="ml26">
+                                            发票类型:
+                                            <select id="fplx"></select>
+                                        </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            包装标准：
+                            <input type="text" class="cmao_input" value="符合国家GB2123"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            期待合作企业性质：
+                            <select class="qyxz"></select>
+                            <span class="ml26">注册资金 ：</span>
+                            <input type="text" class="cmao_input" value="1000万"/>&nbsp;以上
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            其他要求：
+                                        <textarea name="textarea" class="sc_tarea" cols="80" rows="17"
+                                                  placeholder="望产品尽快发货"></textarea>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="sc_sy" style="width: 45%;margin: inherit;float: left">
+                <ul>
+                    <li>
+                        规则适用物资 ：
+                        <input type="text" class="cmao_input" value="产品颜色为蓝色"/>
+                    </li>
+                    <li>
+                        支付方式 ：
+                        <select id="zffs"></select>
+                        <span class="ml26"> 付款约定 ：</span>
+                        <select id="fkyd"></select>
+                        <span class="ml26">运输负责 ：</span>
+                        <select id="ysfz"></select>
+                    </li>
+                    <li>
+                        开票约定 ：
+                        <input type="text" class="cmao_input ml26" value="交货后一周内"/>
+                    </li>
+                    <li>
+                        验收标准 ：
+                        <input type="text" class="cmao_input ml26" value="按照产品技术要求验收"/>
+                    </li>
+                    <li>
+                        补充约定 ：
+                        <textarea name="textarea" class="sc_tarea ml26" cols="80" rows="17" placeholder="望产品尽快发货"></textarea>
+                    </li>
+                    <li>
+                        经营模式 ：
+                        <select id="jyms"></select>
+                    </li>
+                </ul>
+                <p>&nbsp;</p>
+            </div>
+        </div>
+        <div class="tab-pane tab_border" id="tab2">
+            <table style="border-collapse: separate;border-spacing: 3px;margin-left: 10px">
+                <tr>
+                    <td align="right">
+                        联系人：
+                    </td>
+                    <td>
+                        <input type="text" class="cmao_input " value="盖乐实"/>
+                    </td>
+                    <td colspan="4"></td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        联系电话：
+                    </td>
+                    <td>
+                        <input type="text" class="cmao_input" value="186-860-56234"/>
+                    </td>
+                    <td align="right">
+                        传真：
+                    </td>
+                    <td>
+                        <input type="text" class="cmao_input " value="028-6325894"/>
+                    </td>
+                    <td align="right">
+                        电子邮件：
+                    </td>
+                    <td>
+                        <input type="text" class="cmao_input " value="sdfd@163.com"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        交货地址：
+                    </td>
+                    <td colspan="3">
+                        <input type="text" class="cmao_input" style="width: 150px;" id="deliverAdd" readonly/>
+                        <input type="text" class="cmao_input" style="width: 200px" value="123道4566区56663路"/>
+                        <button class="btn btn-blue btn-w120 " type="button" >选择交货地址</button>
+                    </td>
+                    <td colspan="2"></td>
+                </tr>
+            </table>
+            <table style="margin-left: 10px">
+                <tr>
+                    <td>
+                        联系信息是否公开：
+                        &nbsp;
+                        <input type="radio" name="radio3" value="radio3" checked/>
+                        <label for="radio3">是</label>
+                        &nbsp;
+                        <input type="radio" name="radio3" value="radio4"/>
+                        <label for="radio4">否</label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="tab-pane tab_border" id="tab3">
+            <div id="table_2_toolbar">
+                <table>
+                    <tr>
+                        <td align="left">
+                            <a class="btn btn-red btn-w150" type="button" >选择代工企业</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <table id="table_2">
+            </table>
+            <form>
+                <input type="radio" name="radio4" value="radio3" checked/>
+                <label for="radio3">只限于我邀请的供应商参与</label>
+                <br/>
+                <input type="radio" name="radio4" value="radio4"/>
+                <label for="radio4">允许产贸送其他供应商参与</label>
+            </form>
+
+            <div class="cfw_x">
+
+                <ul class="qy_conul" role="tablist">
+                    <li class="active"><a href="#cfw_c" role="tab" data-toggle="tab">加工方需满足条件</a></li>
+                </ul>
+
+                <div class="tab-content">
+                    <!--基本信息-->
+                    <div class="tab-pane active" id="cfw_c">
+                        <div class="sc_jy ">
+                            <table>
+                                <tr>
+                                    <td>
+                                        公司性质 ：
+                                        <select class="qyxz"></select>
+                                    </td>
+                                    <td>
+                                        所在地区 ：
+                                        <input type="text" class="cmao_input" value="成都市高新区"/>
+                                    </td>
+                                    <td>
+                                        厂房面积 ：
+                                        <input type="text" class="cmao_input" value="5000平方米"/>
+                                    </td>
+                                    <td>
+                                        <span class="ml26">企业人数 ：</span>
+                                        <input type="text" class="cmao_input" value="100-500人"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        从业年限 ：
+                                        <input type="text" class="cmao_input" value="中国"/>
+                                    </td>
+                                    <td>
+                                        企业能力 ：
+                                        <select id="qynl"></select>
+                                    </td>
+                                    <td>
+                                        资质及认证体系：
+                                        <input type="text" class="cmao_input " value="无"/>
+                                    </td>
+                                    <td>
+                                        <span class="ml26">交付能力 ：</span>
+                                        <input type="text" class="cmao_input " value="无"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        生产能力 ：
+                                        <input type="text" class="cmao_input" value="无"/>
+                                    </td>
+                                    <td>
+                                        设备要求 ：
+                                        <input type="text" class="cmao_input" value="无"/>
+                                    </td>
+                                    <td>
+                                        其他要求 ：
+                                        <input type="text" class="cmao_input" value="无"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane tab_border" id="tab4">
+            <table id="table_3">
+            </table>
+        </div>
+	</div>
+    <div class="sc_daig sc-daig-item tex_m" id="footpanel">
+        <a  href="#" onclick="changeContent('../caigou/sc_daigong_pingsheng.html','right')" target="_self" class="btn btn-blue  btn-w80" type="button" >评审</a>&nbsp;
+        <a   class="btn btn-hui btn-w80" type="button" >暂存</a> &nbsp;
+        <a   class="btn btn-blue  btn-w80" type="button" >发布</a>
+    </div>
+</div>
+<script>
+    $("#deliverAdd").click(function (e) {
+        SelCity(this,e);
+    });
+
+    var options = [
+        {label: '农业',  value: '1'},
+        {label: '林业',  value: '2'},
+        {label: '畜牧业',  value: '3'},
+        {label: '渔业',  value: '6'}
+    ];
+    $('#sshy').multiselect('dataprovider', options);
+    //    $('#sshy').multiselect({
+    //        maxHeight:'500'
+    //    });
+    //    $('#sshy').multiselect('url',{url:'common/getBaseIndustryList',cache:true});
+	$('#unitBox').cxSelect({
+        data:_zNodes,
+        selects:['unit']
+    });
+    options = [
+        {label: '委托方提供',  value: '1'},
+        {label: '代工方自备',  value: '2'}
+    ];
+    $('#clgy').multiselect('dataprovider', options);
+
+    options = [
+        {label: '长期合作',  value: '1'},
+        {label: '短期合作',  value: '2'}
+    ];
+    $('#hzms').multiselect('dataprovider', options);
+
+    options = [
+        {label: '供方提供',  value: '1'},
+        {label: '需求方提供',  value: '2'}
+    ];
+    $('#yfcd').multiselect('dataprovider', options);
+
+    options = [
+        {label: '普通机打发票',  value: '1'},
+        {label: '普通定额发票',  value: '2'},
+        {label: '增值税普通发票',  value: '3'},
+        {label: '增值税专用发票',  value: '4'}
+    ];
+    $('#fplx').multiselect('dataprovider', options);
+
+    options = [
+        {label: '外资企业',  value: '1'},
+        {label: '国有企业',  value: '2'},
+        {label: '合资企业',  value: '3'},
+        {label: '民营企业',  value: '4'}
+    ];
+    $('.qyxz').multiselect('dataprovider', options);
+
+    options = [
+        {label: '交易规则1',  value: '1'},
+        {label: '交易规则2',  value: '2'},
+        {label: '交易规则3',  value: '3'},
+        {label: '交易规则4',  value: '4'}
+    ];
+    $('#jygz').multiselect('dataprovider', options);
+
+    options = [
+        {label: '现金支付',  value: '1'},
+        {label: '在线支付',  value: '2'},
+        {label: '货到付款',  value: '3'}
+    ];
+    $('#zffs').multiselect('dataprovider', options);
+
+    options = [
+        {label: '按订单/合同结',  value: '1'},
+        {label: '自定义',  value: '2'}
+    ];
+    $('#fkyd').multiselect('dataprovider', options);
+
+    options = [
+        {label: '供方负责',  value: '1'},
+        {label: '需方负责',  value: '2'}
+    ];
+    $('#ysfz').multiselect('dataprovider', options);
+
+    options = [
+        {label: '批发',  value: '1'},
+        {label: '零售',  value: '2'},
+        {label: '自产自销',  value: '3'},
+        {label: '代购代销',  value: '4'}
+    ];
+    $('#jyms').multiselect('dataprovider', options);
+
+    options = [
+        {label: '能力1',  value: '1'},
+        {label: '能力2',  value: '2'}
+    ];
+    $('#qynl').multiselect('dataprovider', options);
+
+    $('#table_1').bootstrapTable({
+        data:[{
+            "wzName":"产品名称",
+            "industry": "所属行业",
+            "size": "规格型号",
+            "purchaseCount": "1111",
+            "deliverTime": "2016.1.30",
+            "supply": "委托方提供",
+            "cooperationMode": "长期合作",
+            "doc":"<a class='a_css' href='#'>浏览</a>"
+        },{
+            "wzName":"产品名称",
+            "industry": "所属行业",
+            "size": "规格型号",
+            "purchaseCount": "2222",
+            "deliverTime": "2016.1.30",
+            "supply": "代工方自备",
+            "cooperationMode": "短期合作",
+            "doc":"<a class='a_css' href='#'>上传</a>"
+        },{
+            "wzName":"产品名称",
+            "industry": "所属行业",
+            "size": "规格型号",
+            "purchaseCount": "3333",
+            "deliverTime": "2016.1.30",
+            "supply": "代工方自备",
+            "cooperationMode": "长期合作",
+            "doc":"<a class='a_css' href='#'>上传</a>"
+        }],
+        toolbar:'#toolbar1',
+        pagination: true,//是否显示分页
+        queryParamsType:'',//传递参数
+        sidePagination: "client",//分页方式：client客户端分页，server服务端分页
+        uniqueId: "id",//每一行的唯一标识，一般为主键列
+        columns: [{
+            field: 'Number',
+            title: '序号',
+            formatter: function (value, row, index) {
+                return index+1;
+            }
+        },{
+            title : '产品名称',
+            field : 'wzName'
+        },{
+            title : '所属行业',
+            field : 'industry'
+        },{
+            title : '规格型号',
+            field : 'size'
+        },{
+            title : '采购数量',
+            field : 'purchaseCount'
+        },{
+            title : '交货日期',
+            field : 'deliverTime'
+        },{
+            title : '材料供应',
+            field : 'supply'
+        },{
+            title : '合作模式',
+            field : 'cooperationMode'
+        },{
+            title : '文档附件',
+            field : 'doc'
+        },{
+            title: '操作',
+            field : 'action',
+            formatter: function (value, row, index) {
+                return '<a class="a_css" href="#">编辑</a> | <a class="a_css" href="#">删除</a>';
+            }
+        }]
+    });
+
+    $('#table_2').bootstrapTable({
+        data:[{
+            "companyName":"成都沙发厂",
+            "companyProperty": "私人企业",
+            "industry": "家具",
+            "businessModel": "生产制造",
+            "area": "成都市高新区",
+            "infomationServe": "已送达"
+        },{
+            "companyName":"成都沙发厂",
+            "companyProperty": "国有企业",
+            "industry": "家具",
+            "businessModel": "生产制造",
+            "area": "成都市高新区",
+            "infomationServe": "未送达"
+        },{
+            "companyName":"成都沙发厂",
+            "companyProperty": "私人企业",
+            "industry": "家具",
+            "businessModel": "生产制造",
+            "area": "成都市高新区",
+            "infomationServe": "未送达"
+        },{
+            "companyName":"成都沙发厂",
+            "companyProperty": "外资企业",
+            "industry": "家具",
+            "businessModel": "生产制造",
+            "area": "成都市武侯区",
+            "infomationServe": "未送达"
+        }],
+        toolbar:'#table_2_toolbar',
+        pagination: true,//是否显示分页
+        queryParamsType:'',//传递参数
+        sidePagination: "client",//分页方式：client客户端分页，server服务端分页
+        uniqueId: "id",//每一行的唯一标识，一般为主键列
+        columns: [{
+            field: 'Number',
+            title: '序号',
+            formatter: function (value, row, index) {
+                return index+1;
+            }
+        },{
+            title : '供应商名称',
+            field : 'companyName'
+        },{
+            title : '企业性质',
+            field : 'companyProperty'
+        },{
+            title : '所属行业',
+            field : 'industry'
+        },{
+            title : '经营模式',
+            field : 'businessModel'
+        },{
+            title : '所在地区',
+            field : 'area'
+        },{
+            title : '信息送达',
+            field : 'infomationServe'
+        },{
+            title: '操作',
+            field : 'action',
+            formatter: function (value, row, index) {
+                return '<a class="a_css" href="#">删除</a>';
+            }
+        }]
+    });
+
+    $('#table_3').bootstrapTable({
+        data:[{
+            "companyProperty": "私人企业",
+            "industry": "家具",
+            "businessModel": "生产制造",
+            "area": "成都市高新区",
+            "mainProduct": "汽车轮胎五金",
+            "applicationTime": "2016-4-8"
+        },{
+            "companyProperty": "私人企业",
+            "industry": "家具",
+            "businessModel": "生产制造",
+            "area": "成都市高新区",
+            "mainProduct": "汽车轮胎五金",
+            "applicationTime": "2016-4-9"
+        },{
+            "companyProperty": "私人企业",
+            "industry": "家具",
+            "businessModel": "生产制造",
+            "area": "成都市高新区",
+            "mainProduct": "汽车轮胎五金",
+            "applicationTime": "2016-4-7"
+        }],
+        pagination: true,//是否显示分页
+        queryParamsType:'',//传递参数
+        sidePagination: "client",//分页方式：client客户端分页，server服务端分页
+        uniqueId: "id",//每一行的唯一标识，一般为主键列
+        columns: [{
+            field: 'Number',
+            title: '序号',
+            formatter: function (value, row, index) {
+                return index+1;
+            }
+        },{
+            title : '企业性质',
+            field : 'companyProperty'
+        },{
+            title : '所属行业',
+            field : 'industry'
+        },{
+            title : '经营模式',
+            field : 'businessModel'
+        },{
+            title : '所在地区',
+            field : 'area'
+        },{
+            title : '主加工产品',
+            field : 'mainProduct'
+        },{
+            title : '申请时间',
+            field : 'applicationTime'
+        },{
+            title: '操作',
+            field : 'action',
+            formatter: function (value, row, index) {
+                return '<a class="a_css" href="#">删除</a>';
+            }
+        }]
+    });
+
+    layer.config({
+        extend: ['skin/myskin.css']//加载新皮肤
+    });
+
+    $('#btn_ch_1').click(function(){
+        layer.open({
+            title:['未完成物资需求','font-size:18pt;text-align:center'],
+            skin: 'layui-layer-cms',
+            closeBtn:2,
+            offset: 'center', //右下角弹出
+            type: 2,
+            fix:false,
+            area: ['65%','550px'],
+            content: '../caigou/SelfTransport.html'
+        });
+    });
+
+    $('#btn_ch_2').click(function(){
+        layer.open({
+            title:['未完成采购的物资明细','font-size:18pt;text-align:center'],
+            skin: 'layui-layer-cms',
+            closeBtn:2,
+            offset: 'center', //右下角弹出
+            type: 2,
+            area: ['65%','550px'],
+            content: '../caigou/SelfTransport2.html'
+        });
+    });
+
+    $(function () {
+
+        $("input[type=file]").change(function () {
+            $(this).parents(".uploader").find(".filename").val($(this).val());
+        });
+
+        $("input[type=file]").each(function () {
+            if ($(this).val() == "") {
+                $(this).parents(".uploader").find(".filename").val("请选择文件...");
+            }
+        });
+
+    });
+
+
+    $("input").each(function () {
+        $(this).focus(function () {
+            if ($(this).val() == $(this).get(0).defaultValue) {
+                $(this).val("");
+            }
+        });
+        $(this).blur(function () {
+            if ($(this).val() == "") {
+                $(this).val($(this).get(0).defaultValue);
+            }
+        })
+    });
+
+    $(document).ready(function () {
+       
+   
+        $(".J_add").click(function () {
+            var this_html = $(this).parent().parent().prev().html();
+            var after_tr = $(this).parent().parent().prev().after("<tr class='after_tr'></tr>");
+            var after_tr = $(".after_tr");
+            after_tr.html(this_html);
+            after_tr.find(".J_add").addClass("J_del").removeClass("J_add").text("-");
+
+            $(".J_del").live("click", function () {
+                $(this).parents("tr").remove();
+            });
+        });
+
+        $(".J_del").live("click", function () {
+            $(this).parents("tr").remove();
+        });
+    })
+
+</script>
+<script type="text/javascript">
+
+</script>
+</div>
+</html>

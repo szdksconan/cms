@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.manager.baseInfo.comboMapper" >
+	<sql id="COMBO-PARAM">
+	  	 id,
+	     vaservicetype,
+	     vaservicetypename,
+	     vaservicename,
+	     price,
+	     measureperiod,
+	     measurementunit,
+	     measureamount,
+	     marketprice,
+	     deductionamount,
+	     stauts
+	</sql>
+	
+	<select id="dataGrid" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.manager.comboBean">
+	    select <include refid="COMBO-PARAM"/> from vaservice  where 1=1 
+	     <if test="vaservicename!=null and vaservicename!=''">
+	       and vaservicename like concat('%',#{vaservicename},'%')
+	    </if>
+	      <if test="vaservicetype!=null and vaservicetype!=''">
+	       and vaservicetype =#{vaservicetype}
+	    </if>
+	    <if test="order!=null and order!=''">
+	        ${order}
+	    </if>
+	</select>
+	
+	<select id="dataGridCot" parameterType="com.alibaba.fastjson.JSONObject" resultType="int">
+	    select count(1) from vaservice  where 1=1 
+	     <if test="vaservicename!=null and vaservicename!=''">
+	       and vaservicename like concat('%',#{vaservicename},'%')
+	    </if>
+	      <if test="vaservicetype!=null and vaservicetype!=''">
+	       and vaservicetype =#{vaservicetype}
+	    </if>
+	</select>
+			
+	<update id="edit" parameterType="com.cms.model.manager.comboBean">
+			update vaservice set 
+			vaservicetype = #{vaservicetype},
+			vaservicetypename = #{vaservicetypename},
+			vaservicename = #{vaservicename},
+		   price = #{price},
+			measureperiod = #{measureperiod},
+			measurementunit = #{measurementunit},
+			 measureamount = #{measureamount},
+			marketprice = #{marketprice},
+			deductionamount = #{deductionamount},
+			 stauts = #{stauts}
+			where 1=1
+			and id=#{id}
+	</update>
+	
+	<insert id="add" parameterType="com.cms.model.manager.comboBean">
+			insert vaservice(
+			 	vaservicetype,
+			vaservicetypename,
+			vaservicename,
+			price,
+			measureperiod,
+			measurementunit,
+			measureamount,
+			marketprice,
+			deductionamount,
+			stauts
+			)values(                 
+			#{vaservicetype},
+			#{vaservicetypename},
+			#{vaservicename},
+
+		     #{price},
+	
+		     #{measureperiod},
+	
+		     #{measurementunit},
+	
+		     #{measureamount},
+	
+		     #{marketprice},
+	
+		     #{deductionamount},
+	
+		     #{stauts})
+
+	</insert>
+	<insert id="addpackage" parameterType="com.cms.model.manager.comboBean">
+		     insert servicepackage
+		     (servicepackagename,
+		     status,
+		     price)
+		     values(
+		     	#{vaservicename},
+		     	#{stauts},
+		     	#{price}
+		     )
+	</insert>
+	<insert id="addservicepackage" parameterType="com.alibaba.fastjson.JSONObject">
+		     insert va_package
+		     (vaserviceId,
+		     servicepackageId
+		     )
+		     values(
+		     	#{vaserviceId},
+		     	#{servicepackageId}
+		     )
+	</insert>
+	<delete id="delete" parameterType="com.alibaba.fastjson.JSONObject">
+
+	</delete>
+		<delete id="state" parameterType="com.alibaba.fastjson.JSONObject">
+				update t_sys_combo set               
+			   state =#{state}
+			   where 1=1
+			   and id=#{id}
+	</delete>
+	
+	<select id="get" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.manager.comboBean">
+	    select <include refid="COMBO-PARAM"/> from vaservice where id=#{id}
+	</select>
+</mapper>

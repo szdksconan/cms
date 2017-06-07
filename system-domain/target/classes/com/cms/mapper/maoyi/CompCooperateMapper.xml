@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.maoyi.CompCooperateMapper" >
+  <resultMap id="BaseResultMap" type="com.cms.model.maoyi.CompCooperate" >
+    <id column="id" property="id" jdbcType="DECIMAL" />
+    <result column="ent_id" property="entId" jdbcType="DECIMAL" />
+    <result column="comp_id" property="compId" jdbcType="DECIMAL" />
+    <result column="comp_name" property="compName" jdbcType="VARCHAR" />
+    <result column="comp_ac" property="compAc" jdbcType="VARCHAR" />
+    <result column="comp_an" property="compAn" jdbcType="VARCHAR" />
+    <result column="comp_al" property="compAl" jdbcType="VARCHAR" />
+    <result column="comp_ad" property="compAd" jdbcType="VARCHAR" />
+    <result column="brand" property="brand" jdbcType="VARCHAR" />
+    <result column="cooperate_type" property="cooperateType" jdbcType="INTEGER" />
+    <result column="cooperate_area" property="cooperateArea" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, ent_id, comp_id, comp_name, comp_ac, comp_an, comp_al, comp_ad, brand, cooperate_type, 
+    cooperate_area
+  </sql>
+  
+  
+  <sql id="querySql">
+		<where>
+			<if test="entId != null and entId!=''">
+				and ent_id=#{entId}
+			</if>
+			<if test="brand != null and brand!=''">
+				and brand=#{brand}
+			</if>
+		</where>
+	</sql>
+	
+  <select id="getCompCooperateByEntId" resultMap="BaseResultMap" parameterType="long" >
+    select 
+    <include refid="Base_Column_List" />
+    from comp_cooperate
+    where ent_id = #{entId}
+  </select>
+  
+  <select id="findPage" resultMap="BaseResultMap" parameterType="long" >
+    select 
+    <include refid="Base_Column_List" />
+    from comp_cooperate
+    <include refid="querySql" />
+	${orderString}
+  </select>
+  
+  <select id="findPageTotal" resultType="int" parameterType="com.alibaba.fastjson.JSONObject" >
+    select 
+    	count(*)
+    from comp_cooperate
+    <include refid="querySql" />
+		${orderString}
+  </select>
+</mapper>

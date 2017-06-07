@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>    
+<!DOCTYPE mapper    
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cms.mapper.userCenter.com.AccountComAddressMapper">
+
+ 
+ <!-- 收货地址resultMap -->
+ <resultMap type="SysUserGoodsAddress" id="address">
+ 	<id property="id" column="id" />
+ 	<result property="username" column="user_name"/>
+ 	<result property="addressProvince" column="address_province"/>
+ 	<result property="addressCity" column="address_city"/>
+ 	<result property="addressCounty" column="address_county"/>
+ 	<result property="addressDetail" column="address_detail"/>
+ 	<result property="postCode" column="post_code"/>
+ 	<result property="isDefault" column="is_default"/>
+ </resultMap>
+ 
+     
+    <!--拿到收货地址列表 -->
+    <select id="findAllComeAds" resultMap="address" >
+    	select id,user_name,address_province,address_city,address_county,address_detail,post_code,phone,tel from sys_user_goods_address
+    </select>
+    
+    <!-- saveComeAds保存收货地址 -->
+    <insert id="addComeAds" parameterType="SysUserGoodsAddress">
+    	insert into sys_user_goods_address (id,uid,user_name,address_province,address_city,
+    	address_county,address_detail,post_code,phone,tel,type,is_default) values(#{id},#{uid},#{username},#{addressProvince},#{addressCity},#{addressCounty},
+    	#{addressDetail},#{postCode},#{phone},#{tel},#{type},#{isDefault})
+    </insert>
+     
+	<!--清空默认收货设置 -->
+     <insert id="removeDefault" parameterType="long" >
+     	update sys_user_goods_address set is_default=null where uid=#{uid}
+     </insert>
+     
+     <!-- 删除收货地址 -->
+     <delete id="deleteAds" parameterType="java.lang.String">
+     	delete from sys_user_goods_address where id=#{id}
+     </delete>
+</mapper> 

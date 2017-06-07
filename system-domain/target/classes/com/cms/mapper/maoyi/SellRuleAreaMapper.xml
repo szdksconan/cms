@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.maoyi.SellRuleAreaMapper">
+	<resultMap id="ruleAreaResultMap" type="com.cms.model.maoyi.CmsSellRuleArea">
+		<id column="aid" property="id" jdbcType="VARCHAR" />
+		<result column="productSellRuleId" property="productSellRuleId"
+			jdbcType="VARCHAR" />
+		<result column="provinceId" property="provinceId" jdbcType="VARCHAR" />
+		<result column="provinceName" property="provinceName" jdbcType="VARCHAR" />
+		<result column="cityId" property="cityId" jdbcType="VARCHAR" />
+		<result column="cityName" property="cityName" jdbcType="VARCHAR" />
+		<result column="areaId" property="areaId" jdbcType="VARCHAR" />
+		<result column="areaName" property="areaName" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="getRuleAreaById" resultMap="ruleAreaResultMap"
+		parameterType="java.lang.String">
+		select * from cms_product_t_rule_area where aid = #{id}
+	</select>
+	<insert id="insert" parameterType="java.util.List">
+		insert into cms_product_t_rule_area(aid,productSellRuleId,provinceId,provinceName
+		,cityId,cityName,areaId,areaName) values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.id},#{item.productSellRuleId},#{item.provinceId},#{item.provinceName},
+			#{item.cityId},#{item.cityName},#{item.areaId},#{item.areaName})
+		</foreach>
+	</insert>
+</mapper>

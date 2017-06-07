@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cms.mapper.manager.cargoods.accountMapper">
+	<sql id="ACCOUNT-PARAM">
+		id as id,
+		account_type as accountType,
+		register_date as registerDate,
+		server_start_date as serverBeginDate,
+		server_end_date as serverEndDate,
+		account_grade as accountGrade,
+		add_type as addType,
+		identify_type as identifyType
+	</sql>
+	<insert id="insert" parameterType="com.cms.model.manager.accountBean">
+		insert into t_sys_account (id,account_type,register_date,account_grade,add_type,identify_type) values (#{id},#{accountType},now(),#{accountGrade},#{addType},#{identifyType})
+	</insert>
+	
+	<select id="getInfo" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.manager.accountBean">
+		select <include refid="ACCOUNT-PARAM"/> from t_sys_account where id=#{id}
+	</select>
+</mapper>

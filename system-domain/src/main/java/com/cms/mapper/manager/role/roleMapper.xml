@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cms.mapper.manager.role.roleMapper">
+	<sql id="ROLE-PARAM">
+	    tar.id as id,
+	    tar.name as name,
+	    tar.seq as seq,
+	    tar.status as status,
+	    tar.is_default as isDefault,
+	    tar.description as description
+	</sql>
+	
+	<select id="dataGrid" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.manager.roleBean">
+	    select <include refid="ROLE-PARAM"/> from t_sys_role tar where 1=1 
+	    <if test="status!=null and status!=''">
+	    	and status=#{status}
+	    </if>
+	    <if test="order!=null and order!=''">
+	        ${order}
+	    </if>
+	</select>
+	
+	<select id="dataGridCot" parameterType="com.alibaba.fastjson.JSONObject" resultType="int">
+	    select count(1) from t_sys_role tar where 1=1 
+	    <if test="status!=null and status!=''">
+	    	and status=#{status}
+	    </if>
+	</select>
+	
+	<select id="get" parameterType="long" resultType="com.cms.model.manager.roleBean">
+	    select <include refid="ROLE-PARAM"/>,GROUP_CONCAT(tara.access_id) accessIds from t_sys_role tar left JOIN t_sys_role_access tara 
+	    on tar.id=tara.role_id where tar.id=#{id}
+	</select>
+	
+	<update id="update" parameterType="com.cms.model.manager.roleBean">
+	    update t_sys_role set name=#{name},description=#{description} where id=#{id}
+	</update>
+	
+	<insert id="add" parameterType="com.cms.model.manager.roleBean">
+	    insert into t_sys_role (name,description,is_default) values (#{name},#{description},1)
+	</insert>
+	
+	<delete id="delete" parameterType="long">
+	    delete from t_sys_role where id=#{id}
+	</delete>
+	
+	<delete id="delGrant" parameterType="com.alibaba.fastjson.JSONObject">
+	    <if test="type=='role'">
+	        delete from t_sys_role_access where role_id=#{id}
+	    </if>
+	    <if test="type=='access'">
+	        delete from t_sys_role_access where access_id=#{id}
+	    </if>
+	</delete>
+	
+	<update id="addGrant" parameterType="com.alibaba.fastjson.JSONObject">
+	    replace into t_sys_role_access (role_id,access_id) values 
+	    <foreach collection="array" index="index" item="item" separator=",">
+	        (#{id},#{item})
+	    </foreach>
+	</update>
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" xmlns:doubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+
+    <dubbo:application name="cms" owner="ryan" organization="cms"/>
+
+    <dubbo:registry address="zookeeper://localhost:2181"/>
+
+    <dubbo:protocol name="dubbo" port="20883" serialization="kryo" optimizer="com.cms.optimizer.SerializationOptimizerImpl"/>
+
+    <bean id="purchaseNeedService" class="com.cms.service.caigou.PurchaseNeedServiceImpl"/>
+    <dubbo:service interface="com.cms.iservice.shengchan.PurchaseNeedService" ref="purchaseNeedService" protocol="dubbo" version="1.0.0" owner="ryan" group="shengchan" delay="-1" timeout="6000" retries="0"/>
+    <bean id="shengchanCommonService" class="com.cms.service.caigou.shengchanCommonServiceImpl"/>
+    <dubbo:service interface="com.cms.iservice.shengchan.shengchanCommonService" ref="shengchanCommonService" protocol="dubbo" version="1.0.0" owner="ryan" group="shengchan" delay="-1" timeout="6000" retries="0"/>
+    <bean id="purchaseIntentService" class="com.cms.service.caigou.PurchaseIntentServiceImpl"/>
+    <dubbo:service interface="com.cms.iservice.shengchan.PurchaseIntentService" ref="purchaseIntentService" protocol="dubbo" version="1.0.0" owner="ryan" group="shengchan" delay="-1" timeout="6000" retries="0"/>
+    <bean id="purchaseTenderService" class="com.cms.service.caigou.PurchaseTenderServiceImpl"/>
+    <doubbo:service interface="com.cms.iservice.shengchan.PurchaseTenderService" ref="purchaseTenderService" protocol="dubbo" version="1.0.0" owner="ryan" group="shengchan" delay="-1" timeout="6000" retries="0"/>
+
+    <dubbo:reference id="ShengchanOrderIdService" interface="com.cms.iservice.shengchan.ShengchanOrderIdService" protocol="dubbo" version="1.0.0" owner="ryan" group="shengchan"/>
+    <dubbo:reference id="globalIdService" interface="com.cms.iservice.common.GlobalIdService" protocol="dubbo" version="1.0.0" owner="ryan" group="common" timeout="6000" retries="0"/>
+    <dubbo:reference id="companyService" interface="com.cms.iservice.shengchan.CompanyService" protocol="dubbo" version="1.0.0" owner="company" group="company"/>
+    <dubbo:reference id="shengchanRecommendService" interface="com.cms.iservice.shengchan.ShengchanRecommendService" protocol="dubbo" version="1.0.0" owner="ryan" group="shengchan"/>
+</beans>

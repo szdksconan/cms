@@ -1,0 +1,69 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <div class="sc_tan">
+      <input type="text" class="cmao_input" value=""/>&nbsp;<a class="btn btn-hui btn-w80" type="button" >搜索</a>
+      <p>&nbsp;</p>
+      <div class="tab-pane active" id="tab-basicinfo">
+          <table id="table">
+          </table>
+      </div>
+  </div>
+  <script>
+      $('#table').bootstrapTable({
+          url:'../supplier/list',
+          pagination: true,//是否显示分页
+          contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+          queryParamsType:'limit',
+          sortOrder:'desc',
+          queryParams:function(params){
+              return {
+                  pageSize: params.limit,
+                  order:params.order,
+                  pageNumber: params.pageNumber
+              };
+          },
+          onAjaxLoadSuccess:function(data){
+              var table_2 = $('#table_2').bootstrapTable('getData');
+              var rows = data.rows;
+              for (var i=0;i<table_2.length;i++){
+                  var companyId=table_2[i].companyId;
+                  for (var j=0;j<rows.length;j++){
+                      var _obj=rows[j];
+                      if (companyId==_obj.compid){
+                          rows.splice(j,1);
+                          break;
+                      }
+                  }
+              }
+              data.rows=rows;
+          },
+          sidePagination: "server",
+          pageNumber:1,
+          pageSize: 10,
+          pageList: [10, 20],
+          uniqueId: "id",//每一行的唯一标识，一般为主键列
+          columns: [{
+              checkbox:true
+          },{
+              title : '供应商名称',
+              field:'companyName'
+          },{
+              title : '企业性质',
+              field : 'compType'
+          },{
+              title : '所属行业',
+              field : 'mainIndustry'
+          },{
+              title : '经营模式',
+              field : 'businessModel'
+          },{
+              title : '所在地区',
+              field : 'address'
+          }]
+      });
+  </script>
+</html>

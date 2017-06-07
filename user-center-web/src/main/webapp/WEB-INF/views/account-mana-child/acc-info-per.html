@@ -1,0 +1,330 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>账户管理-账户信息</title>
+<link href="../css/account-mana.css" rel="stylesheet"/>	
+<!--[if lt IE 9]>
+<script src="js/html5shiv.js"></script>
+<script src="js/respond.min.js"></script>
+<![endif]-->
+</head>
+<div class="acc-info">       		 
+    <ul class="nav nav-tabs" role="tablist" id="tab-list">
+	    <li class="active"><a href="#tab-basicinfo" role="tab" data-toggle="tab">基本信息</a></li>
+	    <li><a href="#tab-perphoto" role="tab" data-toggle="tab">个人头像</a></li>
+	    <li><a href="#tab-perinfo" role="tab" data-toggle="tab">个人信息</a></li>
+	   <!-- <li><a href="#tab-workexp" role="tab" data-toggle="tab">工作经历</a></li>
+	    <li><a href="#tab-eduexp" role="tab" data-toggle="tab">教育经历</a></li>-->
+	</ul>
+	<div class="tab-content">
+		<!--基本信息-->
+		<div class="tab-pane active" id="tab-basicinfo">
+			<p class="acc-mes-p">*表示该项必填</p>
+			<table class="acc-basicinfo-table">
+				<tr>
+					<td align="right" width="10%">
+						<p class="padding-r-15"><span>*</span>真实姓名:</p>
+						<p class="acc-null"></p>
+					</td>
+					<td width="90%">
+						<p><input type="text" name="realname" value="张麻子"/><span class="margin-l-10">[已认证]</span></p>
+						<p><a href="javascipt:;" target="_blank" class="color-999999">点此进入个人实名认证</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">
+						<p class="padding-r-15"><span>*</span>性别:</p>
+					</td>
+					<td>
+						<p>
+							<input type="radio" name="sex"/>先生
+							<input type="radio" name="sex"/>女士
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">
+						<p class="padding-r-15"><span>*</span>会员身份:</p>
+						<p class="acc-null"></p>
+					</td>
+					<td>
+						<p>个人 <a href="javascript:;" class="color-000000">我要升级为企业用户</a></p>
+						<p><span class="color-999999">说明：个人用户可升级为企业用户</span></p>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">
+						<p class="padding-r-15">业务联系手机:</p>
+						<p class="acc-null"></p>
+					</td>
+					<td>
+						<p>
+							18583600129
+							<a href="javascript:;" target="_blank" class="color-999999 margin-l-10">修改</a>
+						</p>
+						<p>
+							<input type="radio" name="tel"/>手机所有人可见
+							<input type="radio" name="tel"/>手机仅产贸送会员可见
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">
+						<p class="padding-r-15">业务联系邮箱:</p>
+					</td>
+					<td>
+						<p><a href="javascript:;" target="_blank" class="color-999999">添加</a></p>
+					</td>
+				</tr>								
+				<tr>
+					<td align="right">
+						<p class="padding-r-15">固定电话:</p>
+					</td>
+					<td>
+						<p>
+							<input type="text" class="w-50" value="+86" />&nbsp;-
+							<input type="text" class="w-70" value="" placeholder="区号"/>&nbsp;-
+							<input type="text" value="" placeholder="电话号码"/>
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">
+						<p class="padding-r-15">传真:</p>
+					</td>
+					<td>
+						<p class="margin-t-10">
+							<input type="text" class="w-50" value="86" />&nbsp;-
+							<input type="text" class="w-70" value="" placeholder="区号"/>&nbsp;-
+							<input type="text" placeholder="传真号码"/>
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">
+						<p class="padding-r-15 padding-b-10"><span>*</span>联系地址:</p>
+						<p class="acc-null"></p>
+					</td>
+					<td>
+						<p class="margin-t-10">
+							<select class="w-90"><option>中国</option></select>
+							<select class="w-90"><option>四川</option></select>
+							<select class="w-170"><option>成都</option></select>
+							<select class="w-170"><option>高新区</option></select>
+						</p>
+						<p class="margin-t-20"><input type="text" value="" placeholder="请输入详细街道地址"></p>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">
+						<p class="padding-r-15">邮编:</p>
+					</td>
+					<td>
+						<p class="margin-t-10"><input type="text" placeholder="请输入邮政编码"></p>
+					</td>
+				</tr>				
+				<tr>
+					<td></td>
+					<td><input type="submit" class="acc-savebtn" value="保存"></td>
+				</tr>
+			</table>
+		</div>
+		<!--个人头像-->
+		<div class="tab-pane" id="tab-perphoto">
+			<table class="acc-perphoto-table">
+				<tr>
+					<td width="10%">
+						<div class="acc-photo-div">
+							<img src="../image/acc-perphoto-bg.png" />
+						</div>
+						<p class="margin-l-20 margin-t-5">您当前的头像</p>
+					</td>
+					<td width="90%" class="padding-l-20">
+						<div class="acc-photodiv">
+							<span class="fn-left font-bold">您目前还没有头像，请&nbsp;</span>
+							<span class="acc-upfile">点此上传</span>
+							<input type="file" value="点此上传" class="acc-file">							
+						</div>
+						<div class="fn-left font-bold">上传图片要求：</div>
+						<div class="fn-left margin-t-20" style="text-align: left;">请使用真实头像，展示风格支持JPG,JPEG,GIF,PNG风格，支持2M以内的图片。</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<!--个人信息-->
+		<div class="tab-pane" id="tab-perinfo">
+			<!--个人信息展示-->
+			<!--<div class="acc-perinfoshow show">
+				<p class="acc-perinfo-p" align="center">您还没有填写任何个人信息，请<a href="javascript:;" class="acc-perinfolink">点此添加</a></p>
+				<table class="acc-perinfo-table">
+					<tr>
+						<td width="30%" align="right" class="padding-r-15">生日:</td>
+						<td width="70%">未填写</td>
+					</tr>
+					<tr>
+						<td align="right" class="padding-r-15">血型:</td>
+						<td>未填写</td>
+					</tr>
+					<tr>
+						<td align="right" class="padding-r-15">籍贯:</td>
+						<td>未填写</td>
+					</tr>
+					<tr>
+						<td align="right" class="padding-r-15">收入水平:</td>
+						<td>未填写</td>
+					</tr>
+					<tr>
+						<td align="right" class="padding-r-15">学历:</td>
+						<td>未填写</td>
+					</tr>
+					<tr>
+						<td align="right" class="padding-r-15">宗教信仰:</td>
+						<td>未填写</td>
+					</tr>
+					<tr>
+						<td align="right" class="padding-r-15">个人主页:</td>
+						<td>未填写</td>
+					</tr>
+					<tr>
+						<td align="right" class="padding-r-15">兴趣爱好:</td>
+						<td>未填写</td>
+					</tr>
+					<tr>
+						<td align="right" class="padding-r-15">自我介绍:</td>
+						<td>未填写</td>
+					</tr>
+				</table>
+			</div>-->
+			<!--个人信息添加-->
+			<div class="acc-perinfoadd show">				
+				<table class="acc-perinfoadd-table">
+					<tr>
+						<td width="10%" align="right" class="padding-r-15">生日:</td>
+						<td width="90%">
+							<select><option>请选择</option></select>年
+							<select><option>请选择</option></select>月
+							<select><option>请选择</option></select>日							
+						</td>
+					</tr>
+					<tr>
+						<td align="right" class="padding-r-15">血型:</td>
+						<td>
+							<span><input type="radio" name="blood"/>A型</span>
+							<span><input type="radio" name="blood"/>B型</span>
+							<span><input type="radio" name="blood"/>AB型</span>
+							<span><input type="radio" name="blood"/>O型</span>
+							<span><input type="radio" name="blood"/>RH型</span>
+						</td>
+					</tr>
+					<tr>
+						<td align="right" class="padding-r-15">籍贯:</td>
+						<td>
+							<select><option>中国</option></select>
+							<select><option>请选择</option></select>
+							<select><option>请选择</option></select>
+                        </td>
+					</tr>
+					<tr>
+						<td align="right" class="padding-r-15">收入水平:</td>
+						<td><input type="text" />元/年</td>
+					</tr>
+					<tr>
+						<td align="right" class="padding-r-15">学历:</td>
+						<td><select><option>本科</option></select></td>
+					</tr>
+					<tr>
+						<td align="right" class="padding-r-15">宗教信仰:</td>
+						<td><input type="text" /></td>
+					</tr>
+					<tr>
+						<td align="right" class="padding-r-15">个人主页:</td>
+						<td><input type="text" placeholder="请输入网址" /></td>
+					</tr>
+					<tr>
+						<td align="right" class="padding-r-15">兴趣爱好:</td>
+						<td><input type="text" /></td>
+					</tr>
+					<tr>
+						<td align="right" class="padding-r-15">自我介绍:</td>
+						<td><textarea></textarea></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							<input type="button" value="保存" class="acc-perbtn">
+							<a href="javascript:;" class="acc-perdel">删除</a>
+						</td>
+					</tr>
+				</table>
+			</div>	
+		</div>
+		<!--工作经历-->
+		<div class="tab-pane" id="tab-workexp">
+			<div class="padding-t-50" align="center">
+				<p class="font-bold">您还未填写任何工作经历，请<a href="javascript:;" class="acc-perworklink">点此添加</a></p>
+			</div>
+		</div>
+		<!--教育经历-->
+		<div class="tab-pane" id="tab-eduexp">
+			<!--教育经历展示-->
+			<div class="acc-eduxpshow show">
+				<div class="padding-t-50" align="center">
+					<p class="font-bold">您还未填写任何教育经历，请<a href="javascript:;" class="acc-peredulink">点此添加</a></p>
+				</div>
+			</div>
+			<!--教育经历添加-->
+			<div class="acc-eduxpadd hide">
+				<div class="acc-edudiv">
+					<table class="acc-edutable">
+						<tr>
+							<td width="30%" align="right" class="padding-r-15"><span>*</span>学习时间</td>
+							<td width="70%">
+								<select class="acc-studytime"><option>请选择</option></select>年
+								<select class="acc-studytime"><option>请选择</option></select>月&nbsp;-&nbsp;
+								<select class="acc-studytime"><option>请选择</option></select>年
+								<select class="acc-studytime"><option>请选择</option></select>月
+							</td>
+						</tr>
+						<tr>
+							<td align="right" class="padding-r-15"><span>*</span>学校名称</td>
+							<td><input type="text" /></td>
+						</tr>
+						<tr>
+							<td align="right" class="padding-r-15"><span>*</span>学位</td>
+							<td><select><option>本科</option></select></td>
+						</tr>
+						<tr>
+							<td align="right" class="padding-r-15"><span>*</span>专业</td>
+							<td><select><option>工业照明</option></select></td>
+						</tr>
+						<tr>
+							<td align="right" class="padding-r-15">备注</td>
+							<td>
+								<textarea placeholder="请输入"></textarea>
+								<p><span class="acc-numword">0</span>/2000字</p>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<input type="button" value="保存" class="acc-perbtn">
+							    <a href="javascript:;" class="acc-perdel">删除</a>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div><input type="button" value="继续添加" class="acc-continueadd"></div>
+			</div>
+		</div>
+	</div>
+</div>						
+<script src="../js/jquery.1.11.3.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/account-mana.js"></script>
+</html>
+
+
+

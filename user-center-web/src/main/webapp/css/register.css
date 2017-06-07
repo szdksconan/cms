@@ -1,0 +1,568 @@
+@import url(bootstrap.min.css);
+@import url(common.css);
+@import url(login.css);
+body{
+  		background-color: #F6F6F6;
+  	}
+input,select{
+	border:1px solid #CFCFCF;
+}  	
+.re-going-login{
+	float: right;
+	margin: 10px 5px 0 0;
+	font-size: 12px;
+	color:#353535;
+}
+.re-going-login .register-lang{
+	margin: 0 20px;
+}
+.re-container .tab-content{
+	background-color: #FFFFFF;
+	border: 1px solid #DDDDDD;
+}
+.register-footer-ul{
+	float: left;
+    width: 100%;
+    margin: 20px 0 10px 80px;
+}
+.register-footer-ul li{
+	float: left;
+}
+.register-footer-ul li a{
+	color: #828282;
+}
+#tab-list{
+	width: 190px;
+	margin: 0 auto;
+	border-bottom: 1px solid #FFFFFF;
+}
+/*覆盖bootstrap样式*/
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+    color: #B70707;
+    font-weight: bold;
+    cursor: default;
+    background-color: #fff;
+    border: 1px solid #DDDDDD;
+    border-bottom-color: transparent;
+}
+.register-nocurrent{
+	background-color: #F3F3F3;
+	color:#555555;
+	font-weight: 100;
+}
+.nav-tabs>li{
+    float: left;
+    margin-bottom: -2px;
+}
+.nav-tabs > li > a {
+    margin-right: 6px;
+    line-height: 1.42857;
+    border: 1px solid transparent;
+    border-radius: 0px 0px 0px 0px;
+}
+.nav > li > a {
+    position: relative;
+    display: block;
+    padding: 5px 15px;
+    border: 1px solid #DDDDDD;
+}
+.tab-pane>div{
+	margin:0 auto;
+	width: 100%;
+	height: auto;
+}
+.register-step{
+	width: 650px;
+	height: auto;
+	margin: 0 auto;
+	padding: 67px 0 48px 0;
+}
+.register-step span{
+	font-size: 15px;
+}
+.register-flow1{
+	margin:5px 0 0 15px;
+}
+.register-flow2{
+	margin:5px 0 0 200px;
+}
+.register-flow3{
+	margin:5px 0 0 200px;
+}
+.register-mid{
+	margin: 0 auto;
+	color: #828282;
+	height: 470px;
+}
+.register-username{
+	width: 308px;
+	height: 40px;
+	line-height: 40px;
+	margin-left: 20px;
+	margin-right: 5px;
+	border: 1px solid #DBDBDB;
+	float: left;
+}
+.register-msg-div{
+	height:40px;
+	line-height: 40px;
+	width: auto;;
+}
+.register-msg-icon{
+	float: left;
+	margin-top: 13px;
+	margin-left: 10px;
+}
+.register-msg2-icon{
+	float: left;
+	margin-top: 12px;
+	margin-left: 10px;
+	margin-right: 5px;
+}
+.register-num{
+	float: left;
+	width: 160px;
+	height: 40px;
+	line-height: 40px;
+	border: 1px solid #DBDBDB;
+	margin: 15px 5px 0 5px;
+}
+.register-mid-div{
+	width: 100%;
+	height: 44px;
+	line-height: 44px;
+}
+.register-validate2{
+	float: left;
+	width: 178px;
+	height: 40px;
+	line-height: 40px;
+	margin-left: 20px;
+	margin-top: 5px;
+	border: 1px solid #DBDBDB;
+}
+.register-valdate-box2 {
+	float: left;
+	width: 113px;
+	height: 40px;
+	line-height: 40px;
+	font-size: 12px;
+	color: #353535;
+	text-align: center;
+	margin-left: 18px;
+	margin-top: 5px;
+	border: 1px solid #DDDDDD;
+	background-color:#F6F6F6;
+}
+.register-validate{
+	float: left;
+	width: 178px;
+	height: 40px;
+	line-height: 40px;
+	margin-left: 20px;
+	margin-top: 15px;
+	border: 1px solid #DBDBDB;
+}
+.register-valdate-box {
+	float: left;
+	width: 113px;
+	height: 40px;
+	line-height: 40px;
+	font-size: 12px;
+	color: #353535;
+	text-align: center;
+	margin-left: 18px;
+	margin-top: 15px;
+	border: 1px solid #DDDDDD;
+	background-color:#F6F6F6;
+}
+.register-notsee{
+	font-size: 12px;
+	float: left;
+	margin-left: 10px;
+	color: #B0B0B0;
+}
+.register-other{
+	float: left;
+	margin-left: 10px;
+	color:#707070
+}
+.register-contactname{
+	width: 200px;
+	height: 40px;
+	line-height: 40px;
+	margin: 0 20px 0 20px;
+}
+.register-adspro{
+	width: 85px;
+	height: 40px;
+	line-height: 40px;
+	margin:0 3px 0 20px;
+}
+.register-adscity,.register-adsarea{
+	width: 96px;
+	height: 40px;
+	line-height: 40px;
+	margin:0 2px 0 2px;
+}
+.register-num-select{
+	width: 130px;
+	height: 40px;
+	line-height: 40px;
+	margin:0 5px 0 20px;
+}
+.register-phone{
+	width: 160px;
+	height: 40px;
+	line-height: 40px;
+	margin-left: 5px;
+}
+.register-allowfile{
+	margin-top: -10px;
+	float: left;
+	padding: 0 0 0 20px;
+	font-size: 12px;
+}
+.register-allowfile span{
+	margin-left: 5px;
+}
+.register-tb-title{
+	font-size: 15px;
+	text-align: right;
+	color: #353535;
+	font-weight: bold;
+}
+.register-btndiv{
+	float: left;
+	margin-top: -60px;
+}
+.register-step3-msg span{
+	margin-left: 35px;
+}
+.register-step-nextbtn{
+	float: left;
+	text-align: center;
+	width: 308px;
+	height: 40px;
+	line-height: 40px;
+	color: white;
+	cursor: pointer;
+	font-size: 20px;
+	font-weight: 400;
+	margin-left: 20px;
+	background-image: url(../image/login-btn.png);	
+}
+.register-step-nextbtn:hover{
+	color: white;
+	background-image: url(../image/logn-btnactive.png);
+}
+.register-dropnum-btn {
+	margin-left: -105px;
+	float: left;
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0px;
+    font-size: 14px;
+    font-weight: 400;
+    height: 42px;
+    line-height: 30px;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid #DBDBDB;
+ }
+ .register-dropdwon-ul{
+ 	left: -105px;
+ }
+ .register-prompt{
+ 	color: #828282;
+ 	width: 100%;
+ 	margin-top: 201px;
+ 	font-size: 12px;
+ 	clear: both;
+ }
+ .register-validate-num-box {
+ 	position:relative;
+ 	left: 0px;
+ 	top:-240px;
+ 	z-index: 1050;
+ 	height: 325px;
+ 	width: 600px;
+ 	background-color: #FFFFFF;
+ 	border: 1px solid #BBBBBB;
+ }
+ .register-numbox-top{
+ 	width: 100%;
+ 	height: 80px;
+ }
+ .register-numboxtop-title{
+ 	position: relative;
+ 	font-size: 16px;
+ 	font-weight: bold;
+ 	left: -100px;
+ 	top: 10px;
+ }
+ .register-numboxtop-qus-icon{
+ 	position: relative;
+ 	left: -160px;
+ 	top: 40px;
+ }
+ .register-colse-icon{
+ 	left:100px;
+ 	top: 10px;
+ }
+ .register-numbox-con{
+ 	height: auto;
+ 	margin-left:15%;
+ 	text-align: left;
+ 	float: left;
+ }
+ .register-send-btn{
+ 	width: 143px;
+ 	height: 42px;
+ 	color: white;
+ 	margin-left: 10px;
+ 	border: 1px solid #BBBBBB;
+ 	background-color: #707070;
+ }
+ .register-comstep2-mid{
+ 	width: 100%;
+ 	height: 807px;
+ 	color:#707070;
+ 	margin: 0 auto;
+ 	padding-bottom: 78px;
+ }
+ .register-step2-mid{
+ 	width: 100%;
+ 	height: 473px;
+ 	color:#707070;
+ 	margin: 0 auto;
+ 	padding-bottom: 78px;
+ }
+ .register-per-step3-mid{
+ 	height: 658px;
+ 	margin: 0 auto;
+ 	color: #707070;
+ 	padding-left: 50px;
+ }
+ .register-step1-nextbtn-table{
+ 	width:80%;
+ 	border: 1px solid white;
+ 	margin-top: 22px;
+ 	margin-left: 11%;
+ }
+ .register-step1-nextbtn-table tr{
+ 	height: 68px;
+ 	line-height: 68px;
+ }
+  .register-step3-table{
+ 	width:90%;
+ 	border: 1px solid white;
+ 	margin: 25px 0 50px 0;
+ 	margin-left: 10%;
+ }
+ .register-step3-table tr{
+ 	height: 65px;
+ 	line-height: 65px;
+ }
+ .register-comstep1-table{
+ 	width:95%;
+ 	border: 1px solid white;
+ 	margin-top: 20px;
+ 	margin-left: 3%;
+ }
+ .register-comstep1-table tr{
+ 	height: 70px;
+ 	line-height: 70px;
+ }
+.register-step2-table{
+ 	width:80%;
+ 	border: 1px solid white;
+ 	margin-top: -13px;
+ 	margin-left: 12%;
+ }
+ .register-perstep2-table{
+ 	width:80%;
+ 	border: 1px solid white;
+ 	margin-top: 19px;
+ 	margin-left: 12%;
+ }
+ .register-perstep2-table tr{
+ 	height: 70px;
+ 	line-height: 70px;
+ }
+ .register-step2-table tr{
+ 	height: 70px;
+ 	line-height: 70px;
+ }
+ .register-input{
+ 	float: left;
+ 	width: 308px;
+ 	height: 40px;
+ 	line-height: 40px;
+ 	margin-left: 20px;
+ }
+ .register-realname{
+ 	float: left;
+ 	width: 240px;
+ 	height: 40px;
+ 	line-height: 40px;
+ 	margin: 13px 0 0 20px;
+ }
+ .register-step1-nextbtn-select{
+ 	width: 200px;
+ 	height: 32px;
+ }
+ .register-step3-showmes{
+ 	width:100%;
+ 	height: 494px;
+ }
+ .register-imgsucceed{
+ 	width: 100%;
+ 	height: 153px;
+    background:url(../image/img_succeed.png);
+ }
+ .register-per-step3mid{
+ 	width:100%;
+ 	height: 153px;
+    background: url(../image/img_succeed.png) no-repeat;
+ }
+ .register-successinfo{
+    font-size: 26px;
+    width: 54%;
+    height: 90px;
+    margin-left: 60px;
+    color: #292929;
+    line-height: 45px;
+    padding-top: 15px;
+    text-align: left;
+ }
+ .register-step3-msg{
+ 	width: 55%;
+ 	height: auto;
+ 	text-align: left;
+ 	font-size: 12px;
+ 	color: #919191;
+ 	margin-top: 25px;
+ }
+ .register-user{
+ 	float: left;
+ 	color: #B70707;
+ }
+ .re-huiyaunspan{
+ 	float:right;
+ 	height: 80px;
+ 	line-height: 31px;
+ }
+ .re-huiyuandiv{
+ 	margin:0 0 10px 20px;
+ 	height: 74px;
+ 	line-height: 33px;
+ 	width: 92%;
+ }
+ .register-sucinfo{
+ 	color: #292929;
+ 	margin: 20px;
+ }
+ .register-newbiebtn{
+ 	width: 347px;
+ 	height: 45px;
+ 	margin-top: 59px;
+ }
+ .register-step3-p{
+ 	width: 53%;
+ 	margin-left:260px;
+ 	height: 40px;
+ 	line-height: 35px;
+ 	font-size: 12px;
+ 	color: #919191;
+ 	margin-top: 10px;
+ 	border-bottom: 1px solid #EEEEEE;
+ }
+ .register-step3-link-div{
+ 	height: auto;
+	float: left;
+	margin: 30px 0 0 10px;
+ }
+ .register-areanum{ 
+ 	width: 130px;
+ 	height: 40px;
+ 	line-height: 40px;
+ 	margin:0 3px 0 20px;
+ }
+.register-tell1{
+	width: 60px;
+	height: 40px;
+	line-height: 40px;
+	margin-left: 20px;
+}
+.register-tell2{
+	width: 80px;
+	height: 40px;
+	line-height: 40px;
+}
+.register-tell3{
+	width: 135px;
+	height: 40px;
+	line-height: 40px;
+}
+.re-container {
+	width: 1000px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.register-step1-mid-email{
+	text-align: left;
+	width: 375px;
+	margin: 0 auto;
+	height: 160px;
+}
+.register-label {
+    width: 287px;
+    height: 40px;
+    line-height: 42px;
+    margin-left: 20px;
+}
+.register-step3-table select{
+	float: left;
+	height: 40px;
+	line-height: 40px;
+	width: 200px;
+	margin-left: 20px;
+}
+.register-step3-link-div a{
+	text-decoration: underline;
+}
+@media (max-width: 1280px) {
+  .clear img{
+  	float: left;
+	width:220px;	
+  }
+}
+/*验证提示 */
+.info{display:none;height:20px;line-height:20px;color:#666;font-size: 10px;}
+.safe{display:none;height:20px;color:#666;font-size: 10px;margin-top: -30px;margin-left: 20px;}
+.info_error{display:none;height:20px;color:red;padding:7px 0 0 0px;margin-top: -36px;font-size: 10px;}
+.info_error p{width:282px;height:1px;background:#FFC7C7;position:absolute;left:5px;top:24px;}
+.safe .s{display:inline-block;width:12px;height:12px;border:1px solid #ccc;background:#ccc;}
+.ok{display:none;width:20px;height:20px;background:url(../image/ok.gif) no-repeat;top:8px;}
+.word{margin-left:5px;color:#000;}
+.comusername_ok,.comuserpwd_ok,.comuserpwd_ok{margin: 5px 0 0 310px;}
+.comuserp_error{margin: -12px 0 0 20px;}
+.phone_put{margin-top: -3px;}
+.phone_error{margin-top:-35px}
+.phone_ok{margin-top: 5px;}
+/*下拉菜单*/
+.drop{width:133px;float: left;margin-top: 15px;}
+.dropdown p{height:40px; line-height:40px; padding-left:5px; padding-right:15px;border: 1px solid #CFCFCF; background:url(../image/arrow.gif) no-repeat right 2px top 12px; color:#707070; cursor:pointer;}
+.dropul{width: 133px; margin-top:-13px; border:1px solid #DFDFDF; position:absolute; display:none;height: auto;max-height: 120px;overflow: auto;background-color: #FFFFFF;}
+.dropdown ul li{height:30px; line-height:30px;margin-left: -40px;}
+.dropdown ul li a{display:block; height:30px; color:#807a62;text-decoration:none;float: left;padding-left: 5px;}
+.dropdown ul li:hover{background:#1E90FF;}
+/*省*/
+.re-sheng{width:85px;float: left;margin:15px 0 0 20px;}
+.dropul_sheng{width: 85px; margin-top:-13px; border:1px solid #DFDFDF; position:absolute; display:none;height: auto;max-height: 120px;overflow: auto;background-color: #FFFFFF;}
+/*城市*/
+.re-city{width:97px;float: left;margin-top: 15px;}
+.dropul_city{width: 97px; margin-top:-13px; border:1px solid #DFDFDF; position:absolute; display:none;height: auto;max-height: 120px;overflow: auto;background-color: #FFFFFF;}

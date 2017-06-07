@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cms.mapper.manager.department.departmentMapper">
+	<sql id="DEPT-PARAM">
+	    dept.id as id,
+	    dept.pid as pid,
+	    dept.code as code,
+	    dept.name as name,
+	    dept.seq as seq,
+	    dept.status as status,
+	    dept.icon as icon,
+	    DATE_FORMAT(dept.create_time,'%Y-%d-%m %H:%i') as createTime,
+	    dept.description as description
+	</sql>
+	
+	<select id="dataGrid" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.manager.departmentBean">
+	    select <include refid="DEPT-PARAM"/>,ts.id as subcompanyId,ts.name as subcompanyName from t_sys_department dept left join t_sys_subcompany ts on dept.subcompany_id=ts.id where 1=1 
+	    <if test="subcompanyId!=null and subcompanyId!=''">
+	    	and dept.subcompany_id=#{subcompanyId}
+	    </if>
+	    <if test="order!=null and order!=''">
+	        ${order}
+	    </if>
+	    <if test="order==null or order==''">
+	    	order by id
+	    </if>
+	</select>
+	
+	<select id="dataGridCot" parameterType="com.alibaba.fastjson.JSONObject" resultType="int">
+	    select count(1) from t_sys_department dept left join t_sys_subcompany ts on dept.subcompany_id=ts.id where 1=1 
+	    <if test="subcompanyId!=null and subcompanyId!=''">
+	    	and dept.subcompany_id=#{subcompanyId}
+	    </if>
+	</select>
+	
+	<select id="get" parameterType="long" resultType="com.cms.model.manager.departmentBean">
+		select <include refid="DEPT-PARAM"/>,ts.id as subcompanyId,ts.name as subcompanyName from t_sys_department dept left join t_sys_subcompany ts on dept.subcompany_id=ts.id where dept.id=#{id}
+	</select>
+	
+	<update id="update" parameterType="com.cms.model.manager.departmentBean">
+		update t_sys_department set name=#{name},subcompany_id=#{subcompanyId} where id=#{id}
+	</update>
+	
+	<update id="delete" parameterType="long" statementType="CALLABLE">
+	    {call delTree(#{id},2)}
+	</update>
+	
+	<insert id="add" parameterType="com.cms.model.manager.departmentBean">
+		insert into t_sys_department (name,create_time,subcompany_id) values (#{name},now(),#{subcompanyId})
+	</insert>
+</mapper>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(".item span").click(function(){
+                if($(this).attr('class')=='selected' || $(this).attr('class')=='selected seach'){
+                    $(this).removeClass("selected").removeClass('seach');
+                }else{
+                    $(this).addClass("selected").addClass('seach');
+                }
+            });
+            $("#btn-ret").click(function(){
+                $(".item span").removeClass("selected").removeClass('seach');
+            });
+        });
+    </script>
+    <style>
+    </style>
+</head>
+<body>
+<div class="sc_cgd" style="padding-left: 20px;padding-left: 20px">
+    <table >
+        <tr>
+            <td align="right">
+                销售产品：
+            </td>
+            <td colspan="5">
+                <select id="cppp"></select>
+                <select id="cpxl"></select>
+                <select id="cpmc"></select>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                产品编码：
+            </td>
+            <td style="width: 170px">
+                <input type="text" class="cmao_input" value=""/>
+            </td>
+            <td style="width: 230px">
+            	规格型号：
+                <input type="text" class="cmao_input" value=""/>
+            </td>
+            <td colspan="3">
+            	库存量：
+                <input type="text" class="cmao_input" value=""/>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                网点意向区域：
+            </td>
+            <td colspan="5">
+                <input type="text" class="cmao_input" style="width: 40%;" city="true" readonly/>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="5">
+                <div id="_areas" style="width: 79%;border: 1px solid #dddddd;height: 100px;overflow: auto">
+
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                合作方式：
+            </td>
+            <td colspan="5">
+                <div class="seach-conds">
+                    <div class="dd">
+                        <div class="item">
+                            <span>代理</span>
+                        </div>
+                        <div class="item">
+                            <span>经销</span>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                销售方式：
+            </td>
+            <td colspan="5">
+                <div class="seach-conds">
+                    <div class="dd">
+                        <div class="item">
+                            <span>实体销售</span>
+                        </div>
+                        <div class="item">
+                            <span>网络销售</span>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<script>
+    $("input[city=true]").click(function (e) {
+        var tipcon = '<div class="area-tip-input">' +
+                '<span class="rule-tip" value="{0}" data-id="{1}">{2}</span>' +
+                '<span class="del"></span>' +
+                '</div>';
+        SelCity(this,e,{
+            'divId':'_areas',
+            'appendHtml':tipcon
+        });
+    });
+
+    var options=[
+        {label: '开山牌',  value: '1'},
+        {label: '铁牛牌',  value: '2'}
+    ];
+    $('#cppp').multiselect('dataprovider', options);
+
+    options=[
+        {label: '开山系列',  value: '1'},
+        {label: '铁牛系列',  value: '2'}
+    ];
+    $('#cpxl').multiselect('dataprovider', options);
+
+    options=[
+        {label: '10吨轻型挖掘机',  value: '1'},
+        {label: '100吨重型挖掘机',  value: '2'}
+    ];
+    $('#cpmc').multiselect('dataprovider', options);
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cms.mapper.shengchan.PurchaseTenderDetailMapper">
+    <sql id="PURCHASETENDERDETAIL">
+        id,
+        purchase_tender_id as purchaseTenderId,
+        product_id as productId,
+        product_name as productName,
+        product_type_id as productTypeId,
+        product_type_name as productTypeName,
+        industry_id as industryId,
+        industry_name as industryName,
+        product_model_size as productModelSize,
+        count,
+        unit_id as unitId,
+        unit_name as unitName,
+        description,
+        deliver_time as deliverTime,
+        update_time as updateTime,
+        end_time as endTime
+    </sql>
+    <sql id="PURCHASETENDERDETAILDOC">
+        id,
+        purchase_tender_detail_id as purchaseTenderDetailId,
+        file_url as fileUrl,
+        file_key as fileKey,
+        file_type as fileType,
+        sort,
+        create_time
+    </sql>
+
+    <insert id="savePurchaseTenderDetail" parameterType="java.util.List">
+        replace into purchase_tender_detail (id,purchase_tender_id,product_id,product_name,product_type_id,product_type_name,industry_id,industry_name,
+        product_model_size,count,unit_id,unit_name,description,deliver_time,update_time,end_time) values
+        <foreach collection="list" item="detail" index="index" separator="," >
+            (#{detail.id},#{detail.purchaseTenderId},#{detail.productId},#{detail.productName},#{detail.productTypeId},#{detail.productTypeName},#{detail.industryId},
+            #{detail.industryName},#{detail.productModelSize},#{detail.count},#{detail.unitId},#{detail.unitName},#{detail.description},#{detail.deliverTime},#{detail.updateTime}
+            ,#{detail.endTime})
+        </foreach>
+    </insert>
+
+    <insert id="savePurchaseTenderDetailDoc" parameterType="java.util.List">
+        replace into purchase_tender_detail_doc (id,purchase_tender_detail_id,file_url,file_key,file_type,sort,create_time) values
+        <foreach collection="list" item="doc" index="index" separator="," >
+            (#{doc.id},#{doc.purchaseTenderDetailId},#{doc.fileUrl},#{doc.fileKey},#{doc.fileType},#{doc.sort},#{doc.createTime})
+        </foreach>
+    </insert>
+
+    <select id="getPurchaseTenderDetailList" parameterType="com.cms.model.shengchang.PurchaseTenderOrder" resultType="com.cms.model.shengchang.PurchaseTenderDetail">
+        select <include refid="PURCHASETENDERDETAIL"/> from purchase_tender_detail where 1=1
+        <if test="id!=null and id!=''">
+            and purchase_tender_id=#{id}
+        </if>
+        <if test="endTime!=null and endTime!=''">
+            and end_time &gt; #{endTime}
+        </if>
+        <if test="orderStr!=null and orderStr!=''">
+            ${orderStr}
+        </if>
+    </select>
+
+    <select id="getPurchaseTenderDetailDoc" parameterType="com.cms.model.shengchang.PurchaseTenderDetail" resultType="com.cms.model.shengchang.PurchaseTenderDetailDoc">
+        select <include refid="PURCHASETENDERDETAILDOC"/> from purchase_tender_detail_doc where 1=1
+        <if test="id!=null and id!=''">
+            and purchase_tender_detail_id=#{id}
+        </if>
+    </select>
+
+    <delete id="delPurchaseTenderDetailDoc" parameterType="java.util.List">
+        delete from purchase_tender_detail_doc
+        <where>
+            id='' or id in
+            <foreach collection="list" item="doc" index="index" open="(" separator="," close=")">
+                #{doc.id}
+            </foreach>
+        </where>
+    </delete>
+</mapper>

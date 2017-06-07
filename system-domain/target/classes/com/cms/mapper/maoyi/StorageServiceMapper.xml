@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.maoyi.StorageServiceMapper" >
+  <resultMap id="BaseResultMap" type="com.cms.model.maoyi.StorageService" >
+    <id column="id" property="id" jdbcType="DECIMAL" />
+    <result column="enterprise_id" property="enterpriseId" jdbcType="DECIMAL" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+    <result column="capacity" property="capacity" jdbcType="VARCHAR" />
+    <result column="stor_add_code" property="storAddCode" jdbcType="VARCHAR" />
+    <result column="stor_add_an" property="storAddAn" jdbcType="VARCHAR" />
+    <result column="stor_add_al" property="storAddAl" jdbcType="VARCHAR" />
+    <result column="storage_detail" property="storageDetail" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+	  
+	  <select id="getAllStorage" resultMap="BaseResultMap" parameterType="long" >
+	    select id, enterprise_id, name, type, area, capacity, stor_add_code, stor_add_an, stor_add_al, 
+           storage_detail, description
+	    from storage_service
+	    where enterprise_id = #{id,jdbcType=DECIMAL}
+	  </select>
+	  
+	  <select id="getStorage" parameterType="long" resultMap="BaseResultMap">
+	    select id,name, type, area, capacity, stor_add_code, stor_add_an, stor_add_al, 
+           storage_detail, description 
+           from  storage_service 
+           where id=#{id}
+	  </select>
+	  
+	  
+	  <delete id="deleteAllStorage" parameterType="long" >
+	    delete from storage_service
+	    where enterprise_id = #{id}
+	  </delete>
+	  
+	  <delete id="deleteStorage" parameterType="long" >
+	    delete from storage_service
+	    where id = #{id}
+	  </delete>
+<!-- 	  修改某一个仓库 -->
+<!-- 	<update id="updateStorage" parameterType="com.cms.model.maoyi.StorageService" > -->
+<!--     update storage_service -->
+<!--     set name = #{name},type = #{type}, area = #{area},capacity = #{capacity}, -->
+<!--      stor_add_code = #{storAddCode},stor_add_an = #{storAddAn}, -->
+<!--      stor_add_al = #{storAddAl},storage_detail = #{storageDetail}, -->
+<!--      description = #{description} -->
+<!--     where id = #{id} -->
+<!--    </update> -->
+   <update id="updateStorage" parameterType="com.cms.model.maoyi.StorageService" >
+    update storage_service
+    <set >
+      <if test="enterpriseId != null" >
+        enterprise_id = #{enterpriseId,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="capacity != null" >
+        capacity = #{capacity,jdbcType=VARCHAR},
+      </if>
+      <if test="storAddCode != null" >
+        stor_add_code = #{storAddCode,jdbcType=VARCHAR},
+      </if>
+      <if test="storAddAn != null" >
+        stor_add_an = #{storAddAn,jdbcType=VARCHAR},
+      </if>
+      <if test="storAddAl != null" >
+        stor_add_al = #{storAddAl,jdbcType=VARCHAR},
+      </if>
+      <if test="storageDetail != null" >
+        storage_detail = #{storageDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=DECIMAL}
+  </update>
+	  
+	  
+  <insert id="addStorage" parameterType="com.cms.model.maoyi.StorageService" >
+    insert into storage_service
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="enterpriseId != null" >
+        enterprise_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="capacity != null" >
+        capacity,
+      </if>
+      <if test="storAddCode != null" >
+        stor_add_code,
+      </if>
+      <if test="storAddAn != null" >
+        stor_add_an,
+      </if>
+      <if test="storAddAl != null" >
+        stor_add_al,
+      </if>
+      <if test="storageDetail != null" >
+        storage_detail,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="enterpriseId != null" >
+        #{enterpriseId,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="capacity != null" >
+        #{capacity,jdbcType=VARCHAR},
+      </if>
+      <if test="storAddCode != null" >
+        #{storAddCode,jdbcType=VARCHAR},
+      </if>
+      <if test="storAddAn != null" >
+        #{storAddAn,jdbcType=VARCHAR},
+      </if>
+      <if test="storAddAl != null" >
+        #{storAddAl,jdbcType=VARCHAR},
+      </if>
+      <if test="storageDetail != null" >
+        #{storageDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

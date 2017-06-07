@@ -1,0 +1,110 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=9">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>企业账户管理</title>
+<link href="css/account-mana.css" rel="stylesheet"/>
+<link href="css/account-mana2.css" rel="stylesheet"/>
+<script src="js/jquery.1.11.3.min.js"></script>
+<!--[if lt IE 9]>
+<script src="js/html5shiv.js"></script>
+<script src="js/respond.min.js"></script>
+<![endif]-->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/account-mana.js"></script>
+<script src="js/dropdown.js"></script>
+
+</head>
+<body>
+	<div class="acc-main">
+		<!--左侧导航栏-->
+		<div class="acc-menu">
+			<div class="acc-logo" align="center">
+				<a href="../index.html" target="_self"><img src="image/accmana_logo.png"/></a>
+				<span>账户管理</span>
+			</div>
+			<div class="acc-per-info" align="center">
+				<div class="acc-photo">标志</div>
+				<span>成都NIK股份有限公司</span>
+				<div class="acc-icon">
+					<img src="image/member.png" class="acc_imgmember"/>
+					<img src="image/approve.png" class="acc_imgapprove"/>
+					<img src="image/qul_ass.png" class="acc_imgqulass"/>
+					<img src="image/credit.png" class="acc_imgcredit" />
+				</div>
+				<div class="acc-member-level" align="center">
+				    <div>信用等级:</div>
+				    <img src="image/member-level-icon.png" />
+				    <img src="image/member-level-icon.png" />
+				    <img src="image/member-level-icon.png" />
+				</div>			
+			</div>
+			<div class="sidebar-menu">
+			    <a href="#accinfoMeun" class="nav-header menu-first collapsed" data-toggle="collapse"><i class="icon-user"></i><span>账号信息</span><i class="arrow-r"></i></a>
+				    <ul id="accinfoMeun" class="nav nav-list collapse menu-second">
+				        <li><a href="account-mana-child/com/accInfo/basicInfo.html" target="accframe"><i class="icon-basinfo"></i><span>基本信息</span></a></li>
+				        <li><a href="account-mana-child/com/accInfo/companyInfo.html" target="accframe"><i class="icon-cominfo"></i><span>企业信息</span></a></li>
+				        <li><a href="javascript:;" target="accframe"><i class="icon-materinfo"></i><span>物质信息</span></a></li>
+				        <li><a href="javascript:;" target="accframe"><i class="icon-comintro"></i><span>企业介绍</span></a></li>		 
+				    </ul>
+			    <a href="account-mana-child/acc-safety-com.html" target="accframe" class="nav-header menu-first collapsed" data-toggle="collapse"><i class="icon-safe"></i><span>账户安全</span><i class="arrow-r"></i></a>
+			    <a href="account-mana-child/acc-mana-com.html" target="accframe" class="nav-header menu-first collapsed" data-toggle="collapse"><i class="icon-mana"></i><span>账户管理</span><i class="arrow-r"></i></a>
+			    <a href="#accadsMenu" target="accframe" class="nav-header menu-first collapsed" data-toggle="collapse"><i class="icon-ads"></i><span>地址管理</span><i class="arrow-r"></i></a>
+				    <ul id="accadsMenu" class="nav nav-list collapse menu-second">
+				        <li><a href="account-mana-child/com/adsmana/comeAds.html" target="accframe"><i class="icon-basinfo"></i><span>收货地址</span></a></li>
+				        <li><a href="javascript:;" target="accframe"><i class="icon-cominfo"></i><span>发货地址</span></a></li>		 
+				    </ul>
+			</div>
+		</div>
+		
+		<!--右侧主要内容-->
+		<div class="acc-content">
+			<div class="acc-top">
+				<div class="acc-top-con">
+					<ul class="acc-top-left">
+						<li>
+							<img src="image/adsmana_icon2.png" class="acc-dingwei"/>
+							<span class="fn-left">成都</span>
+							<i class="icon-select"></i>
+						</li>
+						<li class="acc-userli">你好,尊贵的<span class="acc-level">金牌会员</span>丁山石</li>
+						<li><a href="javascript:;" target="_blank" class="acc-exit">[退出]</a></li>
+						<li><a href="javascript:;" target="_blank" class="acc-msg">消息</a><img src="image/msg_icon.png" class="acc-msgicon"/><span class="acc-havemsg"></span></li>
+					</ul>
+					<ul class="acc-top-right">
+						<li><a href="javascript:;" target="_blank">产贸送首页</a></li>
+						<li class="color-44545E">|</li>
+						<li>
+							<span><a href="javascript:;" target="_blank">收藏夹</a></span>
+						</li>
+						<li class="color-44545E">|</li>
+						<li>
+							<span><a href="javascript:;" target="_blank">客服中心</a></span>
+						</li>
+						<li class="color-44545E">|</li>
+						<li>
+							<span><a href="javascript:;" target="_blank">网站导航</a></span>
+						</li>
+						<li class="color-44545E">|</li>
+						<li>
+							<img src="image/iphone_icon.png"/>
+							<a href="javascript:;" target="_blank">手机产贸送</a>
+						</li>			
+					</ul>
+				</div>
+			</div>
+			<div class="acc-con-mid">		
+	            <iframe src="account-mana-child/com/accInfo/basicInfo.html" frameborder="0" id="accframe" name="accframe" width="100%" height="300" onload="setIframeHeight(this)"></iframe>
+			</div>
+		</div>
+	</div>
+	<!--底部版权-->
+	<div class="acc-footer" align="center"><h1>版权</h1></div>
+</body>
+</html>
+
+
+

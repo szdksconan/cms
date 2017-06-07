@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.wuliu.VaServiceMapper" >
+	<sql id="DIC-PARAM">
+	</sql>
+ 	<select id="getUserVaService" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.wuliu.VaServiceBean">
+ 		select b.vaservicename as vaServiceName,date_format(a.serviceperiodend,'%Y-%m-%d') as effectDate,
+				a.remainAmount as remainAmount,b.measurementUnit as count from vaservicepurchasehistory a inner join vaservice  b on b.id = a.vaserviceid
+				where now() &lt;= a.serviceperiodend 
+			<if test="loginusert != null and loginusert !=''">
+				and a.subscriberid = #{loginusert}
+			</if>	
+ 	</select> 
+ 	<select id="getAllUserVaService" resultType="com.cms.model.wuliu.VaServiceBean">
+			select a.salestag as salestag,a.id as id,a.servicepackagename as servicepackagename,a.price as price,d.measurePeriod as measurePeriod,d.vaServiceType as vaServiceType from servicepackage a,(
+			select b.measurePeriod as measurePeriod,c.servicepackageid as servicepackageid,b.vaServiceType as vaServiceType  from vaservice b,va_package c where b.id = c.vaserviceId  
+		) d where d.servicepackageid=a.id order by d.vaServiceType,d.measurePeriod
+ 	</select>
+ 	<insert id="add"  parameterType="com.alibaba.fastjson.JSONObject">
+ 		insert into vaservicepurchasehistory (
+		  subscriberID,
+		  vaServiceID,
+		  purchaseDate,
+		  username,
+		  serviceperiodstart,
+		  serviceperiodend ,
+		  remainAmount) values(
+		  #{subscriberID},#{vaServiceID},#{purchaseDate},#{username},#{serviceperiodstart},#{serviceperiodend},#{remainAmount}
+		  )
+		 
+ 	</insert>
+ 	<select id="getVaserviceListByPackageId" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.wuliu.VaServiceBean">			
+			select #{loginuser} as subscriberID,id as vaServiceID,now() as purchaseDate2,
+			#{loginuser} as username,now() as serviceperiodstart2,DATE_ADD(now(),INTERVAL measurePeriod MONTH) as serviceperiodend2,measureAmount  from vaservice
+			where id in ( select vaserviceid from va_package where servicepackageid = #{id}) 
+ 	</select>
+ 	
+ 	 <select id="getInfo"  parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.wuliu.VaServiceBean">
+		select vaServiceName,measureAmount,measurementUnit from vaservice
+			where id in( select vaserviceid from va_package where servicepackageid = #{id})
+ 	</select>
+ 	<select id="getUserHisVaService" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.wuliu.VaServiceBean">
+ 			select b.id as id, b.vaservicename as vaServiceName,date_format(a.purchaseDate,'%Y-%m-%d') as purchaseDate,
+				b.price as price,date_format(a.serviceperiodstart,'%Y-%m-%d') as serviceperiodstart,
+				date_format(a.serviceperiodend,'%Y-%m-%d') as serviceperiodend,a.vaServiceID as vaServiceID
+				from vaservicepurchasehistory a inner join vaservice  b on b.id = a.vaserviceid
+				where 1=1
+			<if test="createDate != null and createDate !=''">
+				and date_format(a.purchaseDate,'%Y-%m-%d') &lt;= #{createDate}
+			</if>
+			<if test="comboName != null and comboName !=''">
+				 and b.vaservicename like concat('%',#{comboName},'%')
+			</if>
+			<if test="loginusert != null and loginusert !=''">
+				and a.subscriberid = #{loginusert}
+			</if>	
+			   <if test="order!=null and order!=''">
+	        ${order}
+	    	</if>
+ 	</select> 
+	 <select id="getInfo2"  parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.wuliu.VaServiceBean">
+		select vaServiceName,measureAmount,measurementUnit,measurePeriod from vaservice
+			where id = #{id}
+ 	</select>
+ 	 <select id="getInfo3"  parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.wuliu.VaServiceBean">
+			select id,servicepackagename,price,salestag from servicepackage where id in(
+			select  servicepackageid from va_package where vaserviceId=#{id})
+ 	</select>
+ 	<select id="getMsgSum"  parameterType="com.alibaba.fastjson.JSONObject" resultType="int">
+ 			select case when sum(a.remainAmount) is not null then sum(a.remainAmount) else 0 end from vaservicepurchasehistory a,vaservice b where a.vaserviceid = b.id 
+ 			and a.subscriberID=#{login}  and b.vaServiceType = #{type} and now() &lt;= a.serviceperiodend 
+ 	</select>
+ 	<select id="getVaserviceList" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.wuliu.VaServiceBean" >
+ 			select  a.id as id,a.remainAmount as remainAmount from vaservicepurchasehistory a,vaservice b where a.vaserviceid = b.id and a.subscriberID=#{login}  and b.vaServiceType = #{type}
+			and now() &lt;= a.serviceperiodend order by a.serviceperiodend 
+ 	</select>
+ 	<update id="updateVaservice" parameterType="com.alibaba.fastjson.JSONObject">
+ 			update vaservicepurchasehistory set remainAmount = #{sum} where id=#{id}
+ 	</update>
+ 	<insert id="addUseHistory" parameterType="com.alibaba.fastjson.JSONObject">
+ 			insert into vaserviceusehistory values(#{id},#{subscriberID},#{vaServicepurchaseID},#{occurrenceTime})
+ 	</insert>
+</mapper>

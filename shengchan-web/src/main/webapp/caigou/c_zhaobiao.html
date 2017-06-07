@@ -1,0 +1,249 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>招标单</title>
+    <meta charset="utf-8">
+</head>
+<div class="bei">
+    <table class="-querytable" style="margin-left: 10px">
+        <tr>
+            <td>
+                招标单号：
+            </td>
+            <td>
+                <input type="text" class="cmao_inplg" id="orderCode" value=""/>
+            </td>
+            <td>
+                招标名称：
+            </td>
+            <td>
+                <input type="text" class="cmao_inplg" id="orderName" value=""/>
+            </td>
+            <!--<td>-->
+                <!--内容摘要：-->
+            <!--</td>-->
+            <!--<td>-->
+                <!--<input type="text" class="cmao_inplg" value=""/>-->
+            <!--</td>-->
+            <td>
+                招标状态：
+            </td>
+            <td>
+                <div id="_orderState">
+                    <select class="stateSelect select" id="state"></select>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                发布日期：
+            </td>
+            <td>
+                <input id="createTimeStart" placeholder="请输入日期" class="laydate-icon" onclick="laydate()"> - <input id="createTimeEnd" placeholder="请输入日期" class="laydate-icon" onclick="laydate()">
+            </td>
+            <td>
+                截止日期：
+            </td>
+            <td>
+                <input id="endTimeStart" placeholder="请输入日期" class="laydate-icon" onclick="laydate()"> - <input id="endTimeEnd" placeholder="请输入日期" class="laydate-icon" onclick="laydate()">
+            </td>
+        </tr>
+    </table>
+
+<div>
+ <p>&nbsp;</p>
+    <div id="toolbar" style="width: 100%">
+        <table style="width: 100%">
+            <tr>
+                <td align="left">
+                      <button  class="btn btn-blue btn-w140" onclick="changeContent('../caigou/c_zhaobiao_fb.html','right')" type="button" >发布新的招标信息</button>
+                </td>
+                <td align="right">
+                    <button  class="btn btn-blue btn-w100" type="button" id="btn_query">查询</button>
+                    <button  class="btn btn-darkgray btn-w100" type="button">清空</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <p>&nbsp;</p>
+    <table id="table" >
+    </table>
+</div>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+<p class="sc_p">优秀供应商推荐</p>
+<div id="company" class="clearfix">
+</div>
+<div class="sc_gym">
+	<ul class="pagination" id="pagination"></ul>
+</div>
+<script>
+//调用分页插件
+	$.jqPaginator('#pagination', {
+        totalPages: 5,
+        visiblePages: 10,
+        currentPage: 3,
+        first: '<li class="first"><a href="javascript:void(0);">首页<\/a><\/li>',
+        prev: '<li class="prev"><a href="javascript:void(0);"><i class="arrow arrow2"><\/i>上一页<\/a><\/li>',
+        next: '<li class="next"><a href="javascript:void(0);">下一页<i class="arrow arrow3"><\/i><\/a><\/li>',
+        last: '<li class="last"><a href="javascript:void(0);">末页<\/a><\/li>',
+        page: '<li class="page"><a href="javascript:void(0);">{{page}}<\/a><\/li>',
+        onPageChange: function (num, type) {
+            
+        }
+    });
+	var companylist = [
+		{companyId:'1312312313','logo':'../images/shenchans/sc_glie2.jpg','companyName':'成都阿迪达斯服装有限公司','industry':'服装服饰服装服饰服装服饰','nature':'外商独资','product':[{'name':'衣服'},{'name':'裤子'},{'name':'鞋'}],'address':'成都市高新区','model':'生产制造'},
+		{companyId:'1312312313','logo':'../images/shenchans/sc_glie2.jpg','companyName':'成都阿迪达斯服装有限公司','industry':'服装服饰','nature':'外商独资','product':[{'name':'衣服'},{'name':'裤子'},{'name':'鞋'}],'address':'成都市高新区','model':'生产制造'},
+		{companyId:'1312312313','logo':'../images/qiyezhongxin/shebei/jiagong1.png','companyName':'成都阿迪达斯服装有限公司','industry':'服装服饰','nature':'外商独资','product':[{'name':'衣服'},{'name':'裤子'},{'name':'鞋'}],'address':'成都市高新区','model':'生产制造'},
+		{companyId:'1312312313','logo':'../images/qiyezhongxin/shebei/jiagong1.png','companyName':'成都阿迪达斯服装有限公司','industry':'服装服饰','nature':'外商独资','product':[{'name':'衣服'},{'name':'裤子'},{'name':'鞋'}],'address':'成都市高新区','model':'生产制造'},
+		{companyId:'1312312313','logo':'../images/qiyezhongxin/shebei/jiagong1.png','companyName':'成都阿迪达斯服装有限公司','industry':'服装服饰','nature':'外商独资','product':[{'name':'衣服'},{'name':'裤子'},{'name':'鞋'}],'address':'成都市高新区','model':'生产制造'},
+		{companyId:'1312312313','logo':'../images/qiyezhongxin/shebei/jiagong1.png','companyName':'成都阿迪达斯服装有限公司','industry':'服装服饰','nature':'外商独资','product':[{'name':'衣服'},{'name':'裤子'},{'name':'鞋'}],'address':'成都市高新区','model':'生产制造'}
+	]
+	$('#company').companyList({
+		data:companylist,
+		isClick:false,
+		attention:function(_this,data){
+            $.ajaxLoad({
+                url:'../purchaseTender/concernCompany',
+                data:{
+                    supplierId:data.companyId
+                },
+                success:function(data){
+                    if (data.success){
+                        layer.msg(data.msg, {icon: 1});
+                    }else {
+                        layer.msg(data.msg, {icon: 2});
+                    }
+                }
+            });
+		}
+	})
+
+    $('#table').bootstrapTable({
+        url:'../purchaseTender/getPurchaseTender',
+        pagination: true,//是否显示分页
+        sidePagination: "server",//分页方式：client客户端分页，server服务端分页
+        pageNumber:1,//初始化加载第一页，默认第一页
+        pageSize: 10, //每页的记录行数
+        pageList: [10, 20],//可供选择的每页的行数
+        pagination: true,//是否显示分页
+        contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+        queryParamsType:'limit',
+        sortOrder:'desc',
+        uniqueId: "id",//每一行的唯一标识，一般为主键列
+        queryParams:function(params){
+            return {
+                pageSize: params.limit,
+                sort:'create_time',
+                order:params.order,
+                pageNumber: params.pageNumber
+            };
+        },
+        columns: [{
+            field: 'Number',
+            width:'50px',
+            title: '序号',
+            formatter: function (value, row, index) {
+                return index+1;
+            }
+        },{
+            title : '招标单号',
+            width:'100px',
+            field : 'orderCode'
+        },{
+            title : '招标名称',
+            field : 'orderName'
+        },{
+            title : '发布日期',
+            width:'100px',
+            field : 'createTime'
+        },{
+            title : '',
+            visible:false,
+            width:'100px',
+            field : 'create_time'
+        },{
+            title : '投标截止日期',
+            width:'100px',
+            field : 'endTime'
+        },{
+            title : '状态',
+            field : 'stateName'
+        },{
+            title : '投标人数',
+            width:'100px',
+            field : 'saleBidNum'
+        }, {
+            title: '操作',
+            field : 'action',
+            formatter: function (value, row, index) {
+                var str='';
+                if (row.state==201){
+                    str=$.formatString('<a class="a_css" href="javascript:void(0)" onclick="updatePage(\'{0}\')">编辑</a> | <a class="a_css" href="javascript:void(0)" onclick="delPurchaseTenderOrder(\'{1}\')">删除</a>',row.id,row.id);
+                }else {
+                    if (row.saleBidNum!=0&&!row.reviewFlag){
+                        str=$.formatString('<a class="a_css" href="javascript:void(0)" onclick="updatePage(\'{0}\')">查看</a> | <a class="a_css" href="javascript:void(0)" onclick="reviewPage(\'{1}\')">评审</a>',row.id,row.id);
+                    }else {
+                        str=$.formatString('<a class="a_css" href="javascript:void(0)" onclick="updatePage(\'{0}\')">查看</a>',row.id);
+                    }
+                }
+                return str;
+            }
+        }]
+    });
+
+    function updatePage(id){
+        changeContent('../purchaseTender/updatePage?id='+id+'&rnd='+Math.random(),'right');
+    }
+
+    function delPurchaseTenderOrder(id){
+        layer.confirm('您确定要删除这条数据？',{btn:['是','否']},function(){
+            $.ajaxLoad({
+                url:'../purchaseTender/delPurchaseTender',
+                data:{
+                    deleteFlag:true,
+                    id:id
+                },
+                success:function(data){
+                    if (data.success){
+                        layer.msg(data.msg, {icon: 1});
+                        $('#table').bootstrapTable('refresh');
+                    }else {
+                        layer.msg(data.msg, {icon: 2});
+                    }
+                }
+            });
+        });
+    }
+
+    $('#_orderState').cxSelect({
+        data:_zbOrderState,
+        selects:['stateSelect']
+    });
+
+    $('#btn_query').click(function(){
+        $.ajaxLoad({
+            url:'../purchaseTender/getPurchaseTender',
+            data:{
+                orderCode:$('#orderCode').val(),
+                orderName:$('#orderName').val(),
+                state:$('#state').val(),
+                createTimeStart:$('#createTimeStart').val(),
+                createTimeEnd:$('#createTimeEnd').val(),
+                endTimeStart:$('#endTimeStart').val(),
+                endTimeEnd:$('#endTimeEnd').val()
+            },
+            success:function(data){
+                $('#table').bootstrapTable('load',data);
+            }
+        });
+    });
+
+    function reviewPage(id){
+        changeContent('../purchaseTender/reviewPage?id='+id,'right');
+    }
+</script>
+</div>
+</html>

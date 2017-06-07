@@ -1,0 +1,320 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>库存管理</title>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css"
+	href="../css/common/chuyunguanli.css" />
+</head>
+<body>
+	<div class="container">
+		<div class="lside">
+			<table class="yuns_table">
+				<tr>
+					<td class="storage_firstCloumn">物资类别：<select id="productType"></select></td>
+					<td class="storage_secondCloumn">物资编码：<input type="text"
+						class="cmao_input m126"></td>
+					<td class="storage_thirdCloumn">物资名称：<input type="text"
+						class="cmao_input m126"></td>
+				</tr>
+				<tr>
+					<td class="storage_firstCloumn">库存状态：<select
+						id="storage_status"></select></td>
+					<td class="storage_secondCloumn">&emsp;&emsp;仓库：<select
+						id="storage"></select></td>
+					<td class="storage_thirdCloumn">&emsp;&emsp;库位：<select
+						id="storage_position"></td>
+				</tr>
+				<tr>
+					<td style="height: 50px;"><button
+							class="btn btn-blue btn-w120 ml26" id="btn_tanchu" type="button">物资登记</button></td>
+					<td></td>
+					<td style="float: right; height: 50px;">
+						<button class="btn btn-blue btn-w100 ml26" type="button">查询</button>
+						<button class="btn btn-gray btn-w100 ml26" type="button">清空</button>
+					</td>
+				</tr>
+			</table>
+			<table id="table"></table>
+			<div>
+				<div class="rside"></div>
+				<div>
+</body>
+</html>
+<script type="text/javascript">
+	$(function() {
+		var productType = [ {
+			label : '请选择',
+			title : '请选择',
+			value : '0'
+		}, {
+			label : '类别1',
+			value : '2'
+		}, {
+			label : '类别2',
+			value : '1'
+		}, {
+			label : '类别3',
+			value : '3'
+		} ];
+
+		var storage_status = [ {
+			label : '请选择',
+			title : '请选择',
+			value : '0'
+		}, {
+			label : '正常',
+			value : '2'
+		}, {
+			label : '作废',
+			value : '1'
+		} ];
+		var storage = [ {
+			label : '请选择',
+			title : '请选择',
+			value : '0'
+		}, {
+			label : '仓库1',
+			value : '2'
+		}, {
+			label : '仓库2',
+			value : '1'
+		} ];
+		var storage_position = [ {
+			label : '请选择',
+			title : '请选择',
+			value : '0'
+		}, {
+			label : '位置1',
+			value : '2'
+		}, {
+			label : '位置2',
+			value : '1'
+		} ];
+
+		$('#productType').multiselect('dataprovider', productType);
+		$('#storage_status').multiselect('dataprovider', storage_status);
+		$('#storage').multiselect('dataprovider', storage);
+		$('#storage_position').multiselect('dataprovider', storage_position);
+		$('#table')
+				.bootstrapTable(
+						{ //	        url:'purchase/test',//请求后台的URL（*）
+							editable : true, //开启编辑模式
+							clickToSelect : true,
+							data : [ //json数据
+							{
+								"id" : 1,
+								"stock_name" : "成都高新区配套库",
+								"stock_position" : "S02",
+								"product_num" : '<a href="#">KS-1241545646</a>',
+								"product_name" : "螺母",
+								"model_type" : "GBT5783 M10^20",
+								"product_type" : "配套件",
+								
+								"real_num" : "50 件",
+								"stock_status" : "低于安全库存",
+							}, {
+								"id" : 2,
+								"stock_name" : "成都高新区配套库",
+								"stock_position" : "S02",
+								"product_num" : '<a href="#">KS-1241545646</a>',
+								"product_name" : "螺母",
+								"model_type" : "GBT5783 M10^20",
+								"product_type" : "配套件",
+								
+								"real_num" : "50 件",
+								"stock_status" : "低于安全库存",
+							}, {
+								"id" : 3,
+								"stock_name" : "成都高新区配套库",
+								"stock_position" : "S02",
+								"product_num" : '<a href="#">KS-1241545646</a>',
+								"product_name" : "螺母",
+								"model_type" : "GBT5783 M10^20",
+								"product_type" : "配套件",
+								
+								"real_num" : "50 件",
+								"stock_status" : "低于安全库存",
+							}, {
+								"id" : 4,
+								"stock_name" : "成都高新区配套库",
+								"stock_position" : "S02",
+								"product_num" : '<a href="#">KS-1241545646</a>',
+								"product_name" : "螺母",
+								"model_type" : "GBT5783 M10^20",
+								"product_type" : "配套件",
+								
+								"real_num" : "50 件",
+								"stock_status" : "低于安全库存",
+							}, {
+								"id" : 5,
+								"stock_name" : "成都高新区配套库",
+								"stock_position" : "S02",
+								"product_num" : '<a href="#">KS-1241545646</a>',
+								"product_name" : "螺母",
+								"model_type" : "GBT5783 M10^20",
+								"product_type" : "配套件",
+								
+								"real_num" : "50 件",
+								"stock_status" : "低于安全库存",
+							}, {
+								"id" : 6,
+								"stock_name" : "成都高新区配套库",
+								"stock_position" : "S02",
+								"product_num" : '<a href="#">KS-1241545646</a>',
+								"product_name" : "螺母",
+								"model_type" : "GBT5783 M10^20",
+								"product_type" : "配套件",
+								
+								"real_num" : "50 件",
+								"stock_status" : "低于安全库存",
+							}, {
+								"id" : 7,
+								"stock_name" : "成都高新区配套库",
+								"stock_position" : "S02",
+								"product_num" : '<a href="#">KS-1241545646</a>',
+								"product_name" : "螺母",
+								"model_type" : "GBT5783 M10^20",
+								"product_type" : "配套件",
+								
+								"real_num" : "50 件",
+								"stock_status" : "低于安全库存",
+							}, {
+								"id" : 8,
+								"stock_name" : "成都高新区配套库",
+								"stock_position" : "S02",
+								"product_num" : '<a href="#">KS-1241545646</a>',
+								"product_name" : "螺母",
+								"model_type" : "GBT5783 M10^20",
+								"product_type" : "配套件",
+								
+								"real_num" : "50 件",
+								"stock_status" : "低于安全库存",
+							}, {
+								"id" : 9,
+								"stock_name" : "成都高新区配套库",
+								"stock_position" : "S02",
+								"product_num" : '<a href="#">KS-1241545646</a>',
+								"product_name" : "螺母",
+								"model_type" : "GBT5783 M10^20",
+								"product_type" : "配套件",
+								
+								"real_num" : "50 件",
+								"stock_status" : "低于安全库存",
+							}, {
+								"id" : 10,
+								"stock_name" : "成都高新区配套库",
+								"stock_position" : "S02",
+								"product_num" : '<a href="#">KS-1241545646</a>',
+								"product_name" : "螺母",
+								"model_type" : "GBT5783 M10^20",
+								"product_type" : "配套件",
+								
+								"real_num" : "50 件",
+								"stock_status" : "低于安全库存",
+							} ],
+							method : 'post', //请求方式（*）
+							striped : true, //是否显示行间隔色
+							cache : false, //是否使用缓存
+							pagination : true, //是否显示分页
+							queryParamsType : '', //传递参数
+							sortable : false, //是否启用排序
+							// 							sortOrder : "asc", //排序方式
+							sidePagination : "client", //分页方式：client客户端分页，server服务端分页
+							pageNumber : 1, //初始化加载第一页，默认第一页
+							pageSize : 7, //每页的记录行数
+							pageList : [ 7, 10 ], //可供选择的每页的行数
+							search : false, //是否显示表格搜索，此搜索是客户端搜索，不会进服务端
+							showColumns : false, //是否显示所有的列
+							showRefresh : false, //是否显示刷新按钮
+							minimumCountColumns : 2, //最少允许的列数
+							clickToSelect : true, //是否启用点击选中行
+							height : 500, //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+							width : 'auto',
+							uniqueId : "id", //每一行的唯一标识，一般为主键列
+							showToggle : false, //是否显示详细视图和列表视图的切换按钮
+							cardView : false, //是否显示详细视图
+							detailView : false, //是否显示父子表
+							paginationHAlign : 'right', //分页组件显示位置
+							paginationVAlign : 'bottom', //分页信息显示位置
+							paginationDetailHAlign : 'left', //right, left
+							columns : [
+									{
+										title : '序号',
+										field : 'id',
+										sortable : true
+									},
+									{
+										title : '仓库名称',
+										field : 'stock_name',
+										sortable : true
+									},
+									{
+										title : '库位',
+										field : 'stock_position',
+										sortable : true
+									},
+									{
+										title : '物资编号',
+										field : 'product_num',
+										sortable : true
+									},
+									{
+										title : '物资名称',
+										field : 'product_name',
+										sortable : true
+									},
+									{
+										title : '规格型号',
+										field : 'model_type',
+										sortable : true
+									},
+									{
+										title : '物资类别',
+										field : 'product_type',
+										sortable : true
+									},
+									{
+										title : '当前库存数量',
+										field : 'real_num',
+										sortable : true
+									},
+									{
+										title : '库存状态',
+										field : 'stock_status',
+										sortable : true
+									},
+									{
+										title : '操作',
+										edit : false,
+										field : 'action',
+										formatter : function(value, row, index) {
+											return '<a href="javascript:void(0)" onclick="del(\''
+													+ row.id
+													+ '\')">删除</a>';
+										}
+									} ]
+						});
+		layer.config({
+			extend : [ 'skin/myskin.css' ]
+		//加载新皮肤
+		});
+
+		$('#btn_tanchu').click(function() {
+			layer.open({
+				title : [ '物资登记', 'font-size:18pt;text-align:center' ],
+				skin : 'layui-layer-cms',
+				closeBtn : 2,
+				offset : 'center', //右下角弹出
+				type : 2,
+				area : [ '65%' ],//[width,height]
+				content : 'index/header',
+				btn : [ '提交' ],
+				yes : function(index, layero) {
+					layer.close(index);
+				}
+			});
+		});
+	});
+</script>

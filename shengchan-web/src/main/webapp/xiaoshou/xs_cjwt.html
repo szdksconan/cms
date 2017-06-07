@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>常见问题</title>
+<meta charset="utf-8">
+</head>
+<div class="bei">
+	   <table  class="-querytable">
+	   		<tr>
+	   			<td align="right">产品品牌:</td>
+	   			<td> <select id="cppp"></select></td>
+	   			<td align="right">产品系列：</td>
+	   			<td> <select id="cpxl"></select></td>
+	   			<td align="right"> 产品名称：</td>
+	   			<td><select id="cpmc"></select></td>
+	   			<td align="right">问题分类： </td>
+	   			<td><select id="wtfl"></select></td>
+	   		</tr>
+	   </table>
+	<div>
+		<p>&nbsp;</p>
+		<div id="toolbar" style="width: 100%">
+			<table style="width: 100%">
+				<tr>
+					<td align="left">
+						<button id="btn_add" class="btn btn-blue btn-w150" type="button">新增常见问题</button>
+					</td>
+					<td align="right">
+						<button class="btn btn-blue btn-w100" type="button">查询</button>
+						<button class="btn btn-darkgray btn-w100" type="button">清空</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<p>&nbsp;</p>
+		<table id="table">
+		</table>
+	</div>
+
+
+	<script>
+		//发布类型加载
+		var optionscppp = [ {
+			label : '开山牌',
+			value : '1'
+		}, {
+			label : '大力神牌',
+			value : '2'
+		}, {
+			label : '天辉牌',
+			value : '3'
+		} ];
+
+		$('#cppp').multiselect('dataprovider', optionscppp);
+		//发布类型加载
+		var optionscpxl = [ {
+			label : '轻型挖掘机',
+			value : '1'
+		}, {
+			label : '轻型压路机',
+			value : '2'
+		}, {
+			label : '重型吊车2056系',
+			value : '3'
+		} ];
+
+		$('#cpxl').multiselect('dataprovider', optionscpxl);
+		//发布类型加载
+		var optionscpmc = [ {
+			label : '10T轻型挖掘机(三一重工)',
+			value : '1'
+		}, {
+			label : '轻型压路机(成都双流机械制造)',
+			value : '2'
+		}, {
+			label : '重型吊车2056系(成都双流机械制造)',
+			value : '3'
+		} ];
+
+		$('#cpmc').multiselect('dataprovider', optionscpmc);
+
+		//发布类型加载
+		var optionswtfl = [ {
+			label : '日常养护',
+			value : '1'
+		}, {
+			label : '维修指南',
+			value : '2'
+		}, {
+			label : '站点咨询',
+			value : '3'
+		} ];
+
+		$('#wtfl').multiselect('dataprovider', optionswtfl);
+		$('#table').bootstrapTable({
+			//          url:'purchase/test',//请求后台的URL（*）
+			clickToSelect : true,
+			data : [ {
+				"cppp" : "三金牌",
+				"cpxl" : "蓝翔",
+				"cpmc" : "三金牌蓝翔技校专用挖掘机试验型",
+				"wtfl" : "日常养护",
+				"wtbt" : "保养挖掘机轮胎四大问题"
+			}, {
+				"cppp" : "三金牌",
+				"cpxl" : "蓝翔",
+				"cpmc" : "三金牌蓝翔技校专用挖掘机试验型",
+				"wtfl" : "日常养护",
+				"wtbt" : "保养挖掘机轮胎四大问题"
+			}, {
+				"cppp" : "三金牌",
+				"cpxl" : "蓝翔",
+				"cpmc" : "三金牌蓝翔技校专用挖掘机试验型",
+				"wtfl" : "日常养护",
+				"wtbt" : "保养挖掘机轮胎四大问题"
+			} ],
+			method : 'post',//请求方式（*）
+			//        toolbar: '#toolbar',//工具栏所在div id
+			striped : true, //是否显示行间隔色
+			cache : false, //是否使用缓存
+			pagination : true,//是否显示分页
+			queryParamsType : '',//传递参数
+			sortable : false,//是否启用排序
+			sortOrder : "asc",//排序方式
+			sidePagination : "client",//分页方式：client客户端分页，server服务端分页
+			pageNumber : 1,//初始化加载第一页，默认第一页
+			pageSize : 10, //每页的记录行数
+			pageList : [ 10, 20, 40, 100 ],//可供选择的每页的行数
+			search : false,//是否显示表格搜索，此搜索是客户端搜索，不会进服务端
+			showColumns : false,//是否显示所有的列
+			showRefresh : false,//是否显示刷新按钮
+			//        minimumCountColumns: 2,//最少允许的列数
+			clickToSelect : true,//是否启用点击选中行
+			//height: 500,//行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+			uniqueId : "id",//每一行的唯一标识，一般为主键列
+			showToggle : false,//是否显示详细视图和列表视图的切换按钮
+			cardView : false,//是否显示详细视图
+			detailView : false,//是否显示父子表
+			paginationHAlign : 'right',//分页组件显示位置
+			paginationVAlign : 'bottom',//分页信息显示位置
+			paginationDetailHAlign : 'left', //right, left
+			//        showFooter:false,//是否显示合计
+			columns : [
+			//                   {
+			//             field: 'Number',
+			//             title: '序号',
+			//             formatter: function (value, row, index) {
+			//                 return index+1;
+			//             }
+			//         },
+			{
+				title : '产品品牌',
+				field : 'cppp'
+			}, {
+				title : '产品系列',
+				field : 'cpxl'
+			}, {
+				title : '产品名称',
+				field : 'cpmc'
+			}, {
+				title : '问题分类',
+				field : 'wtfl'
+			}, {
+				title : '问题标题',
+				field : 'wtbt'
+			}, {
+				title : '操作',
+				field : 'action',
+				formatter : function(value, row, index) {
+					return '<a href="#">编辑</a> | <a href="#">删除</a>';
+				}
+			} ]
+		});
+
+		$('#btn_add').click(function() {
+			/*document.body.style.overflow = 'hidden';
+			document.documentElement.style.overflow = 'hidden';*/
+			layer.open({
+				title : [ ' 新增常见问题', 'font-size:18pt;text-align:center' ],
+				skin : 'layui-layer-cms',
+				closeBtn : 2,
+				offset : 'center', //右下角弹出
+				type : 2,
+				area : [ '45%', '35%' ],//[width,height]
+				content : '../xiaoshou/xs_cjwt_fb.html',
+				btn : [ '保存', '取消' ],
+				yes : function(index, layero) {
+					layer.close(index);
+				},
+				no : function(index, layero) {
+					layer.close(index);
+				}
+			});
+		});
+	</script>
+</div>
+</html>

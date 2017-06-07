@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>账号信息-基本信息</title>
+<link href="../../../css/account-mana.css" rel="stylesheet"/>
+<link href="../../../css/account-mana2.css" rel="stylesheet"/>
+<script src="../../../js/jquery.1.11.3.min.js"></script>
+<script src="../../../js/dropdown.js"></script>
+</head>
+<body>
+	<div class="acc-info"> 
+		<!--企业信息-->
+		<div class="acc-cominfodiv">
+			<div class="acc-ads-title">
+		  	 	<span class="acc-adst-icon"></span>
+		  	 	<span class="acc-adst-word">企业信息</span>
+		  	</div>
+		  	<table class="acc-basinfotb">
+		  		<tr>
+		  			<td width="12%" align="right"><span class="must">*</span>企业名称：</td>
+		  			<td width="40%"><input type="text"/></td>
+		  			<td width="10%"></td>
+		  			<td width="38%"></td>
+		  		</tr>
+		  		<tr>
+		  			<td align="right"><div class="acccomlogo"><span class="must">*</span>企业标志：</div></td>
+		  			<td>
+		  				<div class="acc-uplogo">
+			  				<img src="../../../image/normal_img.png" width="68px" height="69px" class="fn-left">
+			  				<span class="acccom-upbtn">上传</span>
+			  				<input type="file" class="acccom-upbtninput"/>
+			  			</div>
+			  			<div class="acc-uplogomsg">
+		  					<span class="accom-des">请使用真实标志，展示风格JPG,JPEG,GIF,PNG风格,支持2M以内的图片</span>
+		  				</div>
+		  			</td>
+		  			<td></td>
+		  			<td></td>
+		  		</tr>
+		  		<tr>
+		  			<td align="right">行业分类：</td>
+		  			<td><!--<select><option></option></select>-->
+		  				<div class="dropdown acccom-bumen">
+					      	<p></p>
+					     	<ul class="dropul_bumen">
+					         	<li><a href="javascript:void(0)" rel="1">电器</a></li>
+					         	<li><a href="javascript:void(0)" rel="2">服装</a></li>
+					      	</ul>
+					    </div>
+		  			</td>
+		  			<td align="right">我的产品：</td>
+		  			<td><input type="text"/></td>
+		  		</tr>
+		  		<tr>
+		  			<td align="right">经营范围：</td>
+		  			<td><textarea class="accom-jyfw"></textarea></td>
+		  			<td></td>
+		  			<td></td>
+		  		</tr>
+		  		<tr>
+		  			<td align="right">注册资金：</td>
+		  			<td><input type="text"/></td>
+		  			<td align="right">注册日期：</td>
+		  			<td><!--<select><option></option></select></section>-->
+		  				<div class="dropdown acccom-bumen">
+					      	<p></p>
+					     	<ul class="dropul_bumen">
+					         	<li><a href="javascript:void(0)" rel="1">2015-01-01</a></li>
+					         	<li><a href="javascript:void(0)" rel="2">2015-02-27</a></li>
+					      	</ul>
+					    </div>
+		  			</td>
+		  		</tr>
+		  		<tr>
+		  			<td align="right">会员身份：</td>
+		  			<td>
+		  				<span><input type="radio" name="member"/>生产厂家</span>
+		  				<span class="margin-l-5"><input type="radio" name="member" />经销商</span>
+		  				<span class="margin-l-5"><input type="radio" name="member" />物流商</span>
+		  				<span class="margin-l-5"><input type="radio" name="member" />个人经营</span>
+		  				<span class="margin-l-5"><input type="radio" name="member" />其他</span>
+		  			</td>
+		  			<td></td>
+		  			<td></td>
+		  		</tr>
+		  	</table>
+		  	<p class="acccom-dgfw">
+		  		<span>是否提供代加工定制服务：</span>
+		  		<span><input type="radio" name="dgfw" />是，提供</span>
+		  	    <span class="margin-l-10"><input type="radio" name="dgfw" />不提供</span>
+		  	</p>
+		</div>
+		<input type="button" value="保存" class="accinfo-savebtn"/>
+	</div>	
+</body>
+</html>

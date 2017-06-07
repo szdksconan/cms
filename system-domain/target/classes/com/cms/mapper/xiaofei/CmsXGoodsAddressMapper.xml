@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.xiaofei.CmsXGoodsAddressMapper" >
+  <resultMap id="BaseResultMap" type="com.cms.model.xiaofei.CmsXGoodsAddress" >
+    <id column="ADDR_ID" property="addrId" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+    <result column="CONTACT_NAME" property="contactName" jdbcType="VARCHAR" />
+    <result column="ADDRESS_PROVINCE" property="addressProvince" jdbcType="VARCHAR" />
+    <result column="ADDRESS_CITY" property="addressCity" jdbcType="VARCHAR" />
+    <result column="ADDRESS_COUNTY" property="addressCounty" jdbcType="VARCHAR" />
+    <result column="ADDRESS_DETAIL" property="addressDetail" jdbcType="VARCHAR" />
+    <result column="POST_CODE" property="postCode" jdbcType="VARCHAR" />
+    <result column="A_PHONE" property="aPhone" jdbcType="VARCHAR" />
+    <result column="A_STATES" property="aStates" jdbcType="INTEGER" />
+    <result column="ADD_TIME" property="addTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <!-- 用户添加收货地址 -->
+  <insert id="addUserAndDeliveryAndAddress" parameterType="com.cms.model.xiaofei.CmsXGoodsAddress" >
+    insert into cms_x_goods_address
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="addrId != null" >
+        ADDR_ID,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="userName != null" >
+        USER_NAME,
+      </if>
+      <if test="contactName != null" >
+        CONTACT_NAME,
+      </if>
+      <if test="addressProvince != null" >
+        ADDRESS_PROVINCE,
+      </if>
+      <if test="addressCity != null" >
+        ADDRESS_CITY,
+      </if>
+      <if test="addressCounty != null" >
+        ADDRESS_COUNTY,
+      </if>
+      <if test="addressDetail != null" >
+        ADDRESS_DETAIL,
+      </if>
+      <if test="postCode != null" >
+        POST_CODE,
+      </if>
+      <if test="aPhone != null" >
+        A_PHONE,
+      </if>
+      <if test="aStates != null" >
+        A_STATES,
+      </if>
+      <if test="addTime != null" >
+        ADD_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="addrId != null" >
+        #{addrId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null" >
+        #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="addressProvince != null" >
+        #{addressProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="addressCity != null" >
+        #{addressCity,jdbcType=VARCHAR},
+      </if>
+      <if test="addressCounty != null" >
+        #{addressCounty,jdbcType=VARCHAR},
+      </if>
+      <if test="addressDetail != null" >
+        #{addressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="postCode != null" >
+        #{postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="aPhone != null" >
+        #{aPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="aStates != null" >
+        #{aStates,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <!-- 根据用户查询用户的收货地址 -->
+  <select id="selectUserAndGoodsAndAddress" parameterType="map" resultType="map">
+  	SELECT * FROM cms_x_goods_address a WHERE a.USER_ID=#{uId}
+  </select>
+  <!-- 根据id查询收货信息 -->
+  <select id="selectUserAndGoodsAndAddressId" resultMap="BaseResultMap">
+  	SELECT * FROM cms_x_goods_address a WHERE a.ADDR_ID=#{addressId}
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cms.model.xiaofei.CmsXGoodsAddress" >
+    update cms_x_goods_address
+    <set >
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null" >
+        CONTACT_NAME = #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="addressProvince != null" >
+        ADDRESS_PROVINCE = #{addressProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="addressCity != null" >
+        ADDRESS_CITY = #{addressCity,jdbcType=VARCHAR},
+      </if>
+      <if test="addressCounty != null" >
+        ADDRESS_COUNTY = #{addressCounty,jdbcType=VARCHAR},
+      </if>
+      <if test="addressDetail != null" >
+        ADDRESS_DETAIL = #{addressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="postCode != null" >
+        POST_CODE = #{postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="aPhone != null" >
+        A_PHONE = #{aPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="aStates != null" >
+        A_STATES = #{aStates,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        ADD_TIME = #{addTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ADDR_ID = #{addrId,jdbcType=VARCHAR}
+  </update>
+</mapper>

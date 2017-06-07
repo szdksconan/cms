@@ -1,0 +1,110 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+	  <div class="sc_tan">
+          <span> 规格型号： <input type="text" class="cmao_input" id="productModelSize" value=""/>&nbsp; <a   class="btn btn-hui btn-w80" type="button" id="needQuery">搜索</a> </span>
+          <div class="cfw_l">
+              <div id="filter-list"></div>
+              <div class="tab-content">
+                  <div class="tab-pane active" id="tab-basicinfo">
+                      <table id="needTable">
+                      </table>
+                  </div>
+              </div>
+          </div>
+      </div>
+  <script>
+  		//筛选条件
+  		var options = [{'name':'物资类别','list':[{'name':'成品',code:44,choose:true},{'name':'半成品',code:45},{'name':'原材料',code:46},{'name':'配套件',code:47}]}]
+        $('#filter-list').listFilterGoods({
+                data:options,
+                onClick:function(code,_this){
+                    $.ajaxLoad({
+                        url:'../purchaseTender/getProductNeedList',
+                        data:{
+                            needDetailNo:code
+                        },
+                        success:function(data){
+                            $('#needTable').bootstrapTable('load',data);
+                        }
+                    });
+                }
+        });
+        $('#needQuery').click(function(){
+            queryFun();
+        });
+			
+        function queryFun(needDetailNo){
+          $.ajaxLoad({
+              url:'../purchaseTender/getProductNeedList',
+              data:{
+                  needDetailNo:needDetailNo,
+                  productModelSize:$('#productModelSize').val()
+              },
+              success:function(data){
+                  try{
+                      $('#needTable').bootstrapTable('load',data);
+                  }catch (e){}
+              }
+          });
+        }
+
+        $.ajax({
+          url:'../purchaseTender/getProductTypeCot',
+          success:function(data){
+              try{
+                  for (var i=0;i<data.length;i++){
+                      $('dd[code="'+data[i].code+'"]').text($('dd[code="'+data[i].code+'"]').text()+'('+data[i].cot+')');
+                  }
+              }catch (e){}
+          }
+        });
+        $('#needTable').bootstrapTable({
+          url:'../purchaseTender/getProductNeedList',
+          pagination: true,//是否显示分页
+          contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+          queryParamsType:'limit',
+          sortOrder:'desc',
+          queryParams:function(params){
+              return {
+                  pageSize: params.limit,
+                  sort:'id',
+                  order:params.order,
+                  pageNumber: params.pageNumber,
+                  needDetailNo:44
+              };
+          },
+          sidePagination: "server",
+          pageNumber:1,
+          pageSize: 10,
+          pageList: [10, 20],
+          uniqueId: "id",//每一行的唯一标识，一般为主键列
+          columns: [{
+              checkbox:true
+          },{
+              title : '物资类别',
+              width:'200px',
+              field : 'productTypeName',
+              formatter:function(value, row, index){
+                  var str=value.substr(0,value.length-1);
+                  row.productTypeName=str;
+                  return str;
+              }
+          },{
+              title : '物资名称',
+              field : 'productName'
+          },{
+              title : '规格型号',
+              field : 'productModelSize'
+          },{
+              title : '单位',
+              field : 'unitName'
+          }]
+        });
+  </script>
+  </body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../css/canmaosongptai.css">
+    <link rel="stylesheet" type="text/css" href="../css/shenchan.css">
+    <link rel="stylesheet" type="text/css" href="../css/common/bootstrap-multiselect.css">
+        <link rel="stylesheet" type="text/css" href="../css/common/bootstrap-table.css">
+    <script src="../css/laydate/laydate.js"></script>
+    <script src="../js/common/jquery.js"></script>
+    <script src="../js/common/control.js"></script>
+    <script src="../js/common/bootstrap.min.js"></script>
+    <script src="../js/common/bootstrap-multiselect.js"></script>
+    <script src="../js/common/common.js"></script>
+    <link rel="stylesheet" type="text/css" href="../city/city.css">
+    <script src="../city/cityJson.js"></script>
+    <script src="../city/citySet.js"></script>
+    <script src="../city/Popt.js"></script>
+    
+    <script src="../js/common/bootstrap-table.js"></script>
+    <script src="../js/common/bootstrap-table-zh-CN.js"></script>
+  </head>
+  <body>
+	  <div class="sc_tan">
+          <span>  <a   class="btn btn-blue btn-w100" type="button" >邀请贸易商</a> </span>
+          <div class="cfw_l">
+              <ul class="nav nav-tabs" role="tablist" id="tab-list">
+                  <li class="active"><a href="#tab-basicinfo" role="tab" data-toggle="tab">已定向邀请的贸易商</a></li>
+                  <li><a href="#tab-cominfo" role="tab" data-toggle="tab">已收到的合作申请</a></li>
+              </ul>
+              <div class="tab-content">
+                  <!--基本信息-->
+                  <div class="tab-pane active" id="tab-basicinfo">
+                      <table id="table">
+                      </table>
+                  </div>
+                  <div class="tab-pane" id="tab-cominfo">
+                   		 <table id="table2">
+                      </table>	
+                  </div>
+              </div>
+          </div>
+
+      </div>
+  <script>
+
+
+      $('#table').bootstrapTable({
+          data:[{
+        	  "mysmc":"成都天湖贸易公司",
+              "sshy": "服装",
+              "szdq": "成都高新区",
+              "nxsl": "200箱",
+              "xsfs": "网络销售",
+              "sdzt": "已送达"
+          },{
+        	  "mysmc":"成都天湖贸易公司",
+              "sshy": "服装",
+              "szdq": "成都高新区",
+              "nxsl": "200箱",
+              "xsfs": "网络销售",
+              "sdzt": "已送达"
+          },{
+        	  "mysmc":"成都天湖贸易公司",
+              "sshy": "服装",
+              "szdq": "成都高新区",
+              "nxsl": "200箱",
+              "xsfs": "网络销售",
+              "sdzt": "已送达"
+          },{
+        	  "mysmc":"成都天湖贸易公司",
+              "sshy": "服装",
+              "szdq": "成都高新区",
+              "nxsl": "200箱",
+              "xsfs": "网络销售",
+              "sdzt": "已送达"
+          },{
+        	  "mysmc":"成都天湖贸易公司",
+              "sshy": "服装",
+              "szdq": "成都高新区",
+              "nxsl": "200箱",
+              "xsfs": "网络销售",
+              "sdzt": "已送达"
+          },{
+        	  "mysmc":"成都天湖贸易公司",
+              "sshy": "服装",
+              "szdq": "成都高新区",
+              "nxsl": "200箱",
+              "xsfs": "网络销售",
+              "sdzt": "已送达"
+          }],
+          pagination: true,//是否显示分页
+          queryParamsType:'',//传递参数
+          sidePagination: "client",//分页方式：client客户端分页，server服务端分页
+          uniqueId: "id",//每一行的唯一标识，一般为主键列
+          columns: [	
+                    	          {
+                    	    field: 'Number',
+                    	    title: '序号',
+                    	    formatter: function (value, row, index) {
+                    	        return index+1;
+                    	    }
+                    	},{
+              title : '贸易商名称',
+              field : 'mysmc'
+          },{
+              title : '所属行业',
+              field : 'sshy'
+          },{
+              title : '所在地区',
+              field : 'szdq'
+          },{
+              title : '年销售量',
+              field : 'nxsl'
+          },{
+              title : '销售方式',
+              field : 'xsfs'
+          },{
+              title : '送达状态',
+              field : 'sdzt'
+          }]
+      });
+      
+      $('#table2').bootstrapTable({
+          data:[{
+        	  "mysmc":"成都天湖贸易公司",
+              "sshy": "服装",
+              "szdq": "成都高新区",
+              "nxsl": "200箱",
+              "xsfs": "网络销售",
+              "sdzt": "已送达",
+              "hzfs": "代理",
+              "sqsj": "2016.04.22"
+          },{
+        	  "mysmc":"成都天湖贸易公司",
+              "sshy": "服装",
+              "szdq": "成都高新区",
+              "nxsl": "200箱",
+              "xsfs": "网络销售",
+              "sdzt": "已送达",
+              "hzfs": "代理",
+              "sqsj": "2016.04.22"
+          },{
+        	  "mysmc":"成都天湖贸易公司",
+              "sshy": "服装",
+              "szdq": "成都高新区",
+              "nxsl": "200箱",
+              "xsfs": "网络销售",
+              "sdzt": "已送达",
+              "hzfs": "代理",
+              "sqsj": "2016.04.22"
+          },{
+        	  "mysmc":"成都天湖贸易公司",
+              "sshy": "服装",
+              "szdq": "成都高新区",
+              "nxsl": "200箱",
+              "xsfs": "网络销售",
+              "sdzt": "已送达",
+              "hzfs": "代理",
+              "sqsj": "2016.04.22"
+          },{
+        	  "mysmc":"成都天湖贸易公司",
+              "sshy": "服装",
+              "szdq": "成都高新区",
+              "nxsl": "200箱",
+              "xsfs": "网络销售",
+              "sdzt": "已送达",
+              "hzfs": "代理",
+              "sqsj": "2016.04.22"
+          },{
+        	  "mysmc":"成都天湖贸易公司",
+              "sshy": "服装",
+              "szdq": "成都高新区",
+              "nxsl": "200箱",
+              "xsfs": "网络销售",
+              "sdzt": "已送达",
+              "hzfs": "代理",
+              "sqsj": "2016.04.22"
+          }],
+          pagination: true,//是否显示分页
+          queryParamsType:'',//传递参数
+          sidePagination: "client",//分页方式：client客户端分页，server服务端分页
+          uniqueId: "id",//每一行的唯一标识，一般为主键列
+          columns: [	
+                    {
+                    	    field: 'Number',
+                    	    title: '序号',
+                    	    formatter: function (value, row, index) {
+                    	        return index+1;
+                    	    }
+                    	},{
+              title : '贸易商名称',
+              field : 'mysmc'
+          },{
+              title : '所属行业',
+              field : 'sshy'
+          },{
+              title : '所在地区',
+              field : 'szdq'
+          },{
+              title : '年销售量',
+              field : 'nxsl'
+          },{
+              title : '销售方式',
+              field : 'xsfs'
+          },{
+              title : '合作方式',
+              field : 'hzfs'
+          },{
+              title : '申请时间',
+              field : 'sqsj'
+          },{
+              title : '送达状态',
+              field : 'sdzt'
+          }]
+      });
+
+      $('#btn_sub_1').click(function(){
+          parent.layer.close(parent.layer.getFrameIndex(window.name));
+      });
+  </script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.cms.mapper.userCenter.SysUserTradeMapper">
+	<sql id="infoSql">
+		<where>
+			<if test="beginTime!=null and beginTime!=''">
+				create_time >= #{beginTime}
+			</if>
+			<if test="beginTime!=null and endTime!=''">
+				 and create_time&lt;=#{endTime};
+			</if>
+			<if test="lately!=null and lately!=''">
+				 and create_time>=#{lately};
+			</if>
+			<if test="week!=null and week!=''">
+				and create_time>=#{week};
+			</if>
+			<if test="latelymonth!=null and latelymonth!=''">
+				and create_time>=#{latelymonth};
+			</if>
+			<if test="month!=null and month!=''">
+				and date_format(create_time,'%Y-%m')=#{month};
+			</if>
+		</where>
+	</sql>
+	<select id="findTradeInfoByCreateTime" parameterType="com.cms.model.userCenter.SysUserTradeInfoQuery" resultType="map">
+		select * from sys_user_trade_info 
+			<include refid="infoSql"/>
+	</select>
+
+
+</mapper>	

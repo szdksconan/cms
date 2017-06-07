@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+					  http://www.springframework.org/schema/beans/spring-beans-3.2.xsd  
+					  http://www.springframework.org/schema/context  
+					  http://www.springframework.org/schema/context/spring-context-3.2.xsd
+					       http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd	  
+					  ">
+					  
+	<dubbo:application name="user-center-provider" owner="caojun" organization="cms"/>
+<!-- 	<dubbo:application name="user-center-consumer" owner="user-center" organization="cms"/> -->
+
+    <dubbo:registry address="zookeeper://192.168.2.213:2181"/>
+    <dubbo:monitor protocol="registry"/>
+    <dubbo:protocol name="dubbo" serialization="kryo" optimizer="com.cms.optimizer.SerializationOptimizerImpl" accepts="300" dispatcher="all" threadpool="fixed" threads="200"/>
+    
+    <dubbo:service interface="com.cms.iservice.sso.SsoAuthService" ref="ssoAuthService" protocol="dubbo" version="1.0.0" owner="caojun" group="jiagou"/>
+    <dubbo:service interface="com.cms.iservice.sso.DealUserInfoOnLogin" ref="dealUserInfoOnLogin" protocol="dubbo" version="1.0.0" owner="caojun" group="jiagou"/>
+    
+    <bean id="ssoAuthService" class="com.cms.service.sso.SsoAuthServiceImpl">
+    	<property name="ssoKey" value="0EF70AB449D9E0248F681EFEA70744B6" />
+    </bean>
+    
+    <bean id="dealUserInfoOnLogin" class="com.cms.service.sso.DealUserInfoOnLoginImpl" />
+    
+   
+   <dubbo:service interface="com.cms.iservice.userCenter.SysUserService" ref="sysUserService" protocol="dubbo" version="1.0.0" owner="weibo" group="user-center"/>
+   <bean id="sysUserService" class="com.cms.service.userCenter.SysUserServiceImpl"/>
+   <!-- 个人用户注册  -->
+    <dubbo:service interface="com.cms.iservice.userCenter.CheckRegisterService" ref="checkRegisterService" protocol="dubbo" version="1.0.0" owner="wangjian" group="user_center"/>
+   
+    <bean id="checkRegisterService" class="com.cms.service.userCenter.CheckRegisterServiceImpl"></bean>
+   <!-- 企业账户 -->
+   <dubbo:service interface="com.cms.iservice.userCenter.com.IAccountComInfoService" ref="accountComInfoService" protocol="dubbo" version="1.0.0" owner="penglei" group="user-center"/>
+   <bean id="accountComInfoService" class="com.cms.service.userCenter.com.AccountComInfoServiceImpl"/>
+	<!-- 个人账户模块 -->
+   <dubbo:service interface="com.cms.iservice.userCenter.SysUserSingelInfoService" ref="sysUserSingelInfoService" protocol="dubbo" version="1.0.0" owner="tangping" group="user-center"/>
+	<bean id ="sysUserSingelInfoService" class="com.cms.service.userCenter.SysUserSingelInfoServiceImpl"></bean>	
+	
+	<dubbo:service interface="com.cms.iservice.userCenter.SysUserTradeAccountService" ref="sysUserTradeAccountService" protocol="dubbo" version="1.0.0" owner="tangping" group="user-center"/>
+	<bean id ="sysUserTradeAccountService" class="com.cms.service.userCenter.SysUserTradeAccountServiceImpl"></bean>	
+	
+	<dubbo:service interface="com.cms.iservice.userCenter.SysUserTradeService" ref="sysUserTradeService" protocol="dubbo" version="1.0.0" owner="tangping" group="user-center"/>
+	<bean id ="sysUserTradeService" class="com.cms.service.userCenter.SysUserTradeServiceImpl"></bean>
+	<!-- 个人用户收货地址 -->
+	<dubbo:service interface="com.cms.iservice.userCenter.SysUserGoodsAddressService" ref="sysUserGoodsAddressService" protocol="dubbo" version="1.0.0" owner="tangping" group="user-center"/>
+	<bean id ="sysUserGoodsAddressService" class="com.cms.service.userCenter.SysUserAddressServiceImpl"></bean>	
+   
+   
+   <dubbo:reference id="globalIdService" interface="com.cms.iservice.common.GlobalIdService" protocol="dubbo" version="1.0.0" owner="weibo" group="common"/>
+</beans>

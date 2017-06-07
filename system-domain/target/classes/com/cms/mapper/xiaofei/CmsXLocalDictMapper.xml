@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.xiaofei.CmsXLocalDictMapper" >
+  <resultMap id="BaseResultMap" type="com.cms.model.xiaofei.CmsXLocalDict" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="LOCL_CODE" property="loclCode" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="LOCL_CODE_P" property="loclCodeP" jdbcType="VARCHAR" />
+    <result column="FIRT_PY" property="firtPy" jdbcType="VARCHAR" />
+    <result column="BRIEF" property="brief" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="LOCAL_STR" property="localStr" jdbcType="VARCHAR" />
+  </resultMap>
+  <!-- 根据位置查询code -->
+  <select id="selectByLoclCodeGetLoclCode" resultMap="BaseResultMap">
+  	select LOCL_CODE from cms_x_local_dict where LOCAL_STR=#{localStr}
+  </select>
+  
+</mapper>

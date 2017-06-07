@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.manager.orderDic.orderDicMapper" >
+ 	<sql id="DIC-PARAM">
+	    id,
+	    name,
+	    pid,
+	    dicno,
+	    tag
+	</sql>
+	
+	<select id="dataGrid" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.manager.OrderDicBean">
+	    select <include refid="DIC-PARAM"/> from t_sys_order_dic  where 1=1 
+	  	 <if test="pid!=null and pid!=''">
+	        and pid=#{pid}
+	    </if>
+	    <if test="order!=null and order!=''">
+	        ${order}
+	    </if>
+	</select>
+	
+	<select id="dataGridCot" parameterType="com.alibaba.fastjson.JSONObject" resultType="int">
+	    select count(1) from t_sys_order_dic  where 1=1 
+	  	 <if test="pid!=null and pid!=''">
+	        and pid=#{pid}
+	    </if>
+	</select>
+			
+	<update id="edit" parameterType="com.cms.model.manager.OrderDicBean">
+	    update t_sys_order_dic set name=#{name},pid=#{pid},tag=#{tag},dicno=#{dicno} where id=#{id}
+	</update>
+	
+	<insert id="add" parameterType="com.cms.model.manager.OrderDicBean">
+	    insert into t_sys_order_dic (name,dicno,pid,tag) values (#{name},#{dicno},
+	    #{pid},#{tag})
+	</insert>
+	
+	<delete id="delete" parameterType="com.alibaba.fastjson.JSONObject">
+	    delete from t_sys_order_dic where id=#{id}
+	</delete>
+	
+	<select id="get" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.manager.OrderDicBean">
+	    select <include refid="DIC-PARAM"/> from t_sys_order_dic where 1=1 
+	    <if test="id!=null and id!=''">
+	    	and id=#{id}
+	    </if>
+	    
+	</select>
+	
+	<select id="getAllDic" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.manager.OrderDicBean">
+		select  <include refid="DIC-PARAM"/> from t_sys_order_dic  where 1=1
+		<if test="flag==1">
+		    and tag = '1'
+		</if>
+		<if test="pid!=null and pid!=''">
+	    	and pid=#{pid}
+	    </if>
+	</select>
+</mapper>

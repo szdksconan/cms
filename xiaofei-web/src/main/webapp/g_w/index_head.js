@@ -1,0 +1,16 @@
+document.writeln("<div class=\"xf_top\">");
+document.writeln("    <div class=\"xf_head\">");
+document.writeln("        <ul>");
+document.writeln("            <li ><a href=\"../index.html\" target=\"_self\" class=\"active\"><img src=\"../images/di_1.png\"> &nbsp;成都</a></li>");
+document.writeln("            <li ><a href=\"../wuliou.html\" target=\"_self\"><img src=\"../images/di_2.png\">&nbsp;消息</a></li>");
+document.writeln("            <li><a href=\"../gouc.html\" target=\"_self\">购物车&nbsp;<img src=\"../images/di_3.png\"></a></li>");
+document.writeln("            <li><a href=\"../wuliou.html\" target=\"_self\">收藏夹&nbsp;<img src=\"../images/di_3.png\"></a></li>");
+document.writeln("            <li><a href=\"../wuliou.html\" target=\"_self\">客服中心&nbsp;<img src=\"../images/di_3.png\"></a></li>");
+document.writeln("        </ul>");
+document.writeln("");
+document.writeln("        <div class=\"xf_dz\">");
+document.writeln("            <a  href=\"gouc_regist.html\" target=\"_self\">登录</a><a>&nbsp;/&nbsp;</a> <a  href=\"gouc_login.html\" target=\"_self\">注册</a>");
+document.writeln("        </div>");
+document.writeln("    </div>");
+document.writeln("");
+document.writeln("</div>");

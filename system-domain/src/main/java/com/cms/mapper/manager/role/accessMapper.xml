@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cms.mapper.manager.role.accessMapper">
+	<sql id="ACCESS-PARAM">
+	    aa.id as id,
+	    aa.name as name,
+	    aa.pid as pid,
+	    aa.url as url,
+	    aa.icon as icon,
+	    aa.seq as seq,
+	    aa.status as status,
+	    aa.access_type as accessType,
+	    aa.description as description,
+	    aa.system_id as systemId
+	</sql>
+	
+	<select id="getAccessListForUser" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.manager.accessBean">
+	    select distinct <include refid="ACCESS-PARAM"/> from  t_sys_access aa 
+	    INNER JOIN t_sys_role_access ra on ra.access_id=aa.id 
+	    inner join t_sys_station tss on ra.role_id=tss.role_id
+ 		INNER JOIN t_sys_user u on u.station_id=tss.id 
+ 		where aa.access_type=#{accessType} and 
+	    u.id=#{userId}
+	    <if test="urlFlag!=null and urlFlag!=''">
+			and IFNULL(url,'') != ''
+		</if>
+	</select>
+	
+	<select id="getAllAccess" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.manager.accessBean">
+		select distinct <include refid="ACCESS-PARAM"/>,dic.name as dicName from  t_sys_access aa left join t_sys_base_dic dic on aa.system_id=dic.id where aa.status = 0 
+		<if test="flag==0">
+		    and access_type = 0
+		</if>
+		<if test="urlFlag!=null and urlFlag!=''">
+			and IFNULL(url,'') != ''
+		</if>
+		order by aa.seq
+	</select>
+	
+	<select id="accessList" parameterType="long" resultType="String">
+		select aa.url from t_sys_access aa 
+		<if test="_parameter !=null and _parameter != '' and _parameter != 1">
+			INNER JOIN t_sys_role_access ra on ra.access_id=aa.id 
+			inner join t_sys_station tss on ra.role_id=tss.role_id
+			INNER JOIN t_sys_user u on u.station_id=tss.id 
+			where status=0 and u.id=#{_parameter}
+		</if>
+	</select>
+	
+	<update id="delete" parameterType="long" statementType="CALLABLE">
+	    {call delTree(#{id},1)}
+	</update>
+	
+	<select id="getAccessById" parameterType="long" resultType="com.cms.model.manager.accessBean">
+	    select <include refid="ACCESS-PARAM"/> from t_sys_access aa where id=#{id}
+	</select>
+	
+	<update id="update" parameterType="com.cms.model.manager.accessBean">
+	    update t_sys_access set name=#{name},pid=#{pid},url=#{url},icon=#{icon},seq=#{seq},
+	    access_type=#{accessType},description=#{description},system_id=#{systemId} where id=#{id}
+	</update>
+	
+	<insert id="add" parameterType="com.cms.model.manager.accessBean">
+	    insert into t_sys_access (name,pid,url,icon,seq,access_type,description,create_time,system_id) values 
+	    (#{name},#{pid},#{url},#{icon},#{seq},#{accessType},#{description},now(),#{systemId})
+	</insert>
+	
+	<select id="userAccessGrid" parameterType="long" resultType="com.cms.model.manager.accessBean">
+		<if test="_parameter!='1' and _parameter!=1">
+			select distinct <include refid="ACCESS-PARAM"/> from t_sys_access aa INNER JOIN t_sys_role_access ra on ra.access_id=aa.id 
+ 			INNER JOIN t_sys_user u on u.role_id=ra.role_id INNER JOIN t_sys_user_shortcut_menu tsm on tsm.access_menu_id=ra.access_id 
+ 			where aa.access_type=0 and tsm.user_id=#{_parameter} and IFNULL(url,'') != ''
+		</if>
+	    <if test="_parameter=='1' or _parameter==1">
+	    	select distinct <include refid="ACCESS-PARAM"/> from t_sys_access aa INNER JOIN t_sys_user_shortcut_menu tsm on aa.id=tsm.access_menu_id 
+	    	where aa.status = 0 and aa.access_type = 0 and IFNULL(aa.url,'') != '' order by aa.seq
+	    </if>
+	</select>
+</mapper>

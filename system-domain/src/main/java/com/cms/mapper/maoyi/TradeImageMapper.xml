@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.maoyi.TradeImageMapper" >
+
+  <delete id="deleteImage" parameterType="long" >
+    delete from trade_image
+    where qulifa_id = #{id}
+  </delete>
+  
+  <insert id="addImage" parameterType="com.cms.model.maoyi.TradeImage" >
+    insert into trade_image(id,enterprise_id,path,qulifa_id)
+    values (#{id}, #{enterpriseId},#{path},#{qulifaId})
+  </insert>
+
+
+</mapper>

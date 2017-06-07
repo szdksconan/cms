@@ -1,0 +1,60 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="../js/purchase/zhaobiao_pingsheng.js"></script>
+</head>
+<div>
+    <input type="hidden" id="purchaseTenderId"/>
+    <p class="sc_p" style="margin:20px 0 0 0px">招标报名单位</p>
+    <div id="company">
+    </div>
+    <div class="sc_gym"><img src="../images/fanye.jpg"></div>
+
+    <div id="_tables">
+    </div>
+
+    <p class="sc_p" style="margin:20px 0 0 0px"></p>
+  
+    <div class="sc_daig tex_m">
+    <a class="btn btn-hui btn-w80" type="button" id="btn_zc">暂存</a> &nbsp;
+    <a class="btn btn-red  btn-w80" type="button" id="btn_confirm">确定中标</a>
+	</div>
+</div>
+<script>
+    var saleBidOrderList;
+    try{
+        $('#purchaseTenderId').val('${map.purchaseTenderId}');
+        saleBidOrderList=$.parseJSON('${map.saleBidOrderList}');
+        for (var i=0;i<saleBidOrderList.length;i++){
+            saleBidOrderList[i].logo='../images/shenchans/sc_glie2.jpg';
+            saleBidOrderList[i].industry='服装服饰';
+            saleBidOrderList[i].nature='外商独资';
+            saleBidOrderList[i].product=[{'name':'衣服'},{'name':'裤子'},{'name':'鞋'}];
+            saleBidOrderList[i].address='成都市高新区';
+            saleBidOrderList[i].model='生产制造';
+        }
+        $('#company').companyList({
+            data:saleBidOrderList,
+            isAttention:false,
+            isClick:true,
+            callback:function(data){
+                for (var i=0;i<data.length;i++){
+                    if (data[i].saved){
+                        $('#'+data[i].randDivId).click();
+                    }
+                }
+            },
+            yes:function(_this,data){
+                getSaleBidOrderDetail(data,$(_this));
+            },
+            no:function(_this,data){
+                try{
+                    $('#'+$(_this).data('_radDivId')).remove();
+                }catch (e){}
+            }
+        })
+    }catch (e){}
+</script>
+</html>

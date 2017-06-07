@@ -1,0 +1,9 @@
+$(document).ready(function(){
+    //企业信息设值
+    $.ajaxLoad({
+        url:'../comp/getCompanyById',
+        success:function(data){
+            console.log(data);
+        }
+    });
+});

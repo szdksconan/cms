@@ -1,0 +1,284 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+        #updateBuyRule {
+            width: 100%;
+        }
+
+        .edit-cg1 {
+            width: 33%;
+            float: left;
+            line-height: 40px;
+            padding-left: 10px;
+        }
+
+        .edit-cg2 {
+            width: 32%;
+            float: left;
+            line-height: 40px;
+        }
+
+        .edit-cg3 {
+            width: 34%;
+            float: left;
+            line-height: 40px;
+        }
+
+        .edit-cg4 {
+            width: 100%;
+            line-height: 40px;
+            padding-left: 10px;
+        }
+        .cg-apply {
+            width: 100%;
+            line-height: 40px;
+            float: left;
+            padding-left: 10px;
+        }
+
+        .cg-check {
+            position: relative;
+            top: 2px;
+        }
+        .textarea-c{
+            resize: none;
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+        .add_text{
+            color:#4496C5;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .crumb-select-item {
+            float: left;
+            position: relative;
+            border: 1px solid #ccc;
+            font-size: 12px;
+            vertical-align: top;
+            margin: 5px 5px 5px 0;
+            margin-right: 16px;
+            padding: 5px 26px 5px 5px;
+            cursor: pointer;
+            background: #f3f3f3;
+            background-color: rgb(243, 243, 243);
+        }
+        .crumb-select-item i {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            right: 0;
+            top: 10px;
+            margin-right: 5px;
+            background: url('../images/chuyun/search.ele.png') no-repeat 0 -147px;
+        }
+    </style>
+</head>
+<div id="cggzDiv">
+    <input type="hidden" id="applyTypeId" name="applyTypeId"/>
+    <input type="hidden" id="applyTypeName" name="applyTypeName"/>
+    <input type="hidden" id="ruleSourceId" name="ruleSourceId"/>
+    <input type="hidden" id="ruleSourceName" name="ruleSourceName"/>
+    <input type="hidden" id="ruleTime" name="ruleTime"/>
+    <input type="hidden" id="ruleName" name="ruleName"/>
+    <input type="hidden" id="creator" name="creator"/>
+    <div class="edit-cg1">
+        <span class="cmao_title">规则名称：</span>
+        <select class="selelct viewReadOnly" name="compBuyRuleId" id="guizename">
+            <option value="-1">请选择</option>
+        </select>
+    </div>
+    <div class="edit-cg2">
+        <span class="cmao_title">编制时间：</span><input type="text" id="bianzhiTime" width="134px" class="cmao_input m126"  disabled="disabled"/>
+    </div>
+    <div class="edit-cg3">
+        <span class="cmao_title">编制人：</span><input type="text" class="cmao_input m126" id="bzr" disabled="disabled"/>
+    </div>
+    <div class="cg-apply clearfix">
+        <span class="cmao_title">适用物资：</span>
+        <span id="element_id">
+          <select class="materials1 selelct viewReadOnly" id="type1" name="cggzProductType"></select>
+          <select class="materials2 selelct viewReadOnly" id="type2" name="cggzProductType"></select>
+          <select class="materials3 selelct viewReadOnly" id="type3" name="cggzProductType"></select>
+          <select class="materials4 selelct viewReadOnly" id="type4" name="cggzProductType"></select>
+        </span>
+        <font class="add_text clearBtn" onclick="addproduct(this);">添加</font>
+    </div>
+    <div class="detail-product-r-down clearfix" style="padding-left: 40px" id="blank_theme"></div>
+    <div class="cg-apply clearfix">
+        <span class="cmao_title">物资来源：</span>
+        <input type="text" class="cmao_input m126 viewReadOnly" id="wzly" readonly>
+    </div>
+    <div class="detail-product-r-down clearfix" style="padding-left: 40px" id="wzlyDiv"></div>
+    <div class="edit-cg4 clearfix" >
+        <span class="cmao_title">付款方式：</span>
+        <label><input type="checkbox" class="cg-check viewReadOnly" name="jiesuanType" value="现款现货"/>现款现货</label>
+        <label class="ml10"><input type="checkbox" class="cg-check viewReadOnly" value="分期付款" name="jiesuanType"/>分期付款</label>
+    </div>
+    <div class="edit-cg4">
+        <span class="cmao_title">交易规则描述：</span>
+        <textarea cols="90"  rows="5" class="textarea-c viewReadOnly" id="describle" name="description"></textarea>
+    </div>
+    <p>&nbsp;</p>
+</div>
+<script>
+    $.cxSelect.defaults.emptyStyle = 'none';
+    $("#cggzDiv #element_id").cxSelect({
+        url:'../js/common/productJson.json',
+        selects : ['materials1','materials2','materials3','materials4']
+    });
+    $("#wzly").click(function(e){
+        var tipcon = '<div class="area-tip-input">' +
+                '<span class="rule-tip" value="{0}" data-id="{1}">{2}</span>' +
+                '<span class="del"></span>' +
+                '</div>';
+        SelCity(this,e,{
+            'divId':'wzlyDiv',
+            'appendHtml':tipcon
+        });
+    });
+    function addproduct(obj) {
+        var text='',value='';
+        $('select[name="cggzProductType"]').each(function(){
+            if ($(this).val()!=null&&$(this).val()!=''){
+                value+=$(this).val()+'-';
+                text+=$(this).find('option:checked').text()+'-';
+            }
+        });
+        value=value.length!=0?value.substr(0,value.length-1):value;
+        text=text.length!=0?text.substr(0,text.length-1):text;
+        if (value!=''){
+            var content = "<div class='crumb-select-item'><span class='applyType' data-id='"+value+"'>"+text+"</span><i onclick='del(this);'></i></div>";
+            $(obj).parent().next().append(content);
+        }
+    }
+</script>
+<script>
+    var _ruleData={};
+    $.ajax({
+        url:'../compRule/getAllCompBuyRule?compid='+_cggzCompId,
+        success:function(data){
+            try{
+                for (var i=0;i<data.length;i++){
+                    var obj=data[i];
+                    _ruleData[obj.id]=obj;
+                    if (purchaseTender!=null && purchaseTender.compBuyRuleId!=undefined&&purchaseTender.compBuyRuleId==obj.id){
+                        $('#guizename').append('<option value="'+obj.id+'" selected>'+obj.ruleName+'</option>');
+                    }else {
+                        $('#guizename').append('<option value="'+obj.id+'">'+obj.ruleName+'</option>');
+                    }
+                }
+            }catch (e){}
+        }
+    });
+
+    function clearDiv(){
+        $('#bianzhiTime').val('');
+        $('#ruleTime').val('');
+        $('#createor').val('');
+        $('#bzr').val('');
+        $('#ruleName').val('');
+        $('#blank_theme').html('');
+        $('#wzlyDiv').html('');
+        $('#describle').val('');
+        $('input.cg-check[type="checkbox"]').attr('checked',false);
+    }
+
+    $('#guizename').change(function(){
+        try{
+            if ($(this).val()!=-1){
+                clearDiv();
+                var _obj = _ruleData[$(this).val()];
+                $('#bianzhiTime').val(_obj.ruleTime);
+                $('#ruleTime').val(_obj.ruleTime);
+                $('#creator').val(_obj.creator);
+                $('#bzr').val(_obj.creator);
+                $('#ruleName').val(_obj.ruleName);
+                var applyType = (_obj.applyType||'').split(',');
+                for (var i=0;i<applyType.length;i++){
+                    if (applyType[i]!=''){
+                        var content = "<div class='crumb-select-item'><span class='applyType'>" +applyType[i]+ "</span><i class='del' onclick='del(this);'></i></div>";
+                        $('#blank_theme').append(content);
+                    }
+                }
+                var areaNames = (_obj.areaNames||'').split(',');
+                var areaIds = (_obj.areaIds||'').split(',');
+                for (var i=0;i<areaNames.length;i++){
+                    if (areaNames[i]!=''){
+                        var tipcon = $.formatString('<div class="area-tip-input">' +
+                        '<span class="rule-tip" value="{0}" data-id="{1}">{2}</span><span class="del">' +
+                        '</span></div>',areaIds[i],areaIds[i],areaNames[i]);
+                        $('#wzlyDiv').append(tipcon);
+                    }
+                }
+                if ($('.del').length>0){
+                    $('.del').click(function () {
+                        $(this).parent().remove();
+                    });
+                }
+                var jiesuanType = _obj.jiesuanType.split(',');
+                for (var i=0;i<jiesuanType.length;i++){
+                    $('input[type="checkbox"][value="'+jiesuanType[i]+'"]').attr('checked',true);
+                }
+                $('#describle').val(_obj.ruleDesc);
+            }else {
+
+            }
+        }catch (e){}
+    });
+</script>
+<script>
+    try{
+        $('#bianzhiTime').val(_ruleObj.ruleTime);
+        $('#ruleTime').val(_ruleObj.ruleTime);
+        $('#createor').val(_ruleObj.creator);
+        $('#bzr').val(_ruleObj.creator);
+        $('#ruleName').val(_ruleObj.ruleName);
+        var applyTypeName = (_ruleObj.applyTypeName||'').split(',');
+        var applyTypeId = (_ruleObj.applyTypeId||'').split(',');
+        for (var i=0;i<applyTypeName.length;i++){
+            if (applyTypeName[i]!=''){
+                var _id = applyTypeId[i]||'';
+                var content = "<div class='crumb-select-item'><span class='applyType' data-id='"+_id+"'>" +applyTypeName[i]+ "</span><i class='del' onclick='del(this);'></i></div>";
+                $('#blank_theme').append(content);
+            }
+        }
+        var areaNames = (_ruleObj.ruleSourceName||'').split(',');
+        var areaIds = (_ruleObj.ruleSourceId||'').split(',');
+        for (var i=0;i<areaNames.length;i++){
+            if (areaNames[i]!=''){
+                var tipcon = $.formatString('<div class="area-tip-input">' +
+                '<span class="rule-tip" value="{0}" data-id="{1}">{2}</span><span class="del">' +
+                '</span></div>',areaIds[i],areaIds[i],areaNames[i]);
+                $('#wzlyDiv').append(tipcon);
+            }
+        }
+        if ($('.del').length>0){
+            $('.del').click(function () {
+                $(this).parent().remove();
+            });
+        }
+        var jiesuanType = (_ruleObj.jiesuanType||"").split(',');
+        for (var i=0;i<jiesuanType.length;i++){
+            $('input[type="checkbox"][value="'+jiesuanType[i]+'"]').attr('checked',true);
+        }
+        $('#describle').val(_ruleObj.description);
+        if (_ruleObj.state==202){
+            $('#guizename').parent().append('<input type="text" class="cmao_input viewReadOnly" value="'+_ruleObj.ruleName+'"/>');
+            $('#guizename').remove();
+            $('#cggzDiv #element_id').parent().append($('#blank_theme').clone(true));
+            $('#cggzDiv #element_id').remove();
+            $('#blank_theme').remove();
+            $('#wzly').parent().append($('#wzlyDiv').clone(true));
+            $('#wzly').remove();
+            $('#wzlyDiv').remove();
+            $('.cg-apply').width('104px');
+            $('.clearBtn').remove();
+            $('.viewReadOnly').attr('disabled',true);
+            $('.del').remove();
+        }
+    }catch (e){}
+</script>
+</html>

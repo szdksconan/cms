@@ -1,0 +1,381 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>采购订单详情</title>
+    <meta charset="utf-8">
+    <script src="../js/common/tabs.js"></script>
+    <style>
+        .text{ 
+            margin-top: 10px;
+            line-height:22px;
+            padding:0 6px 10px 6px;
+            color:#666;
+            border:solid 1px #066FAF
+        }
+    </style>
+</head>
+<body class="bei">
+    <div class="cfw_x">
+        <ul class="nav nav-tabs" role="tablist" id="tab-list">
+            <li ><a href="javascript:void(0)" >采购订单</a></li>
+        </ul>
+        <div class="tab-content">
+        </div>
+    </div>
+    <div class="container">
+        <table style="width: 800px;border-collapse: separate;border-spacing: 5px">
+            <tr>
+                <td align="right">
+                    采购订单号：
+                </td>
+                <td>
+                    <input type="text" class="cmao_inplg" disabled="disabled" value="CGDD-00000000"/>
+                </td>
+                <td align="right">
+                    创建日期：
+                </td>
+                <td>
+                    <input type="text" class="cmao_inplg" disabled="disabled" value="2016.04.14"/>
+                </td>
+                <td align="right">
+                    订单状态：
+                </td>
+                <td>
+                    <input type="text" class="cmao_inplg" disabled="disabled" value="已付款 代发货"/>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    供应商名称：
+                </td>
+                <td colspan="2">
+                    <input type="text" class="cmao_inplg" style="width: 100%" value="互联网公司" disabled/>
+                </td>
+                <td align="left" colspan="2">
+                    经营地址：
+                    <input type="text" class="cmao_inplg" style="width: 70%" value="经营地址" disabled/>
+                </td>
+                <td>
+
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    联系人：
+                </td>
+                <td>
+                    <input placeholder="联系人" class="cmao_inplg" disabled/>
+                </td>
+                <td align="right">
+                    联系电话：
+                </td>
+                <td>
+                    <input placeholder="028" style="width: 40px" class="cmao_inplg" disabled/>
+                    <input placeholder="666666666" class="cmao_inplg" disabled/>
+                </td>
+                <td align="right">
+                    手机：
+                </td>
+                <td>
+                    <input placeholder="13888888888" class="cmao_inplg" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    传真：
+                </td>
+                <td>
+                    <input placeholder="028-88888888" class="cmao_inplg" disabled/>
+                </td>
+                <td align="right">
+                    邮箱：
+                </td>
+                <td>
+                    <input placeholder="88888888@163.com" class="cmao_inplg" disabled/>
+                </td>
+            </tr>
+        </table>
+        <p>&nbsp;</p>
+        <ul class="nav nav-tabs" >
+            <li class="active"><a data-toggle="tab" style="color:black;">采购产品信息</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" >
+                <table id="table"></table>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="margin-right: inherit">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab_jygz" data-toggle="tab" style="color:black;">交易规则</a></li>
+            <li><a href="#tab_lxxx" data-toggle="tab" style="color:black;">联系信息</a></li>
+            <li><a href="#tab_fkxx" data-toggle="tab" style="color:black;">付款信息</a></li>
+            <li><a href="#tab_shxx" data-toggle="tab" style="color:black;">收货信息</a></li>
+            <li><a href="#tab_wlxx" data-toggle="tab" style="color:black;">物流运输信息</a></li>
+        </ul>
+        <div class="tab-content" style="height: auto;float: left;width: 100%">
+            <div class="tab-pane active tab_border" id="tab_jygz" style="float: left;width: 100%">
+            </div>
+            <div class="tab-pane tab_border" id="tab_lxxx">
+                <div class="sc_lx" style="float: inherit;margin-top: inherit">
+                    <ul>
+                        <li>
+                            <span>采购员 ：</span>
+                            <input type="text" class="cmao_input " value="张三"/>
+                            <span class="ml26">固定电话 ：</span>
+                            <input type="text" class="cmao_input" style="width: 45px" value="028"/>
+                            <input type="text" class="cmao_input" value="88888888"/>
+                        </li>
+                        <li>
+                            <span >&nbsp;&nbsp;&nbsp;手机 ：</span>
+                            <input type="text" class="cmao_input " value="13888888888"/>
+                            <span class="ml26">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;传真 ：</span>
+                            <input type="text" class="cmao_input " value="028-88888888"/>
+                            <span class="ml26">邮箱 ：</span>
+                            <input type="text" class="cmao_input " value="123456789@168.com"/>
+                        </li>
+                    </ul>
+                    <p>&nbsp;</p>
+                </div>
+            </div>
+            <div class="tab-pane tab_border" id="tab_fkxx">
+                <div class="sc_lx" style="float: inherit;margin-top: inherit">
+                    <ul>
+                        <li>
+                            <span>已付款金额 ：</span>
+                            <input type="text" class="cmao_input " id="settlemoney" value=""/>元
+                            <span class="ml26">未付款金额 ：</span>
+                            <input type="text" class="cmao_input" id="notsettlemoney" value=""/>元
+                            <span class="ml26">应付款金额 ：</span>
+                            <input type="text" class="cmao_input " id="actualpaymoney" value=""/>元
+                            <button class="btn btn-blue btn-w150" type="button" id="btn_pay">提请财务付款</button>
+                            <button class="btn btn-blue btn-w150" type="button" >付款详情</button>
+                        </li>
+                        <li>
+                            <span>已收票金额 ：</span>
+                            <input type="text" class="cmao_input " value=""/>元
+                            <span class="ml26">未收票金额 ：</span>
+                            <input type="text" class="cmao_input" value=""/>元
+                            <span class="ml26">应收票金额 ：</span>
+                            <input type="text" class="cmao_input " value=""/>元
+                            <button class="btn btn-blue btn-w150" type="button" >提醒对方收票</button>
+                            <button class="btn btn-blue btn-w150" type="button" >收票详情</button>
+                        </li>
+                    </ul>
+                    <p>&nbsp;</p>
+                </div>
+            </div>
+            <div class="tab-pane tab_border" id="tab_shxx">
+                <div class="sc_lx" style="float: inherit;margin-top: inherit">
+                    <ul>
+                        <li>
+                            <span>收货信息 ：</span>
+                            <input type="text" class="cmao_input " value="盖乐实"/>
+                        </li>
+                        <li >
+                            收货地址 ：
+                            <input type="text" class="cmao_input" style="width: 40%;" id="deliverAdd" readonly/>
+                            <input type="text" class="cmao_input" value="123道4566区56663路"/>
+                        </li>
+                        <li>
+                            <span>&nbsp;&nbsp;&nbsp;联系人 ：</span>
+                            <input type="text" class="cmao_input " value="张三"/>
+                            <span class="ml26">固定电话 ：</span>
+                            <input type="text" class="cmao_input" style="width: 45px" value="028"/>
+                            <input type="text" class="cmao_input" value="88888888"/>
+                            <span class="ml26">手机 ：</span>
+                            <input type="text" class="cmao_input " value="13888888888"/>
+                        </li>
+                    </ul>
+                    <p>&nbsp;</p>
+                </div>
+            </div>
+            <div class="tab-pane tab_border" id="tab_wlxx">
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+    $('#btn_pay').click(function(){
+        $.ajaxLoad({
+            url:'../priceTest/pricePush',
+            data:{
+                actualpaymoney:$('#actualpaymoney').val(),
+                settlemoney:$('#settlemoney').val(),
+                notsettlemoney:$('#notsettlemoney').val()
+            },
+            success:function(data){
+                layer.msg(data.result, {icon: 1});
+            }
+        });
+    });
+
+    $('#tab_jygz').load('../guize/cggz.html');
+
+    var options = [
+        {label: '交易规则1',  value: '1'},
+        {label: '交易规则2',  value: '2'},
+        {label: '交易规则3',  value: '3'},
+        {label: '交易规则4',  value: '4'}
+    ];
+    $('#jygz').multiselect('dataprovider', options);
+
+    options = [
+        {label: '现金支付',  value: '1'},
+        {label: '在线支付',  value: '2'},
+        {label: '货到付款',  value: '3'}
+    ];
+    $('#zffs').multiselect('dataprovider', options);
+
+    options = [
+        {label: '按订单/合同结',  value: '1'},
+        {label: '自定义',  value: '2'}
+    ];
+    $('#fkyd').multiselect('dataprovider', options);
+
+    options = [
+        {label: '供方负责',  value: '1'},
+        {label: '需方负责',  value: '2'}
+    ];
+    $('#ysfz').multiselect('dataprovider', options);
+
+    options = [
+        {label: '供方提供',  value: '1'},
+        {label: '需求方提供',  value: '2'}
+    ];
+    $('#yfcd').multiselect('dataprovider', options);
+
+    options = [
+        {label: '普通机打发票',  value: '1'},
+        {label: '普通定额发票',  value: '2'},
+        {label: '增值税普通发票',  value: '3'},
+        {label: '增值税专用发票',  value: '4'}
+    ];
+    $('#fplx').multiselect('dataprovider', options);
+
+    options = [
+        {label: '批发',  value: '1'},
+        {label: '零售',  value: '2'},
+        {label: '自产自销',  value: '3'},
+        {label: '代购代销',  value: '4'}
+    ];
+    $('#jyms').multiselect('dataprovider', options);
+    options = [
+        {label: '外资企业',  value: '1'},
+        {label: '国营企业',  value: '2'},
+        {label: '合资企业',  value: '3'},
+        {label: '民营企业',  value: '4'}
+    ];
+    $('#qyxz').multiselect('dataprovider', options);
+
+    $("#deliverAdd").click(function (e) {
+        SelCity(this,e);
+    });
+    $('#table').bootstrapTable({
+        data:[{
+            "productCode":"G88888888ABC",
+            "productLogo": "苹果",
+            "productSet": "iphone6",
+            "productName": "iphone6 4.7寸 16G 银色",
+            "productSize": "A1586",
+            "productCount": "5",
+            "productUnit": "台",
+            "productPrice":"5000",
+            "productAmount":"25000",
+            "deliverTime":"2016.4.15",
+            "unDeliverCount":"3",
+            "afloatCount":"1"
+        },{
+            "productCode":"G88888888ABC",
+            "productLogo": "苹果",
+            "productSet": "iphone6 plus",
+            "productName": "iphone6 plus 5.5寸 64G 深空灰",
+            "productSize": "A1524",
+            "productCount": "5",
+            "productUnit": "台",
+            "productPrice":"6000",
+            "productAmount":"30000",
+            "deliverTime":"2016.4.16",
+            "unDeliverCount":"3",
+            "afloatCount":"1"
+        },{
+            "productCode":"G88888888ABC",
+            "productLogo": "苹果",
+            "productSet": "iphone6 plus",
+            "productName": "iphone6 plus 5.5寸 64G 深空灰",
+            "productSize": "A1524",
+            "productCount": "5",
+            "productUnit": "台",
+            "productPrice":"6000",
+            "productAmount":"30000",
+            "deliverTime":"2016.4.16",
+            "unDeliverCount":"3",
+            "afloatCount":"1"
+        },{
+            "productCode":"G88888888ABC",
+            "productLogo": "苹果",
+            "productSet": "iphone6 plus",
+            "productName": "iphone6 plus 5.5寸 64G 深空灰",
+            "productSize": "A1524",
+            "productCount": "5",
+            "productUnit": "台",
+            "productPrice":"6000",
+            "productAmount":"30000",
+            "deliverTime":"2016.4.16",
+            "unDeliverCount":"3",
+            "afloatCount":"1"
+        }],
+        pagination: true,//是否显示分页
+        queryParamsType:'',//传递参数
+        sidePagination: "client",//分页方式：client客户端分页，server服务端分页
+        uniqueId: "id",//每一行的唯一标识，一般为主键列
+        showFooter:true,
+        FooterHtml:'<span style="margin-right: 20px">合计:0.00元</span>',
+        columns: [{
+            field: 'Number',
+            title: '序号',
+            formatter: function (value, row, index) {
+                return index+1;
+            }
+        },{
+            title : '产品编码',
+            field : 'productCode'
+        },{
+            title : '产品品牌',
+            field : 'productLogo'
+        },{
+            title : '产品系列',
+            field : 'productSet'
+        },{
+            title : '产品名称',
+            field : 'productName'
+        },{
+            title : '规格型号',
+            field : 'productSize'
+        },{
+            title : '数量',
+            field : 'productCount'
+        },{
+            title : '单位',
+            field : 'productUnit'
+        },{
+            title : '单价',
+            field : 'productPrice'
+        },{
+            title : '小计金额',
+            field : 'productAmount'
+        },{
+            title : '交货日期',
+            field : 'deliverTime'
+        },{
+            title : '未交货数量',
+            field : 'unDeliverCount'
+        },{
+            title : '当前发货在途数量',
+            field : 'afloatCount'
+        }]
+    });
+</script>
+</html>

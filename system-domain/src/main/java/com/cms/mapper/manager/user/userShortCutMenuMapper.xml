@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cms.mapper.manager.user.userShortCutMenuMapper">
+	<sql id="USERSHORTCUTMENU-PARAM">
+		tm.id as id,
+		user_id as userId,
+		access_menu_id as accessMenuId,
+		access_menu_name as accessMenuName,
+		access_menu_url as accessMenuUrl
+	</sql>
+	
+	<select id="treeGrid" parameterType="long" resultType="com.cms.model.manager.userShortcutMenuBean">
+	    select <include refid="USERSHORTCUTMENU-PARAM"/> from t_sys_user_shortcut_menu tm 
+	    <if test="_parameter !=null and _parameter != '' and _parameter != 1 and _parameter!='1'">
+	    	INNER JOIN t_sys_user tu on tm.user_id = tu.id INNER JOIN t_sys_role_access ta on tu.role_id=ta.role_id 
+	    </if>
+	    where tm.user_id=#{_parameter}
+	</select>
+	
+	<select id="treeGridCot" parameterType="long" resultType="int">
+	    select count(1) from t_sys_user_shortcut_menu tm 
+	    <if test="_parameter !=null and _parameter != '' and _parameter != 1 and _parameter!='1'">
+	    	INNER JOIN t_sys_user tu on tm.user_id = tu.id INNER JOIN t_sys_role_access ta on tu.role_id=ta.role_id 
+	    </if>
+	    where tm.user_id=#{_parameter}
+	</select>
+	
+	<delete id="delete" parameterType="long">
+		delete from t_sys_user_shortcut_menu where id=#{id}
+	</delete>
+	
+	<insert id="add" parameterType="com.cms.model.manager.userShortcutMenuBean">
+		insert into t_sys_user_shortcut_menu (user_id,access_menu_id,access_menu_name,access_menu_url) values (#{userId},#{accessMenuId},#{accessMenuName},#{accessMenuUrl})
+	</insert>
+</mapper>

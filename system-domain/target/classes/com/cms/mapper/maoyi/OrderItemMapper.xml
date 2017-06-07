@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.maoyi.OrderItemMapper" >
+  <resultMap id="orderItemRMap" type="com.cms.model.maoyi.CmsOrderItem" >
+    <id column="itemId" property="itemId" jdbcType="VARCHAR" />
+    <result column="orderId" property="orderId" jdbcType="VARCHAR" />
+    <result column="orderId" property="productId" jdbcType="VARCHAR" />
+    <result column="productTitle" property="productTitle" jdbcType="VARCHAR" />
+    <result column="productAttrVal" property="productAttrVal" jdbcType="VARCHAR" />
+    <result column="productImage" property="productImage" jdbcType="VARCHAR" />
+    <result column="quantity" property="quantity" jdbcType="INTEGER" />
+    <result column="realQuantity" property="realQuantity" jdbcType="INTEGER" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="unitPrice" property="unitPrice" jdbcType="DECIMAL" />
+    <result column="total" property="total" jdbcType="DECIMAL" />
+    <result column="realTotal" property="realTotal" jdbcType="DECIMAL" />
+    <result column="discount" property="discount" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="refundStatus" property="refundStatus" jdbcType="INTEGER" />
+    <result column="refundQuantity" property="refundQuantity" jdbcType="INTEGER" />
+    <result column="refundPrice" property="refundPrice" jdbcType="DECIMAL" />
+    <result column="reviewsStatus" property="reviewsStatus" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    itemId,orderId,orderId,productTitle,productAttrVal,productImage,quantity,realQuantity,
+    unit,unitPrice,total,realTotal,discount,status,memo,refundStatus,refundQuantity,
+    refundPrice,reviewsStatus
+  </sql>
+  <sql id="Bm_Column_List" >
+    t.itemId,t.orderId,t.orderId,t.productTitle,t.productAttrVal,t.productImage,t.quantity,t.realQuantity,
+    t.unit,t.unitPrice,t.total,t.realTotal,t.discount,t.status,t.memo,t.refundStatus,t.refundQuantity,
+    t.refundPrice,t.reviewsStatus
+  </sql>
+ <insert id="insertOrderItem" parameterType="java.util.List" >
+    insert into cms_t_order_item (<include refid="Base_Column_List"/>)
+    values
+    <foreach collection="list" item="item" index="index"
+			separator=",">
+			 (#{item.itemId},#{item.orderId},#{item.orderId},#{item.productTitle},#{item.productAttrVal},
+			 #{item.productImage},#{item.quantity},#{item.realQuantity},#{item.unit},#{item.unitPrice},#{item.total},
+			 #{item.realTotal},#{item.discount},#{item.status},#{item.memo},#{refundStatus},#{refundQuantity},
+    		 #{refundPrice},#{reviewsStatus})
+		</foreach>
+  </insert>
+  <update id="updateOrderItemPrice" parameterType="java.util.HashMap">
+	  	 update cms_t_order_item set unitPrice=unitPrice
+	  	 <if test="discount!=null and discount!=''">
+	  	 	,discount=#{discount}
+	  	 </if>
+	  	 <if test="total!=null and total!=''">
+	  	 	,total=#{total}
+	  	 </if>
+	  	 <if test="realTotal!=null and realTotal!=''">
+	  	 	,realTotal=#{realTotal}
+	  	 </if>
+	  	 where  itemId=#{itemId}
+  </update>
+  <update id="updateOrderItemRefund" parameterType="java.util.HashMap">
+	  	 update cms_t_order_item set unitPrice=unitPrice
+	  	 <if test="refundStatus!=null and refundStatus!=''">
+	  	 	,refundStatus=#{refundStatus}
+	  	 </if>
+	  	 <if test="refundQuantity!=null and refundQuantity!=''">
+	  	 	,refundQuantity=#{refundQuantity}
+	  	 </if>
+	  	 <if test="refundPrice!=null and refundPrice!=''">
+	  	 	,refundPrice=#{refundPrice}
+	  	 </if>
+	  	 where itemId=#{itemId}
+  </update>
+  <update id="updateOrderItemReviews" parameterType="java.util.HashMap">
+	  	 update cms_t_order_item set unitPrice=unitPrice
+	  	 <if test="reviewsStatus!=null and reviewsStatus!=''">
+	  	 	,reviewsStatus=#{reviewsStatus}
+	  	 </if>
+	  	 where itemId=#{itemId}
+  </update>
+  <delete id="deleteOrderItem" parameterType="java.util.HashMap">
+  	delete from cms_t_order_item where itemId in  
+    <foreach collection="list" item = "item" open="(" separator="," close=")">
+    	#{item}  
+    </foreach>  
+  </delete>
+</mapper>

@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>账号信息-基本信息</title>
+<link href="../../../css/account-mana.css" rel="stylesheet"/>
+<link href="../../../css/account-mana2.css" rel="stylesheet"/>
+<script src="../../../js/jquery.1.11.3.min.js"></script>
+<script src="../../../js/dropdown.js"></script>
+<!--[if lt IE 9]>
+<script src="js/html5shiv.js"></script>
+<script src="js/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+	<div class="acc-info"> 
+		<!--已保存的地址-->
+		<div class="acc-saveadsdiv">
+			<div class="acc-ads-title">
+		  	 	<span class="acc-adst-icon"></span>
+		  	 	<span class="acc-adst-word">已保存的地址</span>
+		  	</div>
+		  	<table class="acc-saveadstb">
+		  		<thead>
+		  			<tr>
+		  				<td width="15%">收货人</td>
+		  				<td width="20%">所在地区</td>
+		  				<td width="20%">街道地址</td>
+		  				<td width="10%">邮编</td>
+		  				<td width="20%">电话/手机</td>
+		  				<td width="15%">操作</td>
+		  			</tr>
+		  		</thead>
+		  		<tbody class="acc-ads-tbody">
+		  			<tr>
+		  				<td>王明远</td>
+		  				<td>四川省-成都市-高新区</td>
+		  				<td>都会路都会路苑2-1</td>
+		  				<td>610000</td>
+		  				<td>13551975181</td>
+		  				<td><input type="button" value="删除" class="acc-adsdel"></td>
+		  			</tr>
+		  			<tr>
+		  				<td>王明远</td>
+		  				<td>四川省-成都市-高新区</td>
+		  				<td>都会路都会路苑2-1</td>
+		  				<td>610000</td>
+		  				<td>13551975181</td>
+		  				<td><input type="button" value="删除" class="acc-adsdel"></td>
+		  			</tr>
+		  			<tr>
+		  				<td>王明远</td>
+		  				<td>四川省-成都市-高新区</td>
+		  				<td>都会路都会路苑2-1</td>
+		  				<td>610000</td>
+		  				<td>13551975181</td>
+		  				<td><input type="button" value="删除" class="acc-adsdel"></td>
+		  			</tr>
+		  			<tr>
+		  				<td>王明远</td>
+		  				<td>四川省-成都市-高新区</td>
+		  				<td>都会路都会路苑2-1</td>
+		  				<td>610000</td>
+		  				<td>13551975181</td>
+		  				<td><input type="button" value="删除" class="acc-adsdel"></td>
+		  			</tr>
+		  			<tr>
+		  				<td>王明远</td>
+		  				<td>四川省-成都市-高新区</td>
+		  				<td>都会路都会路苑2-1</td>
+		  				<td>610000</td>
+		  				<td>13551975181</td>
+		  				<td><input type="button" value="删除" class="acc-adsdel"></td>
+		  			</tr>
+		  		</tbody>
+		  	</table>
+		</div>
+		<!--添加收货人地址-->
+		<div class="acc-addadsdiv">
+			<div class="acc-ads-title">
+		  	 	<span class="acc-adst-icon"></span>
+		  	 	<span class="acc-adst-word">添加收货地址</span>
+		  	</div>
+		  	<table class="acc-comusertb">
+		  		<tr>
+		  			<td width="10%" align="right">收货人姓名：</td>
+		  			<td width="30%">
+		  				<input type="text" class="acc-adsinput"/>		  				
+		  			</td>
+		  			<td width="10%"></td>
+		  			<td width="50%"></td>
+		  		</tr>
+		  		<tr>
+		  			<td align="right">所在地区：</td>
+		  			<td><!--<select class="acc-adsinput"><option></option></select>-->
+		  				<div class="dropdown acccom-bumen">
+					      	<p></p>
+					     	<ul class="dropul_bumen">
+					         	<li><a href="javascript:void(0)" rel="1">北京</a></li>
+					         	<li><a href="javascript:void(0)" rel="2">成都</a></li>
+					      	</ul>
+					    </div>
+		  			</td>
+		  			<td></td>
+		  			<td></td>
+		  		</tr>
+		  		<tr>
+		  			<td align="right">邮编：</td>
+		  			<td>
+		  				<input type="text" class="acc-adsinput"/>		  				
+		  			</td>
+		  			<td align="right">街道地址：</td>
+		  			<td>
+		  				<textarea class="accom-jyfw"></textarea>
+		  			</td>
+		  		</tr>
+		  		<tr>		  			
+		  			<td align="right">固定电话：</td>
+		  			<td>
+		  				<input type="text" placeholder="+86" class="acc-gdtel1"/>
+		  				<input type="text" placeholder="区号" class="acc-gdtel2"/>
+		  				<input type="text" placeholder="电话号码" class="acc-gdtel3"/>
+		  			</td>
+		  			<td align="right">手机号码：</td>
+		  			<td><input type="text" class="acc-adsinput"/></td>
+		  		</tr>
+		  		<tr>
+		  			<td align="right">固定电话：</td>
+		  			<td><input type="radio"/>设为默认地址</td>
+		  			<td></td>
+		  			<td></td>
+		  		</tr>
+		  	</table>
+		</div>
+		<input type="button" value="保存" class="accinfo-savebtn"/>
+	</div>
+<script type="text/javascript" src="../../../js/jquery.1.11.3.min.js" ></script>
+<script type="text/javascript" src="../../../js/account-mana.js" ></script>
+</body>
+</html>

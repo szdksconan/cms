@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.maoyi.EnterpriseInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.cms.model.maoyi.EnterpriseInfo" >
+    <id column="id" property="id" jdbcType="DECIMAL" />
+   <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="reg_add_ac" property="regAddAc" jdbcType="VARCHAR" />
+    <result column="reg_add_an" property="regAddAn" jdbcType="VARCHAR" />
+    <result column="reg_add_al" property="regAddAl" jdbcType="VARCHAR" />
+    <result column="web_site" property="webSite" jdbcType="VARCHAR" />
+    <result column="logo_path" property="logoPath" jdbcType="VARCHAR" />
+    <result column="enterprise_type" property="enterpriseType" jdbcType="VARCHAR" />
+    <result column="legal_person" property="legalPerson" jdbcType="VARCHAR" />
+    <result column="partner" property="partner" jdbcType="VARCHAR" />
+    <result column="set_time" property="setTime" jdbcType="VARCHAR" />
+    <result column="register_capital" property="registerCapital" jdbcType="VARCHAR" />
+    <result column="manage_scale" property="manageScale" jdbcType="VARCHAR" />
+    <result column="contact_person" property="contactPerson" jdbcType="VARCHAR" />
+    <result column="contact_tel" property="contactTel" jdbcType="VARCHAR" />
+    <result column="contact_phone" property="contactPhone" jdbcType="VARCHAR" />
+    <result column="postcode" property="postcode" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="platform_code" property="platformCode" jdbcType="VARCHAR" />
+    <result column="qq" property="qq" jdbcType="VARCHAR" />
+    <result column="brief_introduction" property="briefIntroduction" jdbcType="VARCHAR" />
+    <result column="business_scope" property="businessScope" jdbcType="VARCHAR" />
+    <result column="business_industry" property="businessIndustry" jdbcType="VARCHAR" />
+    <result column="product" property="product" jdbcType="VARCHAR" />
+    <result column="record_state" property="recordState" jdbcType="INTEGER" />
+    <result column="check_state" property="checkState" jdbcType="INTEGER" />
+    <result column="from_type" property="fromType" jdbcType="INTEGER" />
+    <result column="register_detail" property="registerDetail" jdbcType="VARCHAR" />
+    <result column="mana_add_ac" property="manaAddAc" jdbcType="VARCHAR" />
+    <result column="mana_add_an" property="manaAddAn" jdbcType="VARCHAR" />
+    <result column="manage_detail" property="manageDetail" jdbcType="VARCHAR" />
+    <result column="mana_add_al" property="manaAddAl" jdbcType="VARCHAR" />
+    <result column="barcode_path" property="barcodePath" jdbcType="VARCHAR" />
+    <result column="develop_will" property="developWill" jdbcType="VARCHAR" />
+    <result column="join_will" property="joinWill" jdbcType="VARCHAR" />
+     <result column="is_famous_brand" property="isFamousBrand" jdbcType="BOOLEAN" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, reg_add_ac, reg_add_an, reg_add_al, web_site, logo_path, enterprise_type, 
+    legal_person, partner, set_time, register_capital, manage_scale, contact_person, 
+    contact_tel, contact_phone, postcode, email, platform_code, qq, brief_introduction, 
+    business_scope, business_industry, product, record_state, check_state, from_type, 
+    register_detail, mana_add_ac, mana_add_an, manage_detail, mana_add_al, barcode_path, 
+    develop_will, join_will,is_famous_brand
+  </sql>
+
+  <select id="getInfo" resultMap="BaseResultMap" parameterType="long" >
+    select 
+    <include refid="Base_Column_List" />
+    from enterprise_info
+    where id = #{id}
+  </select>
+  
+  <select id="findEnterInfoBy" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from enterprise_info
+  </select>
+  
+  
+  <insert id="addInfo" parameterType="com.cms.model.maoyi.EnterpriseInfo" >
+    insert into enterprise_info (id, name,contact_person, 
+      contact_phone, email, mana_add_ac, mana_add_an, manage_detail, mana_add_al)
+    values (#{id}, #{name},  #{contactPerson},#{contactPhone},#{email}, 
+     #{manaAddAc}, #{manaAddAn},#{manageDetail}, #{manaAddAl})
+  </insert>
+  
+  <!-- 设置某个贸易商为世界名品贸易商 -->
+  <update id="setFamousBrand"  parameterType="map">
+   	update enterprise_info
+    <set >
+      <if test="isFamousBrand != null" >
+        is_famous_brand = #{isFamousBrand}
+      </if>
+    </set>
+     where id = #{id}
+  </update>
+  
+  
+  <update id="updateInfo" parameterType="com.cms.model.maoyi.EnterpriseInfo" >
+    update enterprise_info
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="regAddAc != null" >
+        reg_add_ac = #{regAddAc,jdbcType=VARCHAR},
+      </if>
+      <if test="regAddAn != null" >
+        reg_add_an = #{regAddAn,jdbcType=VARCHAR},
+      </if>
+      <if test="regAddAl != null" >
+        reg_add_al = #{regAddAl,jdbcType=VARCHAR},
+      </if>
+      <if test="webSite != null" >
+        web_site = #{webSite,jdbcType=VARCHAR},
+      </if>
+      <if test="logoPath != null" >
+        logo_path = #{logoPath,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseType != null" >
+        enterprise_type = #{enterpriseType,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPerson != null" >
+        legal_person = #{legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="partner != null" >
+        partner = #{partner,jdbcType=VARCHAR},
+      </if>
+      <if test="setTime != null" >
+        set_time = #{setTime,jdbcType=VARCHAR},
+      </if>
+      <if test="registerCapital != null" >
+        register_capital = #{registerCapital,jdbcType=VARCHAR},
+      </if>
+      <if test="manageScale != null" >
+        manage_scale = #{manageScale,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPerson != null" >
+        contact_person = #{contactPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="contactTel != null" >
+        contact_tel = #{contactTel,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null" >
+        postcode = #{postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="platformCode != null" >
+        platform_code = #{platformCode,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null" >
+        qq = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="briefIntroduction != null" >
+        brief_introduction = #{briefIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="businessScope != null" >
+        business_scope = #{businessScope,jdbcType=VARCHAR},
+      </if>
+      <if test="businessIndustry != null" >
+        business_industry = #{businessIndustry,jdbcType=VARCHAR},
+      </if>
+      <if test="product != null" >
+        product = #{product,jdbcType=VARCHAR},
+      </if>
+      <if test="recordState != null" >
+        record_state = #{recordState,jdbcType=INTEGER},
+      </if>
+      <if test="checkState != null" >
+        check_state = #{checkState,jdbcType=INTEGER},
+      </if>
+      <if test="fromType != null" >
+        from_type = #{fromType,jdbcType=INTEGER},
+      </if>
+      <if test="registerDetail != null" >
+        register_detail = #{registerDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="manaAddAc != null" >
+        mana_add_ac = #{manaAddAc,jdbcType=VARCHAR},
+      </if>
+      <if test="manaAddAn != null" >
+        mana_add_an = #{manaAddAn,jdbcType=VARCHAR},
+      </if>
+      <if test="manageDetail != null" >
+        manage_detail = #{manageDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="manaAddAl != null" >
+        mana_add_al = #{manaAddAl,jdbcType=VARCHAR},
+      </if>
+      <if test="barcodePath != null" >
+        barcode_path = #{barcodePath,jdbcType=VARCHAR},
+      </if>
+      <if test="developWill != null" >
+        develop_will = #{developWill,jdbcType=VARCHAR},
+      </if>
+      <if test="joinWill != null" >
+        join_will = #{joinWill,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+<!--   添加发展意向 -->
+  <update id="addDevelopWill" parameterType="map" >
+  	update enterprise_info
+    <set >
+      <if test="developWill != null" >
+        develop_will = #{developWill}
+      </if>
+    </set>
+     where id = #{id}
+  </update>  
+<!--   添加合作意向 -->
+  <update id="addJoinWill" parameterType="map" >
+  	update enterprise_info
+    <set >
+      <if test="joinWill != null" >
+        join_will = #{joinWill}
+      </if>
+    </set>
+     where id = #{id}
+  </update>  
+  
+  
+  <select id="getEntByName"  parameterType="string" resultType="map">
+    select id,name from enterprise_info  where name like concat('%',#{name},'%')
+  </select>
+  
+</mapper>

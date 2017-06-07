@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.cms.mapper.userCenter.SysUserTradeAccoutMapper">
+<!-- 	<sql id="infoSql"> -->
+<!-- 		<where> -->
+<!-- 			<if test="beginTime!=null and beginTime!=''"> -->
+<!-- 				create_time >= #{beginTime} -->
+<!-- 			</if> -->
+<!-- 			<if test="endTime!=null and endTime!=''"> -->
+<!-- 				create_time&lt;=#{endTime}; -->
+<!-- 			</if> -->
+<!-- 		</where> -->
+<!-- 	</sql> -->
+	
+	<insert id="addTradeAccount" parameterType="com.cms.model.userCenter.SysUserTradeAccout" >
+		insert into sys_user_trade_accout (accout_id,uid,cardholder,id_card,bank_card,bank_card_type,phone) values
+		 (#{accoutId},#{uid},#{cardholder},#{idCard},#{bankCard},#{bankCardType},#{phone})
+	</insert>
+	
+	
+	
+<!-- 	<select id="findTradeInfoByCreateTime" parameterType="map" resultType="com.cms.model.userCenter.SysUserTradeInfo"> -->
+<!-- 		select * from sys_user_trade_info <include  refid=" infoSql"/> -->
+<!-- 	</select> -->
+	
+	
+</mapper>	

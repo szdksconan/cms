@@ -1,0 +1,86 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+	  <div class="sc_tan">
+          <span> 规格型号： <input type="text" class="cmao_input" value="LY002"/>&nbsp; <a   class="btn btn-hui btn-w80" type="button" >搜索</a> </span>
+          <div class="cfw_l">
+              <ul class="nav nav-tabs" role="tablist" id="tab-list">
+              </ul>
+              <div class="tab-content">
+                  <!--基本信息-->
+                  <div class="tab-pane active" id="tab-basicinfo">
+                      <table id="table">
+                      </table>
+                  </div>
+              </div>
+          </div>
+
+      </div>
+      <div class="sc_tand ">
+          <button id="btn_sub_1" class="btn btn-red btn-w100 ml26" type="button" >提交</button>
+      </div>
+  <script>
+      $('#table').bootstrapTable({
+          data:[{
+              "wzNo":"WZ-123456",
+              "wzName": "泡沫",
+              "size": "LY002",
+              "unit": "箱"
+          },{
+              "wzNo":"WZ-123456",
+              "wzName": "泡沫",
+              "size": "LY002",
+              "unit": "箱"
+          },{
+              "wzNo":"WZ-123456",
+              "wzName": "泡沫",
+              "size": "LY002",
+              "unit": "件"
+          },{
+              "wzNo":"WZ-123456",
+              "wzName": "泡沫",
+              "size": "LY002",
+              "unit": "个"
+          },{
+              "wzNo":"WZ-123456",
+              "wzName": "泡沫",
+              "size": "LY002",
+              "unit": "条"
+          },{
+              "wzNo":"WZ-123456",
+              "wzName": "泡沫",
+              "size": "LY002",
+              "unit": "斤"
+          }],
+          pagination: true,//是否显示分页
+          queryParamsType:'',//传递参数
+          sidePagination: "client",//分页方式：client客户端分页，server服务端分页
+          uniqueId: "id",//每一行的唯一标识，一般为主键列
+          columns: [{
+              checkbox:true
+          },{
+              title : '物资编号',
+              field : 'wzNo'
+          },{
+              title : '物资名称',
+              field : 'wzName'
+          },{
+              title : '规格型号',
+              field : 'size'
+          },{
+              title : '单位',
+              field : 'unit'
+          }]
+      });
+
+      $('#btn_sub_1').click(function(){
+          parent.layer.close(parent.layer.getFrameIndex(window.name));
+      });
+
+  </script>
+  </body>
+</html>

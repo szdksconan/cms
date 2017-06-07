@@ -1,0 +1,437 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<title>产品销售大厅</title>
+<meta charset="utf-8">
+<style>
+
+</style>
+</head>
+<div class="bei" style="width: 100%">
+	<!--<table style="width: 100%;height: 100%">-->
+	<!--<tr>-->
+	<!--<td>-->
+	<div class="container" style="margin-top: 30px;width: 78%;float: left;">
+			<ul class="nav nav-tabs">
+						<li class="active"><a href="#tab1" data-toggle="tab" style="color:black;">物资需求信息</a></li>
+						<li ><a href="#tab2" data-toggle="tab" style="color:black;">招标信息</a></li>
+<!-- 						<li ><a href="#tab3" data-toggle="tab" style="color:black;">代工信息</a></li> -->
+
+			</ul>
+			<div class="tab-content">
+		<div class="nav-tabs nav-tabs-item">
+			<span style="font-size: 11pt"> 系统推送物资需求信息 </span>
+		</div>
+		<div class="sc_cgd">
+			<table>
+				<tr>
+					<td><span>物资类别</span></td>
+					<td>
+						<label class="td-label"><input type="checkbox" value=""/>钢材</label>
+						<label class="td-label"><input type="checkbox" value=""/>铜材</label>
+						<label class="td-label"><input type="checkbox" value=""/>五金配件</label>
+						<label class="td-label"><input type="checkbox" value=""/>圆钢</label>
+					</td>
+					<td align="right"><a class="a_css" href="javascript:void(0)">更多产品分类>></a>
+					</td>
+				</tr>
+				<tr>
+					<td><span>所在地区</span></td>
+					<td><input type="text" class="cmao_input" style="width: 40%;" id="city" readonly /></td>
+					<td align="right">
+						<button class="btn btn-blue btn-w100" type="button">区域选择</button>
+					</td>
+				</tr>
+				<tr>
+					<td><span>有效期</span></td>
+					<td><input placeholder="请输入日期" class="laydate-icon" onclick="laydate()"> <span> - </span> <input placeholder="请输入日期" class="laydate-icon" onclick="laydate()"></td>
+					<td align="right">
+						<button class="btn btn-blue btn-w100" type="button">查询</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="qy_tab" style="height: auto;">
+			<div class="tab-pane active" id="tab1">
+				<div class="sc_tool" style="width: 100%; height: 600px;">
+					<div class="row">
+						<div class="col-sm-6 col-md-4">
+							<table class="thumbnail table_cp">
+								<tr>
+									<td>物资名称：钢板</td>
+								</tr>
+								<tr>
+									<td>规格型号：Q235/10</td>
+								</tr>
+								<tr>
+									<td>需求数量：100吨</td>
+								</tr>
+								<tr>
+									<td>发布时间：2016.03.20</td>
+								</tr>
+								<tr>
+									<td>交货时间：2016.03.20</td>
+								</tr>
+								<tr>
+									<td>采购类型：现货/标准品</td>
+								</tr>
+
+								<tr>
+									<td><a class="a_css" href="javascript:void(0)">成都天湖机械厂</a>
+										<a class="a_css" href="javascript:void(0)">查看详情>></a></td>
+								</tr>
+								<tr>
+									<td>所在地区：成都高新区</td>
+								</tr>
+								<tr>
+									<td>
+										<button class="btn btn-blue btn-w100" type="button">产品自荐</button>
+										<button class="btn btn-blue btn-w100" type="button">关注企业</button>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div class="col-sm-6 col-md-4">
+							<table class="thumbnail table_cp">
+								<tr>
+									<td>物资名称：钢板</td>
+								</tr>
+								<tr>
+									<td>规格型号：Q235/10</td>
+								</tr>
+								<tr>
+									<td>需求数量：100吨</td>
+								</tr>
+								<tr>
+									<td>发布时间：2016.03.20</td>
+								</tr>
+								<tr>
+									<td>交货时间：2016.03.20</td>
+								</tr>
+								<tr>
+									<td>采购类型：现货/标准品</td>
+								</tr>
+
+								<tr>
+									<td><a class="a_css" href="javascript:void(0)">成都天湖机械厂</a>
+										<a class="a_css" href="javascript:void(0)">查看详情>></a></td>
+								</tr>
+								<tr>
+									<td>所在地区：成都高新区</td>
+								</tr>
+
+								<tr>
+									<td>
+										<button class="btn btn-blue btn-w100" type="button">产品自荐</button>
+										<button class="btn btn-blue btn-w100" type="button">关注企业</button>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div class="col-sm-6 col-md-4">
+							<table class="thumbnail table_cp">
+								<tr>
+									<td>物资名称：钢板</td>
+								</tr>
+								<tr>
+									<td>规格型号：Q235/10</td>
+								</tr>
+								<tr>
+									<td>需求数量：100吨</td>
+								</tr>
+								<tr>
+									<td>发布时间：2016.03.20</td>
+								</tr>
+								<tr>
+									<td>交货时间：2016.03.20</td>
+								</tr>
+								<tr>
+									<td>采购类型：现货/标准品</td>
+								</tr>
+
+								<tr>
+									<td><a class="a_css" href="javascript:void(0)">成都天湖机械厂</a>
+										<a class="a_css" href="javascript:void(0)">查看详情>></a></td>
+								</tr>
+								<tr>
+									<td>所在地区：成都高新区</td>
+								</tr>
+
+								<tr>
+									<td>
+										<button class="btn btn-blue btn-w100" type="button">产品自荐</button>
+										<button class="btn btn-blue btn-w100" type="button">关注企业</button>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div class="col-sm-6 col-md-4">
+							<table class="thumbnail table_cp">
+								<tr>
+									<td>物资名称：钢板</td>
+								</tr>
+								<tr>
+									<td>规格型号：Q235/10</td>
+								</tr>
+								<tr>
+									<td>需求数量：100吨</td>
+								</tr>
+								<tr>
+									<td>发布时间：2016.03.20</td>
+								</tr>
+								<tr>
+									<td>交货时间：2016.03.20</td>
+								</tr>
+								<tr>
+									<td>采购类型：现货/标准品</td>
+								</tr>
+
+								<tr>
+									<td><a class="a_css" href="javascript:void(0)">成都天湖机械厂</a>
+										<a class="a_css" href="javascript:void(0)">查看详情>></a></td>
+								</tr>
+								<tr>
+									<td>所在地区：成都高新区</td>
+								</tr>
+
+								<tr>
+									<td>
+										<button class="btn btn-blue btn-w100" type="button">产品自荐</button>
+										<button class="btn btn-blue btn-w100" type="button">关注企业</button>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div class="col-sm-6 col-md-4">
+							<table class="thumbnail table_cp">
+								<tr>
+									<td>物资名称：钢板</td>
+								</tr>
+								<tr>
+									<td>规格型号：Q235/10</td>
+								</tr>
+								<tr>
+									<td>需求数量：100吨</td>
+								</tr>
+								<tr>
+									<td>发布时间：2016.03.20</td>
+								</tr>
+								<tr>
+									<td>交货时间：2016.03.20</td>
+								</tr>
+								<tr>
+									<td>采购类型：现货/标准品</td>
+								</tr>
+								<tr>
+									<td><a class="a_css" href="javascript:void(0)">成都天湖机械厂</a>
+										<a class="a_css" href="javascript:void(0)">查看详情>></a></td>
+								</tr>
+								<tr>
+									<td>所在地区：成都高新区</td>
+								</tr>
+
+								<tr>
+									<td>
+										<button class="btn btn-blue btn-w100" type="button">产品自荐</button>
+										<button class="btn btn-blue btn-w100" type="button">关注企业</button>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div class="col-sm-6 col-md-4">
+							<table class="thumbnail table_cp">
+								<tr>
+									<td>物资名称：钢板</td>
+								</tr>
+								<tr>
+									<td>规格型号：Q235/10</td>
+								</tr>
+								<tr>
+									<td>需求数量：100吨</td>
+								</tr>
+								<tr>
+									<td>发布时间：2016.03.20</td>
+								</tr>
+								<tr>
+									<td>交货时间：2016.03.20</td>
+								</tr>
+								<tr>
+									<td>采购类型：现货/标准品</td>
+								</tr>
+								<tr>
+									<td><a class="a_css" href="javascript:void(0)">成都天湖机械厂</a>
+										<a class="a_css" href="javascript:void(0)">查看详情>></a></td>
+								</tr>
+								<tr>
+									<td>所在地区：成都高新区</td>
+								</tr>
+
+								<tr>
+									<td>
+										<button class="btn btn-blue btn-w100" type="button">产品自荐</button>
+										<button class="btn btn-blue btn-w100" type="button">关注企业</button>
+									</td>
+								</tr>
+							</table>
+						</div>
+						
+					</div>
+					<div class="sc_gym">
+						<img src="../images/fanye.jpg">
+					</div>
+				</div>
+			</div>
+			<div class="tab-pane" id="tab2">
+				<div class="sc_tool" style="width: 100%; height: 600px;">
+					<div class="row">
+						<div class="col-sm-6 col-md-4">
+							<table class="thumbnail table_cp">
+								<tr>
+									<td>物资名称：钢板</td>
+								</tr>
+								<tr>
+									<td>规格型号：Q235/10</td>
+								</tr>
+								<tr>
+									<td>需求数量：100吨</td>
+								</tr>
+								<tr>
+									<td>发布时间：2016.03.20</td>
+								</tr>
+								<tr>
+									<td>交货时间：2016.03.20</td>
+								</tr>
+								<tr>
+									<td>采购类型：现货/标准品</td>
+								</tr>
+								<tr>
+									<td><a class="a_css" href="javascript:void(0)">成都天湖机械厂</a>
+										<a class="a_css" href="javascript:void(0)">查看详情>></a></td>
+								</tr>
+								<tr>
+									<td>所在地区：成都高新区</td>
+								</tr>
+
+								<tr>
+									<td>
+										<button class="btn btn-blue btn-w100" type="button">产品自荐</button>
+										<button class="btn btn-blue btn-w100" type="button">关注企业</button>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="sc_gym">
+						<img src="../images/fanye.jpg">
+					</div>
+				</div>
+			</div>
+			<div class="tab-pane" id="tab3">
+				<div class="sc_tool" style="width: 100%; height: 600px;">
+					<div class="row">
+						<div class="col-sm-6 col-md-4">
+							<table class="thumbnail table_cp">
+								<tr>
+									<td>物资名称：钢板</td>
+								</tr>
+								<tr>
+									<td>规格型号：Q235/10</td>
+								</tr>
+								<tr>
+									<td>需求数量：100吨</td>
+								</tr>
+								<tr>
+									<td>发布时间：2016.03.20</td>
+								</tr>
+								<tr>
+									<td>交货时间：2016.03.20</td>
+								</tr>
+								<tr>
+									<td>采购类型：现货/标准品</td>
+								</tr>
+								<tr>
+									<td><a class="a_css" href="javascript:void(0)">成都天湖机械厂</a>
+										<a class="a_css" href="javascript:void(0)">查看详情>></a></td>
+								</tr>
+								<tr>
+									<td>所在地区：成都高新区</td>
+								</tr>
+
+								<tr>
+									<td>
+										<button class="btn btn-blue btn-w100" type="button">产品自荐</button>
+										<button class="btn btn-blue btn-w100" type="button">关注企业</button>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="sc_gym">
+						<img src="../images/fanye.jpg">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<div class="introduce-box">
+                    <div class="introduce-box-top clearfix">
+                        <div class="introduce-box-logo"></div>
+                        <div class="introduce-welcome">
+	                        <span class="introduce-first">HI,下午好</span>
+	                        <span class="introduce-name">四川双龙沙发厂</span>
+                        </div>
+                    </div>
+                    <div class="introduce-info clearfix">
+                    	<div class="introduce-info-list">
+                    		<a href="javascript:;" class="infolist-box">12</a>
+                    		<a href="javascript:;" class="info-item">待处理申请</a>
+                    	</div>
+                    	<div class="introduce-info-list">
+                    		<a href="javascript:;" class="infolist-box">5</a>
+                    		<a href="javascript:;" class="info-item">待签协议</a>
+                    	</div>
+                    </div>
+                    <div class="info-detail">
+                        <table >
+                             <tr>
+			                    <td><span class="ml27">诚信等级：<img alt="" src="../images/bz3.png"></span></td>
+			                </tr>
+			                <tr>
+			                    <td><span class="ml27">采购意向：</span>工程机械、钢材、钢板</td>
+			                </tr>
+			                <tr>
+			                    <td><span class="ml27">认证类型：<img alt="" src="../images/bz4.png"></span></td>
+			                </tr>
+			                <tr>
+			                    <td><span class="ml27">所属行业：</span>机械</td>
+			                </tr>
+			                <tr>
+			                    <td><span class="ml27">经营模式：</span>生产制造</td>
+			                </tr>
+			                <tr>
+			                    <td><span class="ml27">所属地区：</span>成都市高新区</td>
+			                </tr>
+			                <tr>
+			                    <td><a class="a_css detil-more" href="#" >更多详情>></a></td>
+			                </tr>
+			                <tr>
+                                <td>
+                                    <button class="btn btn-blue btn-detail btn-w100" type="button" >已关注企业</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+</div>
+	<!--</td>-->
+	<!--</tr>-->
+	<!--</table>-->
+	<script>
+		$("#city").click(function(e) {
+			SelCity(this, e);
+		});
+	</script>
+</div>
+</html>

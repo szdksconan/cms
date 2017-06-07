@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>我的产品</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../css/canmaosongptai.css">
+    <link rel="stylesheet" type="text/css" href="../css/shenchan.css">
+    <script src="../js/jquery.js"></script>
+    <script src="../js/control.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+
+</head>
+<body class="bei">
+<div class="sc_dti">
+    <ul>
+      <li>
+     采购导航
+      </li>
+        <li>
+            直接采购>
+        </li>
+        <li>
+            招标采购>
+        </li>
+        <li>
+            物资代工>
+        </li>
+    </ul>
+</div>
+<div class="sc_dtiz">
+<p><a class="red" >物资</a>&nbsp;| &nbsp;供应商</p>
+ <div class="sc_s">
+     <input type="text"  value="皮革"/>
+     <a   class="btn btn-red  btn-w80 "  type="button" >搜索</a>
+ </div>
+ <P> <span>物资类型：</span><span>半成品</span><span>成品</span><span>原材料</span><span>配套件</span></P>
+    <P style="margin-top:70px;"> <span>所在地：</span><span>华北</span><span>华南</span><span>华中</span><span>东北</span><span>西南</span></P>
+
+    <div class="sc_tu" style="margin-top:120px;">
+    <span>
+        <p><img src="../images/t1.jpg" width="100%"> </p>
+        <p><a class="red" >￥399</a>&nbsp;夏季原生态橙子</p>
+        <p>小小阳光美丽农舍</p>
+        <p><img src="../images/b.jpg" >高新区-都会路-1008号</p>
+    </span>
+    <span>
+        <p><img src="../images/t2.jpg" width="100%"> </p>
+        <p><a class="red" >￥399</a>&nbsp;夏季原生态橙子</p>
+        <p>小小阳光美丽农舍</p>
+        <p><img src="../images/b.jpg">高新区-都会路-1008号</p>
+    </span>
+    <span>
+        <p><img src="../images/t1.jpg" width="100%"> </p>
+        <p><a class="red" >￥399</a>&nbsp;夏季原生态橙子</p>
+        <p>小小阳光美丽农舍</p>
+        <p><img src="../images/b.jpg">高新区-都会路-1008号</p>
+    </span>
+    <span>
+        <p><img src="../images/t2.jpg" width="100%"> </p>
+        <p><a class="red" >￥399</a>&nbsp;夏季原生态橙子</p>
+        <p>小小阳光美丽农舍</p>
+        <p><img src="../images/b.jpg">高新区-都会路-1008号</p>
+    </span>
+    <span>
+        <p><img src="../images/t1.jpg" width="100%"> </p>
+        <p><a class="red" >￥399</a>&nbsp;夏季原生态橙子</p>
+        <p>小小阳光美丽农舍</p>
+        <p><img src="../images/b.jpg">高新区-都会路-1008号</p>
+    </span>
+
+    </div>
+    <div class="sc_tu" >
+    <span>
+        <p><img src="../images/t1.jpg" width="100%"> </p>
+        <p><a class="red" >￥399</a>&nbsp;夏季原生态橙子</p>
+        <p>小小阳光美丽农舍</p>
+        <p><img src="../images/b.jpg" >高新区-都会路-1008号</p>
+    </span>
+    <span>
+        <p><img src="../images/t2.jpg" width="100%"> </p>
+        <p><a class="red" >￥399</a>&nbsp;夏季原生态橙子</p>
+        <p>小小阳光美丽农舍</p>
+        <p><img src="../images/b.jpg">高新区-都会路-1008号</p>
+    </span>
+    <span>
+        <p><img src="../images/t1.jpg" width="100%"> </p>
+        <p><a class="red" >￥399</a>&nbsp;夏季原生态橙子</p>
+        <p>小小阳光美丽农舍</p>
+        <p><img src="../images/b.jpg">高新区-都会路-1008号</p>
+    </span>
+    <span>
+        <p><img src="../images/t2.jpg" width="100%"> </p>
+        <p><a class="red" >￥399</a>&nbsp;夏季原生态橙子</p>
+        <p>小小阳光美丽农舍</p>
+        <p><img src="../images/b.jpg">高新区-都会路-1008号</p>
+    </span>
+    <span>
+        <p><img src="../images/t1.jpg" width="100%"> </p>
+        <p><a class="red" >￥399</a>&nbsp;夏季原生态橙子</p>
+        <p>小小阳光美丽农舍</p>
+        <p><img src="../images/b.jpg">高新区-都会路-1008号</p>
+    </span>
+
+    </div>
+</div>
+<div class="sc_dtir">
+<div class="sc_cv">
+    <p> hi！上午好.<br/>成都双龙沙发管理中心</p>
+    <p> <img src="../images/b1.jpg"> </p>
+    <p>会员等级：*****</p>
+    <p>采购意向：泡沫，五金配件</p>
+    <p>认证：<img src="../images/b.jpg" ></p>
+    <p>所属行业：家具类</p>
+    <p>经营模式：生产制造</p>
+    <p>所属地区：成都高新区</p>
+
+
+</div>
+</div>
+<script>
+
+
+    function xioshi() {
+        $('.sc_cg').hide();
+    }
+
+    $("input").each(function(){
+        $(this).focus(function(){
+            if( $(this).val() == $(this).get(0).defaultValue ){
+                $(this).val("");
+            }
+        });
+        $(this).blur(function(){
+            if( $(this).val() == "" ){
+                $(this).val( $(this).get(0).defaultValue );
+            }
+        })
+    });
+
+
+
+</script>
+</body>
+</html>

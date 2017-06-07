@@ -1,0 +1,190 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>进货单</title>
+    <meta charset="utf-8">
+</head>
+<body class="bei">
+    <div class="sc_cgd">
+        <span >
+            进货单号：<input type="text" class="cmao_input " value="JHD-0552578952">
+        </span>
+        <span class="ml10">
+            贸易商名称：<input type="text" class="cmao_input " value="青春挖掘机">
+        </span>
+        <span class="ml10">
+            主营产品：<select class="selelct" id="mainProduct"></select>
+        </span>
+    </div>
+    <div class="sc_cgd">
+        <span >
+            交易状态：<select id="wtfl"></select>
+        </span>
+        <span class="ml10">
+            要求到货日期：
+            <input placeholder="请输入日期" class="laydate-icon" onclick="laydate()">-<input placeholder="请输入日期" class="laydate-icon" onclick="laydate()">
+        </span>
+    </div>
+<div>
+
+   <p>&nbsp;</p>
+    <div id="toolbar" style="width: 100%">
+        <table style="width: 100%">
+            <tr>
+          
+                <td align="right">
+                    <button  class="btn btn-blue btn-w100" type="button" >查询</button>
+                    <button  class="btn btn-darkgray btn-w100" type="button" >清空</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <p>&nbsp;</p>
+    <table id="table" >
+    </table>
+</div>
+<script>
+    $.ajax({
+        url:'../product/getMainProductList',
+        data:{
+            companyId:'1312312313'
+        },
+        success:function(data){
+            try{
+                var rows = data.rows;
+                for (var i=0;i<rows.length;i++){
+                    var option = '<option value="'+rows[i].id+'">'+rows[i].productName+'</option>';
+                    $('#mainProduct').append(option);
+                }
+            }catch (e){}
+        }
+    });
+
+//发布类型加载
+var optionswtfl = [   {label: '日常养护', value: '1'},
+                    {label: '维修指南', value: '2'},
+                    {label: '站点咨询',  value: '3'}
+                ];
+                
+$('#wtfl').multiselect('dataprovider', optionswtfl);
+    $('#table').bootstrapTable({
+//          url:'purchase/test',//请求后台的URL（*）
+        clickToSelect: true,
+        data:[{
+            "cppp":"JH-5696588952",
+            "cpxl": "重庆天天公司",
+            "cpmc": "1P空调",
+            "wtfl": "30000",
+            "wtbt": "2016.04.20",
+            "jyzt": "已完成"
+        },{
+            "cppp":"JH-5696588952",
+            "cpxl": "重庆搞贸易公司",
+            "cpmc": "1P空调",
+            "wtfl": "30000",
+            "wtbt": "2016.04.20",
+            "jyzt": "已完成"
+        },{
+            "cppp":"JH-5696588952",
+            "cpxl": "重庆天天搞贸易公司",
+            "cpmc": "1P空调",
+            "wtfl": "30000",
+            "wtbt": "2016.04.20",
+            "jyzt": "已完成"
+        }],
+        method: 'post',//请求方式（*）
+//        toolbar: '#toolbar',//工具栏所在div id
+        striped: true, //是否显示行间隔色
+        cache:false, //是否使用缓存
+        pagination: true,//是否显示分页
+        queryParamsType:'',//传递参数
+        sortable: false,//是否启用排序
+        sortOrder: "asc",//排序方式
+        sidePagination: "client",//分页方式：client客户端分页，server服务端分页
+        pageNumber:1,//初始化加载第一页，默认第一页
+        pageSize: 10, //每页的记录行数
+        pageList: [10, 20, 40, 100],//可供选择的每页的行数
+        search: false,//是否显示表格搜索，此搜索是客户端搜索，不会进服务端
+        showColumns: false,//是否显示所有的列
+        showRefresh: false,//是否显示刷新按钮
+//        minimumCountColumns: 2,//最少允许的列数
+        clickToSelect: true,//是否启用点击选中行
+        //height: 500,//行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+        uniqueId: "id",//每一行的唯一标识，一般为主键列
+        showToggle:false,//是否显示详细视图和列表视图的切换按钮
+        cardView: false,//是否显示详细视图
+        detailView: false,//是否显示父子表
+        paginationHAlign:'right',//分页组件显示位置
+        paginationVAlign:'bottom',//分页信息显示位置
+        paginationDetailHAlign: 'left', //right, left
+//        showFooter:false,//是否显示合计
+        columns: [{
+            checkbox:true,
+            checkFormatter:function(row){
+            	console.log(row);
+            },
+            cancelFormatter:function(row){
+            	console.log(row)
+            }
+        },
+        {
+            field: 'Number',
+            title: '序号',
+            formatter: function (value, row, index) {
+                return index+1;
+        }
+        },
+        {
+            title : '进货单号',
+            field : 'cppp'
+        },{
+            title : '贸易商名称',
+            field : 'cpxl'
+        },{
+            title : '进货产品',
+            field : 'cpmc'
+        },{
+            title : '进货金额',
+            field : 'wtfl'
+        },{
+            title : '要求到货日期',
+            field : 'wtbt'
+        }, {
+            title : '交易状态',
+            field : 'jyzt'
+        },{
+            title: '操作',
+            field : 'action',
+            formatter: function (value, row, index) {
+                return '<a class="a_css" href="javascript:void(0)" onclick="changeContent(\'../xiaoshou/xs_jhd_mx.html\',\'right\')">编辑</a> | <a class="a_css" href="#">删除</a> | <a class="a_css" href="#">提醒对方付款</a>';
+            }
+        }]
+    });
+
+
+    $('#btn_add').click(function(){
+        document.body.style.overflow='hidden';
+        document.documentElement.style.overflow='hidden';
+        layer.open({
+            title:[' 新增常见问题','font-size:18pt;text-align:center'],
+            skin: 'layui-layer-cms',
+            closeBtn:2,
+            offset: 'center', //右下角弹出
+            type: 2,
+            area: ['45%','35%'],//[width,height]
+            content: '../xiaoshou/xs_cjwt_fb.html',
+            btn:['保存','取消'],
+            yes:function(index,layero){
+                layer.close(index);
+            },
+            no:function(index,layero){
+                layer.close(index);
+            }
+        });
+    });
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+  
+  
+   <dubbo:application name="${dubbo.application.name}" owner="${dubbo.application.owner}" organization="cms"/>
+    
+   <dubbo:registry address="${dubbo.registry.address}"/>
+   <dubbo:monitor protocol="registry"/>
+   <dubbo:protocol name="${dubbo.protocol.name}" serialization="kryo" optimizer="com.cms.optimizer.SerializationOptimizerImpl" accepts="${dubbo.protocol.accepts}" dispatcher="all" threadpool="${dubbo.protocol.threadpool}" threads="${dubbo.protocol.threads}"/>
+    <!--
+    <dubbo:registry id="registry" address="10.20.141.150:9090" username="admin" password="hello1234" />
+     -->
+
+    <!--
+   if  have two network-adapter 
+    <dubbo:protocol host="10.1.22.2" name="dubbo" port="20881" />
+     -->
+<!--
+    <task:scheduled-tasks>
+        <task:scheduled ref="commonService" method="update_task" cron="0 0/30 * * * ?" />
+    </task:scheduled-tasks>
+ -->
+    <dubbo:service interface="com.cms.iservice.wuliu.CommonService" ref="commonService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="commonService" class="com.cms.service.wuliu.CommonServiceImpl"/>
+    
+    <dubbo:service interface="com.cms.iservice.wuliu.CarOnlineService" ref="carOnlineService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="carOnlineService" class="com.cms.service.wuliu.CarOnlineServiceImpl"/>
+    
+    <dubbo:service interface="com.cms.iservice.wuliu.InfoHallService" ref="infoHallService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="infoHallService" class="com.cms.service.wuliu.InfoHallServiceImpl"/>
+    
+    <dubbo:service interface="com.cms.iservice.wuliu.InfoPublishService" ref="infoPublishService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="infoPublishService" class="com.cms.service.wuliu.InfoPublishServiceImpl"/>
+
+    <dubbo:service interface="com.cms.iservice.wuliu.VaServiceService" ref="vaServiceService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="vaServiceService" class="com.cms.service.wuliu.VaServiceServiceImpl"/>
+
+    <dubbo:service interface="com.cms.iservice.wuliu.MyCarService" ref="myCarService" protocol="dubbo" version="1.0.0"   owner="${dubbo.application.owner}" group="${dubbo.group}" delay="-1" timeout="6000" retries="0"/>
+    <bean id="myCarService" class="com.cms.service.wuliu.MyCarServiceImpl"/>
+    
+    <dubbo:reference id="globalIdService" interface="com.cms.iservice.common.GlobalIdService" protocol="dubbo" version="1.0.0" owner="ryan" group="common" timeout="6000" retries="0"/>
+    
+</beans>

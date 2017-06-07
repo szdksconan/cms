@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.mapper.manager.baseInfo.quoteMapper" >
+	  				<sql id="QUOTE-PARAM">
+		    bid,
+		    eid,
+		    price,
+		    mileage,
+		    bname,
+		    ename
+	</sql>
+	
+	<select id="dataGrid" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.manager.quoteBean">
+	  SELECT <include refid="QUOTE-PARAM"/> 
+	  from t_sys_quote  where 1=1
+	      <if test="bid!=null and bid!=''">
+	          and bid = #{bid}
+	    </if>
+	    <if test="eid!=null and eid!=''">
+	           and eid=#{eid}
+	    </if>
+	    <if test="order!=null and order!=''">
+	        ${order}
+	    </if>
+	</select>
+	
+	<select id="dataGridCot" parameterType="com.alibaba.fastjson.JSONObject" resultType="int">
+	  SELECT count(1) from t_sys_quote  where 1=1
+	      <if test="bid!=null and bid!=''">
+	          and bid = #{bid}
+	    </if>
+	    <if test="eid!=null and eid!=''">
+	           and eid=#{eid}
+	    </if>
+	</select>
+	
+	<insert id="add" parameterType="com.cms.model.manager.quoteBean">
+	    insert into t_sys_quote (bid,bname,eid,ename,mileage,price) values (
+	    #{bid},#{bname},#{eid},#{ename},#{mileage},#{price})
+	</insert>
+	
+	<select id="get" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.manager.quoteBean">
+	    select <include refid="QUOTE-PARAM"/> from t_sys_quote where bid=#{bid}
+	    and eid=#{eid}
+	</select>
+	
+	<update id="edit" parameterType="com.cms.model.manager.quoteBean">
+	    update t_sys_quote set mileage=#{mileage},price=#{price}
+	      where bid=#{bid} and eid=#{eid}
+	</update>
+		<delete id="delete" parameterType="com.alibaba.fastjson.JSONObject">
+	    delete from t_sys_quote   where bid=#{bid} and eid=#{eid}
+	</delete>
+</mapper>

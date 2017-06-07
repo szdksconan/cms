@@ -1,0 +1,86 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+    		#xsgz .btn-group{margin-right: 5px;}
+    	</style>
+    	<script type="text/javascript" src="../js/qiyezhongxin/xiaoshourule.js"></script>
+	</head>
+	<body>
+		<div id="xsgz">
+		</div>
+	</body>
+	
+	<script>
+		$(function(){
+			$("#xsgz").load("../xiaoshou/xs_cpfb_rule.html",function(){
+				$('#xsgz #rule-name').html("");
+				$('#xsgz #rule-name').append('<input type="text" class="cmao_inplg" placeholder="请输入规则名称"/>');
+				$("#xsgz #ruleProduct1").attr("disabled",false);
+				$("#xsgz table.-querytable").css("width","auto");
+				$("#xsgz table.-querytable td").css("padding","5px")
+				$("#cplb").remove();
+				$("#xsgz table.-querytable").find("tr").height("auto");
+                $("#xsgz table.-querytable").find("tr td").height("auto");
+                $(".bzj").show();
+				var html  = '<div class="sc_daig sc-daig-item tex_xsgz">';
+	           	html     += '<button class="btn btn-blue  btn-w80" type="button" onclick="saveRule();"; id="cpfb">保存</button>';
+	            html 	 += '<a class="btn btn-hui btn-w80" type="button">取消</a>';
+	        	html 	 += '</div>';
+	        	$("#xsgz .sc_cgd").append(html);
+	        	$("#wzlb").html('<select id="wzlb1"></select><select id="wzlb2"></select><select id="wzlb3"></select>');
+	        	
+	        	var wuzi_type1 = [ {
+					label : '请选择',
+					title : '请选择',
+					value : ''
+				}, {
+					label : '物资类别1',
+					value : '物资类别1'
+				}, {
+					label : '物资类别2',
+					value : '物资类别2'
+				} ];
+	        	var wuzi_type2 = [ {
+					label : '请选择',
+					title : '请选择',
+					value : ''
+				}, {
+					label : '物资类别11',
+					value : '物资类别11'
+				}, {
+					label : '物资类别21',
+					value : '物资类别21'
+				} ];
+	        	var wuzi_type3 = [ {
+					label : '请选择',
+					title : '请选择',
+					value : ''
+				}, {
+					label : '物资类别111',
+					value : '物资类别111'
+				}, {
+					label : '物资类别211',
+					value : '物资类别211'
+				} ];
+				$('#wzlb1').multiselect('dataprovider',wuzi_type1);
+				$('#wzlb2').multiselect('dataprovider',wuzi_type2);
+				$('#wzlb3').multiselect('dataprovider',wuzi_type3);
+				$("#xsgz #sellCity").click(function(e){
+					var tipcon = '<div class="area-tip-input">' +
+				            '<span class="rule-tip" value="{0}" data-id="{1}">{2}</span>' +
+				            '<span class="del"></span>' +
+				            '</div>';
+				    SelCity(this,e,{
+				        'divId':'ruleArea',
+				        'appendHtml':tipcon
+				    });
+				});
+			});
+		})
+	</script>
+</html>

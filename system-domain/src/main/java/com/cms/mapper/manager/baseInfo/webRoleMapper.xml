@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cms.mapper.manager.baseInfo.webRoleMapper">
+	<sql id="WEBROLE-PARAM">
+	    CONVERT(cr.id,char) id,
+	    cr.name as name,
+	    cr.seq as seq,
+	    cr.status as status,
+	    cr.description as description
+	</sql>
+	
+	<select id="dataGrid" parameterType="com.alibaba.fastjson.JSONObject" resultType="com.cms.model.manager.webRoleBean">
+	    select <include refid="WEBROLE-PARAM"/> from chppweb_role cr where 1=1
+	    <if test="order!=null and order!=''">
+	        ${order}
+	    </if>
+	</select>
+	
+	<select id="dataGridCot" parameterType="com.alibaba.fastjson.JSONObject" resultType="int">
+	    select count(1) from chppweb_role cr where 1=1
+	</select>
+	
+	<select id="get" parameterType="long" resultType="com.cms.model.manager.webRoleBean">
+	    select <include refid="WEBROLE-PARAM"/>,GROUP_CONCAT(cra.access_id) accessIds from chppweb_role cr left JOIN chppweb_role_access cra
+	    on cr.id=cra.role_id where cr.id=#{id}
+	</select>
+	
+	<update id="update" parameterType="com.cms.model.manager.webRoleBean">
+	    update chppweb_role set name=#{name},description=#{description} where id=#{id}
+	</update>
+	
+	<insert id="add" parameterType="com.cms.model.manager.webRoleBean">
+	    insert into chppweb_role (id,name,description) values (#{id},#{name},#{description})
+	</insert>
+	
+	<delete id="delete" parameterType="long">
+	    delete from chppweb_role where id=#{id}
+	</delete>
+	
+	<delete id="delGrant" parameterType="com.alibaba.fastjson.JSONObject">
+	    <if test="type=='role'">
+	        delete from chppweb_role_access where role_id=#{id}
+	    </if>
+	    <if test="type=='access'">
+	        delete from chppweb_role_access where menu_id=#{id}
+	    </if>
+	</delete>
+	
+	<update id="addGrant" parameterType="com.alibaba.fastjson.JSONObject">
+	    replace into chppweb_role_access values
+	    <foreach collection="array" index="index" item="item" separator=",">
+	        (#{id},#{item})
+	    </foreach>
+	</update>
+</mapper>
